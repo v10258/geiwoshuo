@@ -14,7 +14,7 @@ var path = require('path');
 
 var paths = {
     src: 'assets',          // css js img less 资源目录 开头和结尾不需要/
-    subdir: '/detail',      // css js img less 资源目录 明确指向可以使开发过程中只处理此目录下的文件提高效率 请以/开头 结尾不需要/
+    subdir: '',      // css js img less 资源目录 明确指向可以使开发过程中只处理此目录下的文件提高效率 请以/开头 结尾不需要/
     html: 'pages',          // 页面模板文件目录
     dist: 'dist',           // build 构建目录
     rev: 'rev'              // 版本构建目录
@@ -67,15 +67,15 @@ var mock = function(req, res, next) {
 gulp.task('sass', function() {
     console.log(plugins.util.colors.green('compile sass into css'));
 
-    return gulp.src([paths.src + '/sass/**/*.scss', '!assets/sass/mixins/*.scss'])
-        //.pipe(plugins.cached('scss'))
+    return gulp.src([paths.src + '/scss/**/*.scss', '!assets/scss/mixins/*.scss'])
+        .pipe(plugins.cached('scss'))
         .pipe(plugins.plumber())
         .pipe(plugins.sassChina({"bundleExec": true}))
-        .pipe(gulp.dest(paths.src + '/css'))
+        //.pipe(gulp.dest(paths.src + '/css'))
         .pipe(plugins.minifyCss({
             compatibility: 'ie7'
         }))
-        .pipe(gulp.dest(paths.dist + '/css'))
+        .pipe(gulp.dest(paths.dist + '/scss'))
         .pipe(reload({
             stream: true
         }))
