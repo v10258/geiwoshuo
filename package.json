@@ -1,0 +1,29 @@
+{
+  "name": "auto-fem",
+  "version": "1.0.0",
+  "description": "gulp tool",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Meizu front-end development team ",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rev": "^6.0.1",
+    "gulp-rev-collector": "^1.0.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "gulp-webpack": "^1.5.0",
+    "jshint": "^2.8.0"
+  },
+  "dependencies": {
+    "jquery": "^1.12.1"
+  }
+}

@@ -12,7 +12,7 @@ console.log('__dirname', __dirname);
 
 module.exports = {
     entry: {
-        main: './assets/js/detail.js',
+        main: './assets/js/task.js',
         vendor: ['jquery']
     },
     output: {
@@ -20,8 +20,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'bootstrap': __dirname + '/vendor/bootstrap/dist/js/bootstrap.js',
-            'jquery': __dirname + "/vendor/jquery/dist/jquery.js"
+            'jquery': __dirname + "/node_modules/jquery/dist/jquery.min.js"
         }
     },
     plugins: [commonsPlugin, providePlugin]
