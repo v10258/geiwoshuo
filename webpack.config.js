@@ -12,11 +12,11 @@ console.log('__dirname', __dirname);
 
 module.exports = {
     entry: {
-        main: './assets/js/task.js',
+        task: './assets/js/task.js',
         vendor: ['jquery']
     },
     output: {
-        filename: '[name].js'
+        filename: '[name].bundle.js'
     },
     resolve: {
         alias: {

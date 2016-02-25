@@ -425,3 +425,28 @@ select:focus {
 .anim.hinge {
   -webkit-animation-duration: 2s;
   animation-duration: 2s; }
+
+.container {
+  position: relative;
+  float: none;
+  clear: both;
+  overflow: visible;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px; }
+  .container:after {
+    display: table;
+    content: "";
+    clear: both; }
+
+.content-column {
+  position: relative;
+  float: left;
+  width: 65%;
+  margin-bottom: 90px; }
+
+.sidebar {
+  position: relative;
+  float: right;
+  width: 30%;
+  margin-bottom: 90px; }
