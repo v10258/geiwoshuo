@@ -24,6 +24,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^6.0.1",
     "gulp-rev-collector": "^1.0.2",
+    "gulp-sass": "^2.2.0",
     "gulp-sass-china": "^2.0.4",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.6",
