@@ -1,4 +1,12 @@
+
+@import "../mixins/variables.scss";
+
+.comments {
+	margin-top:60px;
+}
+
 .comments-header {
+	border-bottom:1px solid $text-color-light;
   .comments-header-order {
 
   }

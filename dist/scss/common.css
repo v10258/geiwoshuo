@@ -30,9 +30,6 @@ a {
   text-decoration: none;
   outline: none; }
 
-a:hover {
-  text-decoration: underline; }
-
 sup {
   vertical-align: text-top; }
 
@@ -426,6 +423,14 @@ select:focus {
   -webkit-animation-duration: 2s;
   animation-duration: 2s; }
 
+body {
+  color: #666; }
+
+a {
+  color: #07C; }
+  a:hover {
+    color: #33aaff; }
+
 .container {
   position: relative;
   float: none;
@@ -448,5 +453,8 @@ select:focus {
 .sidebar {
   position: relative;
   float: right;
-  width: 30%;
+  width: 35%;
   margin-bottom: 90px; }
+
+.sidebar-inner {
+  margin-left: 32px; }

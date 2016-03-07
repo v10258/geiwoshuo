@@ -8,11 +8,11 @@ $border-color-highlight: 	#00c3f5;	// 浅蓝色 - 选中边框
 
 
 $text-color-base:        #666;			// 灰黑色 页面文本基本色
-$text-color-light:       #999;			// 灰色 （面包屑）
-$text-color-dark:        #333;			// 黑色 各种列表项
+$text-color-light:       #d6d7d8;			// 灰色 （面包屑）
+$text-color-dark:        #222;			// 黑色 各种列表项
 		
 $text-color-disabled:	 #dedede;
-$text-color-highlight:     #00c3f5;		// 浅蓝色 鼠标指向
+$text-color-highlight:   #00c3f5;		// 浅蓝色 鼠标指向
 $text-color-recommon:     #e02b41;		// 红色  主辅色
 
 
@@ -23,10 +23,9 @@ $brand-warning:         #f0ad4e;
 $brand-danger:          #f0686c;		// 红色
 
 
-
 //** Global textual link color.
-$link-base-color:            $text-color-dark;
-$link-base-hover-color:      $text-color-highlight;
+$link-base-color:       #07C;
+$link-hover-color:      #33aaff;
 $link-hover-decoration: underline;
 
 
