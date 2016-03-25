@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>网页标题</title>
@@ -7,113 +8,168 @@
     <meta name="Description" content="描述" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/css/base.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="../dist/scss/common.css" />
+    <link rel="stylesheet" href="../dist/scss/ask.css" />
 </head>
 
 <body>
-    <header class="header container-fluid">
-        <h1 class="mod-logo">
-            
-        </h1>
-        <h3 class="tcenter">江湖</h3>
-    </header>
-    <div class="wrap">
-        <aside class="aside">
-            <div class="aside-bg">
-                
-            </div>
-            <div class="aside-bd">
-                <section class="aside-bd-menu">
-                    <a href="./props_entry.html">大厅</a>
-                    <a href="./props_entry.html">交换</a>
-                    <a href="./props_entry.html">个人中心</a>
-                </section>
-            </div>
-            
-        </aside>
+    <main class="container">
+        <article class="content-column">
+            <form class="ask-form">
+                <div class="form-group">
+                    <label for="title" class="form-label">一句话描述您的需求</label>
+                    <input type="email" class="form-control" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="title" class="form-label">详细地描述您的需求</label>
+                    <textarea name="content" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="form-label">预期达成的目的</label>
+                    <input type="text" class="form-control" name="expect" />
+                </div>
 
-        <main class="main">
-            <!-- <form class="form-search form-horizontal pt20">
-                <div class="form-group clearfix">
-                    <div class="col-sm-2">
-                        <label for="goods_type" class="control-label">类型：</label>
+                <div class="form-group">
+                    <label class="form-label">提供的的报酬</label>
+                    <div class="form-inline">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">分币(可提现)
+                            </label>
+                        </div>
+                        <input type="text" class="form-control" name="fenbi" />
                     </div>
-                    <div class="col-sm-10">
-                          <label class="radio-inline">
-                            <input type="radio" name="options" id="option1" autocomplete="off" checked>网上干货
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="options" id="option2" autocomplete="off">下地种田
-                          </label>
-                    </div>
-                </div>
-                <div class="form-group clearfix">
-                    <div class="col-sm-2">
-                        <label for="goods_type" class="control-label">标签：</label>
-                    </div>
-                    <div class="col-sm-10">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="goods_type" value="1" >游戏</label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="goods_type" value="1" >兼职</label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="goods_type" value="1" >解惑</label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="goods_type" value="1" >写论文</label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="goods_type" value="1" >商品</label>
+                    <div class="form-inline">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">自定义奖励
+                            </label>
+                        </div>
+                        <input type="text" class="form-control" name="zidingyi" />
                     </div>
                 </div>
-                <div class="form-group clearfix">
-                    <div class="col-sm-2">
-                        <label for="goods_type" class="control-label">描述：</label>
-                    </div>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="goods_type" placeholder="任务的描述" >
-                    </div>
-                </div>
-                <div class="form-group clearfix">
-                    <div class="col-sm-2">
-                        <label for="goods_type" class="control-label">完成条件：</label>
-                    </div>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="goods_type" placeholder="完成任务的条件，及判定凭据" >
-                    </div>
-                </div>
-                <div class="form-group clearfix">
-                    <div class="col-sm-2">
-                        <label for="goods_type" class="control-label">完成奖励：</label>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="form-inline">
-                            <select name="" class="form-control c-2">
-                                <option>选择奖励类型</option>
-                              <option>花心萝卜</option>
-                                <option>白萝卜</option>
-                              <option>其他</option>
-                            </select>
-                                 <div class="input-group">
-                                    <input type="text" class="form-control c-2" name="goods_type" placeholder="数量或描述" >
-                                    <div class="input-group-addon">
-                                        <a href="javascript:;">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </a>
-                                        添加奖励
-                                </div>
-                            </div>
+
+                <div class="form-group">
+                    <label for="title" class="form-label">任务发布范围</label>
+                    <div class="form-inline">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="area" value="310000">所属区域(杭州)
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="area" value="00000">全网
+                            </label>
                         </div>
                     </div>
                 </div>
-                <div class="btn-toolbar tcenter">
-                    <button type="reset" class="btn btn-info">Reset</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                <div class="form-group">
+                    <label for="title" class="form-label">任务可以被多少人完成</label>
+                    <div class="quantity-control">
+                        <a title="减少" href="javascript:;" class="vm-minus">-</a>
+                        <input type="text" value="1" id="J_quantity" data-max="5">
+                        <a title="增加" href="javascript:;" class="vm-plus">+</a>
+                    </div>
                 </div>
-            </form> -->
-        </main>
-    </div>
-    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+
+                <div class="form-group">
+                    <label for="title" class="form-label">验证码</label>
+                    <div class="form-inline">
+                        <input type="text" class="form-control" name="expect" />
+                    </div>
+                </div>
+
+
+                <div class="ask-more mt20">
+                    <h3>更多设置</h3>
+                    <dl class="ask-form-group">
+                        <dt>任务有效时间</dt>
+                        <dd>
+                            <label for="">永久<input type="radio" name="area" value="00000"></label>
+                            <label for="">半个月<input type="radio" name="area" value="00000"></label>
+                            <label for="">三天<input type="radio" name="area" value="00000"></label>
+                            <label for="">当天<input type="radio" name="area" value="00000"></label>
+                        </dd>
+                    </dl>
+                    <dl class="ask-form-group">
+                        <dt>设置为私密任务</dt>
+                        <dd>
+                            <input type="checkbox" >
+                        </dd>
+                    </dl>
+                    <dl class="ask-form-group">
+                        <dt>接取任务需满足的条件</dt>
+                        <dd>
+                            <p>
+                                实名认证
+                            </p>
+                            <p>
+                                佣兵等级3级以上
+                            </p>
+                            <p>
+                                芝麻信用优秀（700分以上）
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="ask-sure">
+                    <button>确定</button> <button>重置</button>
+                </div>
+            </form>
+        </article>
+        <aside class="sidebar">
+            <div class="sidebar-inner">
+                <section class="question-stats">
+                    <p>
+                        已有任务：99998个
+                    </p>
+                    <p>
+                        总计响应：952365次
+                    </p>
+                    <div class="task-process-respond">
+                        获得奖励：33339人
+                    </div>
+                </section>
+                <section class="recommend">
+                    <h2>相关推荐</h2>
+                    <ul class="recommend-bd">
+                        <li><i></i><a href="#">红尘有你，年华锦瑟</a></li>
+                        <li><i></i><a href="#">流年似水，我已踏过三十的尾巴。又过了五六季的春暖花开。我仍然在等待我的爱情。</a></li>
+                        <li><i></i><a href="#">你在哪里，我可否寻到你？高烧一直不退，一梦一世间，一梦一轮回。</a></li>
+                        <li><i></i><a href="#">流年的醉，缘分的随，你我的冥冥之中会相遇。</a></li>
+                    </ul>
+                </section>
+                <section class="hotopic">
+                    <h2>热点任务</h2>
+                    <ul>
+                        <li>
+                            <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/219527/is-transistor-the-only-electronic-component-on-a-cpu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                    Is transistor the only electronic component on a CPU?
+                                </a>
+                        </li>
+                        <li>
+                            <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/36731/would-gorillas-with-human-level-intelligence-make-effective-soldiers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                    Would gorillas with human-level intelligence make effective soldiers?
+                                </a>
+                        </li>
+                        <li>
+                            <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/82698/we-have-different-rhythms-vs-we-have-different-paces" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                    "we have different rhythms" vs "we have different paces"?
+                                </a>
+                        </li>
+                    </ul>
+                    <a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+                            more hot questions
+                        </a>
+                </section>
+            </div>
+        </aside>
+    </main>
+    <script src="../dist/js/vendor.js"></script>
+    <script src="../dist/js/task.bundle.js"></script>
 </body>
+
 </html>

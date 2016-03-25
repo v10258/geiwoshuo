@@ -89,13 +89,3 @@ textarea.form-control {
   .quantity-control .vm-plus {
     right: 0;
     border-left: 1px solid #e5e5e5; }
-
-.ask-form .task-body-item {
-  margin-top: 20px; }
-  .ask-form .task-body-item dt {
-    font-weight: bold; }
-
-.ask-form .ask-form-group {
-  margin-top: 20px; }
-  .ask-form .ask-form-group dt {
-    font-weight: bold; }

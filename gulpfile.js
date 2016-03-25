@@ -83,7 +83,7 @@ gulp.task('scss', function() {
     console.log(plugins.util.colors.green('compile scss into css'));
 
     return gulp.src([config.src + '/scss/**/*.scss', '!assets/scss/mixins/*.scss'])
-        .pipe(plugins.cached('scss'))
+        //.pipe(plugins.cached('scss'))
         .pipe(plugins.plumber())
         .pipe(config.production ? plugins.sass({outputStyle: 'compressed'}) : plugins.sass())
         .pipe(gulp.dest(config.dist + '/scss'))
