@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>网页标题</title>
+    <meta name="Keywords" content="关键词" />
+    <meta name="Description" content="描述" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="../dist/scss/common.css" />
+    <link rel="stylesheet" href="../dist/scss/ask.css" />
+</head>
+
+<body>
+    <main class="container">
+        <article class="content-column">
+            <form class="ask-form">
+                <div class="form-group">
+                    <label for="title" class="form-label">一句话描述您的需求</label>
+                    <input type="email" class="form-control" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="title" class="form-label">详细地描述您的需求</label>
+                    <textarea name="content" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="form-label">预期达成的目的</label>
+                    <input type="text" class="form-control" name="expect" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">提供的的报酬</label>
+                    <div class="form-inline">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">分币(可提现)
+                            </label>
+                        </div>
+                        <input type="text" class="form-control" name="fenbi" />
+                    </div>
+                    <div class="form-inline">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">自定义奖励
+                            </label>
+                        </div>
+                        <input type="text" class="form-control" name="zidingyi" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title" class="form-label">任务发布范围</label>
+                    <div class="form-inline">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="area" value="310000">所属区域(杭州)
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="area" value="00000">全网
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title" class="form-label">任务可以被多少人完成</label>
+                    <div class="quantity-control">
+                        <a title="减少" href="javascript:;" class="vm-minus">-</a>
+                        <input type="text" value="1" id="J_quantity" data-max="5">
+                        <a title="增加" href="javascript:;" class="vm-plus">+</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title" class="form-label">验证码</label>
+                    <div class="form-inline">
+                        <input type="text" class="form-control" name="expect" />
+                    </div>
+                </div>
+
+
+                <div class="ask-more mt20">
+                    <h3>更多设置</h3>
+                    <dl class="ask-form-group">
+                        <dt>任务有效时间</dt>
+                        <dd>
+                            <label for="">永久<input type="radio" name="area" value="00000"></label>
+                            <label for="">半个月<input type="radio" name="area" value="00000"></label>
+                            <label for="">三天<input type="radio" name="area" value="00000"></label>
+                            <label for="">当天<input type="radio" name="area" value="00000"></label>
+                        </dd>
+                    </dl>
+                    <dl class="ask-form-group">
+                        <dt>设置为私密任务</dt>
+                        <dd>
+                            <input type="checkbox" >
+                        </dd>
+                    </dl>
+                    <dl class="ask-form-group">
+                        <dt>接取任务需满足的条件</dt>
+                        <dd>
+                            <p>
+                                实名认证
+                            </p>
+                            <p>
+                                佣兵等级3级以上
+                            </p>
+                            <p>
+                                芝麻信用优秀（700分以上）
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="ask-sure">
+                    <button>确定</button> <button>重置</button>
+                </div>
+            </form>
+        </article>
+        <aside class="sidebar">
+            <div class="sidebar-inner">
+                <section class="question-stats">
+                    <p>
+                        已有任务：99998个
+                    </p>
+                    <p>
+                        总计响应：952365次
+                    </p>
+                    <div class="task-process-respond">
+                        获得奖励：33339人
+                    </div>
+                </section>
+                <section class="recommend">
+                    <h2>相关推荐</h2>
+                    <ul class="recommend-bd">
+                        <li><i></i><a href="#">红尘有你，年华锦瑟</a></li>
+                        <li><i></i><a href="#">流年似水，我已踏过三十的尾巴。又过了五六季的春暖花开。我仍然在等待我的爱情。</a></li>
+                        <li><i></i><a href="#">你在哪里，我可否寻到你？高烧一直不退，一梦一世间，一梦一轮回。</a></li>
+                        <li><i></i><a href="#">流年的醉，缘分的随，你我的冥冥之中会相遇。</a></li>
+                    </ul>
+                </section>
+                <section class="hotopic">
+                    <h2>热点任务</h2>
+                    <ul>
+                        <li>
+                            <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/219527/is-transistor-the-only-electronic-component-on-a-cpu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                    Is transistor the only electronic component on a CPU?
+                                </a>
+                        </li>
+                        <li>
+                            <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/36731/would-gorillas-with-human-level-intelligence-make-effective-soldiers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                    Would gorillas with human-level intelligence make effective soldiers?
+                                </a>
+                        </li>
+                        <li>
+                            <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/82698/we-have-different-rhythms-vs-we-have-different-paces" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                    "we have different rhythms" vs "we have different paces"?
+                                </a>
+                        </li>
+                    </ul>
+                    <a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+                            more hot questions
+                        </a>
+                </section>
+            </div>
+        </aside>
+    </main>
+    <script src="../dist/js/vendor.js"></script>
+    <script src="../dist/js/task.bundle.js"></script>
+</body>
+
+</html>

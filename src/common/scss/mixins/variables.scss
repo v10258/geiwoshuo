@@ -1,0 +1,138 @@
+//
+// Variables
+// --------------------------------------------------
+
+$border-color-base: 		#e5e5e5;	// 灰色	- 默认边框
+$border-color-disabled:		#acacac;
+$border-color-highlight: 	#00c3f5;	// 浅蓝色 - 选中边框
+
+
+$text-color-base:        #666;			// 灰黑色 页面文本基本色
+$text-color-light:       #d6d7d8;			// 灰色 （面包屑）
+$text-color-dark:        #222;			// 黑色 各种列表项
+		
+$text-color-disabled:	 #dedede;
+$text-color-highlight:   #00c3f5;		// 浅蓝色 鼠标指向
+$text-color-recommon:     #e02b41;		// 红色  主辅色
+
+
+$brand-primary:         #2ac4f6;		// 蓝色  主色
+$brand-success:         #5cb85c;
+$brand-info:            #5bc0de;
+$brand-warning:         #f0ad4e;
+$brand-danger:          #f0686c;		// 红色
+
+
+//** Global textual link color.
+$link-base-color:       #07C;
+$link-hover-color:      #33aaff;
+$link-hover-decoration: underline;
+
+
+$border-radius-small: 3px;
+
+
+
+
+$bg-base:               #fff;
+$bg-drak:               #f8f8f8;
+$bg-highlight:          #00c3f5;
+$bg-disabled:			#acacac;
+
+
+
+$font-size-base:          14px;
+$font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
+
+
+$font-songti:   		'Hiragino Sans GB', '\5B8B\4F53';
+$font-yahei:       		'Hiragino Sans GB', 'Microsoft Yahei';
+
+
+
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base:        1.428571429; // 20/14
+$line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
+
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$padding-base-vertical:     6px;
+$padding-base-horizontal:   12px;
+
+$padding-large-vertical:    10px;
+$padding-large-horizontal:  30px;
+
+$padding-small-vertical:    5px;
+$padding-small-horizontal:  10px;
+
+$padding-xs-vertical:       1px;
+$padding-xs-horizontal:     5px;
+
+$line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
+$line-height-small:         1.5;
+
+$border-radius-base:        4px;
+$border-radius-large:       6px;
+$border-radius-small:       3px;
+
+//** Global color for active items (e.g., navs or dropdowns).
+$component-active-color:    #fff;
+//** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg:       $brand-primary;
+
+//** Width of the `border` for generating carets that indicator dropdowns.
+$caret-width-base:          4px;
+//** Carets increase slightly in size for larger components.
+$caret-width-large:         5px;
+
+
+
+
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-font-weight:                normal;
+
+$btn-default-color:              #333;
+$btn-default-bg:                 #fff;
+$btn-default-border:             #ccc;
+
+$btn-primary-color:              #fff;
+$btn-primary-bg:                 $brand-primary;
+$btn-primary-border:             darken($btn-primary-bg, 5%);
+
+$btn-success-color:              #fff;
+$btn-success-bg:                 $brand-success;
+$btn-success-border:             darken($btn-success-bg, 5%);
+
+$btn-info-color:                 #fff;
+$btn-info-bg:                    $brand-info;
+$btn-info-border:                darken($btn-info-bg, 5%);
+
+$btn-warning-color:              #fff;
+$btn-warning-bg:                 $brand-warning;
+$btn-warning-border:             darken($btn-warning-bg, 5%);
+
+$btn-danger-color:               #fff;
+$btn-danger-bg:                  $brand-danger;
+$btn-danger-border:              darken($btn-danger-bg, 5%);
+
+$btn-link-disabled-color:        #ccc;   //# todo
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius-base:         $border-radius-small;
+$btn-border-radius-large:        $border-radius-small;
+$btn-border-radius-small:        $border-radius-small;
+
+
+
+
+//** Disabled cursor for form controls and buttons.
+$cursor-disabled:                not-allowed;
