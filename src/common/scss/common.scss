@@ -1,7 +1,7 @@
 
 @import "./mixins/variables.scss";
+@import "./mixins/normalize.scss";
 @import "./mixins/reset.scss";
-@import "./mixins/base.scss";
 
 body {
   color: $text-color-base;
@@ -14,36 +14,27 @@ a {
   }
 }
 
+#main {
+  padding: 24px 0;
+  display: flex;
+}
+
 .container {
 	position: relative;
-  float: none;
-  clear: both;
-  overflow: visible;
-  max-width: 1180px;
+  max-width: 1060px;
   margin: 0 auto;
-  padding: 0 20px;
-
-  &:after {
-  	display: table;
-  	content: "";
-  	clear: both;
-  }
 }
 
 .content-column {
   position: relative;
   float: left;
-  width: 65%;
-  margin-bottom: 90px;
 }
 
 .sidebar {
   position: relative;
   float: right;
-  width: 35%;
-  margin-bottom: 90px;
 }
 
 .sidebar-inner {
-  margin-left:32px;
+  margin-left:30px;
 }
