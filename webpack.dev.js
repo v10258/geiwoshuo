@@ -1,23 +1,36 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const argv = require('yargs').argv;
+
+// 构建目录，构建入口, 如果没有子目录 index 改为空字符串即可
+var submodule = argv.define || 'index';
+var entryFileName = submodule;
+
+var outputPath = path.resolve(__dirname, 'dist/', submodule);
+var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 
 var config = {
   entry: {
+    entry: entryPath,
     vendor: ['lodash']
   },
   output: {
     filename: 'js/[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: outputPath
   },
   module: {
     rules: [{
       test: /\.css$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
-    }, {
+      use: ['style-loader', 'css-loader', 'autoprefixer-loader']
+    },{
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'autoprefixer-loader', 'sass-loader']
+    },{
       test: /\.ejs$/,
-      use: 'ejs-compiled-loader'
-    }, {
+      use: ['ejs-compiled-loader']
+    },{
       test: /\.js$/,
       use: 'babel-loader'
     }, {
@@ -25,7 +38,7 @@ var config = {
       use: [{
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 1000,
           name: 'img/[name].[ext]'
         }
       }]
@@ -34,7 +47,7 @@ var config = {
       use: [{
         loader: 'url-loader',
         options: {
-          limit: 100000,
+          limit: 1000,
           name: 'font/[name].[ext]'
         }
       }]
@@ -42,7 +55,9 @@ var config = {
   },
   plugins: [
     // 页面集成
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve('src/', submodule, entryFileName + '.ejs')
+    }),
     // 抽出公共文件vendor依赖，manifest运行时信息
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
@@ -66,15 +81,7 @@ var config = {
   }
 };
 
-// 构建目录，构建入口
-var submodule = process.argv[5] || 'index';
-var entryFileName = submodule;
-
-// 输入输出设置
-config.entry[entryFileName] = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
-config.output.path = path.resolve(__dirname, 'dist/', submodule);
-config.plugins[0] = new HtmlWebpackPlugin({
-  template: path.resolve('src/', submodule, entryFileName + '.ejs')
-})
+console.log('entry', path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'));
+console.log('template', path.resolve('src/', submodule, entryFileName + '.ejs'));
 
 module.exports = config;
