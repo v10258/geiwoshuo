@@ -1,0 +1,22 @@
+@import "../common/scss/common.scss";
+@import "../common/scss/utils.scss";
+@import "../common/scss/icontag.scss";
+@import "../common/font/iconfont.css";
+
+@import "../common/scss/components/buttons.scss";
+
+.marketing {
+    @extend .flex-justify-between;
+    .marketing-item {
+        width: 30%;
+        flex: 1;
+    }
+}
+
+
+.hot-tags,
+.hot-team,
+.hot-favorite {
+    min-height: 300px;
+}
+
