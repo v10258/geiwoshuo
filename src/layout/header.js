@@ -1,2 +1,2 @@
 
- document.querySelector('header').style.background = 'yellow';
+require('./header.scss');
