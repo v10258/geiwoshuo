@@ -1,0 +1,150 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+// Colors
+// Start with assigning color names to specific hex values.
+$white:  #fff !default;
+$black:  #000 !default;
+$red:    #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green:  #5cb85c !default;
+$blue:   #0275d8 !default;
+$teal:   #5bc0de !default;
+$pink:   #ff5b77 !default;
+$purple: #613d7c !default;
+
+// Create grayscale
+$gray-dark:                 #292b2c !default;
+$gray:                      #464a4c !default;
+$gray-light:                #636c72 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+// Reassign color vars to semantic color scheme
+$brand-primary:             $blue !default;
+$brand-success:             $green !default;
+$brand-info:                $teal !default;
+$brand-warning:             $orange !default;
+$brand-danger:              $red !default;
+$brand-inverse:             $gray-dark !default;
+
+// Links
+//
+// Style anchor elements.
+$link-color:            $brand-primary !default;
+$link-decoration:       none !default;
+$link-hover-color:      darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
+
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg:   1.25rem !default;
+$font-size-sm:   .875rem !default;
+$font-size-xs:   .75rem !default;
+
+$line-height-lg:         1.5 !default;
+$line-height-sm:         1.5 !default;
+
+// border 
+$border-width:              1px;
+
+$border-color-base: 		#e5e5e5;	// 灰色	- 默认边框
+$border-color-disabled:		#acacac;
+$border-color-highlight: 	#00c3f5;	// 浅蓝色 - 选中边框
+
+$border-radius:          .25rem !default;
+$border-radius-lg:       .3rem !default;
+$border-radius-sm:       .2rem !default;
+
+
+// text
+$text-color-base:        #333;			// 灰黑色 页面文本基本色
+$text-color-light:       #d6d7d8;			// 灰色 （面包屑）
+$text-color-dark:        #222;			// 黑色 各种列表项
+$text-color-mark:        #999;
+		
+$text-color-disabled:	 #dedede;
+$text-color-highlight:   #00c3f5;		// 浅蓝色 鼠标指向
+$text-color-recommon:     #e02b41;		// 红色  主辅色
+
+
+//** Global textual link color.
+$link-base-color:       #07C;
+$link-hover-color:      #33aaff;
+$link-hover-decoration: underline;
+
+$bg-base:               #fff;
+$bg-drak:               #f8f8f8;
+$bg-highlight:          #00c3f5;
+$bg-disabled:			#acacac;
+
+$font-size-base:          14px;
+$font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
+
+$font-songti:   		'Hiragino Sans GB', '\5B8B\4F53';
+$font-yahei:       		'Hiragino Sans GB', 'Microsoft Yahei';
+
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background and border color.
+
+$input-btn-padding-y:       .5rem !default;
+$input-btn-padding-x:       1rem !default;
+$input-btn-line-height:     1.25 !default;
+
+$input-btn-padding-y-sm:    .25rem !default;
+$input-btn-padding-x-sm:    .5rem !default;
+$input-btn-line-height-sm:  1.5 !default;
+
+$input-btn-padding-y-lg:    .5rem !default;
+$input-btn-padding-x-lg:    1rem !default;
+$input-btn-line-height-lg:  1.5 !default;
+
+$btn-font-weight:                normal !default;
+$btn-box-shadow:                 inset 0 1px 0 rgba($white,.15), 0 1px 1px rgba($black,.075) !default;
+$btn-focus-box-shadow:           0 0 0 2px rgba($brand-primary, .25) !default;
+$btn-active-box-shadow:          inset 0 3px 5px rgba($black,.125) !default;
+
+$btn-primary-color:              $white !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border-color:       $btn-primary-bg !default;
+
+$btn-secondary-color:            $gray-dark !default;
+$btn-secondary-bg:               $white !default;
+$btn-secondary-border-color:     #ccc !default;
+
+$btn-info-color:                 $white !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border-color:          $btn-info-bg !default;
+
+$btn-success-color:              $white !default;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border-color:       $btn-success-bg !default;
+
+$btn-warning-color:              $white !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border-color:       $btn-warning-bg !default;
+
+$btn-danger-color:               $white !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border-color:        $btn-danger-bg !default;
+
+$btn-link-disabled-color:        $gray-light !default;
+
+$btn-block-spacing-y:            .5rem !default;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:              $border-radius !default;
+$btn-border-radius-lg:           $border-radius-lg !default;
+$btn-border-radius-sm:           $border-radius-sm !default;
+
+$btn-transition:                 all .2s ease-in-out !default;
+
+
+
+//** Disabled cursor for form controls and buttons.
+$cursor-disabled:                not-allowed;

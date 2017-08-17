@@ -1,7 +1,7 @@
 
-@import "./mixins/variables.scss";
-@import "./mixins/normalize.scss";
-@import "./mixins/reset.scss";
+@import "./common/variables.scss";
+@import "./common/normalize.scss";
+@import "./common/reset.scss";
 
 body {
   color: $text-color-base;
@@ -11,30 +11,34 @@ a {
   color: $link-base-color;
   &:hover {
     color: $link-hover-color;
+    text-decoration: none;
   }
-}
-
-#main {
-  padding: 24px 0;
-  display: flex;
 }
 
 .container {
 	position: relative;
   max-width: 1060px;
+  padding: 0 15px;
   margin: 0 auto;
+}
+
+#content {
+  padding-top: 84px;
+  padding-bottom: 24px;
 }
 
 .content-column {
   position: relative;
   float: left;
+  width:728px;
 }
 
-.sidebar {
+.content-sidebar {
   position: relative;
   float: right;
+  width:300px;
 }
 
-.sidebar-inner {
-  margin-left:30px;
+.s-disabled {
+  color: #d8d8d8;
 }

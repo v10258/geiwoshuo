@@ -2,13 +2,17 @@
 .flex { 
   display: flex;
 }
-.flex-column{ 
+.flex-column { 
   display: flex; 
   flex-direction: column; 
 }
 .flex-nowrap {
   display: flex;
   flex-wrap: nowrap;
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }
 .flex-justify-start {
   display: flex; 
@@ -33,4 +37,12 @@
 .flex-item-center { 
   display: flex; 
   align-items: center;
+}
+.flex-item-end { 
+  display: flex; 
+  align-items: flex-end;
+}
+.flex-item-start { 
+  display: flex; 
+  align-items: flex-start;
 }

@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "../common/variables.scss";
 
 // Contextual colors
 .text-primary {
@@ -21,7 +21,7 @@
   color: $text-color-recommon;
 }
 
-.text-gray {
+.text-mark {
   color: $text-color-mark;
 }
 

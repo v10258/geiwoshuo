@@ -1,5 +1,5 @@
 
-@import "../mixins/variables.scss";
+@import "../common/variables.scss";
 
 .comments {
 
@@ -7,8 +7,11 @@
 
 .comments-header {
 	border-bottom:1px solid $text-color-light;
-  .comments-header-order {
+}
 
+.comments-header-title {
+  li {
+    padding: 0 10px;
   }
 }
 

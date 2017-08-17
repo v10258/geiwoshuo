@@ -1,23 +1,27 @@
 
 .grid {
   position: relative;
-  margin: 0 auto;
-  padding: 0 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
   width: 1060px;
-  box-sizing: content-box;
 }
 
 .grid-fluid {
   position: relative;
-  margin: 0 auto;
-  padding: 0 15px;
-  box-sizing: border-box;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -15px;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
 .no-gutters {
