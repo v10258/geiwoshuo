@@ -1,7 +1,8 @@
 
 @import "./common/variables.scss";
-@import "./common/normalize.scss";
+// @import "./common/normalize.scss";
 @import "./common/reset.scss";
+@import "../font/scss/ionicons.scss";
 
 body {
   color: $text-color-base;
@@ -16,8 +17,10 @@ a {
 }
 
 .container {
+  box-sizing: content-box;
 	position: relative;
   max-width: 1060px;
+  min-width: 1060px;
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -37,6 +40,12 @@ a {
   position: relative;
   float: right;
   width:300px;
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .s-disabled {

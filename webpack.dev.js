@@ -2,7 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const argv = require('yargs').argv;
+
 let isProduction = process.env.NODE_ENV === 'production';
 
 // 构建目录，构建入口, 如果没有子目录 index 改为空字符串即可
@@ -14,7 +17,7 @@ var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'
 
 var config = {
   entry: {
-    vendor: ['lodash']
+    vendor: ['jquery', 'popper.js', 'bootstrap']
   },
   output: {
     filename: 'js/[name].js',
@@ -55,7 +58,20 @@ var config = {
       }]
     }]
   },
+  // externals: {
+  //   'jQuery': 'window.$',
+  //   'Popper': 'window.Popper'
+  // },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    }),
+    new CopyWebpackPlugin([
+      { from: 'node_modules/bootstrap/dist/css', to: 'css/'}
+    ]),
     // 页面集成
     new HtmlWebpackPlugin({
       template: path.resolve('src/', submodule, entryFileName + '.ejs')
