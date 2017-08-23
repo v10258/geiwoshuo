@@ -1,47 +1,110 @@
 @import "../common/scss/common.scss";
 @import "../common/scss/utils.scss";
 @import "../common/scss/icontag.scss";
-@import "../common/font/iconfont.css";
 
 @import "../common/scss/components/comment.scss";
-@import "../common/scss/components/buttons.scss";
+
+// @import "../common/scss/components/buttons.scss";
 
 .task-header {
-    .task-header-title {
-        font-weight: normal;
-        font-size: 24px;
-        color: $text-color-dark;
+  .task-header-title {
+    font-weight: normal;
+    font-size: 24px;
+    color: $text-color-dark;
+  }
+
+  .task-header-meta {
+    margin-top: 10px;
+
+    span {
+        color: $text-color-light;
+        border: 1px solid $text-color-light;
+        border-radius: 5px;
+        margin-right: 10px;
+        padding: 0px 5px;
     }
-    .task-header-meta {
-        margin-top: 10px;
-        span {
-            color: $text-color-light;
-            border: 1px solid $text-color-light;
-            border-radius: 5px;
-            margin-right: 10px;
-            padding: 0px 5px;
-        }
-    }
+  }
 }
 
 .task-body {
-    .task-body-item {
-        margin-top: 20px;
-        dt {
-            font-weight: bold;
+  .task-body-item {
+    margin-top: 20px;
+
+    dt {
+      font-weight: bold;
+    }
+  }
+
+  .task-body-info {
+    padding: 20px 0;
+  }
+
+  .task-body-action {
+    margin-top: 20px;
+
+    a {
+      margin-right: 10px;
+
+      i {
+          margin-right: 5px;
+      }
+    }
+  }
+
+  .task-body-author {
+    margin-top: 30px;
+
+    .mod-avatar {
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .mod-info {
+      font-size: 12px;
+      line-height: 16px;
+
+      .vm-user-nickname {
+        margin-right: 5px;
+      }
+
+      .vm-user-member {
+
+      }
+
+      .vm-credit {
+        > span {
+          margin-right: 5px;
         }
+      }
+
+      .vm-user-member {
+        .ion {
+          &:before {
+            font-size: 12px;
+          }
+        }
+      }
     }
-    .task-body-info {
-        padding: 20px 0;
+  }
+
+  .task-body-footer {
+    @extend .flex-item-center;
+
+    margin-top: 20px;
+    font-size: 13px;
+
+    > a {
+      margin-right: 18px;
     }
 
-    .task-body-action {
-        margin-top: 20px;
-    }
+    .vm-thumbs {
+      margin-right: 18px;
 
-    .task-body-author {
-        margin-top:30px;
+      a:first-child {
+        margin-right: 10px;
+      }
     }
+  }
 }
 
 .task-process {
@@ -50,18 +113,152 @@
     border-top: 1px solid $text-color-light;
 }
 
-.recommend,
-.hotopic {
-    margin-top: 20px;
-    font-size:12px;
-    h2 {
-        font-size: 18px;
-        font-weight: normal;
-        color: $text-color-dark;
+.stats {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.concerns {
+    font-size: 13px;
+    margin-top: 15px;
+    border-bottom: 1px solid #e2e2e2;
+
+    .add-attention {
+        display: inline-block;
+        width: 100px;
+        height: 32px;
+        line-height: 30px;
+        border: 1px solid #c8d6df;
+        background: #f6f9fa;
+        text-align: center;
+        color: #585858;
+        border-radius: 5px;
+        box-sizing: border-box;
+        cursor: pointer;
+        -webkit-font-smoothing: subpixel-antialiased;
+
+        &:hover {
+            background-color: #f6f9fa;
+            border-color: #6da995;
+        }
+
+        &.hasAttention {
+            background-color: #efefef;
+            border: 0;
+            color: #7f7f7f;
+        }
+
+        i {
+            font-style: normal;
+            font-weight: 700;
+            margin-right: 4px;
+            font-size: 24px;
+            vertical-align: top;
+            height: 28px;
+            line-height: 28px;
+            color: #757575;
+        }
     }
-    li {
+
+    .attention-people {
+        margin-top: 18px;
+        margin-bottom: 20px;
+
+        .a-people {
+            font-size: 13px;
+            color: #585858;
+
+            .allAttentionPeople {
+                cursor: pointer;
+                color: #139065;
+                margin-right: 5px;
+            }
+        }
+
+        #a-user-list {
+            margin: 5px 0 20px;
+            font-size: 0;
+            max-height: 70px;
+            overflow: hidden;
+        }
+
+        li {
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            font-size: 12px;
+            width: 25px;
+            height: 25px;
+            line-height: 40px;
+            color: #fff;
+            text-align: center;
+            border-radius: 40px;
+            margin-right: 5px;
             margin-top: 10px;
+
+            .usr-ico {
+                width: 25px;
+                height: 25px;
+                position: absolute;
+                border-radius: 50%;
+                background-position: 50% 50%;
+                background-size: cover;
+                left: 0;
+                top: 0;
+            }
+        }
     }
 }
 
-.hotopic {}
+.related,
+.questions-state {
+  font-size: 13px;
+
+  .mod-tit {
+    font-size: 15px;
+    line-height: 24px;
+    color: $text-color-dark;
+  }
+}
+
+.related {
+  margin-top: 30px;
+  line-height: 18px;
+
+  .related-list {
+    li {
+      padding: 5px 0;
+
+      a {
+        color: #585858;
+        font-size: 13px;
+        letter-spacing: .5px;
+        margin-right: 6px;
+      }
+
+      span {
+        font-size: 13px;
+        color: #7f7f7f;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.questions-state {
+  margin-top: 20px;
+
+  a {
+    color: #139065;
+  }
+
+  span {
+    margin: 0 8px;
+  }
+
+  .mod-state {
+    padding: 5px 0 18px;
+    line-height: 24px;
+    font-size: 13px;
+    color: #7f7f7f;
+  }
+}
