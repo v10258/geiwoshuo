@@ -53,6 +53,7 @@
 
   .task-body-author {
     margin-top: 30px;
+    @extend .flex-justify-end;
 
     .mod-avatar {
         border-radius: 50%;
@@ -63,26 +64,22 @@
       font-size: 12px;
       line-height: 16px;
 
-      .vm-user-nickname {
+      .vm-nickname {
         margin-right: 5px;
       }
 
-      .vm-user-member {
-
-      }
-
-      .vm-credit {
-        > span {
-          margin-right: 5px;
-        }
-      }
-
-      .vm-user-member {
+      .vm-member {
         .ion {
           &:before {
             font-size: 12px;
           }
         }
+      }
+    }
+
+    .mod-info-credit {
+      > span {
+        margin-right: 5px;
       }
     }
   }
@@ -113,8 +110,59 @@
     border-top: 1px solid $text-color-light;
 }
 
-.stats {
-    border-bottom: 1px solid #e2e2e2;
+.task-answer {
+  .task-answer-header {
+    @extend .flex-justify-between;
+    border-bottom:1px solid $text-color-light;
+    background: #f8f9fa;
+
+    .mod-nav {
+      @extend .flex;
+      color: $text-color-dark;
+      height: 32px;
+    
+      a {
+        height: 30px;
+        padding: 0 12px;
+        padding-bottom: 1px;
+        line-height: 32px;
+        color: #495057;
+    
+        span {
+          padding-left: 5px;
+          color: $text-color-light;
+        }
+      }
+    
+      .active {
+        border-style: solid;
+        border-width: 1px;
+        border-color: $border-color-base $border-color-base #fff;
+        border-radius: $border-radius-sm $border-radius-sm 0 0;
+        background-color: #fff;
+      }
+    }
+    
+    .mod-rank {
+      line-height: 32px;
+    
+      .vm-tab {
+          cursor: pointer;
+    
+        &.active {
+          color: #4c9e82;
+          cursor: default;
+        }
+      }
+    
+      .vm-line {
+          margin: 0 8px;
+      }
+    }
+  }
+  .task-answer-list {
+    
+  }
 }
 
 .concerns {
@@ -210,7 +258,7 @@
 }
 
 .related,
-.questions-state {
+.stats {
   font-size: 13px;
 
   .mod-tit {
@@ -244,7 +292,7 @@
   }
 }
 
-.questions-state {
+.stats {
   margin-top: 20px;
 
   a {

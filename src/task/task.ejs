@@ -13,7 +13,7 @@
 
 <body class="page-task">
   <%- include ../layout/header -%>
-  <main id="content" class="container flex-justify-between">
+  <main class="container flex-justify-between" id="content">
     <div class="content-column">
       <section class="task-header">
           <h1 class="task-header-title">暑期越南游，寻结伴出游伙伴，互相照应。</h1>
@@ -45,30 +45,30 @@
                   <i class="ion ion-ios-heart"></i>响应问题
               </a>
           </div>
-          <div class="task-body-author flex-justify-end">
+          <div class="task-body-author">
               <a class="mod-avatar" href="#">
                   <img src="https://avatars1.githubusercontent.com/u/6301319?v=3&amp;s=460" alt="" width="32" height="32">
               </a>
               <div class="mod-info">
-                <p class="vm-user" href="">
-                  <span class="vm-user-nickname">
+                <p class="mod-info-user">
+                  <span class="vm-nickname">
                     半夏
                   </span>
-                  <span class="vm-user-member" title="永久黄金会员">
+                  <span class="vm-member" title="永久黄金会员">
                     <i class="ion ion-md-trophy"></i>
                   </span>
                 </p>
-                <p class="vm-credit">
-                  <span title="获得 42515 次赞同">
+                <p class="mod-info-credit">
+                  <span class="vm-praise" title="获得 42515 次赞同">
                     4.2k
                   </span>
-                  <span title="解决问题被采纳 10 次">
-                    <span class="badge1">•</span>
-                    <span class="badgecount">7</span>
+                  <span class="vm-badge" title="解决问题被采纳 10 次">
+                    <i>•</i>
+                    <em>7</em>
                   </span>
-                  <span title="有效发布问题 32 次">
-                    <span class="badge2">•</span>
-                    <span class="badgecount">51</span>
+                  <span class="vm-badge" title="有效发布问题 32 次">
+                      <i>•</i>
+                      <em>7</em>
                   </span>
                 </p>
               </div>
@@ -109,19 +109,19 @@
               该问题已经有交付申请，等待发布者复核，继续提交可能无法被被采纳。
           </p>
       </section>
-      <section class="answer">
-        <div class="answer-header flex-justify-between">
-          <nav class="answer-header-nav">
+      <section class="task-answer">
+        <div class="task-answer-header flex-justify-between">
+          <nav class="mod-nav">
             <a class="active" href="#">全部回答<span>130</span></a>
             <a href="#">只看响应<span>5</span></a>
           </nav>
-          <div class="answer-header-rank">
+          <div class="mod-rank">
             <span class="vm-tab active" data-href="#">热门排序</span>
             <span class="vm-line">|</span>
             <span class="vm-tab" data-href="#">时间排序</span>
           </div>
         </div>
-        <div class="answer-list">
+        <div class="task-answer-list">
           <article class="answer-article">
             <div class="answer-article-hd">
               <p class="mod-user-info">
@@ -366,11 +366,6 @@
       </section>
     </div>
     <aside class="content-sidebar">
-      <!-- <section class="stats">
-            <p>
-                发布：8 天前
-            </p>
-        </section> -->
       <section class="concerns">
         <div class="foucus-question">
           <span class="add-attention" data-qid="318974" data-uid="890362006" data-encodeuid="96d86162633237303034311135"><i>+</i>关注问题</span>
@@ -398,36 +393,13 @@
           <li><a href="/question/e3dd6162636134636438650400">《权力的游戏》Hordor常说的Hordor有何深意？</a><span class="new-small-font">3个回答</span></li>
         </ul>
       </section>
-      <section class="questions-state">
+      <section class="stats">
         <div class="mod-tit">问题状态</div>
         <div class="mod-state">
           <p><a href="#" target="_blank">查看问题日志</a><span>|</span>最近编辑于2017-07-19</p>
           <p>被浏览<strong class="attention-num"> 946 </strong>次</p>
         </div>
       </section>
-      <!-- <section class="hotopic">
-            <h2>热点任务</h2>
-            <ul>
-                <li>
-                    <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/219527/is-transistor-the-only-electronic-component-on-a-cpu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
-                            Is transistor the only electronic component on a CPU?
-                        </a>
-                </li>
-                <li>
-                    <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/36731/would-gorillas-with-human-level-intelligence-make-effective-soldiers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
-                            Would gorillas with human-level intelligence make effective soldiers?
-                        </a>
-                </li>
-                <li>
-                    <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/82698/we-have-different-rhythms-vs-we-have-different-paces" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
-                            "we have different rhythms" vs "we have different paces"?
-                        </a>
-                </li>
-            </ul>
-            <a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
-                    more hot questions
-                </a>
-        </section> -->
     </aside>
   </main>
 </body>
