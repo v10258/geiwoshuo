@@ -1,9 +1,11 @@
 .question-summary {
   padding: 12px 0 10px 0;
   border-bottom: 1px solid #e4e6e8;
+  @extend .flex;
 }
 
-.question-sumary-stat {
+.question-summary-stat {
+  @extend .flex-item-center;
   margin-right: 10px;
 
   &:hover {
@@ -32,18 +34,18 @@
   }
 }
 
-.question-sumary-info {
+.question-summary-info {
   position: relative;
   flex: 1;
 
   .mod-title {
     margin-bottom: 5px;
     .vm-link {
-      color: #005999;
+      color: #141616;
 
-      &:hover {
-        color: #3af;
-      }
+      // &:hover {
+      //   color: #3af;
+      // }
     }
   }
 

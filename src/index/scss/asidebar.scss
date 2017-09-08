@@ -1,15 +1,62 @@
 
+.ask {
+    padding-bottom: 10px;
+}
+
+.ask .ask-border {
+    padding: 18px 20px;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.ask i {
+    width: 155px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    background: url(https://iknowpc.bdimg.com/static/pi-home/widget/aside-section/ask/img/tips_4a066d7.svg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.ask .ico {
+    font-size: 24px;
+}
+
+.ask .ico:before {
+    content: '\e64e';
+    color: #1E9780;
+}
+
+.ask .ico:nth-child(2):before {
+    display: inline-block;
+    width: 154px;
+    content: '\e651';
+    color: #141616;
+}
+
+.ask .ask-btn {
+    margin-left: 7px;
+    width: 72px;
+    height: 36px;
+    font-size: 16px;
+    border: 0;
+}
+
+.ask .ask-btn:hover {
+    background: #258976;
+}
+
 .recommend {
   margin-top: 10px;
   padding: 15px 15px 10px;
   border: 1px solid #E0DCBF;
-  background-color: #FFF8DC;
   font-size: 13px;
 
   .mod-title {
-    font-size: 12px;
     font-weight: bold;
-    color: #9C988B;
+    color: #4c9e82;
     padding-bottom: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -37,8 +84,6 @@
   }
 
   .dynamic-roll {
-      font-size: 12px;
-
       li {
         margin-bottom: 5px;
       }
@@ -95,12 +140,13 @@
   }
   
   .mod-bd {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   li {
     margin-bottom: 10px;
     @extend .flex-item-start;
+    color: #333;
 
     i {
       margin: 2px 6px 0 0;
