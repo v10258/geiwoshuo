@@ -3,8 +3,121 @@
 @import "../common/scss/icontag.scss";
 
 
-// @import "../common/scss/components/question-summary.scss";
+@import "../common/scss/components/question-summary.scss";
 
 @import "./scss/top-header.scss";
-@import "./scss/questions.scss";
+//@import "./scss/questions.scss";
 @import "./scss/asidebar.scss";
+
+// body {
+//     background: #eeeff2;
+// }
+
+.content-column,
+.content-sidebar {
+	//background: #fff;
+}
+
+.content-column {
+	// padding: 10px 20px;
+	// box-sizing: border-box;
+}
+
+
+.index-summary {
+	@extend .flex-column;
+	position: relative;
+	border-bottom: 1px solid #e2e2e2;
+	padding: 15px 0;
+
+	//.-header {
+		
+
+
+		.-title {
+			@extend .flex;
+			line-height: 30px;
+			color: #141616;
+			font-size: 16px;
+			letter-spacing: .8px;
+			font-weight: 600;
+
+			.-tags {
+				i:before {
+					font-size: 20px;
+				}
+				.ion-ios-planet {
+					color:#4c9e82
+				}
+			}
+		}
+
+	//}
+
+	.-info {
+		@extend .flex-item-center;
+		margin-top: 8px;
+		color: #7f7f7f;
+		font-size: 13px;
+		
+		a {
+			display: block;
+			padding: 0 10px;
+			border-radius: 30px;
+			line-height: 18px;
+			text-decoration: none;
+			color: #b4b4b4;
+			border: 1px solid #daecf5;
+			margin-right: 10px;
+		}
+	}
+
+	.-action {
+		@extend .flex-item-center;
+		position: relative;
+		margin-top: 8px;
+		font-size: 13px;
+
+		.-thumbs {
+			margin-right: 18px;
+
+			button {
+			color: #8b8b8b;
+			}
+		}
+
+		a {
+			@extend .flex-item-center;
+				margin-right: 18px;
+				color: #7f7f7f;
+
+				i {
+					margin-right: 5px;
+				}
+		}
+
+		// .-more {
+		// 	position: absolute;
+		// 	right: 0;
+		// }
+	}
+}
+
+.stats {
+  margin-top: 18px;
+
+  a {
+    // color: #139065;
+  }
+
+  span {
+    margin: 0 8px;
+  }
+
+  .mod-state {
+    padding: 5px 0 18px;
+    line-height: 24px;
+    font-size: 13px;
+    color: #7f7f7f;
+  }
+}

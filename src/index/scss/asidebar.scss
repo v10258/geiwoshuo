@@ -1,17 +1,67 @@
 
+// .ask {
+//     padding-bottom: 10px;
+// }
+
+// .ask .ask-border {
+//     padding: 18px 20px;
+//     border-radius: 2px;
+//     background: #fff;
+// }
+
+// .ask i {
+//     width: 155px;
+//     height: 24px;
+//     display: inline-block;
+//     position: relative;
+//     top: 5px;
+//     background: url(https://iknowpc.bdimg.com/static/pi-home/widget/aside-section/ask/img/tips_4a066d7.svg) no-repeat;
+//     background-position: 50% 50%;
+//     background-size: cover;
+// }
+
+// .ask .ico {
+//     font-size: 24px;
+// }
+
+// .ask .ico:before {
+//     content: '\e64e';
+//     color: #1E9780;
+// }
+
+// .ask .ico:nth-child(2):before {
+//     display: inline-block;
+//     width: 154px;
+//     content: '\e651';
+//     color: #141616;
+// }
+
+// .ask .ask-btn {
+//     margin-left: 7px;
+//     width: 72px;
+//     height: 36px;
+//     font-size: 16px;
+//     border: 0;
+// }
+
+// .ask .ask-btn:hover {
+//     background: #258976;
+// }
+
 .ask {
-    padding-bottom: 10px;
+    background: #eeeff2;
+    border: 1px solid $border-color-base;
 }
 
 .ask .ask-border {
-    padding: 18px 20px;
+    padding: 10px 20px;
     border-radius: 2px;
     background: #fff;
 }
 
 .ask i {
-    width: 155px;
-    height: 24px;
+    width: 136px;
+    height: 22px;
     display: inline-block;
     position: relative;
     top: 5px;
@@ -42,6 +92,11 @@
     height: 36px;
     font-size: 16px;
     border: 0;
+    color: #fff;
+    background-color: #1e9780;
+    border-color: #1e9780;
+    padding: 0 10px;
+    border-radius: 4px;
 }
 
 .ask .ask-btn:hover {
@@ -78,57 +133,92 @@
   margin-top: 20px;
 }
 
-.dynamic {
-  .dynamic-hd {
-    margin-bottom: 0.5em;
+.hot-answer {
+  font-size: 13px;
+  margin-top: 18px;
+
+  .-header {
+    border-bottom: 1px solid $border-color-base;
+    line-height: 1;
+    padding-bottom: 5px;
   }
 
-  .dynamic-roll {
-      li {
-        margin-bottom: 5px;
-      }
+  .-list {
+    padding-top: 10px;
+  }
+
+  .-item {
+    margin-top: 5px;
+  }
+
+  .-title {
+    color: #000;
+    line-height: 22px;
+    text-align: justify;
+    position: relative;
+  }
+
+  .-preview {
+    @extend .flex-justify-between;
+    margin-top: 5px;
+    overflow: hidden;
+    color: #999;
+
+    .-content {
+      line-height: 20px;
+    }
+
+    .-image {
+      border: 1px solid #e8e8e8;
+      width: 96px;
+      height: 60px;
+      margin-left: 10px;
+      overflow: hidden;
+      flex: 1 0 auto;
+    }
   }
 }
 
-.interesting-tag {
-  .mod-hd {
-    margin-bottom: 0.5em;
-    .vm-action {
-      margin-left: 10px;
+.hot-tag {
+  margin-top: 18px;
+  font-size: 13px;
+
+  .-header {
+    @extend .flex-justify-between;
+    
+    .-title,
+    .-more {
+      line-height: 24px;
     }
   }
-  .mod-tags {
-    padding-right: 20px;
-    padding-bottom: 5px;
-    
-    .vm-tag {
-      color: #39739d;
-      background-color: #E1ECF4;
-      border-color: transparent;
-      position: relative;
-      padding: .4em .5em;
-      margin: 2px .5em .5em 0;
-      font-size: 11px;
-      line-height: 1;
-      white-space: nowrap;
-      text-decoration: none;
-      text-align: center;
-      border-width: 1px;
-      border-style: solid;
-      border-radius: 0;
-      transition: all .15s ease-in-out;
 
-      &:hover {
-        color: #33658a;
-        background-color: #cee0ed;
-        border-color:transparent;
+  .-list {
+    margin-top: 10px;
+    margin-bottom: -10px;
+  }
+
+  .-item {
+    padding: 2px 10px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $border-color-base;
+    border-radius: 15px;
+
+    &.active,
+    &:hover {
+      .-name {
+        color: #4c9e82;
       }
     }
-  }
-  .mod-form {
 
-    .vm-link {
-      padding-top: 20px;
+    .-name {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .-group {
+      display: none;
     }
   }
 }

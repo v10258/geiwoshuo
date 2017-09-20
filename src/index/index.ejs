@@ -3,839 +3,734 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>知鱼 - 解决你的问题</title>
+  <title> 首页 — 知鱼</title>
   <meta name="Keywords" content="关键词" />
   <meta name="Description" content="描述" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <%- include ../layout/bootstrap-css -%>
 </head>
 
-<body>
+<body class="page-index">
   <%- include ../layout/header -%>
     <main id="content" class="container flex-justify-between">
       <div class="content-column">
-        <section class="top-header flex-justify-between">
+        <section class="top-header">
+          <!-- <div class="top-header-title">
+              全部
+          </div> -->
           <nav class="top-header-nav flex">
             <a class="active" href="#">热门</a>
             <a href="#">最新</a>
             <a href="#">赏金</a>
             <a href="#">推广</a>
           </nav>
-          <div class="top-header-tag">
-
-          </div>
           <div class="top-header-pager">
-            <span class="vm-left iconfont icon-arrow-left s-disabled"></span>
+            <span class="ion ion-ios-arrow-back"></span>
             <span class="vm-num"><i>1</i>/1</span>
-            <span class="vm-right iconfont icon-arrow-right"></span>
+            <span class="ion ion-ios-arrow-forward"></span>
           </div>
         </section>
 
         <section class="questions" id="questions">
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">帮忙投票。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">投票</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">发布 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          <article class="index-summary">
+            <div class="-title">
+              请业内老司机帮忙分析良渚文化村和翡翠城地段优劣和未来发展潜力。
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">偶遇婉约气质姑娘，一见倾心，求联系方式。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">寻人</a>
-                <a href="#" class="vm-tag" title="">西湖</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">发布 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#">javascript</a>
+              <a href="#">nodejs</a>
+              <a href="#">nodejs</a>
+
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                    <i class="ion ion-md-arrow-dropup"></i>
+                    100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                    <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">有房票，看准一楼盘必涨，寻合伙投资。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">房产</a>
-                <a href="#" class="vm-tag" title="">投资</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">发布 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+              <a title="回复，响应和打赏">
+                  <i class="ion ion-md-text"></i>
+                  99 动态
+              </a>
+              <a>
+                  <i>•</i>
+                  1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                  <!-- 举报 -->
+              </a>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">想让孩子上xx小学，请问要符合哪些条件和注意事项</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">教育</a>
-                <a href="#" class="vm-tag" title="">老师</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                有谁近期去韩国，需要代购奶粉
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">爱犬在滨江西兴附近走失，重奖寻宠，现在很着急。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">宠物</a>
-                <a href="#" class="vm-tag" title="">寻物</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#" title="">代购</a>
+              <a href="#" title="">韩国</a>
+              <a href="#" title="">母婴</a>
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                    <i class="ion ion-md-arrow-dropup"></i>
+                    100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                    <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">有谁近期去韩国，需要代购奶粉</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">代购</a>
-                <a href="#" class="vm-tag" title="">韩国</a>
-                <a href="#" class="vm-tag" title="">母婴</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+              <a title="回复，响应和打赏">
+                  <i class="ion ion-md-text"></i>
+                  99 动态
+              </a>
+              <a>
+                  <i>•</i>
+                  1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                  <!-- 举报 -->
+              </a>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">求推荐靠谱驾考教练，可以早上练车，性格温和的。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">驾考</a>
-                <a href="#" class="vm-tag" title="">寻人</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                帮我避免骚扰
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">暑期泰国游，寻一热爱潜水的伙伴，互相照应。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">旅行</a>
-                <a href="#" class="vm-tag" title="">潜水</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">职场</a>
+              <a href="#" class="vm-tag" title="">情感</a>
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                    <i class="ion ion-md-arrow-dropup"></i>
+                    100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                    <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">报考志愿，找浙江中医药大学往届学长学姐了解详情。</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">高校</a>
-                <a href="#" class="vm-tag" title="">医生</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+              <a title="回复，响应和打赏">
+                  <i class="ion ion-md-text"></i>
+                  99 动态
+              </a>
+              <a>
+                  <i>•</i>
+                  1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                  <!-- 举报 -->
+              </a>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">帮我避免骚扰</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">职场</a>
-                <a href="#" class="vm-tag" title="">情感</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                求推荐靠谱驾考教练，可以早上练车，性格温和的。
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">教我弹吉他</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">音乐</a>
-                <a href="#" class="vm-tag" title="">吉他</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#" title="">驾考</a>
+              <a href="#" title="">寻人</a>
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                    <i class="ion ion-md-arrow-dropup"></i>
+                    100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                    <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">洗衣机排水管接室外</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">劳务</a>
-                <a href="#" class="vm-tag" title="">装修</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+              <a title="回复，响应和打赏">
+                  <i class="ion ion-md-text"></i>
+                  99 动态
+              </a>
+              <a>
+                  <i>•</i>
+                  1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                  <!-- 举报 -->
+              </a>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">带玩杭州</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">旅游</a>
-                <a href="#" class="vm-tag" title="">美食</a>
-                <a href="#" class="vm-tag" title="">导游</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                暑期泰国游，寻一热爱潜水的伙伴，互相照应。
+              <span class="-tags">
+                <i class="ion ion-ios-planet"></i>
+              </span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">三墩附近女大学生模特拍丝巾</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">大学生</a>
-                <a href="#" class="vm-tag" title="">淘宝</a>
-                <a href="#" class="vm-tag" title="">模特</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#" title="">旅行</a>
+              <a href="#" title="">潜水</a>
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                    <i class="ion ion-md-arrow-dropup"></i>
+                    100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                    <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">转让健身卡</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">运动</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+              <a title="回复，响应和打赏">
+                  <i class="ion ion-md-text"></i>
+                  99 动态
+              </a>
+              <a>
+                  <i>•</i>
+                  1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                  <!-- 举报 -->
+              </a>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">求杭州户口临时挂靠一个月</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">户籍</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                报考志愿，找浙江中医药大学往届学长学姐了解详情。
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">工银亚洲，开一张香港银行卡</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">香港</a>
-                <a href="#" class="vm-tag" title="">银行</a>
-                <a href="#" class="vm-tag" title="">股票</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">高校</a>
+              <a href="#" class="vm-tag" title="">医生</a>
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                      <i class="ion ion-md-arrow-dropup"></i>
+                      100
+                  </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                      <i class="ion ion-md-arrow-dropdown"></i>
+                  </button>
               </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">一个夜跑陪跑跑友</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">运动</a>
-                <a href="#" class="vm-tag" title="">陪跑</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+              <a title="回复，响应和打赏">
+                    <i class="ion ion-md-text"></i>
+                    99 动态
+                </a>
+              <a>
+                    <i>•</i>
+                    1394 浏览
+                </a>
+              <a class="-more">
+                  <i class="ion ion-ios-more"></i>
+                    <!-- 举报 -->
+                </a>
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">求借心理咨询师三级2015版教材</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">心理</a>
-                <a href="#" class="vm-tag" title="">书籍</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                教我弹吉他
             </div>
-          </div>
-          <div class="question-summary">
-            <a class="question-summary-stat" href="#">
-              <div class="flex-column">
-                <i class="vm-counts" title="0 votes">99</i>
-                <span>赞</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 answers">9</i>
-                <span>回答</span>
-              </div>
-              <div class="flex-column">
-                <i class="vm-counts" title="0 views">999</i>
-                <span>浏览</span>
-              </div>
-            </a>
-            <div class="question-summary-info">
-              <div class="mod-title">
-                <a class="vm-link" href="#">手术急需，求互助献血</a>
-              </div>
-              <div class="mod-tags flex">
-                <a href="#" class="vm-tag" title="">医院</a>
-                <a href="#" class="vm-tag" title="">献血</a>
-              </div>
-              <div class="mod-started">
-                <a class="vm-start" href="#">修改 <span title="2017-07-13 05:51:28Z" class="relativetime">1 分前</span></a>
-                <a href="/users/10258/uname">Dawid Dyrcz</a>
-                <span class="vm-score" title="声誉值">16</span>
-              </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">音乐</a>
+              <a href="#" class="vm-tag" title="">吉他</a>
+              <span>发布于 5 小时前</span>
             </div>
-          </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                        <i class="ion ion-md-arrow-dropup"></i>
+                        100
+                    </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                        <i class="ion ion-md-arrow-dropdown"></i>
+                    </button>
+              </div>
+              <a title="回复，响应和打赏">
+                      <i class="ion ion-md-text"></i>
+                      99 动态
+                  </a>
+              <a>
+                      <i>•</i>
+                      1394 浏览
+                  </a>
+              <a class="-more">
+                    <i class="ion ion-ios-more"></i>
+                      <!-- 举报 -->
+                  </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                洗衣机排水管接室外
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">劳务</a>
+              <a href="#" class="vm-tag" title="">装修</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                          <i class="ion ion-md-arrow-dropup"></i>
+                          100
+                      </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                          <i class="ion ion-md-arrow-dropdown"></i>
+                      </button>
+              </div>
+              <a title="回复，响应和打赏">
+                        <i class="ion ion-md-text"></i>
+                        99 动态
+                    </a>
+              <a>
+                        <i>•</i>
+                        1394 浏览
+                    </a>
+              <a class="-more">
+                      <i class="ion ion-ios-more"></i>
+                        <!-- 举报 -->
+                    </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                带玩杭州
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">旅游</a>
+              <a href="#" class="vm-tag" title="">美食</a>
+              <a href="#" class="vm-tag" title="">导游</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                            <i class="ion ion-md-arrow-dropup"></i>
+                            100
+                        </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                            <i class="ion ion-md-arrow-dropdown"></i>
+                        </button>
+              </div>
+              <a title="回复，响应和打赏">
+                          <i class="ion ion-md-text"></i>
+                          99 动态
+                      </a>
+              <a>
+                          <i>•</i>
+                          1394 浏览
+                      </a>
+              <a class="-more">
+                        <i class="ion ion-ios-more"></i>
+                          <!-- 举报 -->
+                      </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                三墩附近女大学生模特拍丝巾
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">大学生</a>
+              <a href="#" class="vm-tag" title="">淘宝</a>
+              <a href="#" class="vm-tag" title="">模特</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                              <i class="ion ion-md-arrow-dropup"></i>
+                              100
+                          </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                              <i class="ion ion-md-arrow-dropdown"></i>
+                          </button>
+              </div>
+              <a title="回复，响应和打赏">
+                            <i class="ion ion-md-text"></i>
+                            99 动态
+                        </a>
+              <a>
+                            <i>•</i>
+                            1394 浏览
+                        </a>
+              <a class="-more">
+                          <i class="ion ion-ios-more"></i>
+                            <!-- 举报 -->
+                        </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                转让健身卡
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">运动</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                                <i class="ion ion-md-arrow-dropup"></i>
+                                100
+                            </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                                <i class="ion ion-md-arrow-dropdown"></i>
+                            </button>
+              </div>
+              <a title="回复，响应和打赏">
+                              <i class="ion ion-md-text"></i>
+                              99 动态
+                          </a>
+              <a>
+                              <i>•</i>
+                              1394 浏览
+                          </a>
+              <a class="-more">
+                            <i class="ion ion-ios-more"></i>
+                              <!-- 举报 -->
+                          </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                求杭州户口临时挂靠一个月
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">户籍</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                                  <i class="ion ion-md-arrow-dropup"></i>
+                                  100
+                              </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                                  <i class="ion ion-md-arrow-dropdown"></i>
+                              </button>
+              </div>
+              <a title="回复，响应和打赏">
+                                <i class="ion ion-md-text"></i>
+                                99 动态
+                            </a>
+              <a>
+                                <i>•</i>
+                                1394 浏览
+                            </a>
+              <a class="-more">
+                              <i class="ion ion-ios-more"></i>
+                                <!-- 举报 -->
+                            </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                工银亚洲，开一张香港银行卡
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">香港</a>
+              <a href="#" class="vm-tag" title="">银行</a>
+              <a href="#" class="vm-tag" title="">股票</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                                    <i class="ion ion-md-arrow-dropup"></i>
+                                    100
+                                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                                    <i class="ion ion-md-arrow-dropdown"></i>
+                                </button>
+              </div>
+              <a title="回复，响应和打赏">
+                                  <i class="ion ion-md-text"></i>
+                                  99 动态
+                              </a>
+              <a>
+                                  <i>•</i>
+                                  1394 浏览
+                              </a>
+              <a class="-more">
+                                <i class="ion ion-ios-more"></i>
+                                  <!-- 举报 -->
+                              </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                一个夜跑陪跑跑友
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">运动</a>
+              <a href="#" class="vm-tag" title="">陪跑</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                                      <i class="ion ion-md-arrow-dropup"></i>
+                                      100
+                                  </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                                      <i class="ion ion-md-arrow-dropdown"></i>
+                                  </button>
+              </div>
+              <a title="回复，响应和打赏">
+                                    <i class="ion ion-md-text"></i>
+                                    99 动态
+                                </a>
+              <a>
+                                    <i>•</i>
+                                    1394 浏览
+                                </a>
+              <a class="-more">
+                                  <i class="ion ion-ios-more"></i>
+                                    <!-- 举报 -->
+                                </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                求借心理咨询师三级2015版教材
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">心理</a>
+              <a href="#" class="vm-tag" title="">书籍</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                                        <i class="ion ion-md-arrow-dropup"></i>
+                                        100
+                                    </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                                        <i class="ion ion-md-arrow-dropdown"></i>
+                                    </button>
+              </div>
+              <a title="回复，响应和打赏">
+                                      <i class="ion ion-md-text"></i>
+                                      99 动态
+                                  </a>
+              <a>
+                                      <i>•</i>
+                                      1394 浏览
+                                  </a>
+              <a class="-more">
+                                    <i class="ion ion-ios-more"></i>
+                                      <!-- 举报 -->
+                                  </a>
+            </div>
+          </article>
+
+          <article class="index-summary">
+            <div class="-title">
+                手术急需，求互助献血
+            </div>
+            <div class="-info">
+              <a href="#" class="vm-tag" title="">医院</a>
+              <a href="#" class="vm-tag" title="">献血</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                                        <i class="ion ion-md-arrow-dropup"></i>
+                                        100
+                                    </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                                        <i class="ion ion-md-arrow-dropdown"></i>
+                                    </button>
+              </div>
+              <a title="回复，响应和打赏">
+                                      <i class="ion ion-md-text"></i>
+                                      99 动态
+                                  </a>
+              <a>
+                                      <i>•</i>
+                                      1394 浏览
+                                  </a>
+              <a class="-more">
+                                    <i class="ion ion-ios-more"></i>
+                                      <!-- 举报 -->
+                                  </a>
+            </div>
+          </article>
         </section>
       </div>
       <aside class="content-sidebar">
-        <section class="lucky-door flex-justify-end">
-          <a class="btn btn-primary" href="/ask">发布问题</a>
-        </section>
-        <section class="recommend">
-          <h3 class="mod-title">
-            特别推荐
-          </h3>
-          <a class="mod-item" href="#">Did comment flags just change?</a>
-          <h3 class="mod-title">
-            热点关注
-          </h3>
-          <a class="mod-item" href="#">Trends in Government Software Developers</a>
-          <a class="mod-item" href="#">Trends in Government Software Developers</a>
-          <h3 class="mod-title">
-            招募公告
-          </h3>
-          <a class="mod-item" href="#">Trends in Government Software Developers</a>
-        </section>
-        <section class="dynamic">
-          <h3 class="dynamic-hd">
-            动态
-          </h3>
-          <ul class="dynamic-roll">
-            <li>
-              <a href="#">niefeng</a> 完成
-              <a href="#">
-              How I can update the column values in Pandas Dataframe?
-            </a> 获得丰厚报酬
-              <a href="#">
-              查看
-            </a>
+        <div id="ask" class="ask">
+          <div class="ask-border">
+            <span class="ion ion-ios-chatbubbles"></span>
+            <i></i>
+            <button type="button" class="pi-button ask-btn pi-button--info">
+              <span>发布问题</span>
+            </button>
+          </div>
+        </div>
+        <section class="hot-answer">
+          <div class="-header">
+            <h3 class="-title">精选回答</h3>
+          </div>
+          <ul class="-list">
+            <li class="-item">
+              <h3 class="-title">
+                魅蓝E2，变形金刚，限量典藏版
+              </h3>
+              <!-- <div class="-user">
+                <a class="-avatar" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+                <a class="-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+                <span>|</span>
+                <span class="-sign">
+                    我愿变成童话拟，里爱...
+                </span>
+                <span class="-praise">
+                    <i class="ion ion-md-thumbs-up"></i>
+                  3899
+                </span>
+              </div> -->
+              <a href="#" class="-preview">
+                <p class="-content">职务侵占罪的构成要件以及宋喆是否构成职务侵占罪，客体要件本罪的犯罪客体是公司。</p>
+                <div class="-image" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);background-size: cover;"></div>
+              </a>
             </li>
-            <li>
-              <a href="#">niefeng</a> 收藏
-              <a href="#">
-              How I can update the column values in Pandas Dataframe?
-            </a>
-              <a href="#">
-              查看
-            </a>
+            <li class="-item">
+              <h3 class="-title">
+                魅蓝E2，变形金刚，限量典藏版
+              </h3>
+              <!-- <div class="-user">
+                <a class="-avatar" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+                <a class="-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+                <span class="-praise">
+                    <i class="ion ion-md-thumbs-up"></i>
+                  3899
+                </span>
+              </div> -->
+              <a href="#" class="-preview">
+                <p class="-content">职务侵占罪的构成要件以及宋喆是否构成职务侵占罪，客体要件本罪的犯罪客体是公司。</p>
+                <div class="-image" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);background-size: cover;"></div>
+              </a>
             </li>
-            <li>
-              <a href="#">niefeng</a> 响应
-              <a href="#">
-              How I can update the column values in Pandas Dataframe?
-            </a>
-              <a href="#">
-              查看
-            </a>
+            <li class="-item">
+              <h3 class="-title">
+                魅蓝E2，变形金刚，限量典藏版
+              </h3>
+              <!-- <div class="-user">
+                <a class="-avatar" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+                <a class="-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+                <span class="-praise">
+                    <i class="ion ion-md-thumbs-up"></i>
+                  3899
+                </span>
+              </div> -->
+              <a href="#" class="-preview">
+                <p class="-content">职务侵占罪的构成要件以及宋喆是否构成职务侵占罪，客体要件本罪的犯罪客体是公司，客体要件本罪的犯罪客体是公司。</p>
+                <!-- <div class="-image" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);background-size: cover;"></div> -->
+              </a>
             </li>
           </ul>
-        </section>
-        <section class="interesting-tag">
-          <div class="mod-hd flex-item-end">
-            <h4 id="mod-hd">关注的标签</h4>
-            <a class="vm-action" id="J_action" data-type="add">edit</a>
-          </div>
-          <div class="mod-tags flex-wrap" id="interestingTags">
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            前端
-            <span class="delete" title="remove this tag"></span>
-          </a>
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            创业
-            <span class="delete" title="remove this tag"></span>
-          </a>
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            股票
-            <span class="delete" title="remove this tag"></span>
-          </a>
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            互联网
-            <span class="delete" title="remove this tag"></span>
-          </a>
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            旅行
-            <span class="delete" title="remove this tag"></span>
-          </a>
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            教育
-            <span class="delete" title="remove this tag"></span>
-          </a>
-            <a class="vm-tag" href="/questions/tagged/node.js" title="'">
-            医疗
-            <span class="delete" title="remove this tag"></span>
-          </a>
-          </div>
-          <div class="mod-form hide">
-            <input type="text" id="interestingTag" name="interestingTag" autocomplete="off" class="ac_input"></td>
-            <input id="interestingAdd" type="button" value="Add">
-            <div class="vm-link text-right">
-              <a href="https://stackexchange.com/filters">advanced tag subscriptions »</a>
-            </div>
-          </div>
         </section>
 
-        <section class="network">
-          <h2 class="mod-hd">热门网络问题</h2>
-          <ul class="mod-bd">
-            <li>
-              <i class="icontag icontag-academia" title=""></i>
-              <a href="#" class="js-gps-track">
-                  How could a humanist civilization favor the selfless?
-              </a>
+        <section class="hot-tag">
+          <div class="-header">
+            <h3 class="-title">热门标签</h3>
+            <a class="-more" href="#">查看全部</a>
+          </div>
+          <ul class="-list">
+            <li class="-item active">
+              <a class="-name" href="#">投票</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-math" title=""></i>
-              <a href="#">
-                  Using “while read…”,echo and printf get different outcomes
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">法律</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-english" title=""></i>
-              <a href="#">
-                  What kind of apocalyptic event can be predicted years before it happens?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">代购</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-travel" title=""></i>
-              <a href="https://superuser.com/questions/1232146/why-is-no-scripts-not-activated-by-default-in-tor" class="js-gps-track"
-                data-gps-track="site.switch({ item_type:9, target_site:3 }); posts_hot_network.click({ item_type:2, location:9 })">
-                  Why is "No scripts" not activated by default in Tor?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">股票</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-physics" title=""></i>
-              <a href="https://japanese.stackexchange.com/questions/51615/what-differences-are-there-between-the-english-word-memo-and-the-japanese-word"
-                class="js-gps-track" data-gps-track="site.switch({ item_type:9, target_site:257 }); posts_hot_network.click({ item_type:2, location:9 })">
-                  What differences are there between the English word "memo" and the Japanese word "メモ"?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">创业</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-academia" title=""></i>
-              <a href="#" class="js-gps-track">
-                  How could a humanist civilization favor the selfless?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">房产</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-math" title=""></i>
-              <a href="#">
-                  Using “while read…”,echo and printf get different outcomes
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">情感</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-english" title=""></i>
-              <a href="#">
-                  What kind of apocalyptic event can be predicted years before it happens?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">旅行</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-travel" title=""></i>
-              <a href="https://superuser.com/questions/1232146/why-is-no-scripts-not-activated-by-default-in-tor" class="js-gps-track"
-                data-gps-track="site.switch({ item_type:9, target_site:3 }); posts_hot_network.click({ item_type:2, location:9 })">
-                  Why is "No scripts" not activated by default in Tor?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">陪玩</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
-            <li>
-              <i class="icontag icontag-physics" title=""></i>
-              <a href="https://japanese.stackexchange.com/questions/51615/what-differences-are-there-between-the-english-word-memo-and-the-japanese-word"
-                class="js-gps-track" data-gps-track="site.switch({ item_type:9, target_site:257 }); posts_hot_network.click({ item_type:2, location:9 })">
-                  What differences are there between the English word "memo" and the Japanese word "メモ"?
-              </a>
-            </li>
-            <li>
-              <i class="icontag icontag-academia" title=""></i>
-              <a href="#" class="js-gps-track">
-                  How could a humanist civilization favor the selfless?
-              </a>
-            </li>
-            <li>
-              <i class="icontag icontag-math" title=""></i>
-              <a href="#">
-                  Using “while read…”,echo and printf get different outcomes
-              </a>
-            </li>
-            <li>
-              <i class="icontag icontag-english" title=""></i>
-              <a href="#">
-                  What kind of apocalyptic event can be predicted years before it happens?
-              </a>
-            </li>
-            <li>
-              <i class="icontag icontag-travel" title=""></i>
-              <a href="https://superuser.com/questions/1232146/why-is-no-scripts-not-activated-by-default-in-tor" class="js-gps-track"
-                data-gps-track="site.switch({ item_type:9, target_site:3 }); posts_hot_network.click({ item_type:2, location:9 })">
-                  Why is "No scripts" not activated by default in Tor?
-              </a>
-            </li>
-            <li>
-              <i class="icontag icontag-physics" title=""></i>
-              <a href="https://japanese.stackexchange.com/questions/51615/what-differences-are-there-between-the-english-word-memo-and-the-japanese-word"
-                class="js-gps-track" data-gps-track="site.switch({ item_type:9, target_site:257 }); posts_hot_network.click({ item_type:2, location:9 })">
-                  What differences are there between the English word "memo" and the Japanese word "メモ"?
-              </a>
+            <li class="-item">
+              <a class="-name" href="#">医学</a>
+              <div class="-group">
+                投票分享不求人，快速高效。
+              </div>
             </li>
           </ul>
-          <div class="mod-more text-right">
-            <a href="#">
-              more hot questions
-          </a>
+        </section>
+
+        <section class="stats">
+          <div class="mod-state">
+            <p><a href="#" target="_blank">知鱼理念</a><span>•</span><a href="#" target="_blank">用户指南</a><span>•</span><a href="#" target="_blank">用户协议</a><span>|</span>© 2017 知鱼</p>
+            <p>今日浏览<strong class="attention-num"> 946 </strong>次，<strong class="attention-num">80%</strong>问题得到响应</p>
           </div>
         </section>
       </aside>

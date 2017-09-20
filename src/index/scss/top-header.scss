@@ -29,7 +29,7 @@
     // }
 
     &.active {
-      height: 38px;
+      height: 40px;
       border: 1px solid #e4e6e8;
       border-bottom-color: transparent;
       border-radius: $border-radius-sm $border-radius-sm 0 0;
@@ -50,11 +50,12 @@
 }
 
 .top-header-pager {
+  @extend .flex-item-center;
   margin-top: 12px;
-  .vm-left,
-  .vm-right {
+
+  span {
     font-size: 14px;
-    padding: 0 12px;
+    padding: 0 9px;
   }
 
   .vm-num {
