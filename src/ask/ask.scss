@@ -1,9 +1,9 @@
 @import "../common/scss/common.scss";
 @import "../common/scss/utils.scss";
-@import "../common/font/iconfont.css";
+@import "../common/scss/icontag.scss";
 
-@import "../common/scss/components/text.scss";
-@import "../common/scss/components/buttons.scss";
+// @import "../common/scss/components/text.scss";
+// @import "../common/scss/components/buttons.scss";
 @import "../common/scss/components/form.scss";
 
 .page-ask {
@@ -57,6 +57,13 @@
         margin-top: 20px;
         dt {
             font-weight: bold;
+        }
+    }
+
+    .form-inline {
+        margin-bottom: 8px;
+        label {
+            margin-right: 10px;
         }
     }
 }
