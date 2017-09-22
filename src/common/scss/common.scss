@@ -8,6 +8,10 @@ body {
   color: $text-color-base;
 }
 
+body, button, input, select, textarea {
+  font: 14px/1.5 'PingFangSC', 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft Yahei','\5b8b\4f53', arial, sans-serif;
+}
+
 a {
   color: $link-base-color;
   &:hover {
@@ -17,10 +21,10 @@ a {
 }
 
 .container {
-  box-sizing: content-box;
+  //box-sizing: content-box;
 	position: relative;
-  max-width: 1060px;
-  min-width: 1060px;
+  max-width: 1090px;
+  min-width: 1090px;
   padding: 0 15px;
   margin: 0 auto;
 }
