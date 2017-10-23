@@ -10,12 +10,12 @@ let isProduction = process.env.NODE_ENV === 'production';
 var submodule = argv.define || 'index';
 var entryFileName = submodule;
 
-var outputPath = path.resolve(__dirname, 'dist/', submodule);
+var outputPath = path.resolve(__dirname, 'public/', submodule);
 var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 
 var config = {
   entry: {
-    vendor: ['lodash']
+    vendor: ['jquery', 'popper.js', 'bootstrap']
   },
   output: {
     filename: 'js/[name]-[chunkhash:8].js',
@@ -32,7 +32,7 @@ var config = {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'autoprefixer-loader','resolve-url-loader', 'sass-loader?sourceMap']
+        use: ['css-loader', 'autoprefixer-loader','sass-loader']
       })
     },{
       test: /\.ejs$/,

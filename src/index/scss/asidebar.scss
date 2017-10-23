@@ -1,53 +1,4 @@
 
-// .ask {
-//     padding-bottom: 10px;
-// }
-
-// .ask .ask-border {
-//     padding: 18px 20px;
-//     border-radius: 2px;
-//     background: #fff;
-// }
-
-// .ask i {
-//     width: 155px;
-//     height: 24px;
-//     display: inline-block;
-//     position: relative;
-//     top: 5px;
-//     background: url(https://iknowpc.bdimg.com/static/pi-home/widget/aside-section/ask/img/tips_4a066d7.svg) no-repeat;
-//     background-position: 50% 50%;
-//     background-size: cover;
-// }
-
-// .ask .ico {
-//     font-size: 24px;
-// }
-
-// .ask .ico:before {
-//     content: '\e64e';
-//     color: #1E9780;
-// }
-
-// .ask .ico:nth-child(2):before {
-//     display: inline-block;
-//     width: 154px;
-//     content: '\e651';
-//     color: #141616;
-// }
-
-// .ask .ask-btn {
-//     margin-left: 7px;
-//     width: 72px;
-//     height: 36px;
-//     font-size: 16px;
-//     border: 0;
-// }
-
-// .ask .ask-btn:hover {
-//     background: #258976;
-// }
-
 .ask {
     background: #eeeff2;
     border: 1px solid $border-color-base;
@@ -87,8 +38,10 @@
 }
 
 .ask .ask-btn {
+    display: inline-block;
     margin-left: 7px;
     height: 36px;
+    line-height: 36px;
     font-size: 16px;
     border: 0;
     color: #fff;
@@ -96,6 +49,7 @@
     border-color: #1e9780;
     padding: 0 10px;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .ask .ask-btn:hover {
@@ -219,6 +173,25 @@
     .-group {
       display: none;
     }
+  }
+}
+
+.stats {
+  margin-top: 18px;
+
+  a {
+    // color: #139065;
+  }
+
+  span {
+    margin: 0 8px;
+  }
+
+  .mod-state {
+    padding: 5px 0 18px;
+    line-height: 24px;
+    font-size: 13px;
+    color: #7f7f7f;
   }
 }
 

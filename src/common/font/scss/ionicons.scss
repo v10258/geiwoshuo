@@ -36,15 +36,9 @@
   text-transform: none;
   text-rendering: auto;
   line-height: 1;
-  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-//@import "ionicons-common";
-.ion {
-  &:before {
-    @extend .ion;
-  }
-}
+@import "ionicons-common";
 @import "ionicons-icons";

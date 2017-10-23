@@ -1,9 +1,11 @@
 @import "../common/scss/common.scss";
 @import "../common/scss/utils.scss";
-@import "../common/scss/icontag.scss";
-@import "../common/font/iconfont.css";
 
-@import "../common/scss/components/buttons.scss";
+
+.menu {
+    @extend .flex-column;
+}
+
 
 .marketing {
     @extend .flex-justify-between;

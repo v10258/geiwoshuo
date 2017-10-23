@@ -13,13 +13,13 @@
         <nav class="header-content-nav">
           <ol class="-list flex">
             <li class="-item active">
-              <a class="-link" href="/index">首页</a>
+              <a class="-link" href="/">首页</a>
             </li>
             <li class="-item">
-              <a class="-link" href="/questions">发现</a>
+              <a class="-link" href="/find">发现</a>
             </li>
             <li class="-item">
-              <a class="-link" href="/dating">来往</a>
+              <a class="-link" href="/contact">来往</a>
             </li>
             <li class="-item">
               <a class="-link" href="/users">用户</a>
@@ -27,13 +27,10 @@
           </ol>
         </nav>
         <form class="header-content-search" id="search" action="/search" method="get" class="searchbar" autocomplete="off">
-          <svg class="vm-icon iconSearch" width="18" height="18">
-            <path d="M12.864 11.321L18 16.5 16.5 18l-5.178-5.136v-.357a7 7 0 1 1 1.186-1.186h.356zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path>
-          </svg>
           <input name="q" type="text" placeholder="搜索你感兴趣的内容..." value="" tabindex="1" autocomplete="off" class="vm-search">
-          <button type="submit" class="btn vm-submit">
-                    <svg class="svg-icon iconSearch" width="18" height="18"><path d="M12.864 11.321L18 16.5 16.5 18l-5.178-5.136v-.357a7 7 0 1 1 1.186-1.186h.356zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
-                </button>
+          <button type="submit" class="vm-submit">
+              <i class="vm-icon ion ion-ios-search"></i>
+          </button>
         </form>
       </div>
       <ul class="header-action">

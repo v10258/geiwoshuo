@@ -4,9 +4,11 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "cp -r node_modules/ionicons/dist/ src/common/font/",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
+    "prestart": "npm run build",
+    "start": "node app.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.build.js",
+    "release": "cross-env NODE_ENV=production webpack --config webpack.release.js"
   },
   "license": "MIT",
   "devDependencies": {
@@ -19,12 +21,14 @@
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.1",
+    "ejs": "^2.5.7",
     "ejs-compiled-loader": "2.2.0",
     "expose-loader": "^0.7.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-include-assets-plugin": "0.0.7",
     "html-webpack-plugin": "^2.28.0",
+    "koa-router": "^7.2.1",
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.5.3",
     "resolve-url-loader": "^2.1.0",
@@ -41,6 +45,8 @@
     "ionicons": "^3.0.0",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.3",
-    "vue": "^2.3.4"
+    "vue": "^2.3.4",
+    "express": "^4.16.2",
+    "nunjucks": "^3.0.1"
   }
 }

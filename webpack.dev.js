@@ -12,7 +12,7 @@ let isProduction = process.env.NODE_ENV === 'production';
 var submodule = argv.define || 'index';
 var entryFileName = submodule;
 
-var outputPath = path.resolve(__dirname, 'dist/', submodule);
+var outputPath = path.resolve(__dirname, 'public/', submodule);
 var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 
 var config = {
@@ -66,11 +66,10 @@ var config = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
     }),
     new CopyWebpackPlugin([
-      { from: 'node_modules/bootstrap/dist/css', to: 'css/'}
+      { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
     ]),
     // 页面集成
     new HtmlWebpackPlugin({
@@ -78,7 +77,8 @@ var config = {
     }),
     // 抽出公共文件vendor依赖，manifest运行时信息
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest']
+      //name: ['vendor', 'manifest']
+      name: 'vendor'
     }),
     // 模块热更新
     new webpack.HotModuleReplacementPlugin()
