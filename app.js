@@ -44,6 +44,10 @@ app.get('/ask', function(req, res) {
   res.render('ask.html');
 });
 
+app.get('/centre', function(req, res) {
+  res.render('centre.html');
+});
+
 app.get('/task/:id', function(req, res) {
   res.render('task.html');
 });

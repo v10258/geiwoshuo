@@ -1,0 +1,67 @@
+@import "../common/scss/common.scss";
+@import "../common/scss/utils.scss";
+
+.stat {
+	@extend .flex-justify-between;
+
+	span {
+		width: 33.33%;
+		padding: 0 5px;
+
+		em {
+			color: #999;
+		}
+	}
+}
+
+.menu {
+    @extend .flex-column;
+
+    a:hover {
+    	text-decoration: none;
+    }
+
+    .-group {
+		@extend .flex-column;
+		border-top: 1px solid #ccc;
+		margin-top: 10px;
+		padding-top: 10px;
+
+		a {
+			line-height: 28px;
+			padding-left: 5px;
+		}
+	}
+
+	.-dynamic {
+		padding-left: 5px;
+	}
+}
+
+.top-header {
+    border-bottom: 1px solid #E5E5E5;
+    height: 32px;
+
+    .top-header-tab {
+    	line-height: 32px;
+    	color: #4c9e82;
+    }
+
+	.top-header-title {
+		font-size: 18px;
+		padding: 10px 0;
+	}	
+}
+
+.dynamic {
+	@extend .flex-column;
+}
+
+.dynamic-item {
+	margin-bottom: 20px;
+}
+
+
+
+
+

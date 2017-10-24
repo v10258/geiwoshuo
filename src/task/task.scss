@@ -140,6 +140,7 @@
         border-color: $border-color-base $border-color-base #fff;
         border-radius: $border-radius-sm $border-radius-sm 0 0;
         background-color: #fff;
+        box-sizing:content-box;
       }
     }
     
