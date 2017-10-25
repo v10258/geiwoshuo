@@ -55,3 +55,13 @@ a {
 .s-disabled {
   color: #d8d8d8;
 }
+
+.bs-row {
+    @extend .flex-justify-between;
+    margin: 0 -10px;
+
+    > section,
+    > div {
+        padding: 0 10px;
+    }
+}

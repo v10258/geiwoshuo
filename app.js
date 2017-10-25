@@ -40,6 +40,10 @@ app.get('/contact', function(req, res) {
   res.render('contact.html');
 });
 
+app.get('/user', function(req, res) {
+  res.render('user.html');
+});
+
 app.get('/ask', function(req, res) {
   res.render('ask.html');
 });

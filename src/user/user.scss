@@ -1,0 +1,87 @@
+@import "../common/scss/common.scss";
+@import "../common/scss/utils.scss";
+
+.user-search {
+	@extend .flex-justify-center;
+}
+.user-search-form {
+	margin: 50px 0;
+
+	.-label {
+		width: 90px;
+		text-align: right;
+	}
+
+	.-control {
+		width: 270px;
+		height: 36px;
+	    padding: 0 10px 0 20px;
+	    font-size: 14px;
+	    line-height: 36px;
+        color: #666;
+    	border-radius: 4px;
+    	background-color: #fff;
+    	border: 1px solid #ccc;
+	}
+}
+
+.kind {
+	height: 300px;
+}
+
+.user-active,
+.team-active {
+	flex: 1 1 auto;
+}
+
+.user-active {
+	height: 390px;
+}
+.team-active {
+	height: 390px;
+}
+
+.user-active-hd,
+.team-active-hd {
+	position: relative;
+	@extend .flex;
+	height: 36px;
+	line-height: 36px;
+
+	.-title {
+		line-height: 36px;
+	}
+
+	.-sync {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+}
+
+.user-topic,
+.team-party {
+	width: 25%;
+
+	.user-topic-hd,
+	.team-party-hd {
+	    height: 35px;
+	    padding: 5px 10px;
+	    background-color: #f8f9fa;
+	    border-radius: 5px 5px 0 0;
+	    line-height: 25px;
+	    font-size: 14px;
+	    color: #4c9e82;
+	    font-weight: normal;
+	}
+}
+
+
+.topic-slide {
+	height: 180px;
+	margin-top: 20px;
+}
+
+
+
+
