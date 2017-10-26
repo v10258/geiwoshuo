@@ -29,15 +29,11 @@
 	height: 300px;
 }
 
-.user-active,
-.team-active {
-	flex: 1 1 auto;
+.user-active{
+	flex: 1;
 }
 
 .user-active {
-	height: 390px;
-}
-.team-active {
 	height: 390px;
 }
 
@@ -56,6 +52,73 @@
 		position: absolute;
 		top: 10px;
 		right: 10px;
+	}
+}
+
+.team {
+	flex: 1;
+}
+
+.team-active {
+	ul {
+		@extend .flex-wrap;
+		margin: 10px -10px;
+
+		li {
+			@extend .flex;
+			margin-bottom: 20px;
+			width: 50%;
+			padding: 0 10px;
+			overflow: hidden;
+
+			.-pic {
+				margin-right: 10px;
+
+				img {
+				    border-radius: 5px; 
+				}
+			}
+
+			.-name {
+				color: #0f820c;
+			}
+
+			.-meta {
+				font-size: 13px;
+				color: #999;
+				margin: 5px 0;
+			}
+
+			.-intro {
+				font-size: 13px;
+			}
+		}
+	}
+}
+
+.team-recommend {
+	ul {
+		@extend .flex-wrap;
+		margin: 10px -25px 20px;
+
+		li {
+			@extend .flex-column;
+			width: 140px;
+			padding: 0 25px;
+			overflow: hidden;
+			margin-bottom: 20px;
+
+
+			img {
+			    border-radius: 5px; 
+			}
+
+			.-name {
+				margin-top: 5px;
+				text-align: center;
+				font-size: 13px;
+			}
+		}
 	}
 }
 
@@ -80,6 +143,15 @@
 .topic-slide {
 	height: 180px;
 	margin-top: 20px;
+}
+
+.team-party {
+
+	.team-party-bd {
+	    li {
+	    	margin-top: 5px;
+	    }
+	}
 }
 
 
