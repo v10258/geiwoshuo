@@ -54,7 +54,7 @@
 }
 
 .user {
-	height: 450px;
+	height: 510px;
 	flex: 1;
 
 	.user-hd {
@@ -88,13 +88,21 @@
 
 
 		li {
-			@extend .flex;
-			margin-right: 20px;
+			@extend .flex-column;
 			margin-bottom: 15px;
 			line-height: 1.2;
+			width: 33.33%;
+
+			.-person {
+				@extend .flex;
+			}
 
 			.-gravatar {
 				margin-right: 5px;
+			}
+
+			.-intro {
+				margin-top: 5px;
 			}
 		}
 	}
@@ -171,7 +179,7 @@
 }
 
 .user-topic {
-	height:420px;
+	height:510px;
 
 	.user-topic-hd {
 	    height: 35px;
