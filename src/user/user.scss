@@ -1,57 +1,85 @@
 @import "../common/scss/common.scss";
 @import "../common/scss/utils.scss";
 
-.user-search {
+.search {
 	@extend .flex-justify-center;
-}
-.user-search-form {
-	margin: 50px 0;
 
-	.-label {
-		width: 90px;
-		text-align: right;
+	.search-form {
+		margin: 50px 0;
+
+		.-label {
+			width: 90px;
+			text-align: right;
+		}
+
+		.-control {
+			width: 270px;
+			height: 36px;
+		    padding: 0 10px 0 20px;
+		    font-size: 14px;
+		    line-height: 36px;
+	        color: #666;
+	    	border-radius: 4px;
+	    	background-color: #fff;
+	    	border: 1px solid #ccc;
+		}
 	}
-
-	.-control {
-		width: 270px;
-		height: 36px;
-	    padding: 0 10px 0 20px;
-	    font-size: 14px;
-	    line-height: 36px;
-        color: #666;
-    	border-radius: 4px;
-    	background-color: #fff;
-    	border: 1px solid #ccc;
-	}
 }
 
-.kind {
-	height: 300px;
-}
-
-.user-active{
-	flex: 1;
-}
-
-.user-active {
-	height: 390px;
-}
-
-.user-active-hd,
-.team-active-hd {
+.user-title,
+.team-title {
 	position: relative;
 	@extend .flex;
-	height: 36px;
-	line-height: 36px;
+	height: 30px;
+	font-size: 16px;
+	line-height: 30px;
+}
 
-	.-title {
-		line-height: 36px;
+.user {
+	height: 450px;
+	flex: 1;
+
+	.user-hd {
+		@extend .flex-justify-between;
+
+		.user-hd-title {
+
+		}
+
+		.user-hd-nav {
+			position: relative;
+			@extend .flex-justify-end;
+			font-size: 13px;
+
+			a {
+				padding: 0 5px;
+			}
+		}
 	}
 
-	.-sync {
-		position: absolute;
-		top: 10px;
-		right: 10px;
+
+	.user-active {
+		margin-top: 10px;
+
+		ul {
+			@extend .flex-wrap;
+		}
+
+
+		li {
+			@extend .flex;
+			margin-right: 20px;
+			margin-bottom: 15px;
+			line-height: 1.2;
+
+			.-gravatar {
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.user-rank {
+
 	}
 }
 
@@ -99,15 +127,14 @@
 .team-recommend {
 	ul {
 		@extend .flex-wrap;
-		margin: 10px -25px 20px;
+		margin: 10px -20px 20px;
 
 		li {
 			@extend .flex-column;
-			width: 140px;
-			padding: 0 25px;
+			width: 14.28%;
+			padding: 0 20px;
 			overflow: hidden;
 			margin-bottom: 20px;
-
 
 			img {
 			    border-radius: 5px; 
@@ -122,11 +149,52 @@
 	}
 }
 
-.user-topic,
-.team-party {
-	width: 25%;
+.user-topic {
+	height:420px;
 
-	.user-topic-hd,
+	.user-topic-hd {
+	    height: 35px;
+	    padding: 5px 10px;
+	    background-color: #f8f9fa;
+	    border-radius: 5px 5px 0 0;
+	    line-height: 25px;
+	    font-size: 14px;
+	    color: #4c9e82;
+	    font-weight: normal;
+	}
+
+	.user-topic-slide {
+		height: 160px;
+		margin-top: 20px;
+	}
+
+	.user-topic-text {
+		padding: 0 5px;
+
+		.-total {
+			margin-top: 5px;
+
+			span {
+				margin-right: 20px;
+
+				em {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		.-sign {
+			margin-top: 10px;
+			color: #999;
+		}
+
+		.-intro {
+			margin: 10px 0;
+		}
+	}
+}
+
+.team-party {
 	.team-party-hd {
 	    height: 35px;
 	    padding: 5px 10px;
@@ -137,23 +205,76 @@
 	    color: #4c9e82;
 	    font-weight: normal;
 	}
-}
-
-
-.topic-slide {
-	height: 180px;
-	margin-top: 20px;
-}
-
-.team-party {
 
 	.team-party-bd {
-	    li {
-	    	margin-top: 5px;
-	    }
+		margin-top: 5px;
+		li {
+			padding: 5px 0;
+		    border-bottom: 1px dotted #eaeaea;
+		    line-height: 21px;
+		}
 	}
 }
 
+
+.user-info {
+    box-sizing: border-box;
+    padding: 5px 6px 7px 7px;
+    width: 200px;
+    color: #6a737c
+}
+
+.user-info:before,
+.user-info:after {
+    content: "";
+    display: table
+}
+
+.user-info:after {
+    clear: both
+}
+
+.user-info .user-gravatar32 {
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 1px
+}
+
+.user-info .user-gravatar32 img {
+    border-radius: 1px
+}
+
+.user-info .user-gravatar32+.user-details {
+    margin-left: 8px;
+    width: calc(100% - 40px)
+}
+
+.user-info .user-gravatar48+.user-details {
+    margin-left: 8px;
+    width: calc(100% - 48px)
+}
+
+.user-info .user-gravatar64+.user-details {
+    margin-left: 8px;
+    width: calc(100% - 64px)
+}
+
+.user-info .user-action-time {
+    margin-top: 1px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    white-space: nowrap
+}
+
+.user-info .user-details {
+    float: left;
+    width: 100%
+}
+
+.user-info .-flair {
+    display: block
+}
 
 
 
