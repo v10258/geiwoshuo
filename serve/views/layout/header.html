@@ -1,72 +1,87 @@
 <header class="header fixed" id="header">
-  <div class="container flex-justify-between">
-    <div class="header-site flex-item-center">
-      <a class="header-site-logo" href="#">
+  <div class="container">
+    <div class="header-site">
+      <a class="-logo" href="/">
           <span>蝴蝶网</span>
       </a>
-      <div class="header-site-city">
+      <div class="-city">
         <span>杭州</span>
-        <a class="vm-switch" href="#">[切换]</a>
+        <a class="-switch" href="javascript:;">[切换]</a>
       </div>
     </div>
-    <div class="header-content flex-item-center">
+
+    <div class="header-content">
       <nav class="header-content-nav">
-        <ol class="-list flex">
+        <ol class="-list">
           <li class="-item active">
-            <a class="-link" href="/">首页</a>
+            <a href="/">首页</a>
           </li>
           <li class="-item">
-            <a class="-link" href="/find">发现</a>
+            <a href="/find">发现</a>
           </li>
           <li class="-item">
-            <a class="-link" href="/contact">来往</a>
+            <a href="/contact">来往</a>
           </li>
           <li class="-item">
-            <a class="-link" href="/user">用户</a>
+            <a href="/user">用户</a>
           </li>
         </ol>
       </nav>
       <form class="header-content-search" id="search" action="/search" method="get" class="searchbar" autocomplete="off">
-        <input name="q" type="text" placeholder="搜索你感兴趣的内容..." value="" tabindex="1" autocomplete="off" class="vm-search">
-        <button type="submit" class="vm-submit">
-            <i class="vm-icon ion ion-ios-search"></i>
+        <input name="q" type="text" placeholder="搜索你感兴趣的内容..." autocomplete="off" class="-search">
+        <button type="submit" class="-submit">
+            <i class="ion ion-ios-search"></i>
         </button>
       </form>
+      <!-- 非首页显示 Start -->
+      <a class="header-content-ask" target="_blank" href="/ask">提问</a>
+      <!-- 非首页显示 End -->
     </div>
+
+    <!-- 未登录显示 Start -->
+    <!-- <div class="header-login">
+      <a data-type="1" href="/login?type=1"><span>登录</span></a>
+      <span class="-split">|</span>
+      <a data-type="2" href="/login?type=2"><span>注册</span></a>
+    </div> -->
+    <!-- 未登录显示 End -->
+
+    <!-- 已登录显示 Start -->
     <ul class="header-action">
       <li class="-item">
-        <a href="#" class="-link">
+        <a href="javascript:;" class="-link">
           <i class="ion ion-ios-notifications"></i>
         </a>
       </li>
       <li class="-item">
-        <a href="#" class="-link">
+        <a href="javascript:;" class="-link">
           <i class="ion ion-md-mail"></i>
         </a>
       </li>
       <li class="-item dropdown">
-          <a href="#" class="-link" data-toggle="dropdown">
-            <i class="ion ion-md-person">
-          </i>
+          <a href="javascript:;" class="-link">
+            <i class="ion ion-md-person"></i>
           </a>
           <div class="dropdown-menu">
+            <span class="dropdown-arrow"></span>
             <a class="dropdown-item" href="/centre">
               <i class="ion ion-md-apps"></i>
               个人中心
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="javascript:;">
               <i class="ion ion-ios-person"></i>
               主页
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="javascript:;">
               <i class="ion ion-md-settings"></i>
               设置
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="javascript:;">
               <i class="ion ion-md-power"></i>
               退出</a>
           </div>
       </li>
     </ul>
+    <!-- 已登录显示 End -->
   </div>
 </header>

@@ -1,4 +1,5 @@
 @import "../common/scss/common/variables.scss";
+@import "../common/scss/utils/flex.scss";
 
 .header {
     height: 60px;
@@ -9,12 +10,15 @@
     box-shadow: 0 1px 0 rgba(12,13,14,0.15), 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
 
     .container {
+        @extend .flex-justify-between;
         height: 57px;
     }
 }
 
 .header-site {
-    .header-site-logo {
+    @extend .flex-item-center;
+
+    .-logo {
         display: flex;
         
         span {
@@ -25,12 +29,13 @@
             text-indent: -999em;
         }
     }
-    .header-site-city {
+
+    .-city {
         margin-left: 10px;
         margin-top: 5px;
         font-size: 12px;
 
-        .vm-switch {
+        .-switch {
             font-size: 11px;
             color: #666;
 
@@ -42,27 +47,46 @@
 }
 
 .header-content {
-
+    @extend .flex-item-center;
 }
 
 
 .header-content-nav {
     flex: 0 0 auto;
-    .-link {
-        display: inline-block;
-        padding: 0 15px;
-        color: #535a60;
-        line-height: 57px;
-        text-decoration: none;
-        height: 57px;
-        position: relative;
-        transition: background-color cubic-bezier(.165, .84, .44, 1) .25s,border-bottom-color ease-in-out .25s;
 
-        &:hover {
-            background-color: #eff0f1;
-            color: #242729;
+    .-list {
+        @extend .flex;
+    }
+
+    .-item {
+        position: relative;
+        margin: 0 5px;
+
+        a {
+            display: inline-block;
+            padding: 0 12px;
+            color: #535a60;
+            line-height: 57px;
             text-decoration: none;
-            outline: none;
+            height: 57px;
+            position: relative;
+            transition: background-color cubic-bezier(.165, .84, .44, 1) .25s,border-bottom-color ease-in-out .25s;
+
+            &:hover {
+                background-color: #eff0f1;
+                color: #242729;
+                text-decoration: none;
+                outline: none;
+            }
+        }
+
+        &.active:before {
+            content: "";
+            border-bottom: 2px solid #1e9780;
+            position: absolute;
+            width: 100%;
+            bottom: -1px;
+            z-index: 1;
         }
     }
 }
@@ -74,11 +98,11 @@
     margin-left: 20px;
     flex: 0 1 auto;
 
-    .vm-search {
+    .-search {
         margin: 0;
         padding: 8px 16px;
         height: 36px;
-        border-radius: 20px;
+        border-radius: 4px;
         width: 100%;
         color: #6a737c;
         border: 1px solid #c8ccd0;
@@ -89,7 +113,7 @@
         }
     }
 
-    .vm-submit {
+    .-submit {
       position: absolute;
       right: 16px;
       top: 9px;
@@ -106,18 +130,33 @@
     }
 }
 
+.header-content-ask {
+    line-height: 20px;
+    padding: 7px 15px;
+    color: #333;
+    border-radius: 4px;
+    margin-left: 12px;
+    text-decoration: none;
+    border: 1px solid #e1e8ed;
+
+    &:hover {
+        color: #333;
+        background-color: #f6f9fa;
+        border-color: #6da995;
+    }
+    
+}
+
 .header-action {
     display: flex;
+    margin-right: -10px;
 
     .-item {
         position:relative;
-        width: 52px;
-        text-align: right;
     }
     .-link {
         color: #848d95;
-        display: inline-block;
-        padding: 0 12px;
+        padding: 0 13px;
         height: 57px;
         line-height: 57px;
         text-decoration: none;
@@ -130,11 +169,57 @@
         }
     }
 
-    .dropdown-item {
-      font-size: 14px;
+    .dropdown:hover {
 
-      i {
-        width: 20px;
-      }
+        .dropdown-menu {
+            display: block;
+            left: auto;
+            right: 0;
+            margin-top: -5px;
+            min-width: auto;
+        }
+
+        .dropdown-arrow {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            width: 20px;
+            height: 10px;
+
+            &:before {
+                content: "";
+                border-width: 10px;
+                border-color: transparent transparent rgba(0, 0, 0, 0.15);
+                border-style: solid;
+                position: absolute;
+                top: -10px;
+            }
+            &:after {
+                content: "";
+                border-width: 10px;
+                border-color: transparent transparent #fff;
+                border-style: solid;
+                position: absolute;
+                top: -9px;
+            }
+        }
+
+        .dropdown-item {
+          font-size: 14px;
+
+          i {
+            width: 20px;
+          }
+        }
+    }
+}
+
+.header-login {
+    @extend .flex-item-center;
+    margin-left: 36px;
+
+    .-split {
+        padding: 0 12px;
+        color: #c9c9c9;
     }
 }
