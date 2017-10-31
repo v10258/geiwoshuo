@@ -64,10 +64,11 @@ body {
 	    color: #777;
 	    font-size: 20px;
 	    line-height: 38px;
-	    cursor: default;
+	    cursor: pointer;
 
 
 	    &.active {
+	    	cursor: default;
 	    	span {
 			    color: #222;
 	    	}
@@ -102,10 +103,12 @@ body {
 	    border-bottom: 1px solid #ddd;
 	    border-style: none none solid;
 		border-color: #e8e8e8;
+		background: transparent;
 	}
 
 	.-group>input:focus {
 	    border-color: #009981;
+	    background: transparent;
 	}
 
 	.-group>i {
@@ -120,6 +123,15 @@ body {
 	.-group>i:hover {
 	    color: #444
 	}
+}
+
+.login-toggle {
+	margin-top: 10px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: #4173AF;
+	cursor: pointer;
 }
 
 .agreement {
