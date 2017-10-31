@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title> 首页 — 知鱼</title>
+  <meta name="Keywords" content="关键词" />
+  <meta name="Description" content="描述" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css" />
+  <link href="/css/index.css" rel="stylesheet">
+</head>
+
+<body class="page-index">
+  <% include "layout/header.html" %>
+  <main id="content" class="container flex-justify-between">
+      <div class="content-column">
+          <section class="top-header">
+              <!-- <div class="top-header-title">
+                  全部
+              </div> -->
+              <nav class="top-header-nav flex">
+                  <a class="active" href="#">热门</a>
+                  <a href="#">最新</a>
+                  <a href="#">赏金</a>
+                  <a href="#">推广</a>
+              </nav>
+              <div class="top-header-pager">
+                  <span class="ion ion-ios-arrow-back"></span>
+                  <span class="vm-num"><i>1</i>/1</span>
+                  <span class="ion ion-ios-arrow-forward"></span>
+              </div>
+          </section>
+
+          <% include "blocks/posts.html" %>
+      </div>
+    <aside class="content-sidebar">
+      <div id="ask" class="ask">
+        <div class="ask-border">
+          <span class="ion ion-ios-chatbubbles"></span>
+          <i></i>
+          <a href="/ask" target="_blank" class="pi-button ask-btn pi-button-info">
+            <span>发布问题</span>
+          </a>
+        </div>
+      </div>
+      <section class="hot-answer">
+        <div class="-header">
+          <h3 class="-title">精选回答</h3>
+        </div>
+        <ul class="-list">
+          <li class="-item">
+            <h3 class="-title">
+              魅蓝E2，变形金刚，限量典藏版
+            </h3>
+            <!-- <div class="-user">
+              <a class="-avatar" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+              <span>|</span>
+              <span class="-sign">
+                  我愿变成童话拟，里爱...
+              </span>
+              <span class="-praise">
+                  <i class="ion ion-md-thumbs-up"></i>
+                3899
+              </span>
+            </div> -->
+            <a href="#" class="-preview">
+              <p class="-content">职务侵占罪的构成要件以及宋喆是否构成职务侵占罪，客体要件本罪的犯罪客体是公司。</p>
+              <div class="-image" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);background-size: cover;"></div>
+            </a>
+          </li>
+          <li class="-item">
+            <h3 class="-title">
+              魅蓝E2，变形金刚，限量典藏版
+            </h3>
+            <!-- <div class="-user">
+              <a class="-avatar" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+              <span class="-praise">
+                  <i class="ion ion-md-thumbs-up"></i>
+                3899
+              </span>
+            </div> -->
+            <a href="#" class="-preview">
+              <p class="-content">职务侵占罪的构成要件以及宋喆是否构成职务侵占罪，客体要件本罪的犯罪客体是公司。</p>
+              <div class="-image" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);background-size: cover;"></div>
+            </a>
+          </li>
+          <li class="-item">
+            <h3 class="-title">
+              魅蓝E2，变形金刚，限量典藏版
+            </h3>
+            <!-- <div class="-user">
+              <a class="-avatar" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+              <span class="-praise">
+                  <i class="ion ion-md-thumbs-up"></i>
+                3899
+              </span>
+            </div> -->
+            <a href="#" class="-preview">
+              <p class="-content">职务侵占罪的构成要件以及宋喆是否构成职务侵占罪，客体要件本罪的犯罪客体是公司，客体要件本罪的犯罪客体是公司。</p>
+              <!-- <div class="-image" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);background-size: cover;"></div> -->
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="hot-tag">
+        <div class="-header">
+          <h3 class="-title">热门标签</h3>
+          <a class="-more" href="#">查看全部</a>
+        </div>
+        <ul class="-list">
+          <li class="-item active">
+            <a class="-name" href="#">投票</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">法律</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">代购</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">股票</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">创业</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">房产</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">情感</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">旅行</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">陪玩</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+          <li class="-item">
+            <a class="-name" href="#">医学</a>
+            <div class="-group">
+              投票分享不求人，快速高效。
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="stats">
+        <div class="mod-state">
+          <p><a href="#" target="_blank">知鱼理念</a><span>•</span><a href="#" target="_blank">用户指南</a><span>•</span><a href="#" target="_blank">用户协议</a><span>|</span>© 2017 知鱼</p>
+          <p>今日浏览<strong class="attention-num"> 946 </strong>次，<strong class="attention-num">80%</strong>问题得到响应</p>
+        </div>
+      </section>
+    </aside>
+  </main>
+  <% include "layout/footer.html" %>
+
+<script type="text/javascript" src="/js/vendor.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+</body>
+
+</html>
