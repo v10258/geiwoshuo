@@ -51,6 +51,10 @@ app.get('/contact', function (req, res) {
     res.render('contact.html');
 });
 
+app.get('/login', function (req, res) {
+    res.render('login.html');
+});
+
 app.get('/ask', F(async (req, res) => {
 
     res.render('ask.html', {solved: 34256});

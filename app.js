@@ -44,6 +44,10 @@ app.get('/user', function(req, res) {
   res.render('user.html');
 });
 
+app.get('/login', function(req, res) {
+  res.render('login.html');
+});
+
 app.get('/ask', function(req, res) {
   res.render('ask.html');
 });

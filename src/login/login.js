@@ -9,7 +9,7 @@ import Vue from 'vue/dist/vue.js';
 var app = new Vue({
   el: '#loginForm',
   data: {
-  	type: 1,
+  	type: 'login',
   	loginType: 1,
     isShowAskMore: false,
     message: 'Hello Vue!'
@@ -18,7 +18,7 @@ var app = new Vue({
   created() {
   	var self = this;
     //获取备用数据
-    self.type = this.queryString('type') || 0;
+    self.type = this.queryString('type') || self.type;
   },
 
   watch: {
