@@ -6,12 +6,15 @@
     "postinstall": "cp -r node_modules/ionicons/dist/ src/common/font/",
     "prestart": "npm run build",
     "start": "node app.js",
+    "m": "mongod --config /usr/local/etc/mongod.conf",
+    "serve": "node $NODE_DEBUG_OPTION serve/app.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.build.js",
     "release": "cross-env NODE_ENV=production webpack --config webpack.release.js"
   },
   "license": "MIT",
   "devDependencies": {
+    "jest": "^21.2.1",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -47,6 +50,16 @@
     "popper.js": "^1.12.3",
     "vue": "^2.3.4",
     "express": "^4.16.2",
-    "nunjucks": "^3.0.1"
+    "nunjucks": "^3.0.1",
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.0",
+    "debug": "^3.1.0",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.12.4"
+  },
+  "jest": {
+    "watchman": false
   }
 }
