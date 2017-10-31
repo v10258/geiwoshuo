@@ -7,7 +7,7 @@ const Comment = require('./schemas/Comment');
 
 const {mongo} = require('./config');
 
-const cfg = os.platform() === 'darwin' ? mongo.dev : mongo.prod;
+const cfg = process.env.ATLAS || (os.platform() === 'darwin' ? mongo.dev : mongo.prod);
 
 
 mongoose.connect(cfg, {
