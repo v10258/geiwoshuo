@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "cp -r node_modules/ionicons/dist/ src/common/font/",
     "prestart": "npm run build",
-    "start": "node app.js",
+    "start": "node demo/app.js",
     "m": "mongod --config /usr/local/etc/mongod.conf",
     "serve": "node $NODE_DEBUG_OPTION serve/app.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
