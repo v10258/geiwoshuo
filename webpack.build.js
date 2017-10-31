@@ -9,7 +9,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 
 // 构建目录，构建入口, 如果没有指定模块则默认全部模块
 var activeModule = argv.define || 'all';
-var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre'];
+var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre', 'login'];
 
 var outputPath = path.resolve(__dirname, 'public/');
 
