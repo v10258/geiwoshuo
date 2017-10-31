@@ -84,6 +84,7 @@
 
 		ul {
 			@extend .flex-wrap;
+			margin: 0 -10px;
 		}
 
 
@@ -92,17 +93,24 @@
 			margin-bottom: 15px;
 			line-height: 1.2;
 			width: 33.33%;
+			padding: 0 10px;
 
 			.-person {
 				@extend .flex;
-			}
+				font-size: 13px;
 
-			.-gravatar {
-				margin-right: 5px;
+				.-gravatar {
+					margin-right: 5px;
+				}
+
+				.-info {
+					line-height: 16px;
+				}
 			}
 
 			.-intro {
 				margin-top: 5px;
+				font-size:13px;
 			}
 		}
 	}
