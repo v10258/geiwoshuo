@@ -2,17 +2,18 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>我的信息 - 设置</title>
-  <meta name="Keywords" content="关键词" />
-  <meta name="Description" content="描述" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <%- include ../layout/bootstrap-css -%>
+    <meta charset="UTF-8">
+    <title>我的信息 - 设置</title>
+    <meta name="Keywords" content="关键词" />
+    <meta name="Description" content="描述" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css" />
+    <link href="/css/setting.css" rel="stylesheet">
 </head>
 
-<body class="page-setting">
-  <%- include ../layout/header -%>
+<body class="page-ask">
+    <% include "layout/header.html" %>
     <main id="content" class="container">
       <nav class="content-nav">
 
@@ -51,7 +52,9 @@
         </form>
       </div>
     </main>
-    <%- include ../layout/footer -%>
+    <% include "layout/footer.html" %>
+    <script type="text/javascript" src="/js/vendor.js"></script>
+    <script type="text/javascript" src="/js/setting.js"></script>
 </body>
 
 </html>

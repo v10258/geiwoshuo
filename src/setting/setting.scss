@@ -5,17 +5,26 @@
 
 .content-nav {
   @extend .flex;
-  height: 40px;
-  line-height: 40px;
+  height: 36px;
+  line-height: 36px;
   border-bottom: 1px solid #E5E5E5;
 
   a {
     padding: 0 20px;
+
+    &.active {
+      border: 1px solid #E5E5E5;
+      border-radius: 4px 4px 0 0;
+      border-bottom: none;
+      height: 36px;
+      background: #fff;
+    }
   }
 }
 
 .content-setting {
   margin-top: 20px;
+  min-height: 500px;
 }
 
 .profile-form {

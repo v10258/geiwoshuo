@@ -71,6 +71,9 @@ app.get('/centre', function (req, res) {
   res.render('centre.html');
 });
 
+app.get('/setting', function (req, res) {
+  res.render('setting.html');
+});
 
 /**
  * 截获异常，统一处理
