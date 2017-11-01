@@ -14,10 +14,13 @@ const user = require('./routes/user');
 const post = require('./routes/post');
 const auth = require('./routes/auth');
 
+const session = require('./routes/middlewares/session');
 // 设置静态文件目录
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(session);
 app.use('/user', user);
 app.use('/post', post);
 app.use('/auth', auth);
@@ -40,7 +43,7 @@ nunjucks.configure(__dirname + '/templates', {
 
 app.get('/', F(async (req, res) => {
     const posts = await Post.findByType('HOT');
-    res.render('index.html', {posts});
+    res.render('index.html', {posts, login: !!req.session.user_id});
 }));
 
 app.get('/find', function (req, res) {

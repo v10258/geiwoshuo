@@ -7,7 +7,7 @@ const {Schema} = mongoose;
 const schema = new Schema({
     name: {type: String},// 用户名
     phone: {type: String, required: true, unique: true},// 联系电话
-    email: {type: String, unique: true},// 邮箱
+    email: {type: String},// 邮箱
     password: {type: String},// 密码
     signature: {type: String},// 个性签名
     created: {type: Date},// 创建时间

@@ -26,7 +26,7 @@
         <a v-on:click="type='regist'" v-bind:class="{ active: type === 'regist' }" data-type="regist" href="javascript:;">注册</a>
       </div>
       <div class="login-type">
-        <form action="/auth/login/" method="POST">
+        <form v-bind:action="type==='login'?'/user/login':'/user/signup'" method="POST">
 
             <template v-if="type === 'login' && loginType === 2">
               <div class="-group">
@@ -48,7 +48,7 @@
 
             <template v-else>
               <div class="-group">
-                <input class="-control" id="mobile" type="text" name="mobile" autocomplete="off" placeholder="手机号">
+                <input class="-control" id="mobile" type="text" name="phone" autocomplete="off" placeholder="手机号">
               </div>
               <div class="-group verification">
                 <input class="-control" id="captcha1" type="text" name="captcha" autocomplete="off" placeholder="验证码">

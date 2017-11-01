@@ -38,6 +38,7 @@
       <!-- 非首页显示 End -->
     </div>
 
+    <% if login %>
     <!-- 未登录显示 Start -->
     <div class="header-login">
       <a data-type="1" href="/login?type=login"><span>登录</span></a>
@@ -45,9 +46,10 @@
       <a data-type="2" href="/login?type=regist"><span>注册</span></a>
     </div>
     <!-- 未登录显示 End -->
+    <% else %>
 
     <!-- 已登录显示 Start -->
-    <!-- <ul class="header-action">
+    <ul class="header-action">
       <li class="-item">
         <a href="javascript:;" class="-link">
           <i class="ion ion-ios-notifications"></i>
@@ -81,7 +83,8 @@
               退出</a>
           </div>
       </li>
-    </ul> -->
+    </ul>
     <!-- 已登录显示 End -->
+    <% endif %>
   </div>
 </header>

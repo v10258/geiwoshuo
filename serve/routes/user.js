@@ -1,3 +1,4 @@
+const nanoid = require('nanoid');
 const router = require('express').Router();
 const {User} = require('../mongo');
 const F = require('./Factory');
@@ -15,20 +16,20 @@ router.get('/', F(async (req, res) => {
 /**
  * 注册新用户
  */
-router.post('/register', F(async (req, res, next) => {
-    const {name, phone, email, password, signature = ''} = req.body;
-    const pw = await crypt.encode(password);
+router.post('/signup', F(async (req, res, next) => {
+    const {phone, code = '123', captcha} = req.body;
+
+    // todo 校验 手机短信及验证码
+
     const user = Object.assign(new User, {
-        name,
         phone,
-        email,
-        password: pw,
-        signature,
         created: new Date
     });
+
     await user.save();
-    user.password = null;
-    res.json(user);
+    req.session.user_id=user._id;
+
+    res.redirect('/user');
 }));
 
 /**

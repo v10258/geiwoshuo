@@ -19,16 +19,4 @@ router.get('/session_user', login_required, F(async (req, res, next) => {
     res.json(req.user);
 }));
 
-router.post('/login', F(async (req, res, next) => {
-    const {email, password} = req.body;
-    const user = await User.findOne({email, password});
-    if (!user) {
-        return next(new Error('User not found.'));
-    }
-    req.session.user_id = user._id;
-    req.session.save();
-    res.json({ok: true});
-}));
-
-
 module.exports = router;
