@@ -6,8 +6,8 @@ const bcrypt = require('bcrypt');
  * 拷贝自:  https://stackoverflow.com/questions/14015677/node-js-encryption-of-passwords
  */
 exports.encode = async (password) => {
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
 };
 
 /**
@@ -16,5 +16,5 @@ exports.encode = async (password) => {
  * 返回的是一个promise,resolved值是bool类型
  */
 exports.test = (pass, hash) => {
-    return bcrypt.compare(pass, hash);
+  return bcrypt.compare(pass, hash);
 };

@@ -11,19 +11,19 @@ const cfg = process.env.ATLAS || (os.platform() === 'darwin' ? mongo.dev : mongo
 
 
 mongoose.connect(cfg, {
-    keepAlive: true,
-    reconnectTries: Number.MAX_VALUE,
-    useMongoClient: true
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true
 });
 
 
 module.exports = {
-    Post,
-    User,
-    Comment,
-    stats() {
-        // 统计各记录的条数
-        return [Post].map(async m => ({name: m.modelName, count: await m.count()}));
-    },
-    mongoose
+  Post,
+  User,
+  Comment,
+  stats() {
+    // 统计各记录的条数
+    return [Post].map(async m => ({name: m.modelName, count: await m.count()}));
+  },
+  mongoose
 };

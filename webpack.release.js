@@ -28,19 +28,19 @@ var config = {
         fallback: 'style-loader',
         use: 'css-loader'
       })
-    },{
+    }, {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'autoprefixer-loader','sass-loader']
+        use: ['css-loader', 'autoprefixer-loader', 'sass-loader']
       })
-    },{
+    }, {
       test: /\.ejs$/,
       use: 'ejs-compiled-loader'
     }, {
       test: /\.js$/,
       use: 'babel-loader'
-    },{
+    }, {
       test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
@@ -50,7 +50,7 @@ var config = {
           useRelativePath: isProduction
         }
       }]
-    },{
+    }, {
       test: /\.(eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
@@ -79,7 +79,7 @@ var config = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    // 代码压缩优化        
+    // 代码压缩优化
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,

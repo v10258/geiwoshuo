@@ -27,16 +27,16 @@ var config = {
     rules: [{
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
-    },{
+    }, {
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'autoprefixer-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
-    },{
+    }, {
       test: /\.ejs$/,
       use: ['ejs-compiled-loader']
-    },{
+    }, {
       test: /\.js$/,
       use: 'babel-loader'
-    },{
+    }, {
       test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
@@ -46,7 +46,7 @@ var config = {
           useRelativePath: isProduction
         }
       }]
-    },{
+    }, {
       test: /\.(eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
@@ -69,7 +69,7 @@ var config = {
       Popper: ['popper.js', 'default']
     }),
     new CopyWebpackPlugin([
-      { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
+      {from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
     ]),
     // 页面集成
     new HtmlWebpackPlugin({

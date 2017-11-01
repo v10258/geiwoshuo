@@ -7,16 +7,16 @@ const login_required = require('./middlewares/login_requred');
 router.use(session);
 
 router.get('/', (req, res) => {
-    res.json('hello world: ' + req.session.user_id);
+  res.json('hello world: ' + req.session.user_id);
 });
 
 router.get('/me', F(async (req, res, next) => {
-    const user = await User.findById(req.session.user_id);
-    res.json(user);
+  const user = await User.findById(req.session.user_id);
+  res.json(user);
 }));
 
 router.get('/session_user', login_required, F(async (req, res, next) => {
-    res.json(req.user);
+  res.json(req.user);
 }));
 
 module.exports = router;

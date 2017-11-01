@@ -6,32 +6,32 @@ const {Schema} = mongoose;
  */
 const schema = new Schema({
 
-    title: {type: String, required: true},// 主标题
-    body: {type: String},// 正文
-    tags: {type: [String], required: true},// 标签
-    expired: {type: Date},// 过期时间
-    creator: {type: String, required: true},// 创建人id
-    created: {type: Date},// 创建时间
-    last_modified: {type: Date},// 最近一次修改时间
-    subscribers: {type: [String]},// 关注人id
-    upvotes: {type: Number, default: 0},// 赞同
-    downvotes: {type: Number, default: 0},// 反对
-    views: {type: Number, default: 0},// 浏览数
-    coins: {type: Number, default: 0},//金币
-    bounty: {type: Number, default: 0},//赏金
-    reward: {type: String, default: ''},// 其它自定义报酬
-    city: {type: String, default: ''},
-    anonymous: {type: Boolean, default: false},
+  title: {type: String, required: true},// 主标题
+  body: {type: String},// 正文
+  tags: {type: [String], required: true},// 标签
+  expired: {type: Date},// 过期时间
+  creator: {type: String, required: true},// 创建人id
+  created: {type: Date},// 创建时间
+  last_modified: {type: Date},// 最近一次修改时间
+  subscribers: {type: [String]},// 关注人id
+  upvotes: {type: Number, default: 0},// 赞同
+  downvotes: {type: Number, default: 0},// 反对
+  views: {type: Number, default: 0},// 浏览数
+  coins: {type: Number, default: 0},//金币
+  bounty: {type: Number, default: 0},//赏金
+  reward: {type: String, default: ''},// 其它自定义报酬
+  city: {type: String, default: ''},
+  anonymous: {type: Boolean, default: false},
 
-    // 响应条件
-    member_required: {type: Number, default: -1},// 需要的人员数
-    member_level: {type: Number},// 会员等级
-    ant_credit: {type: String},// 蚂蚁信用
+  // 响应条件
+  member_required: {type: Number, default: -1},// 需要的人员数
+  member_level: {type: Number},// 会员等级
+  ant_credit: {type: String},// 蚂蚁信用
 
-    //定向发布
-    member_tags: {type: [String]},// 回答者关注的标签
-    groups: {type: [String]},// 回答者所在的团队
-    members: {type: [String]},// 回答者id
+  //定向发布
+  member_tags: {type: [String]},// 回答者关注的标签
+  groups: {type: [String]},// 回答者所在的团队
+  members: {type: [String]},// 回答者id
 
 });
 
@@ -39,17 +39,17 @@ const schema = new Schema({
  * 根据类型查询
  */
 schema.statics.findByType = function (type = 'HOT') {
-    if (type === 'HOT') {//热门
-        return this.find({}).sort({views: 1});
-    } else if (type === 'LATEST') {//最新
-        return this.find({}).sort({created: 1});
-    } else if (type === 'BOUNTY') {//赏金
+  if (type === 'HOT') {//热门
+    return this.find({}).sort({views: 1});
+  } else if (type === 'LATEST') {//最新
+    return this.find({}).sort({created: 1});
+  } else if (type === 'BOUNTY') {//赏金
 
-    } else if (type === 'PROMO') {//推广
+  } else if (type === 'PROMO') {//推广
 
-    } else {
-        throw Error('Unsupported type: ' + type);
-    }
+  } else {
+    throw Error('Unsupported type: ' + type);
+  }
 };
 const Model = mongoose.model('posts', schema);
 

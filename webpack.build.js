@@ -28,19 +28,19 @@ var config = {
         fallback: 'style-loader',
         use: 'css-loader'
       })
-    },{
+    }, {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'autoprefixer-loader','resolve-url-loader', 'sass-loader?sourceMap']
+        use: ['css-loader', 'autoprefixer-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       })
-    },{
+    }, {
       test: /\.ejs$/,
       use: 'ejs-compiled-loader'
     }, {
       test: /\.js$/,
       use: 'babel-loader'
-    },{
+    }, {
       test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
@@ -51,7 +51,7 @@ var config = {
           outputPath: 'img/'
         }
       }]
-    },{
+    }, {
       test: /\.(eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
@@ -75,7 +75,7 @@ var config = {
     //   template: path.resolve('src/', activeModule, activeModule + '.ejs')
     // }),
     new CopyWebpackPlugin([
-      { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
+      {from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
     ]),
     // 抽出样式
     new ExtractTextPlugin({
@@ -98,7 +98,7 @@ var config = {
 
 console.log('activeModule', activeModule)
 if (activeModule === 'all') {
-  modules.forEach((n, i)=>{
+  modules.forEach((n, i) => {
     config.entry[n] = path.resolve(__dirname, 'src/', n, n + '.js');
     console.log('entry', path.resolve(__dirname, 'src/', n, n + '.js'));
   })
