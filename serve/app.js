@@ -76,10 +76,12 @@ app.get('/centre', function (req, res) {
  * 截获异常，统一处理
  */
 app.use((err, req, res, next) => {
-  res.status(err.httpCode || 500);
+  const code = err.httpCode || 500;
+  res.status(code);
   res.json({
-    ok: false,
-    err: err.message
+    success: false,
+    message: err.message,
+    code
   });
 });
 

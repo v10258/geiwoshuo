@@ -66,7 +66,8 @@ router.post('/:post_id/comment', async (req, res, next) => {
   try {
     const r = await comment.save();
     res.json({
-      ok: true,
+      success: true,
+      code: 200,
       data: r
     });
   } catch (e) {
@@ -115,7 +116,7 @@ router.post('/:post_id/subscribe', F(async (req, res, next) => {
   const {post_id} = req.params;
   const {user_id} = req.session;
   const r = await Post.updateOne({_id: post_id}, {$push: {subscribers: user_id}});
-  res.json({ok: true});
+  res.json({success: true, code: 200});
 }));
 
 

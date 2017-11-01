@@ -39,7 +39,7 @@ router.get('/check', F(async (req, res, next) => {
   const {type, value} = req.query;
   if (['phone', 'email'].includes(type)) {
     const user = await User.findOne({[type]: value}, ['_id']);
-    res.json({ok: true, usable: !user});
+    res.json({success: true, data: {usable: !user}});
   } else {
     next(new Error('Unsupported type: ' + type))
   }
