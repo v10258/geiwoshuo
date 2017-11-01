@@ -150,10 +150,19 @@ body {
 
 	label {
 		margin-left: 15px;
+
+		a:hover {
+			color: #f85959;
+		}
 	}
 
 	a {
 	    color: #406599;
+	}
+
+	.-forget {
+	    position: absolute;
+    	right: 0;
 	}
 }
 
