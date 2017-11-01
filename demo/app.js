@@ -60,6 +60,10 @@ app.get('/task/:id', function(req, res) {
   res.render('task.html');
 });
 
+app.get('/setting', function(req, res) {
+  res.render('setting.html');
+});
+
 var server = app.listen(3000, function () {
   var host = server.address().address || 'localhost';
   var port = server.address().port;
