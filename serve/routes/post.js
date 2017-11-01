@@ -100,5 +100,18 @@ router.post('/:post_id/op', F(async (req, res, next) => {
   res.json(post);
 }));
 
+/**
+ * 关注问题
+ *
+ * url: /post/:post_id/subscribe
+ * res: {ok:true} 关注成功
+ */
+router.post('/:post_id/subscribe', F(async (req, res, next) => {
+  const {post_id} = req.params;
+  const {user_id} = req.session;
+  const r = await Post.updateOne({_id: post_id}, {$push: {subscribers: user_id}});
+  res.json({ok: true});
+}));
+
 
 module.exports = router;
