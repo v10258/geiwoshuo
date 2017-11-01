@@ -5,9 +5,9 @@ const {Schema} = mongoose;
  * 用户表
  */
 const schema = new Schema({
-    name: {type: String, required: true},// 用户名
+    name: {type: String},// 用户名
     phone: {type: String, required: true, unique: true},// 联系电话
-    email: {type: String, required: true, unique: true},// 邮箱
+    email: {type: String, unique: true},// 邮箱
     password: {type: String, required: true},// 密码
     signature: {type: String},// 个性签名
     created: {type: Date},// 创建时间
