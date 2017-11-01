@@ -46,17 +46,31 @@ router.get('/check', F(async (req, res, next) => {
 }));
 
 router.post('/login', F(async (req, res, next) => {
-  const {email, password} = req.body;
-  const user = await User.findOne({email});
+  const {account = '', password} = req.body;
+  let query;
+  if (/^\d+$/.test(account)) {
+    query = {phone: account};
+  } else if (account.includes('@')) {
+    query = {email: account};
+  } else {
+    return next(new Error('Unsupported account: ' + account));
+  }
+  const user = await User.findOne(query);
   if (!user) {
     return next(new Error('User not found.'));
   }
-  if (!(await crypt.test(password, user.password))) {
+  if (false && !(await crypt.test(password, user.password))) {// todo 暂时不校验密码
     return next(new Error('Username or password is incorrect.'));
   }
   req.session.user_id = user._id;
-  req.session.save();
-  res.json({ok: true});
+  res.redirect('/');
+}));
+
+
+router.get('/logout', F(async (req, res, next) => {
+  req.session.destroy(() => {
+    res.redirect('/');
+  });
 }));
 
 /**

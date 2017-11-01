@@ -29,7 +29,7 @@
     <div class="login-type">
       <form v-bind:action="type==='login'?'/user/login':'/user/signup'" method="POST">
 
-        <template v-if="type === 'login' && loginType === 2">
+        <template v-if="type === 'login'">
           <div class="-group">
             <input class="-control" id="account" type="text" name="account" autocomplete="off" placeholder="邮箱／手机号">
           </div>

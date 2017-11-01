@@ -42,8 +42,13 @@ router.post('/', async (req, res, next) => {
 router.get('/:post_id', F(async (req, res) => {
   const {post_id} = req.params;
   const post = await Post.findById(post_id);
+  const total_subscribed = post.subscribers.length;
+  const user_ids = post.subscribers.slice(0, 5);// 最多显示5个
+
+  post.subscribers = null;
   const creator = await User.findById(post.creator, ['name', '_id']);
-  res.render('post.html', {post, creator});
+  const users = user_ids.length ? await User.find({_id: {$in: user_ids}}, ['_id', 'name', 'phone']) : [];
+  res.render('post.html', {post, creator, total_subscribed, subscribers: users});
 }));
 
 /**

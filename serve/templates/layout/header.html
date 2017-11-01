@@ -39,7 +39,7 @@
       <!-- 非首页显示 End -->
     </div>
 
-    <% if login %>
+    <% if not logged_in %>
     <!-- 未登录显示 Start -->
     <div class="header-login">
       <a data-type="1" href="/login?type=login"><span>登录</span></a>
@@ -79,7 +79,7 @@
             <i class="ion ion-md-settings"></i>
             设置
           </a>
-          <a class="dropdown-item" href="javascript:;">
+          <a class="dropdown-item" href="/user/logout">
             <i class="ion ion-md-power"></i>
             退出</a>
         </div>

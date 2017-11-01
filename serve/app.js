@@ -21,6 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(session);
+app.use((req, res, next) => {
+  res.locals.logged_in = !!req.session.user_id;
+  next();
+});
 app.use('/user', user);
 app.use('/post', post);
 app.use('/auth', auth);
@@ -43,7 +47,7 @@ nunjucks.configure(__dirname + '/templates', {
 
 app.get('/', F(async (req, res) => {
   const posts = await Post.findByType('HOT');
-  res.render('index.html', {posts, login: !!req.session.user_id});
+  res.render('index.html', {posts});
 }));
 
 app.get('/find', function (req, res) {
