@@ -99,7 +99,7 @@ if (activeModule === 'all') {
 
     // //页面集成
     config.plugins.push(new HtmlWebpackPlugin({
-      chunks: [n],
+      chunks: ['vendor',n],
       template: path.resolve(__dirname, 'src/', n, n + '.ejs'),
       filename: 'template/' + n + '.html'
     }));
