@@ -12,9 +12,9 @@ var nunjucks = require('nunjucks');
 var app = express();
 
 // 设置静态文件目录
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/public'));
 
-nunjucks.configure(__dirname + '/views', {
+nunjucks.configure(__dirname + '/public/template', {
   autoescape: true,
   express: app,
   tags: {

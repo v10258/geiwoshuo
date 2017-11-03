@@ -70,10 +70,6 @@ var config = {
       jQuery: 'jquery',
       Popper: ['popper.js', 'default']
     }),
-    // 页面集成
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve('src/', activeModule, activeModule + '.ejs')
-    // }),
     new CopyWebpackPlugin([
       {from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
     ]),
@@ -100,10 +96,24 @@ console.log('activeModule', activeModule)
 if (activeModule === 'all') {
   modules.forEach((n, i) => {
     config.entry[n] = path.resolve(__dirname, 'src/', n, n + '.js');
+
+    // //页面集成
+    config.plugins.push(new HtmlWebpackPlugin({
+      chunks: [n],
+      template: path.resolve(__dirname, 'src/', n, n + '.ejs'),
+      filename: 'template/' + n + '.html'
+    }));
+
     console.log('entry', path.resolve(__dirname, 'src/', n, n + '.js'));
   })
 } else {
   config.entry[activeModule] = path.resolve(__dirname, 'src/', activeModule, activeModule + '.js');
+
+  //页面集成
+  config.plugins.push(new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'src/', activeModule, activeModule + '.ejs'),
+    filename: 'template/' + activeModule + '.html'
+  }));
   console.log('entry', path.resolve(__dirname, 'src/', activeModule, activeModule + '.js'));
 }
 
