@@ -1,0 +1,16 @@
+<section class="hot-tag">
+  <div class="-header">
+    <h3 class="-title">热门标签</h3>
+    <a class="-more" href="#">查看全部</a>
+  </div>
+  <ul class="-list">
+    <% for tag in hotTags %>
+    <li class="-item">
+      <a class="-name" href="#">${tag._id}</a>
+      <div class="-group">
+        投票分享不求人，快速高效。
+      </div>
+    </li>
+    <% endfor%>
+  </ul>
+</section>

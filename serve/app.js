@@ -48,7 +48,8 @@ nunjucks.configure(__dirname + '/templates', {
 
 app.get('/', F(async (req, res) => {
   const posts = await Post.findByType('HOT');
-  res.render('index.html', {posts, home: true});
+  const hotTags = await Post.hotTags();
+  res.render('index.html', {posts, hotTags, home: true});
 }));
 
 app.get('/find', function (req, res) {

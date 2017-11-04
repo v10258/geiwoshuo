@@ -51,6 +51,20 @@ schema.statics.findByType = function (type = 'HOT') {
     throw Error('Unsupported type: ' + type);
   }
 };
+
+/**
+ * 热门标签
+ */
+schema.statics.hotTags = function (limit = 10) {
+  return this.aggregate([{$unwind: '$tags'}, {
+    $group: {
+      _id: '$tags',
+      total: {$sum: 1}
+    }
+  }, {$sort: {total: -1}}, {$limit: limit}])
+};
+
+
 const Model = mongoose.model('posts', schema);
 
 module.exports = Model;
