@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(session);
 app.use((req, res, next) => {
+  res.locals.user_id = req.session.user_id;
   res.locals.logged_in = !!req.session.user_id;
   next();
 });
@@ -66,10 +67,6 @@ app.get('/ask', F(async (req, res) => {
 
   res.render('ask.html', {solved: 34256});
 }));
-
-app.get('/centre', function (req, res) {
-  res.render('centre.html');
-});
 
 app.get('/setting', function (req, res) {
   res.render('setting.html');

@@ -12,7 +12,9 @@ const schema = new Schema({
   signature: {type: String},// 个性签名
   created: {type: Date},// 创建时间
   avatar: {type: String},// 用户头像
-  subscribed: {type: [String]},// 关注的任务
+  subscribed: {type: [String], default: 0},// 关注的任务
+  upvotes: {type: Number, default: 0},// 获赞数
+  fans: {type: [String], default: []},// 粉丝
 });
 
 /**

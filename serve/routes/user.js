@@ -88,4 +88,21 @@ router.get('/:id', F(async (req, res, next) => {
   return await User.findById(req.params.id);
 }));
 
+/**
+ * 个人中心
+ */
+router.get('/:id/centre', F(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    const error = new Error('User not found.');
+    error.httpCocde = 404;
+    return next(error)
+  }
+  res.render('centre.html', {
+    upvotes: user.upvotes || 0,
+    subscribed: user.subscribed.length,
+    fans: user.fans.length
+  });
+}));
+
 module.exports = router;
