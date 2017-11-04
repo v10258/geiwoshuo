@@ -34,9 +34,13 @@
           <i class="ion ion-ios-search"></i>
         </button>
       </form>
+
+      <% if not home%>
       <!-- 非首页显示 Start -->
       <a class="header-content-ask" target="_blank" href="/ask">提问</a>
       <!-- 非首页显示 End -->
+      <% endif%>
+
     </div>
 
     <% if not logged_in %>
