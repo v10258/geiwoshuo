@@ -10,7 +10,7 @@ const crypt = require('../util/crypt');
  */
 router.get('/', F(async (req, res) => {
   const users = await User.activeUsers();
-  res.render('user.html', {activeUsers: users});
+  res.render('user.html', {activeUsers: users, user: true});
 }));
 
 /**

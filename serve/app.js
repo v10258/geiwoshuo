@@ -51,11 +51,11 @@ app.get('/', F(async (req, res) => {
 }));
 
 app.get('/find', function (req, res) {
-  res.render('find.html');
+  res.render('find.html', {find: true});
 });
 
 app.get('/contact', function (req, res) {
-  res.render('contact.html');
+  res.render('contact.html', {contact: true});
 });
 
 app.get('/login', function (req, res) {

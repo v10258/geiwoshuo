@@ -13,16 +13,16 @@
     <div class="header-content">
       <nav class="header-content-nav">
         <ol class="-list">
-          <li class="-item active">
+          <li class="-item ${'active' if home}">
             <a href="/">首页</a>
           </li>
-          <li class="-item">
+          <li class="-item ${'active' if find}">
             <a href="/find">发现</a>
           </li>
-          <li class="-item">
+          <li class="-item ${'active' if contact}">
             <a href="/contact">来往</a>
           </li>
-          <li class="-item">
+          <li class="-item ${'active' if user}">
             <a href="/user">用户</a>
           </li>
         </ol>
