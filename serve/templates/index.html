@@ -20,11 +20,11 @@
       <!-- <div class="top-header-title">
           全部
       </div> -->
-      <nav class="top-header-nav flex">
-        <a class="active" href="#">热门</a>
-        <a href="#">最新</a>
-        <a href="#">赏金</a>
-        <a href="#">推广</a>
+      <nav class="top-header-nav">
+        <a :class="{ active: navActive ==='hot' }" @click="navActive='hot'" href="javascript:;">热门</a>
+        <a :class="{ active: navActive ==='latest' }" @click="navActive='latest'" href="javascript:;">最新</a>
+        <a :class="{ active: navActive ==='bounty' }" @click="navActive='bounty'" href="javascript:;">赏金</a>
+        <a :class="{ active: navActive ==='promo' }" @click="navActive='promo'" href="javascript:;">推广</a>
       </nav>
       <div class="top-header-pager">
         <span class="ion ion-ios-arrow-back"></span>
