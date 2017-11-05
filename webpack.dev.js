@@ -17,7 +17,7 @@ var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'
 
 var config = {
   entry: {
-    vendor: ['jquery', 'popper.js', 'bootstrap']
+    vendor: ['jquery', 'popper.js', 'bootstrap', 'mock']
   },
   output: {
     filename: 'js/[name].js',
@@ -42,8 +42,8 @@ var config = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name]-[hash:8].[ext]',
-          useRelativePath: isProduction
+          name: '[name].[ext]'//,
+          //useRelativePath: isProduction
         }
       }]
     }, {
@@ -52,11 +52,16 @@ var config = {
         loader: 'url-loader',
         options: {
           limit: 1000,
-          name: '[name]-[hash:8].[ext]',
-          useRelativePath: isProduction
+          name: '[name].[ext]'//,
+          //useRelativePath: isProduction
         }
       }]
     }]
+  },
+  resolve: {
+    alias: {
+      mock: path.resolve(__dirname, 'src/common/js/mock/mock.js')
+    }
   },
   // externals: {
   //   'jQuery': 'window.$',

@@ -64,6 +64,11 @@ var config = {
       }]
     }]
   },
+  resolve: {
+    alias: {
+      mock: path.resolve(__dirname, 'src/common/js/mock/mock.js')
+    }
+  },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
