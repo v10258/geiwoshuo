@@ -7,7 +7,7 @@ debug('cwd: %o', process.cwd());
 const port = process.env.PORT || 3001;
 const app = express();
 
-const {Post} = require('./mongo');
+const {Post, User} = require('./mongo');
 const F = require('./routes/Factory');
 
 const user = require('./routes/user');
@@ -15,6 +15,7 @@ const post = require('./routes/post');
 const auth = require('./routes/auth');
 
 const session = require('./routes/middlewares/session');
+const login_required = require('./routes/middlewares/login_requred');
 // 设置静态文件目录
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
@@ -69,9 +70,10 @@ app.get('/ask', F(async (req, res) => {
   res.render('ask.html', {solved: 34256});
 }));
 
-app.get('/setting', function (req, res) {
-  res.render('setting.html');
-});
+app.get('/setting', login_required, F(async (req, res) => {
+
+  res.render('setting.html', {user: req.user});
+}));
 
 /**
  * 截获异常，统一处理

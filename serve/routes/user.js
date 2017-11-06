@@ -1,5 +1,6 @@
 const nanoid = require('nanoid');
 const router = require('express').Router();
+const login_required = require('./middlewares/login_requred');
 const {User} = require('../mongo');
 const F = require('./Factory');
 const crypt = require('../util/crypt');
@@ -43,6 +44,18 @@ router.get('/check', F(async (req, res, next) => {
   } else {
     next(new Error('Unsupported type: ' + type))
   }
+}));
+
+/**
+ * 更新我的信息
+ */
+router.post('/setting/info', login_required, F(async (req, res, next) => {
+  const {name, signature} = req.body;
+  await req.user.update({$set: {name, signature}});
+  res.json({
+    success: true,
+    code: 200
+  });
 }));
 
 router.post('/login', F(async (req, res, next) => {
