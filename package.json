@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "cp -r node_modules/ionicons/dist/ src/common/font/",
     "prestart": "npm run build",
+    "preserve": "npm run build",
     "start": "node demo.js",
     "m": "mongod --config /usr/local/etc/mongod.conf",
     "serve": "node $NODE_DEBUG_OPTION serve/app.js",

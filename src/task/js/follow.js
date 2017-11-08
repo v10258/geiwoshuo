@@ -52,25 +52,20 @@ Vue.component('gws-concerns', {
     getTaskFollow (qid) {
       console.log('qid', qid);
       $.ajax({
-        url: REMOTE.task.taskFollows,
+        url: `/post/${this.qid}/follows`,
         type: 'get',
-        data: {
-          qid: qid
-        },
         dataType: 'json'
       }).done((result) => {
         if (!result.success) return;
+        console.log();
         this.users = result.data;
       })
     },
 
     doFollow (){
       $.ajax({
-        url: REMOTE.task.doFollow,
+        url: `/post/${this.qid}/subscribe`,
         type: 'get',
-        data: {
-          qid: this.qid
-        },
         dataType: 'json'
       }).done((result) => {
         if (!result.success) return;

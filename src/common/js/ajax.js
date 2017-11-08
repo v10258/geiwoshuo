@@ -4,7 +4,7 @@ export const REMOTE = {
         queryQuestions: '/api/queryQuestions'
     },
     task: {
-        taskFollows: 'api/taskFollows',
-        doFollow: 'api/doFollow'
+        taskFollows: '/post/[\w]+/subscribe',
+        doFollow: '/post/[\w]/follows'
     }
 }
