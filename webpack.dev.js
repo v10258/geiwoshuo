@@ -29,7 +29,7 @@ var config = {
       use: ['style-loader', 'css-loader']
     }, {
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'autoprefixer-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+      use: ['style-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
     }, {
       test: /\.ejs$/,
       use: ['ejs-compiled-loader']
