@@ -1,7 +1,8 @@
 {
-  "name": "webpack-auto",
+  "name": "geiwoshuo",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "https://github.com/v10258/geiwoshuo.git",
   "scripts": {
     "postinstall": "cp -r node_modules/ionicons/dist/ src/common/font/",
     "prestart": "npm run build",
