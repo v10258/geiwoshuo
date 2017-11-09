@@ -32,7 +32,7 @@ var config = {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'autoprefixer-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+        use: ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       })
     }, {
       test: /\.ejs$/,
