@@ -64,8 +64,8 @@ var config = {
     }
   },
   // externals: {
-  //   'jQuery': 'window.$',
-  //   'Popper': 'window.Popper'
+  //   '$': 'window.$',
+  //   'jQuery': 'window.jQuery'
   // },
   plugins: [
     new webpack.ProvidePlugin({
@@ -74,7 +74,10 @@ var config = {
       Popper: ['popper.js', 'default']
     }),
     new CopyWebpackPlugin([
-      {from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
+      { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/' },
+      { from: 'node_modules/tinymce/plugins', to: 'js/plugins' },
+      { from: 'node_modules/tinymce/themes', to: 'js/themes' },
+      { from: 'node_modules/tinymce/skins', to: 'js/skins' }
     ]),
     // 页面集成
     new HtmlWebpackPlugin({

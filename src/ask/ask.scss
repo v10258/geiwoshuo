@@ -90,3 +90,51 @@
         width: 30%;
     }
 }
+
+.editor {
+    position: relative;
+
+    .mce-statusbar {
+        border: none;
+        .mce-path {
+            display: none;
+        }
+    }
+
+    .mce-toolbar {
+        &.mce-first {
+            position: absolute;
+            top: -34px;
+            right: 0;
+        }
+    }
+
+    .mce-top-part {
+
+        &::before {
+            //box-shadow: none;
+        }
+
+        .mce-container-body {
+            //border-color: transparent;
+            //outline: none;
+        }
+    }
+    .mce-toolbar {
+        .mce-btn-group {
+            padding: 0;
+        }
+    }
+
+    .mce-edit-area {
+        border: none;
+    }
+
+    .mce-toolbar.mce-last {
+        display: none;
+    }
+
+    .mce-btn button.active .mce-txt {
+        color: $color-primary;
+    }
+}
