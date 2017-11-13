@@ -30,11 +30,11 @@ Mock.mock(new RegExp(REMOTE.task.taskFollows), {
     'uid|+1': 1,
     'nickname': '@cname',
     'avatar': "@image('200x100', '#FF6600')",
-    'url': "@url"
+    'url': '@url'
   }]
 })
 
-var a = Mock.mock(new RegExp(REMOTE.task.doFollow), {
+Mock.mock(new RegExp(REMOTE.task.doFollow), {
   'success': true,
   'code': 200,
   'message': '',
@@ -42,6 +42,27 @@ var a = Mock.mock(new RegExp(REMOTE.task.doFollow), {
     'uid': 100,
     'nickname': '@cname',
     'avatar': "@image('50x50','#02adea')",
-    'url': "@url"
+    'url': '@url'
   }
+})
+
+Mock.mock(new RegExp(REMOTE.ask.autoComplete), {
+  'success': true,
+  'code': 200,
+  'message': '',
+  'data|2-10': [{
+    "name|+1": [
+      "标签a",
+      "标签b",
+      "标签c",
+      "标签d",
+      "标签e",
+      "标签f",
+      "标签g",
+      "标签h",
+      "标签i",
+      "标签j"
+    ],
+    "tid|+1": 1
+  }]
 })

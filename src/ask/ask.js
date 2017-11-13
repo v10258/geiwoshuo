@@ -6,7 +6,10 @@ var tinymce = require('../common/js/tinymce/tinymce.min.js')
 
 var $ = require('jquery')
 
+import { REMOTE } from '../common/js/ajax.js'
+
 import Vue from 'vue/dist/vue.js'
+import inputTag from '../common/component/inputTag.vue'
 
 tinymce.init({
   selector: 'textarea#editor',
@@ -76,24 +79,26 @@ tinymce.init({
   }
 })
 
-//console.log('tinymce', tinymce);
-//console.log('tinymce.activeEditor.formatter out', tinymce.activeEditor.formatter);
-// tinymce.activeEditor.formatter.register('titleformat', {
-//   inline: 'h2',
-//   styles: {color: '#ff0000'}
-// });
-
-// tinymce.activeEditor.formatter.apply('titleformat');
-
+console.log('inputTag', inputTag, REMOTE.ask.autoComplete);
 
 var app = new Vue({
   el: '#askForm',
+  components: {
+    inputTag
+  },
   data: {
     isShowAskMore: false,
-    message: 'Hello Vue!'
+    autoCompleteUrl: REMOTE.ask.autoComplete,
+    placeholder: 'aaa',
+    tags: [{name:'投票', sid: '111'}, {name:'陪玩', sid: '222'}]
   },
   methods: {
     askMoreToggle: () => {
+    },
+    tagsToHide (tags) {
+      console.log('tags', tags);
+
+      $('#tag').val(JSON.stringify(tags));
     }
   }
 })

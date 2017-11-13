@@ -33,7 +33,19 @@ var config = {
     }, {
       test: /\.ejs$/,
       use: ['ejs-compiled-loader']
-    }, {
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        loaders: {
+          'js': 'babel-loader',
+          'scss': 'vue-style-loader!css-loader!sass-loader',
+          'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+        }
+      }
+    },
+    {
       test: /\.js$/,
       use: 'babel-loader'
     }, {

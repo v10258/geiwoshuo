@@ -37,7 +37,19 @@ var config = {
     }, {
       test: /\.ejs$/,
       use: 'ejs-compiled-loader'
-    }, {
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        loaders: {
+          'js': 'babel-loader',
+          'scss': 'vue-style-loader!css-loader!sass-loader',
+          'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+        }
+      }
+    },
+    {
       test: /\.js$/,
       use: 'babel-loader'
     }, {
@@ -76,7 +88,10 @@ var config = {
       Popper: ['popper.js', 'default']
     }),
     new CopyWebpackPlugin([
-      {from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/'}
+      { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/' },
+      { from: 'node_modules/tinymce/plugins', to: 'js/plugins' },
+      { from: 'node_modules/tinymce/themes', to: 'js/themes' },
+      { from: 'node_modules/tinymce/skins', to: 'js/skins' }
     ]),
     // 抽出样式
     new ExtractTextPlugin({

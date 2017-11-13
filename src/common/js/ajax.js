@@ -6,5 +6,8 @@ export const REMOTE = {
     task: {
         taskFollows: '/post/[\w]+/subscribe',
         doFollow: '/post/[\w]/follows'
+    },
+    ask: {
+        autoComplete: '/ask/autoCompleteUrl'
     }
 }

@@ -37,7 +37,8 @@
                         <label class="vm-label">选择标签</label>
                         <span class="vm-remark">标签越精准，越容易让相关领域专业人士看到你的问题</span>
                     </div>
-                    <input type="text" class="form-control" name="tag" placeholder="搜索标签">
+                    <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :tags="tags"></input-tag>
+                    <input type="hidden" name="tag" id="tag">
                 </div>
 
                 <div class="form-group ask-reward">
