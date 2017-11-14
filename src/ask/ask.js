@@ -2,9 +2,11 @@ require('./ask.scss')
 
 require('../layout/header.js')
 
-var tinymce = require('../common/js/tinymce/tinymce.min.js')
-
 var $ = require('jquery')
+
+require('../common/js/jquery-file-upload/jquery.fileupload.js')
+
+var tinymce = require('../common/js/tinymce/tinymce.min.js')
 
 import { REMOTE } from '../common/js/ajax.js'
 
@@ -14,8 +16,8 @@ import inputTag from '../common/component/inputTag.vue'
 tinymce.init({
   selector: 'textarea#editor',
   menubar: false,
-  plugins: ['image autoresize lists link image hr'],
-  toolbar: ['editor-control image mceImage qr-code',
+  plugins: ['autoresize lists link hr'],
+  toolbar: ['editor-control image imagegws qr-code',
   'undo redo | titleformat bold italic |  bullist numlist | link hr | removeformat'],
   block_formats: '标题=h2;代码块=pre',
 
@@ -28,15 +30,19 @@ tinymce.init({
   elementpath: false,
 
   // 图片上唇
-  image_description: false,
-  image_dimensions: false,
-  images_upload_url: 'post/postAcceptor',
-  images_upload_handler: function (blobInfo, success, failure) {
-    setTimeout(function () {
-      // no matter what you upload, we will turn it into TinyMCE logo :)
-      success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png')
-    }, 2000)
-  },
+  //image_description: false,
+  //image_dimensions: false,
+  images_upload_url: REMOTE.ask.ImagUupload,
+  automatic_uploads: true,
+  // images_upload_handler: function (blobInfo, success, failure) {
+  //   console.log('handler arguments', arguments)
+  //   //setTimeout(function () {
+  //     // no matter what you upload, we will turn it into TinyMCE logo :)
+  //     success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png')
+
+
+  //   //}, 2000)
+  // },
 
   // 编辑器初始化回调
   init_instance_callback: function (editor) {
@@ -67,6 +73,22 @@ tinymce.init({
           $elem.addClass('active');
           $('.mce-toolbar.mce-last').show();
         }
+      }
+    })
+    editor.addButton('imagegws', {
+      icon: 'image',
+      onclick: function () {
+        $('#fileupload').fileupload({
+          url: REMOTE.ask.fileupload,
+          dataType: 'json',
+          done: function (ev, data) {
+            editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
+          },
+          progressall: function (e, data) {
+              var progress = parseInt(data.loaded / data.total * 100, 10);
+              console.log('progress', progress);
+          }
+        }).trigger('click');
       }
     })
     editor.addButton('qr-code', {

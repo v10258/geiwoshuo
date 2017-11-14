@@ -51,18 +51,35 @@ Mock.mock(new RegExp(REMOTE.ask.autoComplete), {
   'code': 200,
   'message': '',
   'data|2-10': [{
-    "name|+1": [
-      "标签a",
-      "标签b",
-      "标签c",
-      "标签d",
-      "标签e",
-      "标签f",
-      "标签g",
-      "标签h",
-      "标签i",
-      "标签j"
+    'name|+1': [
+      '标签a',
+      '标签b',
+      '标签c',
+      '标签d',
+      '标签e',
+      '标签f',
+      '标签g',
+      '标签h',
+      '标签i',
+      '标签j'
     ],
-    "tid|+1": 1
+    'tid|+1': 1
   }]
+})
+
+Mock.mock(new RegExp(REMOTE.ask.fileupload), {
+  'success': true,
+  'code': 200,
+  'message': '',
+  'data': {
+    'files': [{
+      'url': 'http://img.hb.aicdn.com/3a027b59bde54fa6368a5a076f868382c0d48e4217ca9-qQMKkm_fw658',
+      'thumbnailUrl': 'https://jquery-file-upload.appspot.com/image%2Fjpeg/3600028021/20161029104725217.jpg.80x80.jpg',
+      'name': '20161029104725217.jpg',
+      'type': 'image/jpeg',
+      'size': 103102,
+      'deleteUrl': 'https://jquery-file-upload.appspot.com/image%2Fjpeg/3600028021/20161029104725217.jpg',
+      'deleteType': 'DELETE' 
+    }]
+  }
 })
