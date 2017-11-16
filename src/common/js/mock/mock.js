@@ -74,12 +74,9 @@ Mock.mock(new RegExp(REMOTE.ask.fileupload), {
   'data': {
     'files': [{
       'url': 'http://img.hb.aicdn.com/3a027b59bde54fa6368a5a076f868382c0d48e4217ca9-qQMKkm_fw658',
-      'thumbnailUrl': 'https://jquery-file-upload.appspot.com/image%2Fjpeg/3600028021/20161029104725217.jpg.80x80.jpg',
       'name': '20161029104725217.jpg',
       'type': 'image/jpeg',
-      'size': 103102,
-      'deleteUrl': 'https://jquery-file-upload.appspot.com/image%2Fjpeg/3600028021/20161029104725217.jpg',
-      'deleteType': 'DELETE' 
+      'size': 103102
     }]
   }
 })

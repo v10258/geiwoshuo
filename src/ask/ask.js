@@ -28,8 +28,6 @@ tinymce.init({
   elementpath: false,
 
   // 图片上传
-  //image_description: false,
-  //image_dimensions: false,
   images_upload_url: REMOTE.ask.ImagUupload,
   automatic_uploads: true,
 
