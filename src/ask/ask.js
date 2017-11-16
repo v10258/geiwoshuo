@@ -16,9 +16,8 @@ import inputTag from '../common/component/inputTag.vue'
 tinymce.init({
   selector: 'textarea#editor',
   menubar: false,
-  plugins: ['autoresize lists link hr'],
-  toolbar: ['editor-control imagegws qr-code',
-  'undo redo | h2 title bold italic |  bullist numlist | link hr | removeformat'],
+  plugins: ['autoresize link'],
+  toolbar: ['link imagegws qr-code'],
 
   // 编辑区域应用样式
   content_css: '/css/ask.css',
@@ -46,21 +45,7 @@ tinymce.init({
 
   // 
   setup: function (editor) {
-    editor.addButton('editor-control', {
-      text: 'B',
-      icon: false,
-      onclick: function (e) {
-        var $elem = $(e.target);
-        $elem = $elem.hasClass('mce-txt') ? $elem.parent() : $elem;
-        if ($elem.hasClass('active')) {
-          $elem.removeClass('active');
-          $('.mce-toolbar.mce-last').hide();
-        } else {
-          $elem.addClass('active');
-          $('.mce-toolbar.mce-last').show();
-        }
-      }
-    })
+
     editor.addButton('imagegws', {
       icon: 'image',
       onclick: function () {
@@ -77,31 +62,14 @@ tinymce.init({
         }).trigger('click');
       }
     })
-    
+
     editor.addButton('qr-code', {
       text: 'QR',
-      icon: false,
+      icon: '',
       onclick: function () {
         editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
       }
-    })
-
-    editor.addButton('title', {
-      text: 'H',
-      icon: false,
-      onclick: function() {
-        editor.execCommand('mceToggleFormat', false, 'h2');
-      },
-    
-      onpostrender: function() {
-        var btn = this;
-        editor.on('init', function() {
-          editor.formatter.formatChanged('h2', function(state) {
-            btn.active(state);
-          });
-        });
-      }
-    });    
+    })   
   }
 })
 

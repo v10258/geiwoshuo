@@ -232,11 +232,18 @@
   .ui-inputtag {
     position: relative;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
     padding: 4px;
     cursor: text;
     text-align: left;
-    -webkit-appearance: textfield;
+
+    &:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: none;
+    }
   }
 
   .ui-inputtag-item {

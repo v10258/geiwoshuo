@@ -3,7 +3,7 @@
 @import "../common/scss/icontag.scss";
 
 // @import "../common/scss/components/text.scss";
-// @import "../common/scss/components/buttons.scss";
+@import "../common/scss/components/buttons.scss";
 @import "../common/scss/components/form.scss";
 
 .page-ask {
@@ -91,6 +91,12 @@
 
 .editor {
     position: relative;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+
+    .mce-tinymce {
+        border: none;
+    }
 
     .mce-statusbar {
         border: none;
@@ -126,10 +132,6 @@
 
     .mce-edit-area {
         border: none;
-    }
-
-    .mce-toolbar.mce-last {
-        display: none;
     }
 
     .mce-btn button.active .mce-txt {
