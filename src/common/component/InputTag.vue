@@ -169,10 +169,9 @@
           },
           dataType: 'json'
         }).done((result) => {
-          console.log('searchurl result', result, typeof result, result.success);
           if (!result.success) { return }
           this.autoTags = result.data;
-          console.log('autoTags', this.autoTags);
+          console.log('autoTags', result);
         })
       },
 

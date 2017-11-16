@@ -51,6 +51,7 @@ tinymce.init({
           url: REMOTE.ask.fileupload,
           dataType: 'json',
           done: function (ev, data) {
+            console.log('result', data.result);
             editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
           },
           progressall: function (e, data) {
