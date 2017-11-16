@@ -3,8 +3,9 @@
 @import "../common/scss/icontag.scss";
 
 @import "../common/scss/components/comment.scss";
+@import "../common/scss/components/editor.scss";
 
-// @import "../common/scss/components/buttons.scss";
+@import "../common/scss/components/buttons.scss";
 
 .task-header {
   .task-header-title {
@@ -310,4 +311,71 @@
     font-size: 13px;
     color: #7f7f7f;
   }
+}
+
+.answer-title {
+  font-size: 13px;
+  color: #585858;
+  padding-top: 5px;
+  line-height: 45px;
+}
+
+.answer-addons {
+  @extend .flex-justify-between;
+  @extend .flex-item-center;
+  margin-top: 10px;
+}
+
+.task-editor {
+    position: relative;
+
+    .mce-statusbar {
+        border: none;
+        .mce-path {
+            display: none;
+        }
+    }
+
+    .mce-toolbar.mce-last {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    // .mce-toolbar {
+    //     &.mce-first {
+    //         position: absolute;
+    //         top: -34px;
+    //         right: 0;
+    //     }
+    // }
+
+    // .mce-top-part {
+
+    //     &::before {
+    //         //box-shadow: none;
+    //     }
+
+    //     .mce-container-body {
+    //         //border-color: transparent;
+    //         //outline: none;
+    //     }
+    // }
+    // .mce-toolbar {
+    //     .mce-btn-group {
+    //         padding: 0;
+    //     }
+    // }
+
+    // .mce-edit-area {
+    //     border: none;
+    // }
+
+    // .mce-toolbar.mce-last {
+    //     display: none;
+    // }
+
+    // .mce-btn button.active .mce-txt {
+    //     color: $color-primary;
+    // }
 }

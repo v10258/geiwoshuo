@@ -17,9 +17,8 @@ tinymce.init({
   selector: 'textarea#editor',
   menubar: false,
   plugins: ['autoresize lists link hr'],
-  toolbar: ['editor-control image imagegws qr-code',
-  'undo redo | titleformat bold italic |  bullist numlist | link hr | removeformat'],
-  block_formats: '标题=h2;代码块=pre',
+  toolbar: ['editor-control imagegws qr-code',
+  'undo redo | h2 title bold italic |  bullist numlist | link hr | removeformat'],
 
   // 编辑区域应用样式
   content_css: '/css/ask.css',
@@ -29,28 +28,15 @@ tinymce.init({
   branding: false,
   elementpath: false,
 
-  // 图片上唇
+  // 图片上传
   //image_description: false,
   //image_dimensions: false,
   images_upload_url: REMOTE.ask.ImagUupload,
   automatic_uploads: true,
-  // images_upload_handler: function (blobInfo, success, failure) {
-  //   console.log('handler arguments', arguments)
-  //   //setTimeout(function () {
-  //     // no matter what you upload, we will turn it into TinyMCE logo :)
-  //     success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png')
-
-
-  //   //}, 2000)
-  // },
 
   // 编辑器初始化回调
   init_instance_callback: function (editor) {
     console.log('Editor: ' + editor.id + ' is now initialized.')
-  },
-
-  file_browser_callback: function(field_name, url, type, win) {
-    //win.document.getElementById(field_name).value = 'my browser value';
   },
 
   //输入框区域自动变大
@@ -91,6 +77,7 @@ tinymce.init({
         }).trigger('click');
       }
     })
+    
     editor.addButton('qr-code', {
       text: 'QR',
       icon: false,
@@ -98,6 +85,23 @@ tinymce.init({
         editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
       }
     })
+
+    editor.addButton('title', {
+      text: 'H',
+      icon: false,
+      onclick: function() {
+        editor.execCommand('mceToggleFormat', false, 'h2');
+      },
+    
+      onpostrender: function() {
+        var btn = this;
+        editor.on('init', function() {
+          editor.formatter.formatChanged('h2', function(state) {
+            btn.active(state);
+          });
+        });
+      }
+    });    
   }
 })
 
