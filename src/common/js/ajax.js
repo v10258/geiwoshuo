@@ -8,7 +8,7 @@ export const REMOTE = {
         doFollow: '/post/[\w]/follows'
     },
     ask: {
-        autoComplete: '/ask/autoCompleteUrl',
+        autoComplete: '/tag/auto_complete',
         fileupload: '/ask/fileupload'
     }
 }

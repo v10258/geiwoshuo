@@ -49,8 +49,20 @@
       return {
         newTag: '',
         autoTags: [],
-        autoWidth: 0
+        autoWidth: 0,
+        isMatch: true,
+        active: false
       }
+    },
+
+    created() {
+      let self = this;
+      // 点击页面其他位置，关闭城市切换浮层
+      $(document).on('click.inputTag', (ev)=>{
+        if ($(ev.target).parents('.ui-inputtag').length === 0) {
+          self.active = false;
+        }
+      });
     },
 
     computed: {
@@ -69,13 +81,20 @@
 
     watch: {
       autoTags: function () {
-        var vm = this;
+        let self = this;
         let widthTotal = this.$el.offsetWidth;
         let left = this.$el.querySelector('.ui-inputtag-new').offsetLeft;
         this.autoWidth = widthTotal - left;
         this.isMatch = this.autoTags.some(function(item){
-          return item.name === vm.newTag;
+          return item.name === self.newTag;
         })
+      },
+      newTag: function() {
+        if(this.newTag) {
+          this.active = true;
+        } else {
+          this.active = false;
+        }
       }
     },
 
@@ -83,6 +102,8 @@
       focusNewTag () {
         if (this.readOnly) { return }
         this.$el.querySelector('input').focus()
+        this.active = true;
+        console.log('active true')
       },
 
       addTag (tag, isNew) {
@@ -171,7 +192,7 @@
         }).done((result) => {
           if (!result.success) { return }
           this.autoTags = result.data;
-          console.log('autoTags', result);
+          console.log('autoTags', this.autoTags);
         })
       },
 
@@ -212,11 +233,11 @@
   </span>
   <input class="ui-inputtag-new" v-if="!readOnly" :disabled="tagMax" :placeholder="tips" type="text" v-model="newTag" v-on:input="autoComplete" v-on:keydown.down="selectDown" v-on:keydown.up="selectUp" v-on:keydown.delete.stop="removeLastTag()" v-on:keydown.enter.188.tab.prevent.stop="addTagActive"/>
   <button class="ui-inputtag-add ion ion-ios-search" @click="autoComplete"></button>
-  <div class="ui-inputtag-search" v-bind:style="{ width: autoWidth + 'px' }" v-if="autoTags && autoTags.length">
+  <div class="ui-inputtag-search" v-bind:style="{ width: autoWidth + 'px' }" v-if="newTag && active">
     <a v-for="(tag, index) in autoTags" v-bind:class="{ active: index === 0 }" v-on:mouseenter="searchItemEnter" @click="addTag(tag)" href="javascript:;">
     {{tag.name}}
     </a>
-    <a v-if="!isMatch" data-new="true" @click="addTag(newTag, true)" href="javascript:;">
+    <a v-bind:class="{ active: autoTags.length === 0 }" v-if="!isMatch" data-new="true" @click.prevent.stop="addTag(newTag, true)" v-on:mouseenter="searchItemEnter" href="javascript:;">
       创建
       <strong>{{newTag}}</strong>
       标签
@@ -227,100 +248,98 @@
 </template>
 
 <style>
+.ui-inputtag {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 4px;
+  cursor: text;
+  text-align: left;
 
-  .ui-inputtag {
-    position: relative;
+  &:focus {
+    color: #495057;
     background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    padding: 4px;
-    cursor: text;
-    text-align: left;
-
-    &:focus {
-      color: #495057;
-      background-color: #fff;
-      border-color: #80bdff;
-      outline: none;
-    }
-  }
-
-  .ui-inputtag-item {
-    background-color: #f6f9fa;
-    border-radius: 2px;
-    border: 1px solid #c8d6df;
-    color: #638421;
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 400;
-    margin-right: 4px;
-    padding: 3px;
-  }
-
-  .ui-inputtag-item em {
-    font-style: normal;
-    color: #585858;
-  }
-
-  .ui-inputtag-item .remove {
-    cursor: pointer;
-    font-weight: bold;
-    color: #638421;
-  }
-
-  .ui-inputtag-item .remove:hover {
-    text-decoration: none;
-  }
-
-  .ui-inputtag-item .remove::before {
-    content: " x";
-  }
-
-  .ui-inputtag-new {
-    width: 150px;
-    background: transparent;
-    border: 0;
-    color: #777;
-    font-size: 13px;
-    font-weight: 400;
+    border-color: #80bdff;
     outline: none;
-    padding: 4px;
-    padding-left: 0;
   }
+}
 
-  .ui-inputtag-add {
-    position: absolute;
-    top: 12px;
-    right: 10px;
-    border: none;
-    background: transparent;
-  }
+.ui-inputtag-item {
+  background-color: #f6f9fa;
+  border-radius: 2px;
+  border: 1px solid #c8d6df;
+  color: #638421;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  margin-right: 4px;
+  padding: 3px;
+}
 
-  .ui-inputtag.read-only {
-    cursor: default;
-  }
+.ui-inputtag-item em {
+  font-style: normal;
+  color: #585858;
+}
 
-  .ui-inputtag-search {
-    display: flex;
-    flex-direction:column;
-    position:absolute;
-    top: 100%;
-    right: 0;
-    background: #fff;
-    border: 1px solid #e7eaf1;
-    border-top: none;
-    margin-top: 2px;
-  }
+.ui-inputtag-item .remove {
+  cursor: pointer;
+  font-weight: bold;
+  color: #638421;
+}
 
-  .ui-inputtag-search a {
-    padding:5px 10px;
-    text-decoration: none;
-    cursor:pointer;
-  }
+.ui-inputtag-item .remove:hover {
+  text-decoration: none;
+}
 
-  .ui-inputtag-search a.active,
-  .ui-inputtag-search a:active {
-    background: #f4f8fb;
-  }
+.ui-inputtag-item .remove::before {
+  content: " x";
+}
 
+.ui-inputtag-new {
+  width: 150px;
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  padding: 4px;
+  padding-left: 0;
+}
+
+.ui-inputtag-add {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  border: none;
+  background: transparent;
+}
+
+.ui-inputtag.read-only {
+  cursor: default;
+}
+
+.ui-inputtag-search {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e7eaf1;
+  border-top: none;
+  margin-top: 2px;
+}
+
+.ui-inputtag-search a {
+  padding: 5px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ui-inputtag-search a.active,
+.ui-inputtag-search a:active {
+  background: #f4f8fb;
+}
 </style>

@@ -83,7 +83,12 @@ var app = new Vue({
     isShowAskMore: false,
     autoCompleteUrl: REMOTE.ask.autoComplete,
     placeholder: 'aaa',
-    tags: [{name:'投票', sid: '111'}, {name:'陪玩', sid: '222'}]
+    tags: []
+  },
+  watch: {
+    tags: function () {
+      this.$el.querySelector('#tags').value = JSON.stringify(this.tags);
+    }
   },
   methods: {
     askMoreToggle: () => {
