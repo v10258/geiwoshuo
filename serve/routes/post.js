@@ -24,7 +24,9 @@ router.get('/', async (req, res) => {
  */
 router.post('/', async (req, res, next) => {
   const post = new Post();
-  Object.assign(post, req.body, {creator: req.session.user_id, tags: req.body.tags.trim().split(/\s+/)});
+
+  // todo: tags 存储
+  Object.assign(post, req.body, {creator: req.session.user_id, tags: JSON.parse(req.body.tags)});
 
   post.created = new Date();
 

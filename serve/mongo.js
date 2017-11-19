@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Post = require('./schemas/Post');
 const User = require('./schemas/User');
+const Tag = require('./schemas/Tag');
 const Comment = require('./schemas/Comment');
 
 const {mongo} = require('./config');
@@ -20,6 +21,7 @@ mongoose.connect(cfg, {
 module.exports = {
   Post,
   User,
+  Tag,
   Comment,
   stats() {
     // 统计各记录的条数
