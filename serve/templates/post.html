@@ -20,7 +20,7 @@
       <h1 class="task-header-title">${post.title}</h1>
       <div class="task-header-meta">
         <% for tag in post.tags %>
-        <span>${tag}</span>
+        <a data-tid="${tag.tid}" href="javascript:;" >${tag.name}</a>
         <% endfor %>
       </div>
     </section>
