@@ -58,14 +58,14 @@ Vue.component('gws-concerns', {
       }).done((result) => {
         if (!result.success) return;
         console.log();
-        this.users = result.data;
+        this.users = result.data.users;
       })
     },
 
     doFollow (){
       $.ajax({
         url: `/post/${this.qid}/subscribe`,
-        type: 'get',
+        type: 'post',
         dataType: 'json'
       }).done((result) => {
         if (!result.success) return;

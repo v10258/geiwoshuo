@@ -109,6 +109,32 @@ router.post('/:post_id/op', F(async (req, res, next) => {
 }));
 
 /**
+ * 获取关注用户列表
+ *
+ * url: /post/:post_id/follows
+ * res: {ok:true} 关注成功
+ */
+router.get('/:post_id/follows', F(async (req, res, next) => {
+  const {post_id} = req.params;
+  const r = await Post.find({_id: post_id});
+
+  // todo: 返回关注此问题的前50名用户
+  res.json({
+    success: true, 
+    code: 200,
+    data: {
+      users: [{
+        uid: 1,
+        nickname: '',
+        avatar: '',
+        url: ''
+      }],
+      count: 9
+    }
+  });
+}));
+
+/**
  * 关注问题
  *
  * url: /post/:post_id/subscribe
@@ -118,7 +144,17 @@ router.post('/:post_id/subscribe', F(async (req, res, next) => {
   const {post_id} = req.params;
   const {user_id} = req.session;
   const r = await Post.updateOne({_id: post_id}, {$push: {subscribers: user_id}});
-  res.json({success: true, code: 200});
+
+  // todo: 关注问题成功，返回用户信息
+  res.json({
+    success: true, 
+    code: 200,
+    data: {
+      uid: user_id,
+      nickname: '',
+      avatar: '',
+      url: ''
+    }});
 }));
 
 
