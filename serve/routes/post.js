@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Post, Comment, User} = require('../mongo');
+const {Post, Comment, User, Tag} = require('../mongo');
 const F = require('./Factory');
 
 
@@ -12,6 +12,7 @@ router.get('/error', F(async (req, res, next) => {
  */
 router.get('/', async (req, res) => {
   const posts = await Post.find();
+  console.log('posts', posts)
   res.json({
     ok: true,
     data: posts
@@ -24,9 +25,24 @@ router.get('/', async (req, res) => {
  */
 router.post('/', async (req, res, next) => {
   const post = new Post();
+  let tags = req.body.tags && JSON.parse(req.body.tags);
+  let newTags;
 
-  // todo: tags 存储
-  Object.assign(post, req.body, {creator: req.session.user_id, tags: JSON.parse(req.body.tags)});
+  // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
+  if (tags && tags.length) {
+    newTags = tags.filter((tag)=>{
+      return !tag.tid;
+    });
+
+    if (newTags && newTags.length) {
+      newTags = await Tag.create(newTags);
+      tags = tags.concat(newTags).filter((tag)=>{
+        return !!tag.tid
+      })
+    }
+  }
+
+  Object.assign(post, req.body, {creator: req.session.user_id, tags: tags });
 
   post.created = new Date();
 
