@@ -42,6 +42,8 @@ router.post('/', async (req, res, next) => {
     }
   }
 
+  // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
+
   Object.assign(post, req.body, {creator: req.session.user_id, tags: tags });
 
   post.created = new Date();

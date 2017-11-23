@@ -14,58 +14,11 @@
 <body class="page-index">
   <%- include ../layout/header -%>
     <main id="content" class="container flex-justify-between">
-      <div class="content-column">
-        <section class="top-header">
-          <nav class="top-header-nav">
-            <a :class="{ active: navActive ==='hot' }" @click="navActive='hot'" href="javascript:;">热门</a>
-            <a :class="{ active: navActive ==='latest' }" @click="navActive='latest'" href="javascript:;">最新</a>
-            <a :class="{ active: navActive ==='bounty' }" @click="navActive='bounty'" href="javascript:;">赏金</a>
-            <a :class="{ active: navActive ==='promo' }" @click="navActive='promo'" href="javascript:;">推广</a>
-          </nav>
-          <div class="top-header-pager">
-            <span class="ion ion-ios-arrow-back"></span>
-            <span class="vm-num"><i>1</i>/1</span>
-            <span class="ion ion-ios-arrow-forward"></span>
-          </div>
-        </section>
-
-        <section class="questions" id="questions">
-          <article class="index-summary">
-            <div class="-title">
-              <a href="/task/6471953115175190798">请业内老司机帮忙分析良渚文化村和翡翠城地段优劣和未来发展潜力。</a>
-            </div>
-            <div class="-info">
-              <a href="#">javascript</a>
-              <a href="#">nodejs</a>
-              <a href="#">nodejs</a>
-
-              <span>发布于 5 小时前</span>
-            </div>
-            <div class="-action">
-              <div class="-thumbs">
-                <button class="btn btn-sm btn-light" title="支持">
-                <i class="ion ion-md-arrow-dropup"></i>
-                100
-            </button>
-                <button class="btn btn-sm btn-light" title="反对">
-                <i class="ion ion-md-arrow-dropdown"></i>
-            </button>
-              </div>
-              <a title="回复，响应和打赏">
-                <i class="ion ion-md-text"></i>
-                99 动态
-            </a>
-              <a>
-                <i>•</i>
-                1394 浏览
-            </a>
-              <a class="-more">
-            <i class="ion ion-ios-more"></i>
-                <!-- 举报 -->
-            </a>
-            </div>
-          </article>
-
+      <div class="content-column" id="contentColumn">
+        <top-header :sort="sort" :page-num="pageNum" :page-count="pageCount" v-on:message="switchSort" >
+        </top-header>
+        
+        <question-index :posts="posts">
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">有谁近期去韩国，需要代购奶粉</a>
@@ -79,28 +32,99 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                <i class="ion ion-md-arrow-dropup"></i>
-                100
-            </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                <i class="ion ion-md-arrow-dropdown"></i>
-            </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
                 <i class="ion ion-md-text"></i>
                 99 动态
-            </a>
+              </a>
               <a>
                 <i>•</i>
                 1394 浏览
-            </a>
+              </a>
               <a class="-more">
-            <i class="ion ion-ios-more"></i>
+                <i class="ion ion-ios-more"></i>
                 <!-- 举报 -->
-            </a>
+              </a>
             </div>
           </article>
-
+        
+          <article class="index-summary">
+            <div class="-title">
+              <a href="/task/6471953115175190798">请业内老司机帮忙分析良渚文化村和翡翠城地段优劣和未来发展潜力。</a>
+            </div>
+            <div class="-info">
+              <a href="#">javascript</a>
+              <a href="#">nodejs</a>
+              <a href="#">nodejs</a>
+        
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
+              </div>
+              <a title="回复，响应和打赏">
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
+              <a>
+                <i>•</i>
+                1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
+            </div>
+          </article>
+        
+          <article class="index-summary">
+            <div class="-title">
+              <a href="/task/6471953115175190798">有谁近期去韩国，需要代购奶粉</a>
+            </div>
+            <div class="-info">
+              <a href="#" title="">代购</a>
+              <a href="#" title="">韩国</a>
+              <a href="#" title="">母婴</a>
+              <span>发布于 5 小时前</span>
+            </div>
+            <div class="-action">
+              <div class="-thumbs">
+                <button class="btn btn-sm btn-light" title="支持">
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
+                <button class="btn btn-sm btn-light" title="反对">
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
+              </div>
+              <a title="回复，响应和打赏">
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
+              <a>
+                <i>•</i>
+                1394 浏览
+              </a>
+              <a class="-more">
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
+            </div>
+          </article>
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">帮我避免骚扰</a>
@@ -113,28 +137,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                <i class="ion ion-md-arrow-dropup"></i>
-                100
-            </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                <i class="ion ion-md-arrow-dropdown"></i>
-            </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
                 <i class="ion ion-md-text"></i>
                 99 动态
-            </a>
+              </a>
               <a>
                 <i>•</i>
                 1394 浏览
-            </a>
+              </a>
               <a class="-more">
-            <i class="ion ion-ios-more"></i>
+                <i class="ion ion-ios-more"></i>
                 <!-- 举报 -->
-            </a>
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">求推荐靠谱驾考教练，可以早上练车，性格温和的。</a>
@@ -147,34 +171,34 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                <i class="ion ion-md-arrow-dropup"></i>
-                100
-            </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                <i class="ion ion-md-arrow-dropdown"></i>
-            </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
                 <i class="ion ion-md-text"></i>
                 99 动态
-            </a>
+              </a>
               <a>
                 <i>•</i>
                 1394 浏览
-            </a>
+              </a>
               <a class="-more">
-            <i class="ion ion-ios-more"></i>
+                <i class="ion ion-ios-more"></i>
                 <!-- 举报 -->
-            </a>
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">暑期泰国游，寻一热爱潜水的伙伴，互相照应。</a>
               <span class="-tags">
-            <i class="ion ion-ios-planet"></i>
-            </span>
+                <i class="ion ion-ios-planet"></i>
+              </span>
             </div>
             <div class="-info">
               <a href="#" title="">旅行</a>
@@ -184,28 +208,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                <i class="ion ion-md-arrow-dropup"></i>
-                100
-            </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                <i class="ion ion-md-arrow-dropdown"></i>
-            </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
                 <i class="ion ion-md-text"></i>
                 99 动态
-            </a>
+              </a>
               <a>
                 <i>•</i>
                 1394 浏览
-            </a>
+              </a>
               <a class="-more">
-            <i class="ion ion-ios-more"></i>
+                <i class="ion ion-ios-more"></i>
                 <!-- 举报 -->
-            </a>
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">报考志愿，找浙江中医药大学往届学长学姐了解详情。</a>
@@ -218,28 +242,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                    <i class="ion ion-md-arrow-dropup"></i>
-                    100
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
                 </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                    <i class="ion ion-md-arrow-dropdown"></i>
+                  <i class="ion ion-md-arrow-dropdown"></i>
                 </button>
               </div>
               <a title="回复，响应和打赏">
                 <i class="ion ion-md-text"></i>
                 99 动态
-            </a>
+              </a>
               <a>
                 <i>•</i>
                 1394 浏览
-            </a>
+              </a>
               <a class="-more">
                 <i class="ion ion-ios-more"></i>
                 <!-- 举报 -->
-            </a>
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">教我弹吉他</a>
@@ -252,28 +276,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                    <i class="ion ion-md-arrow-dropup"></i>
-                    100
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
                 </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                    <i class="ion ion-md-arrow-dropdown"></i>
+                  <i class="ion ion-md-arrow-dropdown"></i>
                 </button>
               </div>
               <a title="回复，响应和打赏">
-                    <i class="ion ion-md-text"></i>
-                    99 动态
-                </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                    <i>•</i>
-                    1394 浏览
-                </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
                 <i class="ion ion-ios-more"></i>
-                    <!-- 举报 -->
-                </a>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">洗衣机排水管接室外</a>
@@ -286,28 +310,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                        <i class="ion ion-md-arrow-dropup"></i>
-                        100
-                    </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                        <i class="ion ion-md-arrow-dropdown"></i>
-                    </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                    <i class="ion ion-md-text"></i>
-                    99 动态
-                </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                    <i>•</i>
-                    1394 浏览
-                </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                    <i class="ion ion-ios-more"></i>
-                    <!-- 举报 -->
-                </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">带玩杭州</a>
@@ -321,28 +345,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                        <i class="ion ion-md-arrow-dropup"></i>
-                        100
-                    </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                        <i class="ion ion-md-arrow-dropdown"></i>
-                    </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                        <i class="ion ion-md-text"></i>
-                        99 动态
-                    </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                        <i>•</i>
-                        1394 浏览
-                    </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                    <i class="ion ion-ios-more"></i>
-                        <!-- 举报 -->
-                    </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">三墩附近女大学生模特拍丝巾</a>
@@ -356,28 +380,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                            <i class="ion ion-md-arrow-dropup"></i>
-                            100
-                        </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                            <i class="ion ion-md-arrow-dropdown"></i>
-                        </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                        <i class="ion ion-md-text"></i>
-                        99 动态
-                    </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                        <i>•</i>
-                        1394 浏览
-                    </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                        <i class="ion ion-ios-more"></i>
-                        <!-- 举报 -->
-                    </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">转让健身卡</a>
@@ -389,28 +413,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                            <i class="ion ion-md-arrow-dropup"></i>
-                            100
-                        </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                            <i class="ion ion-md-arrow-dropdown"></i>
-                        </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                            <i class="ion ion-md-text"></i>
-                            99 动态
-                        </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                            <i>•</i>
-                            1394 浏览
-                        </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                        <i class="ion ion-ios-more"></i>
-                            <!-- 举报 -->
-                        </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">求杭州户口临时挂靠一个月</a>
@@ -422,28 +446,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                                <i class="ion ion-md-arrow-dropup"></i>
-                                100
-                            </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                                <i class="ion ion-md-arrow-dropdown"></i>
-                            </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                            <i class="ion ion-md-text"></i>
-                            99 动态
-                        </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                            <i>•</i>
-                            1394 浏览
-                        </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                            <i class="ion ion-ios-more"></i>
-                            <!-- 举报 -->
-                        </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">工银亚洲，开一张香港银行卡</a>
@@ -457,28 +481,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                                <i class="ion ion-md-arrow-dropup"></i>
-                                100
-                            </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                                <i class="ion ion-md-arrow-dropdown"></i>
-                            </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                                <i class="ion ion-md-text"></i>
-                                99 动态
-                            </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                                <i>•</i>
-                                1394 浏览
-                            </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                            <i class="ion ion-ios-more"></i>
-                                <!-- 举报 -->
-                            </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">一个夜跑陪跑跑友</a>
@@ -491,28 +515,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                                    <i class="ion ion-md-arrow-dropup"></i>
-                                    100
-                                </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                                    <i class="ion ion-md-arrow-dropdown"></i>
-                                </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                                <i class="ion ion-md-text"></i>
-                                99 动态
-                            </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                                <i>•</i>
-                                1394 浏览
-                            </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                                <i class="ion ion-ios-more"></i>
-                                <!-- 举报 -->
-                            </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">求借心理咨询师三级2015版教材</a>
@@ -525,28 +549,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                                    <i class="ion ion-md-arrow-dropup"></i>
-                                    100
-                                </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                                    <i class="ion ion-md-arrow-dropdown"></i>
-                                </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                                    <i class="ion ion-md-text"></i>
-                                    99 动态
-                                </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                                    <i>•</i>
-                                    1394 浏览
-                                </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                                <i class="ion ion-ios-more"></i>
-                                    <!-- 举报 -->
-                                </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-
+        
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">手术急需，求互助献血</a>
@@ -559,28 +583,28 @@
             <div class="-action">
               <div class="-thumbs">
                 <button class="btn btn-sm btn-light" title="支持">
-                                    <i class="ion ion-md-arrow-dropup"></i>
-                                    100
-                                </button>
+                  <i class="ion ion-md-arrow-dropup"></i>
+                  100
+                </button>
                 <button class="btn btn-sm btn-light" title="反对">
-                                    <i class="ion ion-md-arrow-dropdown"></i>
-                                </button>
+                  <i class="ion ion-md-arrow-dropdown"></i>
+                </button>
               </div>
               <a title="回复，响应和打赏">
-                                    <i class="ion ion-md-text"></i>
-                                    99 动态
-                                </a>
+                <i class="ion ion-md-text"></i>
+                99 动态
+              </a>
               <a>
-                                    <i>•</i>
-                                    1394 浏览
-                                </a>
+                <i>•</i>
+                1394 浏览
+              </a>
               <a class="-more">
-                                <i class="ion ion-ios-more"></i>
-                                    <!-- 举报 -->
-                                </a>
+                <i class="ion ion-ios-more"></i>
+                <!-- 举报 -->
+              </a>
             </div>
           </article>
-        </section>
+        </question-index>
       </div>
       <aside class="content-sidebar">
         <div id="ask" class="ask">
@@ -728,7 +752,7 @@
           <div class="mod-state">
             <p><a href="#" target="_blank">知鱼理念</a><span>•</span><a href="#" target="_blank">用户指南</a><span>•</span><a href="#"
                 target="_blank">用户协议</a><span>|</span>© 2017 知鱼</p>
-            <p>今日浏览<strong class="attention-num"> 946 </strong>次，<strong class="attention-num">80%</strong>问题得到响应</p>
+            <p>今日问题数<strong class="attention-num"> 946 </strong>，<strong class="attention-num">80%</strong>问题得到响应</p>
           </div>
         </section>
       </aside>

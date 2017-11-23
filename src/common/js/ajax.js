@@ -1,7 +1,7 @@
 
 export const REMOTE = {
     index: {
-        queryQuestions: '/api/queryQuestions'
+        queryQuestions: '/post/query'
     },
     task: {
         taskFollows: '/post/[\w]+/subscribe',
