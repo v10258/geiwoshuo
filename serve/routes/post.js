@@ -110,7 +110,7 @@ const ops = Object.keys(op_field_mapping);
  * 3. pageview
  *
  */
-router.post('/:post_id/op', F(async (req, res, next) => {
+router.post('/op/:post_id', F(async (req, res, next) => {
   const {post_id} = req.params;
   const {op} = req.body;
   if (!ops.includes(op)) {

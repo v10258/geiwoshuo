@@ -28,4 +28,24 @@ export default function () {
       'url': '@url'
     }
   })
+
+  Mock.mock(new RegExp(REMOTE.task.queryAnswers), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data | 10': [{
+      'body': '',
+      'date': ''
+    }]
+  })
+
+  Mock.mock(new RegExp(REMOTE.task.queryAnswerCount), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data': {
+      'answerNum|100-200': 1,
+      'actorNum|10-20': 1
+    }
+  })
 }

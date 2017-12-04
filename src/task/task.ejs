@@ -14,7 +14,7 @@
 <body class="page-task">
   <%- include ../layout/header -%>
   <main class="container flex-justify-between" id="content">
-    <div class="content-column">
+    <div class="content-column" id="contentColumn">
       <section class="task-header">
           <h1 class="task-header-title">暑期越南游，寻结伴出游伙伴，互相照应。</h1>
           <div class="task-header-meta">
@@ -39,10 +39,10 @@
               <dd>15天12小时内完成有效</dd>
           </dl>
           <div class="task-body-action">
-              <a class="btn btn-sm btn-outline-success" href="#" title="">
+              <a class="btn btn-sm btn-outline-success" @click.prevent="btnWriteAnswer(1)" href="#" title="发表你对问题的建议，看法">
                   <i class="ion ion-md-create"></i>写回答
               </a>
-              <a class="btn btn-sm btn-outline-info" href="#" title="响应问题后，问题发布者将会收到提醒，您对本问题的回答将被标记。">
+              <a class="btn btn-sm btn-outline-info" @click.prevent="btnWriteAnswer(2)" href="#" title="响应问题后，问题发布者将会收到提醒，您对本问题的回答将被标记。">
                   <i class="ion ion-ios-heart"></i>响应问题
               </a>
           </div>
@@ -74,33 +74,9 @@
                 </p>
               </div>
           </div>
-          <div class="task-body-footer">
-              <div class="vm-thumbs">
-                  <button class="btn btn-sm btn-light" title="支持">
-                      <i class="ion ion-md-arrow-dropup"></i>
-                      100
-                  </button>
-                  <button class="btn btn-sm btn-light" title="反对">
-                      <i class="ion ion-md-arrow-dropdown"></i>
-                  </button>
-              </div>
-              <a>
-                  <i class="ion ion-md-person-add"></i>
-                  邀请
-              </a>
-              <a title="分享问题，邀请朋友参与完成，您将获得丰厚奖励，问题解决者将获得平台额外报酬。</p>">
-                  <i class="ion ion-md-share-alt"></i>
-                  分享
-              </a>
-              <a>
-                  <i class="ion ion-md-star"></i>
-                  收藏
-              </a>
-              <a>
-              <i class="ion ion-ios-more"></i>
-                  <!-- 举报 -->
-              </a>
-          </div>
+          <task-footer qid="123456789" :vote="99">
+
+          </task-footer>
       </section>
       <section class="task-process">
           <p class="task-process-step">
@@ -110,281 +86,263 @@
               该问题已经有交付申请，等待发布者复核，继续提交可能无法被被采纳。
           </p>
       </section>
-      <section class="task-answer">
-        <div class="task-answer-header flex-justify-between">
-          <nav class="mod-nav">
-            <a class="active" href="#">全部回答<span>130</span></a>
-            <a href="#">只看响应<span>5</span></a>
-          </nav>
-          <div class="mod-rank">
-            <span class="vm-tab active" data-href="#">热门排序</span>
-            <span class="vm-line">|</span>
-            <span class="vm-tab" data-href="#">时间排序</span>
+
+      <task-answer qid="5a03177322aa7975e3a577cd" :page-num="pageNum" :page-size="pageSize">
+        <article class="answer-article">
+          <div class="answer-article-hd">
+            <p class="mod-user">
+              <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">萦萦宝贝儿</a>
+            </p>
+            <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
           </div>
-        </div>
-        <div class="task-answer-list">
-          <article class="answer-article">
-            <div class="answer-article-hd">
-              <p class="mod-user">
-                <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-                <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">萦萦宝贝儿</a>
-              </p>
-              <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
+          <div class="answer-article-body">
+            楼主，还记得那年大明湖畔的夏雨荷吗？
+          </div>
+          <div class="answer-article-addition">
+            <span class="vm-date">2017-07-18</span>
+          </div>
+          <div class="answer-article-ft">
+            <div class="mod-action">
+              <div class="vm-thumbs">
+                <button class="btn btn-sm btn-light">
+                      <i class="ion ion-md-thumbs-up"></i>
+                      16
+                  </button>
+                <button class="btn btn-sm btn-light">
+                      <i class="ion ion-md-thumbs-down"></i>
+                  </button>
+              </div>
+              <a>
+                  <i class="ion ion-md-text"></i>
+                  回复
+              </a>
+              <a>
+                  <i class="ion ion-md-heart"></i>
+                  打赏
+              </a>
+              <a>
+                  <i class="ion ion-ios-more"></i>
+                </a>
             </div>
-            <div class="answer-article-body">
-              楼主，还记得那年大明湖畔的夏雨荷吗？
+            <div class="mod-pack">
+              <a href="#">
+                收起
+              </a>
             </div>
-            <div class="answer-article-addition">
-              <span class="vm-date">2017-07-18</span>
-            </div>
-            <div class="answer-article-ft">
-              <div class="mod-action">
-                <div class="vm-thumbs">
-                  <button class="btn btn-sm btn-light">
+          </div>
+        </article>
+        <article class="answer-article">
+          <div class="answer-article-hd">
+            <p class="mod-user">
+              <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+            </p>
+            <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
+          </div>
+          <div class="answer-article-body">
+            软萌妹子求带。
+          </div>
+          <div class="answer-article-addition">
+            <span class="vm-date">2017-07-18</span>
+          </div>
+          <div class="answer-article-ft">
+            <div class="mod-action">
+              <div class="vm-thumbs">
+                <button class="btn btn-sm btn-light">
                         <i class="ion ion-md-thumbs-up"></i>
                         16
                     </button>
-                  <button class="btn btn-sm btn-light">
+                <button class="btn btn-sm btn-light">
                         <i class="ion ion-md-thumbs-down"></i>
                     </button>
-                </div>
-                <a>
+              </div>
+              <a>
                     <i class="ion ion-md-text"></i>
                     回复
                 </a>
-                <a>
-                    <i class="ion ion-md-star"></i>
-                    收藏
-                </a>
-                <a>
+              <a>
                     <i class="ion ion-md-heart"></i>
                     打赏
                 </a>
-                <a>
+              <a>
                     <i class="ion ion-ios-more"></i>
                   </a>
-              </div>
-              <div class="mod-pack">
-                <a href="#">
+            </div>
+            <div class="mod-pack">
+              <a href="#">
                   收起
                 </a>
-              </div>
             </div>
-          </article>
-          <article class="answer-article">
-            <div class="answer-article-hd">
-              <p class="mod-user">
-                <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-                <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
-              </p>
-              <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
-            </div>
-            <div class="answer-article-body">
-              软萌妹子求带。
-            </div>
-            <div class="answer-article-addition">
-              <span class="vm-date">2017-07-18</span>
-            </div>
-            <div class="answer-article-ft">
-              <div class="mod-action">
-                <div class="vm-thumbs">
-                  <button class="btn btn-sm btn-light">
+          </div>
+        </article>
+        <article class="answer-article">
+          <div class="answer-article-hd">
+            <p class="mod-user">
+              <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+            </p>
+            <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
+          </div>
+          <div class="answer-article-body">
+              越南有什么好玩的，楼主要买个越南老婆回来啊
+          </div>
+          <div class="answer-article-addition">
+            <span class="vm-date">2017-07-18</span>
+          </div>
+          <div class="answer-article-ft">
+            <div class="mod-action">
+              <div class="vm-thumbs">
+                <button class="btn btn-sm btn-light">
                           <i class="ion ion-md-thumbs-up"></i>
                           16
                       </button>
-                  <button class="btn btn-sm btn-light">
+                <button class="btn btn-sm btn-light">
                           <i class="ion ion-md-thumbs-down"></i>
                       </button>
-                </div>
-                <a>
+              </div>
+              <a>
                       <i class="ion ion-md-text"></i>
                       回复
                   </a>
-                <a>
+              <a>
                       <i class="ion ion-md-star"></i>
                       收藏
                   </a>
-                <a>
-                      <i class="ion ion-md-heart"></i>
-                      打赏
-                  </a>
-                <a>
+              <a>
                       <i class="ion ion-ios-more"></i>
                     </a>
-              </div>
-              <div class="mod-pack">
-                <a href="#">
+            </div>
+            <div class="mod-pack">
+              <a href="#">
                     收起
                   </a>
-              </div>
             </div>
-          </article>
-          <article class="answer-article">
-            <div class="answer-article-hd">
-              <p class="mod-user">
-                <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-                <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
-              </p>
-              <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
-            </div>
-            <div class="answer-article-body">
-                越南有什么好玩的，楼主要买个越南老婆回来啊
-            </div>
-            <div class="answer-article-addition">
-              <span class="vm-date">2017-07-18</span>
-            </div>
-            <div class="answer-article-ft">
-              <div class="mod-action">
-                <div class="vm-thumbs">
-                  <button class="btn btn-sm btn-light">
+          </div>
+        </article>
+        <article class="answer-article">
+          <div class="answer-article-hd">
+            <p class="mod-user">
+              <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+            </p>
+            <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
+          </div>
+          <div class="answer-article-body">
+              楼主帮我问下越南地价，过几年退休去哪里买块好地，以后养老。
+          </div>
+          <div class="answer-article-addition">
+            <span class="vm-date">2017-07-18</span>
+          </div>
+          <div class="answer-article-ft">
+            <div class="mod-action">
+              <div class="vm-thumbs">
+                <button class="btn btn-sm btn-light">
                             <i class="ion ion-md-thumbs-up"></i>
                             16
                         </button>
-                  <button class="btn btn-sm btn-light">
+                <button class="btn btn-sm btn-light">
                             <i class="ion ion-md-thumbs-down"></i>
                         </button>
-                </div>
-                <a>
+              </div>
+              <a>
                         <i class="ion ion-md-text"></i>
                         回复
                     </a>
-                <a>
-                        <i class="ion ion-md-star"></i>
-                        收藏
-                    </a>
-                <a>
+              <a>
                         <i class="ion ion-md-heart"></i>
                         打赏
                     </a>
-                <a>
+              <a>
                         <i class="ion ion-ios-more"></i>
                       </a>
-              </div>
-              <div class="mod-pack">
-                <a href="#">
+            </div>
+            <div class="mod-pack">
+              <a href="#">
                       收起
                     </a>
-              </div>
             </div>
-          </article>
-          <article class="answer-article">
-            <div class="answer-article-hd">
-              <p class="mod-user">
-                <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-                <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
-              </p>
-              <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
-            </div>
-            <div class="answer-article-body">
-                楼主帮我问下越南地价，过几年退休去哪里买块好地，以后养老。
-            </div>
-            <div class="answer-article-addition">
-              <span class="vm-date">2017-07-18</span>
-            </div>
-            <div class="answer-article-ft">
-              <div class="mod-action">
-                <div class="vm-thumbs">
-                  <button class="btn btn-sm btn-light">
+          </div>
+        </article>
+        <article class="answer-article">
+          <div class="answer-article-hd">
+            <p class="mod-user">
+              <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+              <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
+            </p>
+            <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
+          </div>
+          <div class="answer-article-body">
+            上半年去过了，自然景观不错，吃的东西一般，要不我们组队去菲律宾吧。
+          </div>
+          <div class="answer-article-addition">
+            <span class="vm-date">2017-07-18</span>
+          </div>
+          <div class="answer-article-ft">
+            <div class="mod-action">
+              <div class="vm-thumbs">
+                <button class="btn btn-sm btn-light">
                               <i class="ion ion-md-thumbs-up"></i>
                               16
                           </button>
-                  <button class="btn btn-sm btn-light">
+                <button class="btn btn-sm btn-light">
                               <i class="ion ion-md-thumbs-down"></i>
                           </button>
-                </div>
-                <a>
+              </div>
+              <a>
                           <i class="ion ion-md-text"></i>
                           回复
                       </a>
-                <a>
-                          <i class="ion ion-md-star"></i>
-                          收藏
-                      </a>
-                <a>
+              <a>
                           <i class="ion ion-md-heart"></i>
                           打赏
                       </a>
-                <a>
+              <a>
                           <i class="ion ion-ios-more"></i>
                         </a>
-              </div>
-              <div class="mod-pack">
-                <a href="#">
+            </div>
+            <div class="mod-pack">
+              <a href="#">
                         收起
                       </a>
-              </div>
             </div>
-          </article>
-          <article class="answer-article">
-            <div class="answer-article-hd">
-              <p class="mod-user">
-                <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-                <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">尤慕</a>
-              </p>
-              <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
-            </div>
-            <div class="answer-article-body">
-              上半年去过了，自然景观不错，吃的东西一般，要不我们组队去菲律宾吧。
-            </div>
-            <div class="answer-article-addition">
-              <span class="vm-date">2017-07-18</span>
-            </div>
-            <div class="answer-article-ft">
-              <div class="mod-action">
-                <div class="vm-thumbs">
-                  <button class="btn btn-sm btn-light">
-                                <i class="ion ion-md-thumbs-up"></i>
-                                16
-                            </button>
-                  <button class="btn btn-sm btn-light">
-                                <i class="ion ion-md-thumbs-down"></i>
-                            </button>
-                </div>
-                <a>
-                            <i class="ion ion-md-text"></i>
-                            回复
-                        </a>
-                <a>
-                            <i class="ion ion-md-star"></i>
-                            收藏
-                        </a>
-                <a>
-                            <i class="ion ion-md-heart"></i>
-                            打赏
-                        </a>
-                <a>
-                            <i class="ion ion-ios-more"></i>
-                          </a>
-              </div>
-              <div class="mod-pack">
-                <a href="#">
-                          收起
-                        </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-      <section class="answer">
+          </div>
+        </article>
+      </task-answer>
+      
+      <section class="answer" id="answer">
         <div class="answer-title">
           我来回答：
         </div>
-        <div class="answer-editor task-editor">
-            <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
-            <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
-        </div>
+        <answer-editor placeholder="关于问题的详细描述">
+        </answer-editor>
         
         <div class="answer-addons">
-          <div class="answer-addons-action">
-            <label class="vm-unname">
-              <input type="checkbox" name="md">
-              <span>匿名</span>
-            </label>
+          <div class="answer-addons-tips">
+            <p v-if="joinChecked">
+                响应代表参与解决问题，你的回答将被标记，同时发布者会收到通知，解决问题后可以确认完成，由问题发布者发放报酬。
+            </p>
+            <p v-if="anonymousChecked">
+               此回答不会显示你的用户信息，也不会出现在个人动态中。
+            </p>
           </div>
-          <div class="answer-addons-submit">
-            <a href="javascript:;" class="bs-btn bs-btn-primary bs-btn-small">
-              提交回答
-            </a>
+          <div class="answer-addons-action">
+            <div class="mod-option">
+              <label class="vm-unname mr10">
+                <input type="checkbox" name="join" v-model="joinChecked" >
+                <span>响应</span>
+              </label>
+              <label class="vm-unname">
+                <input type="checkbox" name="anonymous" v-model="anonymousChecked">
+                <span>匿名</span>
+              </label>
+            </div>
+
+            <div class="mod-submit">
+              <a class="bs-btn bs-btn-primary bs-btn-small" data-qid="5a03177322aa7975e3a577cd" @click="answerSubmit" href="javascript:;">
+                提交回答
+              </a>
+            </div>
           </div>
         </div>
       </section>
