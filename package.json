@@ -9,7 +9,7 @@
     "preserve": "npm run build",
     "start": "node demo.js",
     "m": "mongod --config /usr/local/etc/mongod.conf",
-    "serve": "node $NODE_DEBUG_OPTION serve/app.js",
+    "serve": "node serve/app.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.build.js",
     "release": "cross-env NODE_ENV=production webpack --config webpack.release.js"
@@ -65,7 +65,7 @@
     "nunjucks": "^3.0.1",
     "popper.js": "^1.12.3",
     "tinymce": "^4.7.2",
-    "vue": "^2.3.4"
+    "vue": "^2.5.9"
   },
   "jest": {
     "watchman": false
