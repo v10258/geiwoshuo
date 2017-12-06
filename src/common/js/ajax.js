@@ -7,10 +7,10 @@ export const REMOTE = {
     queryQuestions: '/post/query'
   },
   task: {
-    taskFollows: '/post/[\w]+/subscribe',
-    doFollow: '/post/[\w]/follows',
-    queryAnswers: '/post/[\w]/answers',
-    queryAnswerCount: '/post/[\w]/answerCount',
+    taskFollows: '/post/subscribe',
+    doFollow: '/post/follows',
+    queryAnswers: '/post/answers',
+    queryAnswerCount: '/post/answerCount',
     doVote:'post/vote'
   },
   ask: {
@@ -23,29 +23,32 @@ export const REMOTE = {
  * ajax
  *
  * @param <String> url
- * @param <Object> param
+ * @param <Object> params
  * @param <String> method
  * @param <String> dataType
  * @return {Promise}
  */
 
-export const ajax = function (url, param, method = 'GET', dataType = 'json') {
+export const ajax = function (url, params, method = 'get') {
   return new Promise((resolve, reject) => {
-    $.ajax({
-      url: path,
+    axios({
+      url: url,
       method: method,
-      data: param,
-      dataType: dataType,
-      timeout: 4000,
-      cache: false
-    }).done(function (result) {
-      if (result.success) {
-        resolve(result.data)
+      params: params,
+      timeout: 3000
+    })
+    .then(function(res) {
+      console.log(`url:${url}   res:`, res)
+      if (res.data.success) {
+        resolve(res.data.data, res.data)
       } else {
-        reject(result.message, result)
+        reject(res.data.message, res.data);
       }
-    }).fail(function () {
-      reject('网络异常，请稍后再试!')
+    },function(){
+      reject('网络异常，请稍后再试!');
+    }).catch(function(error){
+      reject('网络异常，请稍后再试!');
+      alert('网络异常，请稍后再试!');
     })
   })
 }

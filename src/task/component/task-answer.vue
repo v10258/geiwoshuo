@@ -43,10 +43,10 @@
               <i class="ion ion-md-text"></i>
               回复
           </a>
-          <!-- <a>
+          <a>
               <i class="ion ion-md-star"></i>
               收藏
-          </a> -->
+          </a>
           <a>
               <i class="ion ion-md-heart"></i>
               打赏
@@ -71,8 +71,8 @@
 </template>
 
 <script>
-const $ = require("jquery");
-import { REMOTE } from '../../common/js/ajax.js'
+
+import { REMOTE, ajax } from '../../common/js/ajax.js'
 
 export default {
   name: "TaskAnswer",
@@ -130,30 +130,21 @@ export default {
         pageNum: this.pageNum
       };
 
-      $.ajax({
-          url: REMOTE.task.queryAnswers,
-          type: 'get',
-          data: params,
-          dataType: 'json'
-      }).done((result)=>{
-        if (!result.success) return;
-
-        self.answers = result.data;
+      ajax(
+        REMOTE.task.queryAnswers + `/${this.qid}`,
+        params
+      )
+      .then(function(data){
+        console.log('queryAnswers', arguments)
+        self.answers = data;
       })
     },
     answerCount() {
-      $.ajax({
-          url: REMOTE.task.queryAnswerCount,
-          type: 'get',
-          data: {
-            qid: this.qid
-          },
-          dataType: 'json'
-      }).done((result)=>{
-        if (!result.success) return;
-
-        self.answerNum = result.data.answerNum;
-        self.actorNum = result.data.actorNum;
+      let self = this;
+      ajax(REMOTE.task.queryAnswerCount + `/${this.qid}`)
+      .then(function(data){
+        self.answerNum = data.answerNum;
+        self.actorNum = data.actorNum;
       })
     }
   }

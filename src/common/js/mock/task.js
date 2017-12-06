@@ -33,7 +33,7 @@ export default function () {
     'success': true,
     'code': 200,
     'message': '',
-    'data | 10': [{
+    'data|10': [{
       'body': '',
       'date': ''
     }]
@@ -47,5 +47,12 @@ export default function () {
       'answerNum|100-200': 1,
       'actorNum|10-20': 1
     }
+  })
+
+  Mock.mock(new RegExp(REMOTE.task.doVote), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data': null
   })
 }

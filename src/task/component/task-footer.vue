@@ -31,6 +31,8 @@
 
 import { REMOTE, ajax } from '../../common/js/ajax.js'
 
+import axios from 'axios';
+
 export default {
   name: 'TaskAnswer',
 
@@ -54,32 +56,33 @@ export default {
 
   created () {
     let self = this;
-
   },
 
   methods: {
     upvote () {
+      let self = this;
       ajax(
         REMOTE.task.doVote + `/${this.qid}`,
         {
           op: 'up'
         }
       ).then(function(data){
-          
-      }).catch(function(){
-
+        self.in_vote++;
+      },function(message){
+        alert(message);
       })
     },
     downvote (type) {
+      let self = this;
       ajax(
         REMOTE.task.doVote + `/${this.qid}`,
         {
           op: 'down'
         }
       ).then(function(data){
-          
-      }).catch(function(){
-
+        self.in_vote--;
+      },function(message){
+        alert(message);
       })
     },
 
