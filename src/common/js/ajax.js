@@ -51,4 +51,7 @@ export const ajax = function (url, params, method = 'get') {
       alert('网络异常，请稍后再试!');
     })
   })
+  .catch(function(){
+    alert('网络异常，请稍后再试!');
+  })
 }
