@@ -30,9 +30,7 @@ var app = new Vue({
   },
 
   watch: {
-    navActive() {
-      this.queryQuestions();
-    }
+
   },
   methods: {
     switchSort (type, pageNum) {

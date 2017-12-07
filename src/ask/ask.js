@@ -4,11 +4,27 @@ require('../layout/header.js')
 
 var $ = require('jquery')
 
+$.fn.serializeObject = function() {    
+   var o = {};    
+   var a = this.serializeArray();    
+   $.each(a, function() {    
+       if (o[this.name]) {    
+           if (!o[this.name].push) {    
+               o[this.name] = [o[this.name]];    
+           }    
+           o[this.name].push(this.value || '');    
+       } else {    
+           o[this.name] = this.value || '';    
+       }    
+   });    
+   return o;
+};
+
 require('../common/js/jquery-file-upload/jquery.fileupload.js')
 
 var tinymce = require('../common/js/tinymce/tinymce.min.js')
 
-import { REMOTE } from '../common/js/ajax.js'
+import { REMOTE, axios } from '../common/js/ajax.js'
 
 import Vue from 'vue/dist/vue.js'
 import inputTag from '../common/component/inputTag.vue'
@@ -97,6 +113,43 @@ var app = new Vue({
       console.log('tags', tags);
 
       $('#tag').val(JSON.stringify(tags));
+    },
+    validate (formData) {
+      let result = {
+        isRight: true,
+        message: ''
+      }
+
+      if (!formData.title) {
+        result.isRight = false;
+        result.message = '请输入标题'
+      } else if (!formData.jinbi && !formData.yuan && !formData.zidingyi) {
+        result.isRight = false;
+        result.message = '请完善奖励'
+      }
+
+      return result;
+    },
+    submit (ev) {
+      ev.preventDefault();
+      let self = this;
+      let formData = $('#askForm').serializeObject();
+      let validResult = self.validate(formData);
+
+      console.log('formData', formData)
+      if (validResult.isRight) {
+
+        axios.post(REMOTE.ask.add, validResult).then(function(res){
+          console.log('post', res)
+          location.href = res.data.data.url;
+        }).catch(function(){
+          console.log('catch erro ', arguments)
+        })
+
+      } else {
+        // todo: 验证失败
+        alert(validResult.message);
+      }
     }
   }
 })

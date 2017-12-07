@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 /**
  * 添加新任务
  */
-router.post('/', async (req, res, next) => {
+router.post('/add', async (req, res, next) => {
   const post = new Post();
   let tags = req.body.tags && JSON.parse(req.body.tags);
   let newTags;

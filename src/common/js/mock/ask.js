@@ -36,4 +36,16 @@ export default function () {
       }]
     }
   })
+
+  Mock.mock(new RegExp(REMOTE.ask.add), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data': {
+      'qid': '3a027b59bde54fa6368a5a076f',
+      'url': '/post/3a027b59bde54fa6368a5a076f'
+    }
+  })
 }
+
+

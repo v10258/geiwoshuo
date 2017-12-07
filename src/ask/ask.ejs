@@ -18,17 +18,13 @@
             <form class="form" id="askForm">
                 <div class="form-group">
                     <label for="title" class="vm-label">标题 <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="title" placeholder="一句话描述你的问题">
+                    <input type="text" class="form-control" name="title" placeholder="一句话描述你的问题">
                 </div>
                 <div class="form-group">
                     <div class="form-group-hd flex-justify-between">
                         <label class="vm-label">问题说明 <span class="vm-remark font-normal"> 可选填</span></label>
-                        <!-- <span>
-                            <i>A</i>
-                            <i>口</i>
-                        </span> -->
                     </div>
-                    <div class="editor">
+                    <div class="editor form-control">
                         <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
                     </div>
                     <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
@@ -99,10 +95,10 @@
                     <div class="form-group">
                         <label for="title" class="vm-label">任务有效时间</label>
                         <div class="form-group-content">
-                            <label><input type="radio" name="validTime" value="00000">不限</label>
-                            <label><input type="radio" name="validTime" value="00000">半个月</label>
-                            <label><input type="radio" name="validTime" value="00000">三天</label>
-                            <label><input type="radio" name="validTime" value="00000">当天</label>
+                            <label><input type="radio" name="validTime" value="max">不限</label>
+                            <label><input type="radio" name="validTime" value="15day">半个月</label>
+                            <label><input type="radio" name="validTime" value="3day">三天</label>
+                            <label><input type="radio" name="validTime" value="1day">当天</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -115,11 +111,11 @@
                         <label class="vm-label">设置任务响应条件<span class="vm-remark font-normal"> 符合或超出以下条件方能看到问题</span></label>
                         <div class="form-inline">
                             <label>实名认证</label>
-                            <input type="checkbox" name="anonymous" value="true">
+                            <input type="checkbox" name="authentication" >
                         </div>
                         <div class="form-inline">
                             <label>会员等级</label>
-                            <select class="form-control form-control-sm" name="" id="">
+                            <select class="form-control form-control-sm" name="memberLevel" id="">
                                 <option value="0" selected >普通用户</option>
                                 <option value="1">大众会员</option>
                                 <option value="2">黄金会员</option>
@@ -129,14 +125,14 @@
                         </div>
                         <div class="form-inline">
                             <label>芝麻信用</label>
-                            <select class="form-control form-control-sm" name="" id="">
-                                <option value="0" selected >普通</option>
-                                <option value="A">良好（600分以上）</option>
-                                <option value="B">优秀（650以上）</option>
-                                <option value="C">极好（700分以上）</option>
-                                <option value="C">750分以上</option>
-                                <option value="D">800分以上</option>
-                                <option value="E">850分以上</option>
+                            <select class="form-control form-control-sm" name="creditRating" id="">
+                                <option value="550" selected >普通</option>
+                                <option value="600">良好（600分以上）</option>
+                                <option value="650">优秀（650以上）</option>
+                                <option value="700">极好（700分以上）</option>
+                                <option value="750">750分以上</option>
+                                <option value="800">800分以上</option>
+                                <option value="850">850分以上</option>
                             </select>
                         </div>
                     </div>
@@ -144,15 +140,15 @@
                         <label for="" class="vm-label">定向发布</label>
                         <div class="form-inline">
                             <label>关注标签</label>
-                            <input class="form-control form-control-sm" type="text" name="quantity" value="" placeholder="搜索标签">
+                            <input class="form-control form-control-sm" type="text" name="followTag" value="" placeholder="搜索标签">
                         </div>
                         <div class="form-inline">
-                            <label>指定团队</label>
-                            <input class="form-control form-control-sm" type="text" name="quantity" value="" placeholder="搜索团队">
+                            <label>指定圈子</label>
+                            <input class="form-control form-control-sm" type="text" name="followTeam" value="" placeholder="搜索团队">
                         </div>
                         <div class="form-inline">
                             <label>指定用户</label>
-                            <input class="form-control form-control-sm" type="text" name="quantity" value="" placeholder="搜索用户">
+                            <input class="form-control form-control-sm" type="text" name="followUser" value="" placeholder="搜索用户">
                         </div>
                     </div>
                 </section>
@@ -171,7 +167,7 @@
                 </div>-->
 
                 <div class="ask-sure">
-                    <button class="btn btn-primary">确定</button>
+                    <button class="btn btn-primary" @click="submit">确定</button>
                 </div>
             </form>
         </div>

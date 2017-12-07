@@ -16,54 +16,58 @@
 <% include "layout/header.html" %>
 <main id="content" class="container flex-justify-between">
   <div class="content-column">
-    <form class="form" id="askForm" action="/post" method="post">
+    <form class="form" id="askForm">
       <div class="form-group">
-        <label for="title" class="vm-label">标题 <span class="text-danger">*</span></label>
-        <input id="title" type="text" class="form-control" name="title" placeholder="一句话描述你的问题">
+        <label for="title" class="vm-label">标题
+          <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="title" placeholder="一句话描述你的问题">
       </div>
       <div class="form-group">
         <div class="form-group-hd flex-justify-between">
-            <label class="vm-label">问题说明 <span class="vm-remark font-normal"> 可选填</span></label>
-            <!-- <span>
-                <i>A</i>
-                <i>口</i>
-            </span> -->
+          <label class="vm-label">问题说明
+            <span class="vm-remark font-normal"> 可选填</span>
+          </label>
         </div>
-        <div class="editor">
-            <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
+        <div class="editor form-control">
+          <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
         </div>
         <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
       </div>
       <div class="form-group">
-          <div class="form-group-hd flex-justify">
-              <label class="vm-label">选择标签</label>
-              <span class="vm-remark">标签越精准，越容易让相关领域专业人士看到你的问题</span>
-          </div>
-          <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :tags="tags"></input-tag>
-          <input type="hidden" name="tags" id="tags">
+        <div class="form-group-hd flex-justify">
+          <label class="vm-label">选择标签</label>
+          <span class="vm-remark">标签越精准，越容易让相关领域专业人士看到你的问题</span>
+        </div>
+        <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :tags="tags"></input-tag>
+        <input type="hidden" name="tags" id="tags">
       </div>
 
       <div class="form-group ask-reward">
-        <label class="vm-label">提供报酬 <span class="text-danger">*</span> <span
-          class="vm-remark font-normal"> 支持多项奖励并存</span></label>
+        <label class="vm-label">提供报酬
+          <span class="text-danger">*</span>
+          <span class="vm-remark font-normal"> 支持多项奖励并存</span>
+        </label>
         <div class="form-group-content">
           <div class="form-inline">
             <label>
-              金<span class="s-space"></span>币：
+              金
+              <span class="s-space"></span>币：
             </label>
-            <input type="text" class="form-control" name="coins" placeholder="数量"/> 个
+            <input type="text" class="form-control" name="jinbi" placeholder="数量" /> 个
           </div>
           <div class="form-inline">
             <label>
-              赏<span class="s-space"></span>金：
+              赏
+              <span class="s-space"></span>金：
             </label>
-            <input type="text" class="form-control" name="bounty" placeholder="金额"/> 元
+            <input type="text" class="form-control" name="yuan" placeholder="金额" /> 元
           </div>
           <div class="form-inline">
             <label>
               自定义：
             </label>
-            <input type="text" class="form-control vm-custom" name="promo" placeholder="任何你想到可以作为报酬的事物"/>
+            <input type="text" class="form-control vm-custom" name="zidingyi" placeholder="任何你想到可以作为报酬的事物" />
           </div>
         </div>
       </div>
@@ -76,12 +80,12 @@
         <div class="form-inline">
           <div class="radio">
             <label>
-              <input type="radio" name="city" value="杭州" checked>杭州
+              <input type="radio" name="area" value="310000" checked>杭州
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="city" value="所有城市">所有城市
+              <input type="radio" name="area" value="00000">所有城市
             </label>
           </div>
         </div>
@@ -101,26 +105,33 @@
         <div class="form-group">
           <label for="title" class="vm-label">任务有效时间</label>
           <div class="form-group-content">
-            <label><input type="radio" name="expired" value="A">不限</label>
-            <label><input type="radio" name="expired" value="B">半个月</label>
-            <label><input type="radio" name="expired" value="C">三天</label>
-            <label><input type="radio" name="expired" value="D">当天</label>
+            <label>
+              <input type="radio" name="validTime" value="max">不限</label>
+            <label>
+              <input type="radio" name="validTime" value="15day">半个月</label>
+            <label>
+              <input type="radio" name="validTime" value="3day">三天</label>
+            <label>
+              <input type="radio" name="validTime" value="1day">当天</label>
           </div>
         </div>
         <div class="form-group">
-          <label for="member_required" class="vm-label">设置为多人次任务</label>
+          <label for="" class="vm-label">设置为多人次任务</label>
           <div class="form-inline">
-            <input id="member_required" class="form-control form-control-sm" type="text"
-                   name="member_required" value=""
-                   placeholder="输入可以被多少人完成">
+            <input class="form-control form-control-sm" type="text" name="quantity" value="" placeholder="输入可以被多少人完成">
           </div>
         </div>
         <div class="form-group">
-          <label class="vm-label">设置任务响应条件<span class="vm-remark font-normal"> 符合或超出以下条件方能看到问题</span></label>
-
+          <label class="vm-label">设置任务响应条件
+            <span class="vm-remark font-normal"> 符合或超出以下条件方能看到问题</span>
+          </label>
+          <div class="form-inline">
+            <label>实名认证</label>
+            <input type="checkbox" name="authentication">
+          </div>
           <div class="form-inline">
             <label>会员等级</label>
-            <select class="form-control form-control-sm" name="member-level">
+            <select class="form-control form-control-sm" name="memberLevel" id="">
               <option value="0" selected>普通用户</option>
               <option value="1">大众会员</option>
               <option value="2">黄金会员</option>
@@ -130,33 +141,30 @@
           </div>
           <div class="form-inline">
             <label>芝麻信用</label>
-            <select class="form-control form-control-sm" name="ant_credit">
-              <option value="0" selected>普通</option>
-              <option value="A">良好（600分以上）</option>
-              <option value="B">优秀（650以上）</option>
-              <option value="C">极好（700分以上）</option>
-              <option value="D">750分以上</option>
-              <option value="E">800分以上</option>
-              <option value="F">850分以上</option>
+            <select class="form-control form-control-sm" name="creditRating" id="">
+              <option value="550" selected>普通</option>
+              <option value="600">良好（600分以上）</option>
+              <option value="650">优秀（650以上）</option>
+              <option value="700">极好（700分以上）</option>
+              <option value="750">750分以上</option>
+              <option value="800">800分以上</option>
+              <option value="850">850分以上</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label class="vm-label">定向发布</label>
+          <label for="" class="vm-label">定向发布</label>
           <div class="form-inline">
             <label>关注标签</label>
-            <input class="form-control form-control-sm" type="text" name="member_tags" value=""
-                   placeholder="搜索标签">
+            <input class="form-control form-control-sm" type="text" name="followTag" value="" placeholder="搜索标签">
           </div>
           <div class="form-inline">
-            <label>指定团队</label>
-            <input class="form-control form-control-sm" type="text" name="groups" value=""
-                   placeholder="搜索团队">
+            <label>指定圈子</label>
+            <input class="form-control form-control-sm" type="text" name="followTeam" value="" placeholder="搜索团队">
           </div>
           <div class="form-inline">
             <label>指定用户</label>
-            <input class="form-control form-control-sm" type="text" name="members" value=""
-                   placeholder="搜索用户">
+            <input class="form-control form-control-sm" type="text" name="followUser" value="" placeholder="搜索用户">
           </div>
         </div>
       </section>
@@ -168,14 +176,14 @@
       </a>
 
       <!--<div class="form-group">
-          <label for="title" class="vm-label">验证码</label>
-          <div class="form-inline">
-              <input type="text" class="vm-control" name="expect" />
-          </div>
-      </div>-->
+              <label for="title" class="vm-label">验证码</label>
+              <div class="form-inline">
+                  <input type="text" class="vm-control" name="expect" />
+              </div>
+          </div>-->
 
       <div class="ask-sure">
-        <button class="btn btn-primary">确定</button>
+        <button class="btn btn-primary" @click="submit">确定</button>
       </div>
     </form>
   </div>
@@ -186,7 +194,6 @@
       </section>
       <section class="ask-notes mt5">
         <h2>发布问题须知：</h2>
-        <br>
         <p>1. 只有带红色符号的为必填项，其他皆可不填。</p>
         <p>2. 金币用于兑换礼物，参与活动，作为提问或发布需求奖励，每个账号注册后自动发放50金币。</p>
         <p>3. 鼓励发布赏金任务，可获得系统奖励金币，当前余额不足时需要充值，可自由提现。</p>

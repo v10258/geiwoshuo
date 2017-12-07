@@ -1,0 +1,41 @@
+{
+    "success": true,
+    "code": 200,
+    "message": "",
+    "data": [
+        {
+            "name": "前端",
+            "tid": 1
+        },
+        {
+            "name": "Java",
+            "tid": 1
+        }
+    ]
+}
+
+{
+    "success": true,
+    "code": 200,
+    "message": "",
+    "data": {
+        "files": [
+            {
+                "url": "http://img.hb.aicdn.com/3a027b59bde54fa6368a5a076f868382c0d48e4217ca9-qQMKkm_fw658",
+                "name": "20161029104725217.jpg",
+                "type": "image/jpeg",
+                "size": 103102
+            }
+        ]
+    }
+}
+
+{
+    "success": true,
+    "code": 200,
+    "message": "",
+    "data": {
+      "qid": "3a027b59bde54fa6368a5a076f",
+      "url": "/post/3a027b59bde54fa6368a5a076f"
+    }
+}
