@@ -50,7 +50,15 @@ router.post('/add', async (req, res, next) => {
 
   try {
     const r = await post.save();
-    res.redirect('/post/' + r._id);// 跳转到详情页
+    //res.redirect('/post/' + r._id);// 跳转到详情页
+    res.json({
+      success: true, 
+      code: 200,
+      data: {
+        "qid": r._id,
+        "url": `/post/${r._id}`
+      }
+    });
   } catch (e) {
     next(e);
   }
@@ -74,7 +82,7 @@ router.get('/:post_id', F(async (req, res) => {
 /**
  * 添加评论
  */
-router.post('/:post_id/comment', async (req, res, next) => {
+router.post('/comment/:post_id', async (req, res, next) => {
   const {post_id} = req.params;
   const post = await Post.findById(post_id);
   if (!post || !post._doc) {

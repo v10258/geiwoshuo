@@ -18,6 +18,13 @@
   color: #fff;
   background-color: #1e9780;
   border-color: #1e9780;
+
+  &:hover,
+  &:active {
+    color: #fff;
+    background-color: #1e9780;
+    border-color: #1e9780;
+  }
 }
 
 .bs-btn-small {

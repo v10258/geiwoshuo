@@ -11,7 +11,8 @@ export const REMOTE = {
     doFollow: '/post/follows',
     queryAnswers: '/post/answers',
     queryAnswerCount: '/post/answerCount',
-    doVote:'post/vote'
+    doVote:'/post/vote',
+    comment: '/post/comment'
   },
   ask: {
     autoComplete: '/tag/auto_complete',
@@ -51,10 +52,10 @@ export const ajax = function (url, params, method = 'get') {
       reject('网络异常，请稍后再试!');
     }).catch(function(error){
       reject('网络异常，请稍后再试!');
-      alert('网络异常，请稍后再试!');
+      console.log('网络异常，请稍后再试!');
     })
   })
   .catch(function(){
-    alert('网络异常，请稍后再试!');
+    console.log('网络异常，请稍后再试!');
   })
 }

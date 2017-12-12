@@ -139,7 +139,7 @@ var app = new Vue({
       console.log('formData', formData)
       if (validResult.isRight) {
 
-        axios.post(REMOTE.ask.add, validResult).then(function(res){
+        axios.post(REMOTE.ask.add, formData).then(function(res){
           console.log('post', res)
           location.href = res.data.data.url;
         }).catch(function(){

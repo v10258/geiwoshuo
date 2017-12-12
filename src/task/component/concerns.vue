@@ -1,11 +1,7 @@
-var $ = require('jquery')
 
-import Vue from 'vue/dist/vue.js'
-import { REMOTE } from '../../common/js/ajax.js';
+<template>
 
-
-var componentTmpl = `
-<div>
+<section class="concerns">
   <div class="foucus-question">
     <span class="add-attention" @click="doFollow">
       <i>+</i>
@@ -24,10 +20,17 @@ var componentTmpl = `
       </li>
     </ul>
   </div>
-</div>
-`;
+</section>
 
-Vue.component('gws-concerns', {
+</template>
+
+<script>
+
+import { REMOTE, ajax } from '../../common/js/ajax.js'
+
+export default {
+  name: "concerns",
+
   props: ['qid'],
 
   data: function () {
@@ -42,8 +45,6 @@ Vue.component('gws-concerns', {
     }
   },
 
-  template: componentTmpl,
-
   created() {
     this.getTaskFollow(this.qid);
   },
@@ -51,30 +52,28 @@ Vue.component('gws-concerns', {
   methods: {
     getTaskFollow (qid) {
       console.log('qid', qid);
-      $.ajax({
-        url: `/post/${this.qid}/follows`,
-        type: 'get',
-        dataType: 'json'
-      }).done((result) => {
-        if (!result.success) return;
-        console.log();
-        this.users = result.data.users;
+      let self = this;
+
+      ajax(
+        REMOTE.task.taskFollows + `/${this.qid}`
+      )
+      .then(function(data){
+          console.log('doFollow', data);
+        self.users = data.users;
       })
     },
 
     doFollow (){
-      $.ajax({
-        url: `/post/${this.qid}/subscribe`,
-        type: 'post',
-        dataType: 'json'
-      }).done((result) => {
-        if (!result.success) return;
-        this.users.push(result.data);
+      let self = this;
+
+      ajax(
+        REMOTE.task.doFollow + `/${this.qid}`
+      )
+      .then(function(data){
+          console.log('taskFollows', data);
+        self.users.push(data);
       })
     }
   }
-})
-
-var app = new Vue({
-  el: '.concerns'
-})
+};
+</script>

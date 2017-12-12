@@ -3,26 +3,26 @@ require('./task.scss');
 require('../layout/header.js');
 require('../layout/footer.js');
 
-require('./js/follow.js');
-
 var $ = require('jquery')
 
 var scrollTo = require('jquery.scrollto')
 
 import Vue from 'vue/dist/vue.js'
-import { REMOTE } from '../common/js/ajax.js'
+import { REMOTE, ajax } from '../common/js/ajax.js'
 
-import taskFooter from './component/task-footer.vue' 
-import answerEditor from './component/answer-editor.vue' 
+import taskFooter from './component/task-footer.vue'
 import taskAnswer from './component/task-answer.vue'
+import answerEditor from './component/answer-editor.vue' 
+import concerns from './component/concerns.vue'
 
 var app = new Vue({
-  el: '#contentColumn',
+  el: '#content',
 
   components: {
-    answerEditor,
+    taskFooter,
     taskAnswer,
-    taskFooter
+    answerEditor,
+    concerns
   },
 
   data: {
@@ -57,7 +57,18 @@ var app = new Vue({
 
     answerSubmit(ev) {
       let qid = ev.target.dataset.qid;
+      let eleForm = this.$el.querySelector('#editor');
 
+      ajax(
+        REMOTE.task.comment + `/${this.qid}`,
+        {
+          body: eleForm.value
+        }
+      )
+      .then(function(data){
+        console.log('comment', arguments)
+        location.reload();
+      })
     }
   }
 })

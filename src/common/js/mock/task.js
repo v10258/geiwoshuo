@@ -55,4 +55,11 @@ export default function () {
     'message': '',
     'data': null
   })
+
+  Mock.mock(new RegExp(REMOTE.task.comment), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data': null
+  })
 }

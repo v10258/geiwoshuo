@@ -8,7 +8,7 @@ const schema = new Schema({
 
   title: {type: String, required: true},// 主标题
   body: {type: String},// 正文
-  tags: {type: Array, required: false},// 标签
+  tags: {type: [Schema.Types.Mixed], required: false},// 标签
   expired: {type: Date},// 过期时间
   creator: {type: String, required: true},// 创建人id
   created: {type: Date},// 创建时间

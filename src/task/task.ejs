@@ -326,11 +326,11 @@
         </article>
       </task-answer>
       
-      <section class="answer" id="answer">
+      <form class="answer" name="answer" id="answer">
         <div class="answer-title">
           我来回答：
         </div>
-        <answer-editor placeholder="关于问题的详细描述">
+        <answer-editor placeholder="关于问题的详细描述" body="" >
         </answer-editor>
         
         <div class="answer-addons">
@@ -361,13 +361,12 @@
             </div>
           </div>
         </div>
-      </section>
+      </form>
     </div>
     <aside class="content-sidebar">
-      <section class="concerns">
-        <!-- 关注组件需要传入问题qid -->
-        <gws-concerns qid="5a03177322aa7975e3a577cd"></gws-concerns>
-      </section>
+      <!-- 关注组件需要传入问题qid -->
+      <concerns qid="5a03177322aa7975e3a577cd">
+      </concerns>
 
       <section class="related">
         <div class="mod-tit">相关推荐</div>
@@ -389,7 +388,7 @@
     </aside>
   </main>
   <script>
-    window.__INITIAL_STATE__ = {
+    window.__INITIAL_DATA = {
       postId: '5a03177322aa7975e3a577cd'
     }
   </script>
