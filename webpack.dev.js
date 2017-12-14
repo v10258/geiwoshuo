@@ -17,7 +17,7 @@ var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'
 
 var config = {
   entry: {
-    vendor: ['jquery', 'popper.js', 'bootstrap', 'mock']
+    vendor: ['jquery', 'mock']
   },
   output: {
     filename: 'js/[name].js',
@@ -36,14 +36,7 @@ var config = {
     },
     {
       test: /\.vue$/,
-      loader: 'vue-loader',
-      options: {
-        loaders: {
-          'js': 'babel-loader',
-          'scss': 'vue-style-loader!css-loader!sass-loader',
-          'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-        }
-      }
+      use: 'vue-loader'
     },
     {
       test: /\.js$/,
@@ -72,7 +65,8 @@ var config = {
   },
   resolve: {
     alias: {
-      mock: path.resolve(__dirname, 'src/common/js/mock/mock.js')
+      mock: path.resolve(__dirname, 'src/common/js/mock/mock.js'),
+      vue: 'vue/dist/vue.js'
     }
   },
   // externals: {
@@ -83,7 +77,7 @@ var config = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      Popper: ['popper.js', 'default']
+      //Popper: ['popper.js', 'default']
     }),
     new CopyWebpackPlugin([
       { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/' },

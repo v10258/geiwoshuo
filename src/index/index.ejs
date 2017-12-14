@@ -9,13 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <%- include ../layout/bootstrap-css -%>
+  <script type="text/javascript">
+    window.__PAGE_INITAL = {
+      totalCount: 365
+    }
+  </script>
 </head>
 
 <body class="page-index">
   <%- include ../layout/header -%>
     <main id="content" class="container flex-justify-between">
       <div class="content-column" id="contentColumn">
-        <top-header :sort="sort" :page-num="pageNum" :page-count="pageCount" v-on:message="switchSort" >
+        <top-header >
         </top-header>
         
         <question-index :posts="posts">
@@ -605,6 +610,16 @@
             </div>
           </article>
         </question-index>
+
+        <div class="mt20 text-center">
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :current-page="pageNum"
+            :page-size="pageSize"
+            :page-count="pageCount">
+          </el-pagination>
+        </div>
       </div>
       <aside class="content-sidebar">
         <div id="ask" class="ask">

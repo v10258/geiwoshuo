@@ -40,7 +40,7 @@
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.5.0",
-    "vue-template-compiler": "^2.5.3",
+    "vue-template-compiler": "^2.5.10",
     "webpack": "2.5.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-manifest-plugin": "^1.1.0",
@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.1",
     "blueimp-file-upload": "^9.19.1",
@@ -55,6 +56,7 @@
     "bootstrap": "4.0.0-beta.2",
     "connect-mongo": "^2.0.0",
     "debug": "^3.1.0",
+    "element-ui": "^2.0.8",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "ionicons": "^3.0.0",
@@ -65,7 +67,8 @@
     "nunjucks": "^3.0.1",
     "popper.js": "^1.12.3",
     "tinymce": "^4.7.2",
-    "vue": "^2.5.9"
+    "vue": "^2.5.10",
+    "vuex": "^3.0.1"
   },
   "jest": {
     "watchman": false
