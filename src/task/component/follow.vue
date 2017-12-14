@@ -46,20 +46,18 @@ export default {
   },
 
   created() {
-    this.getTaskFollow(this.qid);
+    this.getTaskFollow();
   },
 
   methods: {
-    getTaskFollow (qid) {
-      console.log('qid', qid);
+    getTaskFollow () {
       let self = this;
 
       ajax(
-        REMOTE.task.taskFollows + `/${this.qid}`
+        REMOTE.task.taskFollows + `/${self.qid}`
       )
       .then(function(data){
-          console.log('doFollow', data);
-        self.users = data.users;
+        self.users = data;
       })
     },
 
@@ -67,10 +65,9 @@ export default {
       let self = this;
 
       ajax(
-        REMOTE.task.doFollow + `/${this.qid}`
+        REMOTE.task.doFollow + `/${self.qid}`
       )
       .then(function(data){
-          console.log('taskFollows', data);
         self.users.push(data);
       })
     }

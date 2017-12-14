@@ -6,15 +6,14 @@ export default function () {
     'success': true,
     'code': 200,
     'message': '',
-    'data|2-20': {
-      'count': 9,
-      'users': [{
+    'data|2-20': [
+      {
         'uid|+1': 1,
         'nickname': '@cname',
         'avatar': "@image('200x100', '#FF6600')",
         'url': '@url'
-      }]
-    }
+      }
+    ]
   })
 
   Mock.mock(new RegExp(REMOTE.task.doFollow), {

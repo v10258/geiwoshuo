@@ -21,8 +21,7 @@ tinymce.init({
   toolbar: ['bold italic title blockquote |  bullist numlist link hr | imagegws', 'fullscreen'],
 
   // 编辑区域应用样式
-  content_css: '/css/ask.css',
-  content_style: 'p {margin:0; line-height: 1.5;}',
+  content_style: ' p {margin:0; line-height: 1.5;}',
 
   // 去掉商标和路径
   branding: false,

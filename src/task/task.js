@@ -3,17 +3,14 @@ require('./task.scss');
 require('../layout/header.js');
 require('../layout/footer.js');
 
-var $ = require('jquery')
-
-var scrollTo = require('jquery.scrollto')
-
+import scrollTo from 'jquery.scrollto'
 import Vue from 'vue/dist/vue.js'
 import { REMOTE, ajax } from '../common/js/ajax.js'
 
 import taskFooter from './component/task-footer.vue'
 import taskAnswer from './component/task-answer.vue'
 import answerEditor from './component/answer-editor.vue' 
-import concerns from './component/concerns.vue'
+import follow from './component/follow.vue'
 
 var app = new Vue({
   el: '#content',
@@ -22,7 +19,7 @@ var app = new Vue({
     taskFooter,
     taskAnswer,
     answerEditor,
-    concerns
+    follow
   },
 
   data: {
