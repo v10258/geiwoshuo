@@ -23,7 +23,16 @@
           <% include "blocks/posts.html" %>
       </question-index>
       
-
+      <section class="mt20 text-center">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          @current-change="handleSizeChange"
+          :current-page="pageNum"
+          :page-size="pageSize"
+          :page-count="pageCount">
+        </el-pagination>
+      </section>
   </div>
   <aside class="content-sidebar">
     <div id="ask" class="ask">
