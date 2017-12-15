@@ -43,6 +43,7 @@ const actions = {
         pageSize: context.state.pageSize
       }
     ).then((data)=>{
+      console.log('queryQuestions data', data)
       context.commit('merge', {
         posts: data.list,
         sort: playload.sort,
