@@ -4,12 +4,13 @@ require('../layout/header.js')
 require('../layout/footer.js')
 
 import Vue from 'vue'
+import {mapState, mapGetters} from 'vuex';
 import {REMOTE, ajax} from '../common/js/ajax.js';
 import topHeader from './component/top-header.vue'
 import questionIndex from './component/question-index.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import Element from 'element-ui'
-import store from './store'
+import store from './store/store'
 
 Vue.use(Element)
 
@@ -23,45 +24,33 @@ var app = new Vue({
     questionIndex
   },
 
-  data: {
-    pageSize: 20,
-    posts: []
-  },
-
+  // 把stroe.js中的值，赋值给组件里data中的值
   computed: {
-    pageNum () {
-      return this.$store.state.pageNum
-    },
-    pageCount() {
-      return this.$store.state.pageCount
-    }
+    ...mapState([
+      'pageNum',
+      'pageSize',
+      'posts',
+      'sort'
+    ]),
+    ...mapGetters([
+      'pageCount'
+    ])
   },
 
   created() {
-    var self = this;
-
-    store.commit('init', {
-      pageCount: Math.ceil(window.__PAGE_INITAL.totalCount/self.pageSize),
-      pageNum: 1
+    // 初始化 store
+    store.commit('merge', {
+      postCount: window.__PAGE_INITAL.postCount,
+      pageNum: 1,
+      pageSize: 20
     })
   },
 
   methods: {
-    switchSort (type, pageNum) {
-      let self = this;
-		  let params = {
-        type: type,
-        pageNum: pageNum
-      };
-
-      self.sort = type;
-      self.pageNum = pageNum;
-
-      ajax({
-          url: REMOTE.index.queryQuestions,
-          params
-      }).then((data)=>{
-        self.posts = data.list;
+    handleSizeChange(val) {
+      this.$store.dispatch('getQuestions', {
+        sort: this.sort,
+        pageNum: val
       })
     }
   }

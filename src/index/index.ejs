@@ -11,7 +11,7 @@
   <%- include ../layout/bootstrap-css -%>
   <script type="text/javascript">
     window.__PAGE_INITAL = {
-      totalCount: 365
+      postCount: 365
     }
   </script>
 </head>
@@ -20,10 +20,10 @@
   <%- include ../layout/header -%>
     <main id="content" class="container flex-justify-between">
       <div class="content-column" id="contentColumn">
-        <top-header >
+        <top-header>
         </top-header>
         
-        <question-index :posts="posts">
+        <question-index>
           <article class="index-summary">
             <div class="-title">
               <a href="/task/6471953115175190798">有谁近期去韩国，需要代购奶粉</a>
@@ -615,6 +615,7 @@
           <el-pagination
             background
             layout="prev, pager, next"
+            @current-change="handleSizeChange"
             :current-page="pageNum"
             :page-size="pageSize"
             :page-count="pageCount">

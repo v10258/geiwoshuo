@@ -1,5 +1,4 @@
 
-
 <template>
   <section class="top-header">
     <nav class="top-header-nav">
@@ -17,30 +16,44 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
 
-  name: 'topHeader',
-
   computed: {
-    sort() {
-      return this.$store.state.sort
-    },
-    pageNum () {
-      return this.$store.state.pageNum
-    },
-    pageCount() {
-      return this.$store.state.pageCount
-    }
+    ...mapState([
+      'sort',
+      'pageNum'
+    ]),
+    ...mapGetters([
+      'pageCount'
+    ])
   },
 
   methods: {
-    ...mapMutations([
-      'pageNumMinus',
-      'pageNumPlus',
-      'switchSort'
-    ])
+    pageNumMinus() {
+      if (this.pageNum > 1) {
+        this.$store.dispatch('getQuestions', {
+          sort: this.sort,
+          pageNum: this.pageNum - 1
+        });
+      }
+    },
+    pageNumPlus() {
+      if (this.pageNum < this.pageCount) {
+        this.$store.dispatch('getQuestions', {
+          sort: this.sort,
+          pageNum: this.pageNum + 1
+        });
+      }
+    },
+    switchSort(sort) {
+      if (this.sort === sort) return
+      this.$store.dispatch('getQuestions', {
+        sort: sort,
+        pageNum: 1
+      });
+    }
   }
 };
 </script>

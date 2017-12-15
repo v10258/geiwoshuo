@@ -1,11 +1,7 @@
 
-<style>
-
-</style>
-
 <template>
 
-<div class="questions" id="questions">
+<section class="questions" id="questions">
     <article class="index-summary" v-for="post in posts" >
         <div class="-title">
             <a href="/task/${post.id}">{{post.title}}</a>
@@ -41,45 +37,19 @@
     <slot v-if="!posts.length">
 
     </slot>
-</div>
+</section>
 
 </template>
 
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
-  const $ = require('jquery');
-
-  export default {
-    name: 'QuestionIndex',
-
-    props: {
-      posts: {
-        type: Array,
-        default: () => []
-      }
-    },
-
-    data () {
-      return {
-        aaa: null
-      }
-    },
-
-    created() {
-      let self = this;
-    },
-
-    computed: {
-      post: function () {
-
-      }
-    },
-
-    methods: {
-      name () {
-          
-      }
-    }
+export default {
+  computed: {
+    ...mapState([
+      'posts'
+    ])
   }
+}
 </script>

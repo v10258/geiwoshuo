@@ -16,24 +16,14 @@
 <% include "layout/header.html" %>
 <main id="content" class="container flex-justify-between">
   <div class="content-column" id="contentColumn">
-    <section class="top-header">
-      <!-- <div class="top-header-title">
-          全部
-      </div> -->
-      <nav class="top-header-nav">
-        <a :class="{ active: navActive ==='hot' }" @click="navActive='hot'" href="javascript:;">热门</a>
-        <a :class="{ active: navActive ==='latest' }" @click="navActive='latest'" href="javascript:;">最新</a>
-        <a :class="{ active: navActive ==='bounty' }" @click="navActive='bounty'" href="javascript:;">赏金</a>
-        <a :class="{ active: navActive ==='promo' }" @click="navActive='promo'" href="javascript:;">推广</a>
-      </nav>
-      <div class="top-header-pager">
-        <span class="ion ion-ios-arrow-back"></span>
-        <span class="vm-num"><i>1</i>/1</span>
-        <span class="ion ion-ios-arrow-forward"></span>
-      </div>
-    </section>
+      <top-header>
+      </top-header>
 
-    <% include "blocks/posts.html" %>
+      <question-index>
+          <% include "blocks/posts.html" %>
+      </question-index>
+      
+
   </div>
   <aside class="content-sidebar">
     <div id="ask" class="ask">
