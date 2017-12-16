@@ -42,16 +42,14 @@ export const ajax = function (url, params, method = 'get') {
       timeout: 3000
     })
     .then(function(res) {
-      console.log(`url:${url}   res:`, res)
+      console.log(`url:${url} --- res:`, res)
       if (res.data.success) {
         resolve(res.data.data, res.data)
       } else {
         reject(res.data.message, res.data);
       }
-    },function(){
-      reject('网络异常，请稍后再试!');
-    }).catch(function(error){
-      reject('网络异常，请稍后再试!');
+    })
+    .catch(function(error){
       console.log('网络异常，请稍后再试!');
     })
   })

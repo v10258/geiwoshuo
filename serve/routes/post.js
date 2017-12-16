@@ -10,12 +10,14 @@ router.get('/error', F(async (req, res, next) => {
 /**
  * 任务列表
  */
-router.get('/', async (req, res) => {
+router.get('/query', async (req, res) => {
   const posts = await Post.find();
   console.log('posts', posts)
   res.json({
-    ok: true,
-    data: posts
+    success: true,
+    code: 200,
+    data: posts,
+    message: ''
   });
 });
 

@@ -5,12 +5,12 @@ require('../layout/footer.js')
 
 import Vue from 'vue'
 import {mapState, mapGetters} from 'vuex';
-import {REMOTE, ajax} from '../common/js/ajax.js';
 import topHeader from './component/top-header.vue'
 import questionIndex from './component/question-index.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import Element from 'element-ui'
 import store from './store/store'
+import scrollTo from 'jquery.scrollto'
 
 Vue.use(Element)
 
@@ -52,6 +52,7 @@ var app = new Vue({
         sort: this.sort,
         pageNum: val
       })
+      scrollTo(0, 300);
     }
   }
 })
