@@ -26,11 +26,16 @@
 
 <script>
 
+import { mapState, mapGetters } from 'vuex'
 import { REMOTE, ajax } from '../../common/js/ajax.js'
 
 export default {
 
-  props: ['qid'],
+  computed: {
+    ...mapState([
+      'qid'
+    ])
+  },
 
   data: function () {
     return {
@@ -45,6 +50,7 @@ export default {
   },
 
   created() {
+    console.log('follow', this.$store.state,  this.$store.state.qid)
     this.getTaskFollow();
   },
 

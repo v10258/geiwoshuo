@@ -76,23 +76,15 @@
             </p>
           </div>
         </div>
-        <task-footer qid="${post.qid}" :vote="${post.upvotes}">
-        </task-footer>
-      </section>
-      <section class="task-process">
-        <p class="task-process-step">
-          流程：响应问题（
-          <span class="text-success">3人</span>） —> 确认完成（
-          <span class="text-success">1人</span>） —> 获得报酬（
-          <span class="text-success">1人</span>）
-        </p>
-        <p class="task-process-state">
-          该问题已经有交付申请，等待发布者复核，继续提交可能无法被被采纳。
-        </p>
       </section>
 
+      <task-action>
+      </task-action>
 
-      <task-answer qid="${post.qid}" :page-num="pageNum" :page-size="pageSize">
+      <task-process>
+      </task-process>
+
+      <task-answer>
         <article class="answer-article">
           <div class="answer-article-hd">
             <p class="mod-user">
@@ -331,46 +323,11 @@
         </article>
       </task-answer>
 
-      <form class="answer" name="answer" id="answer">
-        <div class="answer-title">
-          我来回答：
-        </div>
-        <answer-editor placeholder="关于问题的详细描述" body="">
-        </answer-editor>
-
-        <div class="answer-addons">
-          <div class="answer-addons-tips">
-            <p v-if="joinChecked">
-              响应代表参与解决问题，你的回答将被标记，同时发布者会收到通知，解决问题后可以确认完成，由问题发布者发放报酬。
-            </p>
-            <p v-if="anonymousChecked">
-              此回答不会显示你的用户信息，也不会出现在个人动态中。
-            </p>
-          </div>
-          <div class="answer-addons-action">
-            <div class="mod-option">
-              <label class="vm-unname mr10">
-                <input type="checkbox" name="join" v-model="joinChecked">
-                <span>响应</span>
-              </label>
-              <label class="vm-unname">
-                <input type="checkbox" name="anonymous" v-model="anonymousChecked">
-                <span>匿名</span>
-              </label>
-            </div>
-
-            <div class="mod-submit">
-              <a class="bs-btn bs-btn-primary bs-btn-small" data-qid="5a03177322aa7975e3a577cd" @click="answerSubmit" href="javascript:;">
-                提交回答
-              </a>
-            </div>
-          </div>
-        </div>
-      </form>
+      <task-answer-form>
+      </task-answer-form>
     </div>
     <aside class="content-sidebar">
-      <!-- 关注组件需要传入问题qid -->
-      <follow qid="5a03177322aa7975e3a577cd">
+      <follow>
       </follow>
       <section class="related">
         <div class="mod-tit">相关推荐</div>

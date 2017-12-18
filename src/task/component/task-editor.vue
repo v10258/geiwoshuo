@@ -117,7 +117,7 @@ export default {
   },
 
   created () {
-      console.log('created', this.$el)
+    console.log('created', this.$el)
   },
 
   methods: {
