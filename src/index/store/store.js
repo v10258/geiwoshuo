@@ -34,21 +34,19 @@ const mutations = {
 // actions are functions that cause side effects and can involve asynchronous operations.
 const actions = {
   getQuestions (context, playload) {
+    let params = Object.assign({
+      sort: context.state.sort,
+      pageNum: context.state.pageNum,
+      pageSize: context.state.pageSize
+    }, playload);
 
     ajax(
       REMOTE.index.queryQuestions,
-      {
-        pageNum: playload.pageNum,
-        sort: playload.sort,
-        pageSize: context.state.pageSize
-      }
+      params
     ).then((data)=>{
       console.log('queryQuestions data', data)
-      context.commit('merge', {
-        posts: data,
-        sort: playload.sort,
-        pageNum: playload.pageNum
-      });
+      params.posts = data;
+      context.commit('merge', params);
     })
   }
 }
