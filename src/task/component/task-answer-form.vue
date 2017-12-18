@@ -147,6 +147,9 @@ export default {
 
   },
   computed: {
+    ...mapState([
+      'qid'
+    ]),
     body () {
        return this.$store.state.body
     },
@@ -176,6 +179,7 @@ export default {
 
   methods: {
     answerSubmit() {
+      let self = this;
       let state = this.$store.state;
       let body = tinymce.get('editor').getContent();
 
@@ -186,7 +190,7 @@ export default {
       })
 
       ajax(
-        REMOTE.task.comment + `/${state.qid}`,
+        REMOTE.task.comment + `/${self.qid}`,
         {
           body: body,
           joinChecked: state.joinChecked,

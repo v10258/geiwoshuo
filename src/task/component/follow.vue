@@ -34,18 +34,15 @@ export default {
   computed: {
     ...mapState([
       'qid'
-    ])
+    ]),
+    counts: function () {
+      return this.users.length || 0;
+    }
   },
 
   data: function () {
     return {
       users: []
-    }
-  },
-
-  computed: {
-    counts: function () {
-      return this.users.length || 0;
     }
   },
 
@@ -57,6 +54,8 @@ export default {
   methods: {
     getTaskFollow () {
       let self = this;
+
+      console.log()
 
       ajax(
         REMOTE.task.taskFollows + `/${self.qid}`
