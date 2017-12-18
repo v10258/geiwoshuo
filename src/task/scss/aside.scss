@@ -1,0 +1,42 @@
+.related {
+  margin-top: 30px;
+  line-height: 18px;
+
+  .related-list {
+    li {
+      padding: 5px 0;
+
+      a {
+        color: #585858;
+        font-size: 13px;
+        letter-spacing: .5px;
+        margin-right: 6px;
+      }
+
+      span {
+        font-size: 13px;
+        color: #7f7f7f;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.stats {
+  margin-top: 20px;
+
+  a {
+    color: #139065;
+  }
+
+  span {
+    margin: 0 8px;
+  }
+
+  .mod-state {
+    padding: 5px 0 18px;
+    line-height: 24px;
+    font-size: 13px;
+    color: #7f7f7f;
+  }
+}

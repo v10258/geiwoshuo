@@ -1,7 +1,7 @@
 
 <template>
 
-<section class="concerns">
+<section class="follow">
   <div class="foucus-question">
     <span class="add-attention" @click="doFollow">
       <i>+</i>
@@ -29,7 +29,6 @@
 import { REMOTE, ajax } from '../../common/js/ajax.js'
 
 export default {
-  name: "concerns",
 
   props: ['qid'],
 

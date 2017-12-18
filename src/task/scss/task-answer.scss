@@ -1,0 +1,138 @@
+
+
+.answer {
+  .answer-header {
+    @extend .flex-justify-between;
+    border-bottom:1px solid $text-color-light;
+    background: #f8f9fa;
+
+    .mod-nav {
+      @extend .flex;
+      color: $text-color-dark;
+      height: 32px;
+    
+      a {
+        height: 30px;
+        padding: 0 12px;
+        padding-bottom: 1px;
+        line-height: 32px;
+        color: #495057;
+    
+        span {
+          padding-left: 5px;
+          color: $text-color-light;
+        }
+      }
+    
+      .active {
+        border-style: solid;
+        border-width: 1px;
+        border-color: $border-color-base $border-color-base #fff;
+        border-radius: $border-radius-sm $border-radius-sm 0 0;
+        background-color: #fff;
+        box-sizing:content-box;
+      }
+    }
+    
+    .mod-rank {
+      line-height: 32px;
+    
+      .vm-tab {
+          cursor: pointer;
+    
+        &.active {
+          color: #4c9e82;
+          cursor: default;
+        }
+      }
+    
+      .vm-line {
+          margin: 0 8px;
+      }
+    }
+  }
+  .answer-list {
+    
+  }
+}
+
+.answer-article {
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 18px;
+  padding-top: 18px;
+
+  .answer-article-hd {
+    @extend .flex-item-center;
+    padding-bottom: 5px;
+    line-height: 25px;
+
+    .mod-user {
+      position: relative;
+      float: left;
+      padding-left: 32px;
+      min-height: 25px;
+      font-size: 14px;
+      color: #000;
+
+      .vm-avatar {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        border-radius: 50%;
+        background-position: 50% 50%;
+        background-size: cover;
+        left: 0;
+        top: 0;
+
+        &.anoy {
+          background-image: url(https://iknowpc.bdimg.com/static/pi-common/widget/feed-list/img/i-anoy-head_854e130.png);
+        }
+      }
+
+      .vm-nickname {
+        color: #000;
+      }
+    }
+
+    .mod-sign {
+      float: left;
+      font-size: 14px;
+      color: #7f7f7f;
+    }
+  }
+
+  .answer-article-addition {
+    margin-top: 10px;
+    color: #7f7f7f;
+    font-size: 13px;
+  }
+
+  .answer-article-ft {
+    position: relative;
+    margin-top: 10px;
+    font-size: 13px;
+
+    .mod-action {
+      @extend .flex-item-center;
+
+      .vm-thumbs {
+        margin-right: 18px;
+
+        button {
+          color: #8b8b8b;
+        }
+      }
+
+      a {
+        margin-right: 18px;
+        color: #7f7f7f;
+      }
+    }
+
+    .mod-pack {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+    }
+  }
+}

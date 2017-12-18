@@ -1,19 +1,19 @@
 
 <template>
 
-<section class="task-answer">
-  <div class="task-answer-header flex-justify-between">
+<section class="answer">
+  <div class="answer-header flex-justify-between">
       <nav class="mod-nav">
-        <a :class="{ active: sort ==='all' }" @click.prevent="sortHandler('all')" href="#">全部回答<span>{{answerNum}}</span></a>
-        <a :class="{ active: sort ==='actor' }" @click.prevent="sortHandler('actor')" href="#">只看响应<span>{{actorNum}}</span></a>
+        <a :class="{ active: sort ==='all' }" @click.prevent="switchSort('all')" href="#">全部回答<span>{{answerCount}}</span></a>
+        <a :class="{ active: sort ==='actor' }" @click.prevent="switchSort('actor')" href="#">只看响应<span>{{actorNum}}</span></a>
       </nav>
       <div class="mod-rank">
-        <span :class="['vm-tab', rank === 'hot' ? 'active' : '']" @click.prevent="rankHandler('hot')" data-href="#">热门排序</span>
+        <span :class="['vm-tab', rank === 'hot' ? 'active' : '']" @click.prevent="switchRank('hot')" data-href="#">热门排序</span>
         <span class="vm-line">|</span>
-        <span :class="['vm-tab', rank === 'date' ? 'active' : '']" @click.prevent="rankHandler('date')" data-href="#">时间排序</span>
+        <span :class="['vm-tab', rank === 'date' ? 'active' : '']" @click.prevent="switchRank('date')" data-href="#">时间排序</span>
       </div>
   </div>
-  <div class="task-answer-list">
+  <div class="answer-list">
     <article class="answer-article"  v-for="answer in answers" :key="answer.uid">
       <div class="answer-article-hd">
           <p class="mod-user">
@@ -72,80 +72,37 @@
 
 <script>
 
-import { REMOTE, ajax } from '../../common/js/ajax.js'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
-  name: "TaskAnswer",
 
-  props: {
-    qid: {
-      type: String,
-      required: true
-    },
-    pageNum: {
-      type: Number,
-      default: 1
-    },
-    pageSize: {
-      type: Number,
-      default: 10
-    }
-  },
-
-  data() {
-    return {
-      sort: 'all',
-      rank: 'hot',
-      answers: [],
-      answerNum: 0,
-      actorNum: 0
-    };
-  },
-
-  created () {
-    let self = this;
-
-    self.answerCount();
+  // 把stroe.js中的值，赋值给组件
+  computed: {
+    ...mapState([
+      'sort',
+      'rank',
+      'answers',
+    ]),
+    ...mapGetters([
+      'answerCount',
+      'actorNum'
+    ])
   },
 
   methods: {
-    sortHandler (type) {
-      if (type === this.sort) return;
-      this.sort = type;
-      this.rank = 'hot';
-      this.queryAnswers();
+    switchSort(sort) {
+      if (this.sort === sort) return
+      this.$store.dispatch('getAnswers', {
+        sort: sort,
+        pageNum: 1
+      });
     },
-    rankHandler (type) {
-      if (type === this.sort) return;
-      this.rank = type;
-      this.queryAnswers();
-    },
-    queryAnswers () {
-      let self = this;
-		  let params = {
-        qid: this.qid,
-        type: this.type,
-        rank: this.rank,
-        pageSize: this.pageSize,
-        pageNum: this.pageNum
-      };
-
-      ajax(
-        REMOTE.task.queryAnswers + `/${this.qid}`,
-        params
-      )
-      .then(function(data){
-        console.log('queryAnswers', arguments)
-        self.answers = data;
-      })
-    },
-    answerCount() {
-      let self = this;
-      ajax(REMOTE.task.queryAnswerCount + `/${this.qid}`)
-      .then(function(data){
-        self.answerNum = data.answerNum;
-        self.actorNum = data.actorNum;
-      })
+    switchRank(rank) {
+      if (this.rank === rank) return
+      this.$store.dispatch('getAnswers', {
+        rank: rank,
+        pageNum: 1
+      });
     }
   }
 };

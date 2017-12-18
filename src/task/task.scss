@@ -2,10 +2,15 @@
 @import "../common/scss/utils.scss";
 @import "../common/scss/icontag.scss";
 
-@import "../common/scss/components/comment.scss";
-//@import "../common/scss/components/editor.scss";
+// @import "../common/scss/components/comment.scss";
+// @import "../common/scss/components/editor.scss";
 
 @import "../common/scss/components/buttons.scss";
+
+@import "./scss/task-answer.scss";
+@import "./scss/follow.scss";
+@import "./scss/aside.scss";
+
 
 .task-header {
   .task-header-title {
@@ -53,7 +58,7 @@
   }
 
   .task-body-author {
-    margin-top: 30px;
+    margin-top: 20px;
     @extend .flex-justify-end;
 
     .mod-avatar {
@@ -84,23 +89,23 @@
       }
     }
   }
+}
 
-  .task-body-footer {
-    @extend .flex-item-center;
+.task-action {
+  @extend .flex-item-center;
 
-    margin-top: 20px;
-    font-size: 13px;
+  margin-top: 10px;
+  font-size: 13px;
 
-    > a {
-      margin-right: 18px;
-    }
+  > a {
+    margin-right: 18px;
+  }
 
-    .vm-thumbs {
-      margin-right: 18px;
+  .vm-thumbs {
+    margin-right: 18px;
 
-      a:first-child {
-        margin-right: 10px;
-      }
+    a:first-child {
+      margin-right: 10px;
     }
   }
 }
@@ -111,153 +116,6 @@
     border-top: 1px solid $text-color-light;
 }
 
-.task-answer {
-  .task-answer-header {
-    @extend .flex-justify-between;
-    border-bottom:1px solid $text-color-light;
-    background: #f8f9fa;
-
-    .mod-nav {
-      @extend .flex;
-      color: $text-color-dark;
-      height: 32px;
-    
-      a {
-        height: 30px;
-        padding: 0 12px;
-        padding-bottom: 1px;
-        line-height: 32px;
-        color: #495057;
-    
-        span {
-          padding-left: 5px;
-          color: $text-color-light;
-        }
-      }
-    
-      .active {
-        border-style: solid;
-        border-width: 1px;
-        border-color: $border-color-base $border-color-base #fff;
-        border-radius: $border-radius-sm $border-radius-sm 0 0;
-        background-color: #fff;
-        box-sizing:content-box;
-      }
-    }
-    
-    .mod-rank {
-      line-height: 32px;
-    
-      .vm-tab {
-          cursor: pointer;
-    
-        &.active {
-          color: #4c9e82;
-          cursor: default;
-        }
-      }
-    
-      .vm-line {
-          margin: 0 8px;
-      }
-    }
-  }
-  .task-answer-list {
-    
-  }
-}
-
-.concerns {
-    font-size: 13px;
-    margin-top: 15px;
-    border-bottom: 1px solid #e2e2e2;
-
-    .add-attention {
-        display: inline-block;
-        width: 100px;
-        height: 32px;
-        line-height: 30px;
-        border: 1px solid #c8d6df;
-        background: #f6f9fa;
-        text-align: center;
-        color: #585858;
-        border-radius: 5px;
-        box-sizing: border-box;
-        cursor: pointer;
-        -webkit-font-smoothing: subpixel-antialiased;
-
-        &:hover {
-            background-color: #f6f9fa;
-            border-color: #6da995;
-        }
-
-        &.hasAttention {
-            background-color: #efefef;
-            border: 0;
-            color: #7f7f7f;
-        }
-
-        i {
-            font-style: normal;
-            font-weight: 700;
-            margin-right: 4px;
-            font-size: 24px;
-            vertical-align: top;
-            height: 28px;
-            line-height: 28px;
-            color: #757575;
-        }
-    }
-
-    .attention-people {
-        margin-top: 18px;
-        margin-bottom: 20px;
-
-        .a-people {
-            font-size: 13px;
-            color: #585858;
-
-            .allAttentionPeople {
-                cursor: pointer;
-                color: #139065;
-                margin-right: 5px;
-            }
-        }
-
-        #a-user-list {
-            margin: 5px 0 20px;
-            font-size: 0;
-            max-height: 70px;
-            overflow: hidden;
-        }
-
-        li {
-            display: inline-block;
-            position: relative;
-            vertical-align: top;
-            font-size: 12px;
-            width: 25px;
-            height: 25px;
-            line-height: 40px;
-            color: #fff;
-            text-align: center;
-            border-radius: 40px;
-            margin-right: 5px;
-            margin-top: 10px;
-
-            .usr-ico {
-                width: 25px;
-                height: 25px;
-                position: absolute;
-                border-radius: 50%;
-                background-position: 50% 50%;
-                background-size: cover;
-                left: 0;
-                top: 0;
-            }
-        }
-    }
-}
 
 .related,
 .stats {
@@ -270,70 +128,27 @@
   }
 }
 
-.related {
-  margin-top: 30px;
-  line-height: 18px;
-
-  .related-list {
-    li {
-      padding: 5px 0;
-
-      a {
-        color: #585858;
-        font-size: 13px;
-        letter-spacing: .5px;
-        margin-right: 6px;
-      }
-
-      span {
-        font-size: 13px;
-        color: #7f7f7f;
-        display: inline-block;
-      }
-    }
-  }
-}
-
-.stats {
-  margin-top: 20px;
-
-  a {
-    color: #139065;
-  }
-
-  span {
-    margin: 0 8px;
-  }
-
-  .mod-state {
-    padding: 5px 0 18px;
-    line-height: 24px;
-    font-size: 13px;
-    color: #7f7f7f;
-  }
-}
-
-.answer {
+.answer-form {
   margin-bottom: 60px;
-}
 
-.answer-title {
-  font-size: 13px;
-  color: #585858;
-  margin-top: 20px;
-  line-height: 35px;
-}
-
-.answer-addons {
-  margin-top: 10px;
-
-  .answer-addons-tips {
+  .answer-form-title {
     font-size: 13px;
+    color: #585858;
+    margin-top: 20px;
+    line-height: 35px;
   }
 
-  .answer-addons-action {
-    @extend .flex-justify-between;
-    @extend .flex-item-center;
+  .answer-form-addons {
     margin-top: 10px;
+  
+    .mod-tips {
+      font-size: 13px;
+    }
+  
+    .mod-action {
+      @extend .flex-justify-between;
+      @extend .flex-item-center;
+      margin-top: 10px;
+    }
   }
 }
