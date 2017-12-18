@@ -16,7 +16,7 @@ export const REMOTE = {
   },
   ask: {
     autoComplete: '/tag/auto_complete',
-    fileupload: '/ask/fileupload',
+    fileupload: '/file/upload',
     add: '/post/add'
   }
 }

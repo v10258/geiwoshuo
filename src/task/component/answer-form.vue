@@ -9,7 +9,7 @@
 
   <div class="answer-form-editor ui-editor">
     <textarea class="autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
-    <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
+    <input style="display:none;" id="fileupload" type="file" name="files" multiple>
   </div>
 
   <div class="answer-form-addons">
@@ -81,7 +81,7 @@ tinymce.init({
   autoresize_max_height: 360,
   autoresize_bottom_margin: 30,
 
-  // 
+  //
   setup: function (editor) {
     editor.addButton('editor-control', {
       text: 'B',
@@ -114,7 +114,7 @@ tinymce.init({
         }).trigger('click');
       }
     })
-    
+
     editor.addButton('qr-code', {
       text: 'QR',
       icon: false,
@@ -129,7 +129,7 @@ tinymce.init({
       onclick: function() {
         editor.execCommand('mceToggleFormat', false, 'h2');
       },
-    
+
       onpostrender: function() {
         var btn = this;
         editor.on('init', function() {
@@ -138,7 +138,7 @@ tinymce.init({
           });
         });
       }
-    });    
+    });
   }
 })
 

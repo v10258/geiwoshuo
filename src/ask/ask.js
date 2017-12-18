@@ -4,19 +4,19 @@ require('../layout/header.js')
 
 var $ = require('jquery')
 
-$.fn.serializeObject = function() {    
-   var o = {};    
-   var a = this.serializeArray();    
-   $.each(a, function() {    
-       if (o[this.name]) {    
-           if (!o[this.name].push) {    
-               o[this.name] = [o[this.name]];    
-           }    
-           o[this.name].push(this.value || '');    
-       } else {    
-           o[this.name] = this.value || '';    
-       }    
-   });    
+$.fn.serializeObject = function() {
+   var o = {};
+   var a = this.serializeArray();
+   $.each(a, function() {
+       if (o[this.name]) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
    return o;
 };
 
@@ -56,7 +56,7 @@ tinymce.init({
   autoresize_max_height: 360,
   autoresize_bottom_margin: 30,
 
-  // 
+  //
   setup: function (editor) {
 
     editor.addButton('imagegws', {
@@ -64,7 +64,6 @@ tinymce.init({
       onclick: function () {
         $('#fileupload').fileupload({
           url: REMOTE.ask.fileupload,
-          dataType: 'json',
           done: function (ev, data) {
             console.log('result', data.result);
             editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
@@ -83,7 +82,7 @@ tinymce.init({
       onclick: function () {
         editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
       }
-    })   
+    })
   }
 })
 

@@ -3,7 +3,7 @@
 <template>
 <div class="ui-editor">
     <textarea class="autosize" id="editor" name="body" rows="3" :placeholder="placeholder" :value="in_body"></textarea>
-    <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
+    <input style="display:none;" id="fileupload" type="file" name="files" multiple>
 </div>
 </template>
 
@@ -43,7 +43,7 @@ tinymce.init({
   autoresize_max_height: 360,
   autoresize_bottom_margin: 30,
 
-  // 
+  //
   setup: function (editor) {
     editor.addButton('editor-control', {
       text: 'B',
@@ -76,7 +76,7 @@ tinymce.init({
         }).trigger('click');
       }
     })
-    
+
     editor.addButton('qr-code', {
       text: 'QR',
       icon: false,
@@ -91,7 +91,7 @@ tinymce.init({
       onclick: function() {
         editor.execCommand('mceToggleFormat', false, 'h2');
       },
-    
+
       onpostrender: function() {
         var btn = this;
         editor.on('init', function() {
@@ -100,7 +100,7 @@ tinymce.init({
           });
         });
       }
-    });    
+    });
   }
 })
 
