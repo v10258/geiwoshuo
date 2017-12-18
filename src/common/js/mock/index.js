@@ -19,7 +19,8 @@ export default function() {
         'upvotes|0-100': 1,
         'views|100-999': 1,
         'dynamic|50-200': 1
-      }]
+      }],
+      count: 189
     }
   })
 }

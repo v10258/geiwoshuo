@@ -18,14 +18,18 @@ const getters = {
 }
 
 const mutations = {
-  init(state, opts) {
-    for (var p in opts) {
-      if (opts.hasOwnProperty(p)) {
+  // 新增和设置
+  set(state, opts) {
+    if (Object.prototype.toString.call({}).toLowerCase() !== '[object object]') return;
+    for (let p in opts) {
+      if (state[p] === undefined) {
         Vue.set(state, p, opts[p])
+      } else {
+        state[p] = opts[p];
       }
     }
   },
-
+  // 合并
   merge(state, opts) {
     this.replaceState(Object.assign(state, opts));
   }
@@ -45,8 +49,9 @@ const actions = {
       params
     ).then((data)=>{
       console.log('queryQuestions data', data)
-      params.posts = data;
-      context.commit('merge', params);
+      params.posts = data.list;
+      params.postCount = data.count;
+      context.commit('set', params);
     })
   }
 }
