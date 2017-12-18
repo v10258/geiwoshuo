@@ -39,11 +39,7 @@ var app = new Vue({
 
   created() {
     // 初始化 store
-    store.commit('merge', {
-      postCount: window.__PAGE_INITAL.postCount,
-      pageNum: 1,
-      pageSize: 20
-    })
+    store.commit('merge', window.__PAGE_DATA)
   },
 
   methods: {
