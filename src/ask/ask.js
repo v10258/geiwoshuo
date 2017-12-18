@@ -36,8 +36,7 @@ tinymce.init({
   toolbar: ['link imagegws qr-code'],
 
   // 编辑区域应用样式
-  content_css: '/css/ask.css',
-  content_style: 'p {margin:0; line-height: 1.5;}',
+  content_style: ' p {margin:0; line-height: 1.5;}',
 
   // 去掉商标和路径
   branding: false,
@@ -135,6 +134,9 @@ var app = new Vue({
       let self = this;
       let formData = $('#askForm').serializeObject();
       let validResult = self.validate(formData);
+      let body = tinymce.get('editor').getContent();
+
+      formData.body = body;
 
       console.log('formData', formData)
       if (validResult.isRight) {
