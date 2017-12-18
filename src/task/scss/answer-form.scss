@@ -1,0 +1,24 @@
+.answer-form {
+  margin-bottom: 60px;
+
+  .answer-form-title {
+    font-size: 13px;
+    color: #585858;
+    margin-top: 20px;
+    line-height: 35px;
+  }
+
+  .answer-form-addons {
+    margin-top: 10px;
+  
+    .mod-tips {
+      font-size: 13px;
+    }
+  
+    .mod-action {
+      @extend .flex-justify-between;
+      @extend .flex-item-center;
+      margin-top: 10px;
+    }
+  }
+}

@@ -10,7 +10,7 @@ import store from './store/store'
 import taskAction from './component/task-action.vue'
 import taskProcess from './component/task-process.vue' 
 import taskAnswer from './component/task-answer.vue'
-import taskAnswerForm from './component/task-answer-form.vue' 
+import answerForm from './component/answer-form.vue' 
 import follow from './component/follow.vue'
 
 var app = new Vue({
@@ -22,7 +22,7 @@ var app = new Vue({
     taskAction,
     taskProcess,
     taskAnswer,
-    taskAnswerForm,
+    answerForm,
     follow
   },
 

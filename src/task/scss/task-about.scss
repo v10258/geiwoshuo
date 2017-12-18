@@ -1,0 +1,103 @@
+.task-header {
+  .task-header-title {
+    font-weight: normal;
+    font-size: 24px;
+    color: $text-color-dark;
+  }
+
+  .task-header-meta {
+    margin-top: 10px;
+
+    a {
+        color: $text-color-light;
+        border: 1px solid $text-color-light;
+        border-radius: 5px;
+        margin-right: 10px;
+        padding: 0px 5px;
+    }
+  }
+}
+
+.task-body {
+  .task-body-item {
+    margin-top: 20px;
+
+    dt {
+      font-weight: bold;
+    }
+  }
+
+  .task-body-info {
+    padding: 20px 0;
+  }
+
+  .task-body-action {
+    margin-top: 20px;
+
+    a {
+      margin-right: 10px;
+
+      i {
+          margin-right: 5px;
+      }
+    }
+  }
+
+  .task-body-author {
+    margin-top: 20px;
+    @extend .flex-justify-end;
+
+    .mod-avatar {
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .mod-info {
+      font-size: 12px;
+      line-height: 16px;
+
+      .vm-nickname {
+        margin-right: 5px;
+      }
+
+      .vm-member {
+        .ion {
+          &:before {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .mod-info-credit {
+      > span {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.task-action {
+  @extend .flex-item-center;
+
+  margin-top: 10px;
+  font-size: 13px;
+
+  > a {
+    margin-right: 18px;
+  }
+
+  .vm-thumbs {
+    margin-right: 18px;
+
+    a:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+.task-process {
+    margin: 10px 0;
+    padding: 20px 0;
+    border-top: 1px solid $text-color-light;
+}
