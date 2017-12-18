@@ -15,7 +15,7 @@ var outputPath = path.resolve(__dirname, 'public/');
 
 var config = {
   entry: {
-    vendor: ['jquery', 'vue', 'vuex']
+    vendor: ['jquery', 'vue', 'vuex', 'axios', 'element-ui']
   },
   output: {
     filename: 'js/[name].js',
