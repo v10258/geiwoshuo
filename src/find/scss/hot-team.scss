@@ -1,0 +1,43 @@
+
+.hot-team {
+  min-height: 300px;
+  margin-top: 30px;
+
+  .-header {
+    @extend .flex-justify-between;
+    
+    .-title,
+    .-more {
+      line-height: 24px;
+    }
+  }
+
+  .-list {
+    margin-top: 10px;
+  }
+
+  .-item {
+    padding: 2px 10px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $border-color-base;
+    border-radius: 15px;
+
+    &.active,
+    &:hover {
+      .-name {
+        color: #4c9e82;
+      }
+    }
+
+    .-name {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .-group {
+      display: none;
+    }
+  }
+}

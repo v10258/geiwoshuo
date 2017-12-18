@@ -1,0 +1,49 @@
+.follow-ctrl {
+  margin-top: 20px;
+}
+
+.follow-ctrl-tags {
+  .mod-interest {
+    margin-top: 10px;
+    border-top: 1px solid $border-color-base;
+
+    // border-bottom: 1px solid $border-color-base;
+    padding: 18px 0;
+
+    @extend .flex-wrap;
+
+    a {
+      display: block;
+      padding: 0 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      border: 1px solid #daecf5;
+      margin-right: 10px;
+
+      &:hover {}
+    }
+  }
+}
+
+.follow-ctrl-console {
+  border-bottom: 1px solid $border-color-base;
+  @extend .flex-item-center;
+  @extend .flex-justify-between;
+
+  .mod-rank {
+    line-height: 32px;
+  
+    .vm-tab {
+        cursor: pointer;
+  
+      &.active {
+        color: #4c9e82;
+        cursor: default;
+      }
+    }
+  
+    .vm-line {
+        margin: 0 8px;
+    }
+  }
+}

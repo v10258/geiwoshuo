@@ -1,0 +1,44 @@
+.hot-tag {
+  font-size: 13px;
+  min-height: 300px;
+  margin-top: 30px;
+
+  .-header {
+    @extend .flex-justify-between;
+
+    .-title,
+    .-more {
+      line-height: 24px;
+    }
+  }
+
+  .-list {
+    margin-top: 10px;
+    margin-bottom: -10px;
+  }
+
+  .-item {
+    @extend .flex-column;
+    position: relative;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $border-color-base;
+    padding-bottom: 5px;
+
+    .-avatar {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: $border-radius-sm;
+    }
+    .-info {
+      height: 40px;
+      margin-left: 50px;
+    }
+  }
+
+  .-link {
+    margin-top: 5px;
+    color: #585858;
+    letter-spacing: .5px;
+  }
+}
