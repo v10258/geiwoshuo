@@ -6,6 +6,11 @@ export const REMOTE = {
   index: {
     queryQuestions: '/post/query'
   },
+  ask: {
+    autoComplete: '/tag/auto_complete',
+    fileupload: '/file/upload',
+    add: '/post/add'
+  },
   task: {
     taskFollows: '/post/follows',
     doFollow: '/post/subscribe',
@@ -14,10 +19,8 @@ export const REMOTE = {
     doVote:'/post/vote',
     comment: '/post/comment'
   },
-  ask: {
-    autoComplete: '/tag/auto_complete',
-    fileupload: '/file/upload',
-    add: '/post/add'
+  find: {
+    relatedQuestions: 'find/related'
   }
 }
 

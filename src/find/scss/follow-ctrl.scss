@@ -20,7 +20,11 @@
       border: 1px solid #daecf5;
       margin-right: 10px;
 
-      &:hover {}
+      &.active,
+      &:hover {
+        background: #4c9e82;
+        color: #fff;
+      }
     }
   }
 }

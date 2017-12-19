@@ -9,10 +9,20 @@ const state = {
   rank: 'hot',
   pageNum: 1,
   pageSize: 20,
+  activeTag: '',
+  interestTags:[],
+  recommendTags: [],
   questions: []
 }
 
 const getters = {
+  tags(state) {
+    let tagData = state.interestTags.length ? state.interestTags : state.recommendTags;
+    return tagData.reduce(function(accumulator, currentVal){
+      console.log('accumulator, currentVal', accumulator, currentVal)
+      accumulator[currentVal.tid] = currentVal.name
+    }, {})
+  }
   //pageCount: state => Math.ceil(state.postCount/state.pageSize)
 }
 
@@ -42,20 +52,21 @@ const actions = {
   getTeams() {
 
   },
-  getQuestions (context, playload) {
+  queryRelatedQuestions (context, playload) {
     let params = Object.assign({
-      sort: context.state.sort,
+      rank: context.state.rank,
       pageNum: context.state.pageNum,
-      pageSize: context.state.pageSize
+      pageSize: context.state.pageSize,
+      activeTag: context.state.activeTag
     }, playload);
 
     ajax(
-      REMOTE.index.queryQuestions,
+      REMOTE.find.relatedQuestions,
       params
     ).then((data)=>{
-      console.log('queryQuestions data', data)
+      console.log('queryRelatedQuestions data', data)
       params.posts = data;
-      context.commit('merge', params);
+      context.commit('set', params);
     })
   }
 }
