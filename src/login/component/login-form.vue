@@ -6,8 +6,7 @@
     <a @click="switchType('regist')" :class="{ active: type === 'regist' }" data-type="regist" href="javascript:;">注册</a>
   </div>
   <div class="login-type">
-    <form action="/auth/login/" method="POST">
-
+    <form :action="actionUrl" method="POST">
         <template v-if="type === 'login' && loginType === 2">
           <div class="-group">
             <input class="-control" id="account" type="text" name="account" autocomplete="off" placeholder="邮箱／手机号">
@@ -75,6 +74,9 @@ export default {
     ]),
     submitText() {
       return this.$store.state.type === 'login' ? '登录' : '注册'
+    },
+    actionUrl() {
+      return this.$store.state.type === 'login' ? '/user/login' : '/user/signup'
     },
     loginTypeText() {
       var text = '';
