@@ -13,10 +13,15 @@ router.get('/error', F(async (req, res, next) => {
 router.get('/query', async (req, res) => {
   const posts = await Post.find();
   console.log('posts', posts)
+
+  // 获取当前类目下问题数
   res.json({
     success: true,
     code: 200,
-    data: posts,
+    data: {
+      list: posts,
+      count: 198
+    },
     message: ''
   });
 });
