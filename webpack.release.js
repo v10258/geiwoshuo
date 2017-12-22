@@ -3,22 +3,23 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const argv = require('yargs').argv;
-let isProduction = process.env.NODE_ENV === 'production';
+var isProduction = process.env.NODE_ENV === 'production';
 
-// 构建目录，构建入口, 如果没有子目录 index 改为空字符串即可
-var submodule = argv.define || 'index';
-var entryFileName = submodule;
+// 构建目录，构建入口, 如果没有指定模块则默认全部模块
+var activeModule = argv.define || 'all';
+var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre', 'login', 'setting'];
 
-var outputPath = path.resolve(__dirname, 'public/', submodule);
-var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
+var outputPath = path.resolve(__dirname, 'public/');
 
 var config = {
   entry: {
-    vendor: ['jquery', 'popper.js', 'bootstrap']
+    vendor: ['jquery', 'vue', 'vuex', 'axios']
   },
   output: {
-    filename: 'js/[name]-[chunkhash:8].js',
+    filename: 'js/[name].js',
     path: outputPath
   },
   module: {
@@ -32,12 +33,17 @@ var config = {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'autoprefixer-loader', 'sass-loader']
+        use: ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       })
     }, {
       test: /\.ejs$/,
       use: 'ejs-compiled-loader'
-    }, {
+    },
+    {
+      test: /\.vue$/,
+      use: 'vue-loader'
+    },
+    {
       test: /\.js$/,
       use: 'babel-loader'
     }, {
@@ -46,8 +52,9 @@ var config = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name]-[hash:8].[ext]',
-          useRelativePath: isProduction
+          name: '[name].[ext]',
+          publicPath: '../',
+          outputPath: 'img/'
         }
       }]
     }, {
@@ -56,22 +63,38 @@ var config = {
         loader: 'url-loader',
         options: {
           limit: 1000,
-          name: '[name]-[hash:8].[ext]',
-          useRelativePath: isProduction
+          name: '[name].[ext]',
+          publicPath: '../',
+          outputPath: 'font/'
         }
       }]
     }]
   },
+  resolve: {
+    alias: {
+      mock: path.resolve(__dirname, 'src/common/js/mock/mock.js'),
+      vue: 'vue/dist/vue.js'
+    }
+  },
   plugins: [
-    // 页面集成
-    new HtmlWebpackPlugin({
-      template: path.resolve('src/', submodule, entryFileName + '.ejs')
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      //Popper: ['popper.js', 'default']
     }),
+    new CopyWebpackPlugin([
+      { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/' },
+      { from: 'node_modules/tinymce/plugins', to: 'js/plugins' },
+      { from: 'node_modules/tinymce/themes', to: 'js/themes' },
+      { from: 'node_modules/tinymce/skins', to: 'js/skins' }
+    ]),
     // 抽出样式
-    new ExtractTextPlugin(entryFileName + '-[chunkhash:8].css'),
+    new ExtractTextPlugin('[name]-[chunkhash:8].css'),
     // 抽出公共文件vendor依赖，manifest运行时信息
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest']
+      //name: ['vendor', 'manifest']
+      name: 'vendor',
+      minChunks: Infinity,
     }),
     // 定义组件内环境变量
     new webpack.DefinePlugin({
@@ -80,19 +103,35 @@ var config = {
       }
     }),
     // 代码压缩优化
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true
-      }
-    }),
+    new UglifyJsPlugin(),
     // 文件清单
     new ManifestPlugin()
   ]
 };
-config.entry[entryFileName] = entryPath;
 
-console.log('entry', path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'));
-console.log('template', path.resolve('src/', submodule, entryFileName + '.ejs'));
+console.log('activeModule', activeModule)
+if (activeModule === 'all') {
+  modules.forEach((n, i) => {
+    config.entry[n] = path.resolve(__dirname, 'src/', n, n + '.js');
+
+    // //页面集成
+    config.plugins.push(new HtmlWebpackPlugin({
+      chunks: ['vendor',n],
+      template: path.resolve(__dirname, 'src/', n, n + '.ejs'),
+      filename: 'template/' + n + '.html'
+    }));
+
+    console.log('entry', path.resolve(__dirname, 'src/', n, n + '.js'));
+  })
+} else {
+  config.entry[activeModule] = path.resolve(__dirname, 'src/', activeModule, activeModule + '.js');
+
+  //页面集成
+  config.plugins.push(new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'src/', activeModule, activeModule + '.ejs'),
+    filename: 'template/' + activeModule + '.html'
+  }));
+  console.log('entry', path.resolve(__dirname, 'src/', activeModule, activeModule + '.js'));
+}
 
 module.exports = config;
