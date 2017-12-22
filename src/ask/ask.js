@@ -27,7 +27,7 @@ var tinymce = require('../common/js/tinymce/tinymce.min.js')
 import { REMOTE, axios } from '../common/js/ajax.js'
 
 import Vue from 'vue/dist/vue.js'
-import inputTag from '../common/component/inputTag.vue'
+import inputTag from '../common/component/input-tag.vue'
 
 tinymce.init({
   selector: 'textarea#editor',
