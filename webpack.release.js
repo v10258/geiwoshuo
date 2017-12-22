@@ -89,7 +89,9 @@ var config = {
       { from: 'node_modules/tinymce/skins', to: 'js/skins' }
     ]),
     // 抽出样式
-    new ExtractTextPlugin('[name]-[chunkhash:8].css'),
+    new ExtractTextPlugin({
+      filename: 'css/[name]-[chunkhash:8].css'
+    }),
     // 抽出公共文件vendor依赖，manifest运行时信息
     new webpack.optimize.CommonsChunkPlugin({
       //name: ['vendor', 'manifest']
