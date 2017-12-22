@@ -26,8 +26,9 @@ var tinymce = require('../common/js/tinymce/tinymce.min.js')
 
 import { REMOTE, axios } from '../common/js/ajax.js'
 
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue'
 import inputTag from '../common/component/input-tag.vue'
+import swal from 'sweetalert'
 
 tinymce.init({
   selector: 'textarea#editor',
@@ -149,7 +150,7 @@ var app = new Vue({
 
       } else {
         // todo: 验证失败
-        alert(validResult.message);
+        swal(validResult.message);
       }
     }
   }
