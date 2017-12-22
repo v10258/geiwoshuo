@@ -19,7 +19,7 @@ var config = {
     vendor: ['jquery', 'vue', 'vuex', 'axios']
   },
   output: {
-    filename: 'js/[name].js',
+    filename: 'js/[name]-[chunkhash:8].js',
     path: outputPath
   },
   module: {
