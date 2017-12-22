@@ -17,7 +17,7 @@ var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'
 
 var config = {
   entry: {
-    vendor: ['jquery', 'vue', 'vuex', 'axios', 'element-ui', 'mock']
+    vendor: ['jquery', 'vue', 'vuex', 'axios', 'mock']
   },
   output: {
     filename: 'js/[name].js',

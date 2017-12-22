@@ -7,7 +7,7 @@
     </div>
     <div class="-info">
       <% for tag in post.tags %>
-      <a href="#">${tag}</a>
+      <a data-tid="${tag.tid}" href="/tags/${tag.tid}">${tag.name}</a>
       <% endfor %>
 
       <span>发布于 5 小时前</span>

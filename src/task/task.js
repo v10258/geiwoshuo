@@ -4,7 +4,7 @@ require('../layout/header.js');
 require('../layout/footer.js');
 
 import scrollTo from 'jquery.scrollto'
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue'
 import store from './store/store'
 
 import taskAction from './component/task-action.vue'
