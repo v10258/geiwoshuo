@@ -15,6 +15,7 @@ const post = require('./routes/post');
 const auth = require('./routes/auth');
 const tag = require('./routes/tag');
 const file = require('./routes/file');
+const code = require('./routes/code');
 
 const session = require('./routes/middlewares/session');
 const login_required = require('./routes/middlewares/login_requred');
@@ -34,6 +35,7 @@ app.use('/post', post);
 app.use('/auth', auth);
 app.use('/tag', tag);
 app.use('/file', file);
+app.use('/code', code);
 
 nunjucks.configure(__dirname + '/templates', {
   autoescape: true,
@@ -86,7 +88,7 @@ app.use((err, req, res, next) => {
   res.status(code);
   res.json({
     success: false,
-    message: err.message,
+    message: err.message || err,
     code
   });
 });

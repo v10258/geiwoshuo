@@ -5,6 +5,7 @@ const Post = require('./schemas/Post');
 const User = require('./schemas/User');
 const Tag = require('./schemas/Tag');
 const Comment = require('./schemas/Comment');
+const VerificationCode = require('./schemas/VerificationCode');
 
 const {mongo} = require('./config');
 
@@ -23,6 +24,7 @@ module.exports = {
   User,
   Tag,
   Comment,
+  VerificationCode,
   stats() {
     // 统计各记录的条数
     return [Post].map(async m => ({name: m.modelName, count: await m.count()}));

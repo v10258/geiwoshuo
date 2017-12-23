@@ -1,7 +1,7 @@
 const nanoid = require('nanoid');
 const router = require('express').Router();
 const login_required = require('./middlewares/login_requred');
-const {User} = require('../mongo');
+const {User, VerificationCode} = require('../mongo');
 const F = require('./Factory');
 const crypt = require('../util/crypt');
 
@@ -16,11 +16,18 @@ router.get('/', F(async (req, res) => {
 
 /**
  * 注册新用户
+ *
+ * 1. 提供手机号和验证码: curl 127.0.0.1:3001/user/signup -d 'phone=12345&code=2314'
  */
 router.post('/signup', F(async (req, res, next) => {
   const {phone, code = '123', captcha} = req.body;
 
-  // todo 校验 手机短信及验证码
+  const vc = await VerificationCode.findOne({phone, type: 'SIGNUP', code});
+  if (!vc) {
+    return next('Invalid code.');
+  } else {
+    await vc.remove();
+  }
 
   const user = Object.assign(new User, {
     phone,
@@ -35,6 +42,9 @@ router.post('/signup', F(async (req, res, next) => {
 
 /**
  * 检查电话或邮箱是否可用
+ *
+ * 1. 检查电话是否可用: curl '127.0.0.1:3001/user/check?type=phone&value=123453242'
+ * 2. 检查邮箱是否可用: curl '127.0.0.1:3001/user/check?type=email&value=youmoo@vellichor.me'
  */
 router.get('/check', F(async (req, res, next) => {
   const {type, value} = req.query;
