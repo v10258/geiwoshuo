@@ -17,6 +17,7 @@ export default function() {
         }],
         'last_modified': "@datetime('yyyy-MM-dd HH:mm')",
         'upvotes|0-100': 1,
+        'downvotes|0-100': 99,
         'views|100-999': 1,
         'dynamic|50-200': 1
       }],

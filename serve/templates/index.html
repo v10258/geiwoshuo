@@ -10,11 +10,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css"/>
   <link href="/css/index.css" rel="stylesheet">
-  <script type="text/javascript">
-    window.__PAGE_INITAL = {
-      postCount: 365
-    }
-  </script>
 </head>
 
 <body class="page-index">
@@ -25,7 +20,6 @@
       </top-header>
 
       <question-index>
-          <% include "blocks/posts.html" %>
       </question-index>
       
       <section class="mt20 text-center">
@@ -126,7 +120,11 @@
   </aside>
 </main>
 <% include "layout/footer.html" %>
-
+<script type="text/javascript">
+  window.__PAGE_STATE = {};
+  window.__PAGE_STATE['postCount'] = 365;
+  //window.__PAGE_STATE['posts'] = ${ posts | safe };
+</script>
 <script type="text/javascript" src="/js/vendor.js"></script>
 <script type="text/javascript" src="/js/index.js"></script>
 </body>
