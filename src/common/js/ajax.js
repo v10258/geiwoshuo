@@ -21,6 +21,10 @@ export const REMOTE = {
   },
   find: {
     relatedQuestions: 'find/related'
+  },
+  user: {
+    login: '/user/login',
+    regist: '/user/signup'
   }
 }
 
@@ -35,13 +39,17 @@ export const REMOTE = {
  */
 
 export const ajax = function (url, params, method = 'get') {
-  let data = null;
+  let data;
+  if (method === 'post') {
+    data = params;
+    params = null;
+  }
   return new Promise((resolve, reject) => {
     axios({
       url: url,
       method: method,
       params: params,
-      data: null,
+      data: data,
       timeout: 3000
     })
     .then(function(res) {

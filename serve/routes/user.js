@@ -20,9 +20,9 @@ router.get('/', F(async (req, res) => {
  * 1. 提供手机号和验证码: curl 127.0.0.1:3001/user/signup -d 'phone=12345&code=2314'
  */
 router.post('/signup', F(async (req, res, next) => {
-  const {phone, code = '123', captcha} = req.body;
+  const {account, captcha, code = '123', dataType} = req.body;
+  const vc = await VerificationCode.findOne({phone: account, type: 'SIGNUP', code});
 
-  const vc = await VerificationCode.findOne({phone, type: 'SIGNUP', code});
   if (!vc) {
     return next('Invalid code.');
   } else {
@@ -30,14 +30,23 @@ router.post('/signup', F(async (req, res, next) => {
   }
 
   const user = Object.assign(new User, {
-    phone,
+    phone: account,
     created: new Date
   });
 
   await user.save();
   req.session.user_id = user._id;
 
-  res.redirect('/user');
+  // ajax 注册
+  if (dataType === 'json') {
+    res.json({
+      success: true,
+      code: 200
+    })
+  // 表单提交
+  } else {
+    res.redirect('/user');
+  }
 }));
 
 /**
@@ -69,7 +78,8 @@ router.post('/setting/info', login_required, F(async (req, res, next) => {
 }));
 
 router.post('/login', F(async (req, res, next) => {
-  const {account = '', password} = req.body;
+  const {account = '', password, captcha, code, dataType} = req.body;
+
   let query;
   if (/^\d+$/.test(account)) {
     query = {phone: account};
@@ -86,7 +96,22 @@ router.post('/login', F(async (req, res, next) => {
     return next(new Error('Username or password is incorrect.'));
   }
   req.session.user_id = user._id;
-  res.redirect('/');
+
+  // ajax 登录
+  if (dataType === 'json') {
+    res.json({
+      success: true,
+      data: {
+        userId: user._id,
+        name: user.name,
+        avatar: user.avatar
+      },
+      code: 200
+    })
+  // 表单提交
+  } else {
+    res.redirect('/');
+  }
 }));
 
 

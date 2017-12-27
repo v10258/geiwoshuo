@@ -98,7 +98,21 @@ var app = new Vue({
     isShowAskMore: false,
     autoCompleteUrl: REMOTE.ask.autoComplete,
     placeholder: 'aaa',
-    tags: []
+    tags: [],
+    isLogin: false
+  },
+  created() {
+    let self = this;
+    self.isLogin = window.__PAGE_STATE['isLogin'];
+
+    //监听消息反馈
+    window.addEventListener('message',function(event) {
+      console.log('message event', event);
+      if (event.origin && event.data) {
+        self.isLogin = true;
+      }
+    },false);
+
   },
   watch: {
     tags: function () {
@@ -129,6 +143,9 @@ var app = new Vue({
 
       return result;
     },
+    openLogin() {
+      let loginWindow = window.open('/login', 'loginWindow');
+    },
     submit (ev) {
       ev.preventDefault();
       let self = this;
@@ -139,18 +156,18 @@ var app = new Vue({
       formData.body = body;
 
       console.log('formData', formData)
-      if (validResult.isRight) {
-
+      if (!validResult.isRight) {
+        // todo: 验证失败
+        swal(validResult.message);
+      } else if (!self.isLogin) {
+        self.openLogin();
+      } else {
         axios.post(REMOTE.ask.add, formData).then(function(res){
           console.log('post', res)
           location.href = res.data.data.url;
         }).catch(function(){
           console.log('catch erro ', arguments)
         })
-
-      } else {
-        // todo: 验证失败
-        swal(validResult.message);
       }
     }
   }
