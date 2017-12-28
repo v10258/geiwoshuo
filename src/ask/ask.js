@@ -108,7 +108,7 @@ var app = new Vue({
     //监听消息反馈
     window.addEventListener('message',function(event) {
       console.log('message event', event);
-      if (event.origin && event.data) {
+      if (event.origin && event.data && event.data.key === 'login') {
         self.isLogin = true;
       }
     },false);

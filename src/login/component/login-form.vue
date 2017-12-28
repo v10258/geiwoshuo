@@ -105,6 +105,7 @@ export default {
     },
 
     postMessage(data) {
+      data.key = 'login';
       window.name = 'login';
       window.opener && window.opener.postMessage(data, '/');
     },
