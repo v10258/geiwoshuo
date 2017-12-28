@@ -11,8 +11,9 @@ router.get('/error', F(async (req, res, next) => {
  * 任务列表
  */
 router.get('/query', async (req, res) => {
-  const posts = await Post.find();
-  console.log('posts', posts)
+  //const posts = await Post.find();
+  const querys = req.query;;
+  const posts = await Post.findByParam(querys);
 
   // 获取当前类目下问题数
   res.json({
@@ -42,6 +43,7 @@ router.post('/add', async (req, res, next) => {
     });
 
     if (newTags && newTags.length) {
+
       newTags = await Tag.create(newTags);
       tags = tags.concat(newTags).filter((tag)=>{
         return !!tag.tid

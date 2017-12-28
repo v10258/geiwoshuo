@@ -55,6 +55,24 @@ schema.statics.findByType = function (type = 'HOT') {
   }
 };
 
+schema.statics.findByParam = function(querys){
+  let start = (querys.pageNum - 1) * querys.pageSize;
+  let type = querys.sort;
+  let pageSize = Number(querys.pageSize);
+
+  if (type === 'hot') {//热门
+    return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
+  } else if (type === 'latest') {//最新
+    return this.find({}).sort({created: 1}).skip(start).limit(pageSize);
+  } else if (type === 'bounty') {//赏金
+    return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
+  } else if (type === 'promo') {//推广
+    return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
+  } else {
+    throw Error('Unsupported type: ' + type);
+  } 
+}
+
 /**
  * 热门标签
  */

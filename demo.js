@@ -56,7 +56,7 @@ app.get('/centre', function(req, res) {
   res.render('centre.html');
 });
 
-app.get('/task/:id', function(req, res) {
+app.get('/post/:id', function(req, res) {
   res.render('task.html');
 });
 

@@ -50,7 +50,7 @@ export const ajax = function (url, params, method = 'get') {
       method: method,
       params: params,
       data: data,
-      timeout: 3000
+      timeout: 6000
     })
     .then(function(res) {
       console.log(`url:${url} --- res:`, res)
