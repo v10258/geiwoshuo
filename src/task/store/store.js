@@ -95,13 +95,16 @@ const actions = {
       pageSize: context.state.pageSize
     }, playload);
 
+    context.commit('set', params);
+
     ajax(
       REMOTE.task.queryAnswers + `/${context.state.qid}`,
       params
     ).then((data)=>{
       console.log('getAnswers data', data)
-      params.answers = data;
-      context.commit('merge', params);
+      context.commit('set', {
+        answers: data
+      });
     })
   }
 }
