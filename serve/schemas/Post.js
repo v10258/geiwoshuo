@@ -9,7 +9,7 @@ const schema = new Schema({
   title: {type: String, required: true},// 主标题
   body: {type: String},// 正文
   tags: {type: [{
-    tid: String,
+    id: String,
     name: String
   }]},// 标签
   expired: {type: Date},// 过期时间
@@ -70,7 +70,7 @@ schema.statics.findByParam = function(querys){
     return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
   } else {
     throw Error('Unsupported type: ' + type);
-  } 
+  }
 }
 
 /**

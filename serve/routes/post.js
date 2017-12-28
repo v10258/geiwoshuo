@@ -32,36 +32,34 @@ router.get('/query', async (req, res) => {
  * 添加新任务
  */
 router.post('/add', async (req, res, next) => {
-  const post = new Post();
   let tags = req.body.tags && JSON.parse(req.body.tags);
   let newTags;
 
   // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
   if (tags && tags.length) {
     newTags = tags.filter((tag)=>{
-      return !tag.tid;
+      return !tag.id;
     });
 
     if (newTags && newTags.length) {
 
       newTags = await Tag.create(newTags);
       tags = tags.concat(newTags).filter((tag)=>{
-        return !!tag.tid
+        return !!tag.id
       })
     }
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-
-  Object.assign(post, req.body, {creator: req.session.user_id, tags: tags });
+  const post = Object.assign({}, req.body, {creator: req.session.user_id, tags});
 
   post.created = new Date();
 
   try {
-    const r = await post.save();
+    const r = await Post.create(post);
     //res.redirect('/post/' + r._id);// 跳转到详情页
     res.json({
-      success: true, 
+      success: true,
       code: 200,
       data: {
         "qid": r._id,
@@ -155,7 +153,7 @@ router.get('/:post_id/follows', F(async (req, res, next) => {
 
   // todo: 返回关注此问题的前50名用户
   res.json({
-    success: true, 
+    success: true,
     code: 200,
     data: {
       users: [{
@@ -182,7 +180,7 @@ router.post('/:post_id/subscribe', F(async (req, res, next) => {
 
   // todo: 关注问题成功，返回用户信息
   res.json({
-    success: true, 
+    success: true,
     code: 200,
     data: {
       uid: user_id,

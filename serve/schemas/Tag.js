@@ -5,7 +5,6 @@ const {Schema} = mongoose;
  * 标签表
  */
 const schema = new Schema({
-  tid: {type: Schema.Types.ObjectId}, // 标签id
   name: {type: String},// 标签名
   cname: {type: String}, // 标签中文拼音
   shortName: {type: String} // 标签拼音首字母
