@@ -71,8 +71,7 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/ask', F(async (req, res) => {
-
-  res.render('ask.html', {solved: 34256});
+  res.render('ask.html', {solved: 34256, isLogin: !!(req.session && req.session.user_id)});
 }));
 
 app.get('/setting', login_required, F(async (req, res) => {
