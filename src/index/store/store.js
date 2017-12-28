@@ -44,14 +44,16 @@ const actions = {
       pageSize: context.state.pageSize
     }, playload);
 
+    context.commit('set', params);
+
     ajax(
       REMOTE.index.queryQuestions,
       params
     ).then((data)=>{
-      console.log('queryQuestions data', data)
-      params.posts = data.list;
-      params.postCount = data.count;
-      context.commit('set', params);
+      context.commit('set', {
+        posts: data.list,
+        postCount: data.count
+      });
     })
   }
 }
