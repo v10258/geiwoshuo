@@ -55,6 +55,23 @@ const actions = {
         postCount: data.count
       });
     })
+  },
+
+  vote(context, playload) {
+    let post = context.state.posts[playload.index];
+    let newPosts = playload.op === 'up' ? {...post, upvotes: (post.upvotes + 1)} :
+      {...post, downvotes: (post.downvotes - 1)};
+
+    ajax(
+      REMOTE.task.doVote + `/${post._id}`,
+      {
+        op: playload.op
+      }
+    ).then((data)=>{
+      context.commit('set', {
+        posts: newPosts
+      });
+    })
   }
 }
 
