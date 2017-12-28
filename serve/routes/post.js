@@ -33,25 +33,27 @@ router.get('/query', async (req, res) => {
  */
 router.post('/add', async (req, res, next) => {
   let tags = req.body.tags && JSON.parse(req.body.tags);
-  let newTags;
+  let hasTags = [];
+  let newTags = [];
+  let tagsResult;
+
+  tags.forEach(function(v) {
+    v._id ? hasTags.push(v) : newTags.push(v);
+  });
 
   // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
-  if (tags && tags.length) {
-    newTags = tags.filter((tag)=>{
-      return !tag.id;
-    });
-
-    if (newTags && newTags.length) {
-
-      newTags = await Tag.create(newTags);
-      tags = tags.concat(newTags).filter((tag)=>{
-        return !!tag.id
-      })
-    }
+  if (newTags.length) { 
+    tagsResult = await Tag.create(newTags);
+    hasTags = hasTags.concat(tagsResult).map(function(v){
+      return {
+        id: v.id || v._id,
+        name:v.name
+      }
+    })
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, {creator: req.session.user_id, tags});
+  const post = Object.assign({}, req.body, {creator: req.session.user_id, tags:hasTags});
 
   post.created = new Date();
 
