@@ -52,6 +52,20 @@ a {
   }
 }
 
+.content-auto {
+  position: relative;
+  float: left;
+  width: auto;
+  margin-right:32px;
+  flex: auto;  
+}
+
+.content-part {
+  position: relative;
+  float: right;
+  width: 25%;
+}
+
 .s-disabled {
   color: #d8d8d8;
 }

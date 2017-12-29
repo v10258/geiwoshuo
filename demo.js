@@ -56,6 +56,10 @@ app.get('/centre', function(req, res) {
   res.render('centre.html');
 });
 
+app.get('/centre/question', function(req, res) {
+  res.render('centre-question.html');
+});
+
 app.get('/post/:id', function(req, res) {
   res.render('task.html');
 });

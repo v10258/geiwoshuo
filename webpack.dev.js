@@ -12,6 +12,12 @@ let isProduction = process.env.NODE_ENV === 'production';
 var submodule = argv.define || 'index';
 var entryFileName = submodule;
 
+// 子目录下有多个文件，入口为 centre-question 时
+var submoduleSet = submodule.split('-');
+if (submoduleSet.length === 2) {
+  submodule = submoduleSet[0];
+}
+
 var outputPath = path.resolve(__dirname, 'public/', submodule);
 var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 
@@ -112,6 +118,7 @@ var config = {
     }
   }
 };
+
 config.entry[entryFileName] = entryPath;
 
 console.log('entry', path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'));

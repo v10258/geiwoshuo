@@ -16,6 +16,7 @@ const auth = require('./routes/auth');
 const tag = require('./routes/tag');
 const file = require('./routes/file');
 const code = require('./routes/code');
+const centre = require('./routes/centre');
 
 const session = require('./routes/middlewares/session');
 const login_required = require('./routes/middlewares/login_requred');
@@ -36,6 +37,7 @@ app.use('/auth', auth);
 app.use('/tag', tag);
 app.use('/file', file);
 app.use('/code', code);
+app.use('/centre', centre);
 
 nunjucks.configure(__dirname + '/templates', {
   autoescape: true,

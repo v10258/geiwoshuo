@@ -73,6 +73,10 @@ schema.statics.findByParam = function(querys){
   }
 }
 
+schema.statics.findByUser = function(userId) {
+  return this.find({creator: userId}).sort({created: 1});
+}
+
 /**
  * 热门标签
  */

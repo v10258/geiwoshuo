@@ -8,8 +8,11 @@ const argv = require('yargs').argv;
 var isProduction = process.env.NODE_ENV === 'production';
 
 // 构建目录，构建入口, 如果没有指定模块则默认全部模块
-var activeModule = argv.define || 'all';
-var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre', 'login', 'setting'];
+var submodule = argv.define || 'all';
+var entryFileName = submodule;
+var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre', 'login', 'setting', 'centre-question'];
+var submoduleSet;
+
 
 var outputPath = path.resolve(__dirname, 'public/');
 
@@ -106,29 +109,38 @@ var config = {
   ]
 };
 
-console.log('activeModule', activeModule)
-if (activeModule === 'all') {
+console.log('submodule', submodule)
+if (submodule === 'all') {
+
   modules.forEach((n, i) => {
-    config.entry[n] = path.resolve(__dirname, 'src/', n, n + '.js');
+    submoduleSet = n.split('-');
+    submodule = submoduleSet.length === 2 ? submoduleSet[0] : n;
+    entryFileName = n;
+
+    config.entry[entryFileName] = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 
     // //页面集成
     config.plugins.push(new HtmlWebpackPlugin({
-      chunks: ['vendor',n],
-      template: path.resolve(__dirname, 'src/', n, n + '.ejs'),
-      filename: 'template/' + n + '.html'
+      chunks: ['vendor', entryFileName],
+      template: path.resolve(__dirname, 'src/', submodule, entryFileName + '.ejs'),
+      filename: 'template/' + entryFileName + '.html'
     }));
 
-    console.log('entry', path.resolve(__dirname, 'src/', n, n + '.js'));
+    console.log('entry', path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'));
   })
 } else {
-  config.entry[activeModule] = path.resolve(__dirname, 'src/', activeModule, activeModule + '.js');
+  submoduleSet = submodule.split('-');
+  entryFileName = submodule;
+  submodule = submoduleSet.length === 2 ? submoduleSet[0] : n;
+
+  config.entry[entryFileName] = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 
   //页面集成
   config.plugins.push(new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'src/', activeModule, activeModule + '.ejs'),
-    filename: 'template/' + activeModule + '.html'
+    template: path.resolve(__dirname, 'src/', submodule, entryFileName + '.ejs'),
+    filename: 'template/' + entryFileName + '.html'
   }));
-  console.log('entry', path.resolve(__dirname, 'src/', activeModule, activeModule + '.js'));
+  console.log('entry', path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'));
 }
 
 module.exports = config;
