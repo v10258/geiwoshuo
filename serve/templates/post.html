@@ -32,9 +32,13 @@
         </div>
       </section>
       <section class="task-body">
+
+        <% if post.body %>
         <div class="task-body-info">
           ${post.body | safe}
         </div>
+        <% endif %>
+
         <dl class="task-body-item">
           <dt>报酬：</dt>
           <dd>
