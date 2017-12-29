@@ -20,7 +20,7 @@
             <label for="title" class="vm-label">标题
               <span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control" name="title" placeholder="一句话描述你的问题">
+            <input type="text" class="form-control" name="title" v-model="post.title" placeholder="一句话描述你的问题">
           </div>
           <div class="form-group">
             <div class="form-group-hd flex-justify-between">
@@ -29,7 +29,9 @@
               </label>
             </div>
             <div class="editor form-control">
-              <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
+              <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述">
+              {{post.body}}
+              </textarea>
             </div>
             <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
           </div>
@@ -38,8 +40,7 @@
               <label class="vm-label">选择标签</label>
               <span class="vm-remark">标签越精准，越容易让相关领域专业人士看到你的问题</span>
             </div>
-            <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :tags="tags"></input-tag>
-            <input type="hidden" name="tags" id="tags" value="[]">
+            <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :tags="post.tags"></input-tag>
           </div>
 
           <div class="form-group ask-reward">
@@ -53,20 +54,20 @@
                   金
                   <span class="s-space"></span>币：
                 </label>
-                <input type="text" class="form-control" name="jinbi" placeholder="数量" /> 个
+                <input type="text" class="form-control" name="jinbi" v-model="post.jinbi" placeholder="数量" /> 个
               </div>
               <div class="form-inline">
                 <label>
                   赏
                   <span class="s-space"></span>金：
                 </label>
-                <input type="text" class="form-control" name="yuan" placeholder="金额" /> 元
+                <input type="text" class="form-control" name="yuan" v-model="post.yuan" placeholder="金额" /> 元
               </div>
               <div class="form-inline">
                 <label>
                   自定义：
                 </label>
-                <input type="text" class="form-control vm-custom" name="zidingyi" placeholder="任何你想到可以作为报酬的事物" />
+                <input type="text" class="form-control vm-custom" name="custom" v-model="post.custom" placeholder="任何你想到可以作为报酬的事物" />
               </div>
             </div>
           </div>
@@ -79,24 +80,24 @@
             <div class="form-inline">
               <div class="radio">
                 <label>
-                  <input type="radio" name="area" value="310000" checked>杭州
+                  <input type="radio" name="city" value="310000" v-model="post.city">杭州
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="area" value="00000">所有城市
+                  <input type="radio" name="city" value="00000" v-model="post.city">所有城市
                 </label>
               </div>
             </div>
           </div>
-
+  
           <div class="form-group">
             <label class="vm-label">
               匿名
             </label>
-            <input type="checkbox" name="anonymous" value="true">
+            <input type="checkbox" name="anonymous" value="true" v-model="post.anonymous">
           </div>
-
+  
           <section v-show="isShowAskMore" class="ask-more mt20">
             <div class="ask-more-separate flex-justify-center">
               <span class="vm-text">更多</span>
@@ -105,19 +106,19 @@
               <label for="title" class="vm-label">任务有效时间</label>
               <div class="form-group-content">
                 <label>
-                  <input type="radio" name="validTime" value="max">不限</label>
+                  <input type="radio" name="valid_time" value="max" v-model="post.valid_time">不限</label>
                 <label>
-                  <input type="radio" name="validTime" value="15day">半个月</label>
+                  <input type="radio" name="valid_time" value="15day" v-model="post.valid_time">半个月</label>
                 <label>
-                  <input type="radio" name="validTime" value="3day">三天</label>
+                  <input type="radio" name="valid_time" value="3day" v-model="post.valid_time">三天</label>
                 <label>
-                  <input type="radio" name="validTime" value="1day">当天</label>
+                  <input type="radio" name="valid_time" value="1day" v-model="post.valid_time">当天</label>
               </div>
             </div>
             <div class="form-group">
               <label for="" class="vm-label">设置为多人次任务</label>
               <div class="form-inline">
-                <input class="form-control form-control-sm" type="text" name="quantity" value="" placeholder="输入可以被多少人完成">
+                <input class="form-control form-control-sm" type="text" name="quantity"  v-model="post.quantity" placeholder="输入可以被多少人完成">
               </div>
             </div>
             <div class="form-group">
@@ -126,11 +127,11 @@
               </label>
               <div class="form-inline">
                 <label>实名认证</label>
-                <input type="checkbox" name="authentication">
+                <input type="checkbox" name="authentication" v-model="post.authentication" >
               </div>
               <div class="form-inline">
                 <label>会员等级</label>
-                <select class="form-control form-control-sm" name="memberLevel" id="">
+                <select class="form-control form-control-sm" name="member_level" id="">
                   <option value="" selected>不限制</option>
                   <option value="1">大众会员</option>
                   <option value="2">黄金会员</option>
@@ -140,7 +141,7 @@
               </div>
               <div class="form-inline">
                 <label>芝麻信用</label>
-                <select class="form-control form-control-sm" name="creditRating" id="">
+                <select class="form-control form-control-sm" name="ant_credit" id="">
                   <option value="" selected>不限制</option>
                   <option value="550">普通</option>
                   <option value="600">良好（600分以上）</option>
@@ -156,15 +157,15 @@
               <label for="" class="vm-label">定向发布</label>
               <div class="form-inline">
                 <label>关注标签</label>
-                <input class="form-control form-control-sm" type="text" name="followTag" value="" placeholder="搜索标签">
+                <input class="form-control form-control-sm" type="text" name="member_tags" value="" placeholder="搜索标签">
               </div>
               <div class="form-inline">
                 <label>指定圈子</label>
-                <input class="form-control form-control-sm" type="text" name="followTeam" value="" placeholder="搜索团队">
+                <input class="form-control form-control-sm" type="text" name="groups" value="" placeholder="搜索团队">
               </div>
               <div class="form-inline">
                 <label>指定用户</label>
-                <input class="form-control form-control-sm" type="text" name="followUser" value="" placeholder="搜索用户">
+                <input class="form-control form-control-sm" type="text" name="members" value="" placeholder="搜索用户">
               </div>
             </div>
           </section>
@@ -183,6 +184,7 @@
                 </div>-->
 
           <div class="ask-sure">
+            <input type="hidden" name="edit" v-model="isEdit">
             <button class="btn bs-btn bs-btn-primary" @click="submit">确定</button>
           </div>
         </form>
@@ -210,7 +212,8 @@
     </main>
     <script type="text/javascript">
       window.__PAGE_STATE = {};
-      window.__PAGE_STATE['isLogin'] = false;
+      window.__PAGE_STATE['isLogin'] = true;
+      window.__PAGE_STATE['post'] = {"_id":"5a44b17271db9682df87b61b","title":"测试八","body":"<p>&lt;script&gt;alert(1)&lt;/script&gt;</p>","creator":"5a3cdb6b63f32c4c1da5bac4","created":"2017-12-28T08:55:10.134Z","__v":0,"members":[],"groups":[],"member_tags":[],"member_required":-1,"anonymous":false,"city":"","reward":"","bounty":0,"coins":0,"views":0,"downvotes":0,"upvotes":0,"subscribers":[],"tags":[{"id":"5a449c7ccac6bf75348834c2","name":"腾讯","_id":"5a44b17271db9682df87b61e"},{"id":"5a12a9f6e732354e47cb72d0","name":"股票","_id":"5a44b17271db9682df87b61d"},{"id":"5a44b13f71db9682df87b61a","name":"吃鸡","_id":"5a44b17271db9682df87b61c"}]}
     </script>
 </body>
 

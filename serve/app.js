@@ -76,6 +76,12 @@ app.get('/ask', F(async (req, res) => {
   res.render('ask.html', {solved: 34256, isLogin: !!(req.session && req.session.user_id)});
 }));
 
+app.get('/edit/:post_id', F(async (req, res) => {
+  const {post_id} = req.params;
+  const post = await Post.find({_id: post_id});
+  res.render('ask.html', {solved: 34256, post, isLogin: !!(req.session && req.session.user_id)});
+}));
+
 app.get('/setting', login_required, F(async (req, res) => {
 
   res.render('setting.html', {user: req.user});

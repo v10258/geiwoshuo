@@ -30,6 +30,28 @@ import Vue from 'vue'
 import inputTag from '../common/component/input-tag.vue'
 import swal from 'sweetalert'
 
+const editor = {
+  imagegwsHandler: function () {
+    $('#fileupload').fileupload({
+      url: REMOTE.ask.fileupload,
+      done: function (ev, data) {
+        console.log('result', data.result);
+        editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
+      },
+      progressall: function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          console.log('progress', progress);
+      }
+    }).trigger('click');
+  },
+  qrCodeHandler: function () {
+    editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
+  },
+  initHandler: function (editor) {
+    console.log('Editor: ' + editor.id + ' is now initialized.')
+  }
+}
+
 tinymce.init({
   selector: 'textarea#editor',
   menubar: false,
@@ -37,20 +59,18 @@ tinymce.init({
   toolbar: ['link imagegws qr-code'],
 
   // 编辑区域应用样式
-  content_style: ' p {margin:0; line-height: 1.5;}',
+  content_style: 'p {margin:0; line-height: 1.5;}',
 
   // 去掉商标和路径
   branding: false,
   elementpath: false,
 
   // 图片上传
-  images_upload_url: REMOTE.ask.ImagUupload,
-  automatic_uploads: true,
+  // images_upload_url: REMOTE.ask.ImagUupload,
+  // automatic_uploads: true,
 
   // 编辑器初始化回调
-  init_instance_callback: function (editor) {
-    console.log('Editor: ' + editor.id + ' is now initialized.')
-  },
+  init_instance_callback: editor.initHandler,
 
   //输入框区域自动变大
   autoresize_min_height: 60,
@@ -62,32 +82,17 @@ tinymce.init({
 
     editor.addButton('imagegws', {
       icon: 'image',
-      onclick: function () {
-        $('#fileupload').fileupload({
-          url: REMOTE.ask.fileupload,
-          done: function (ev, data) {
-            console.log('result', data.result);
-            editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
-          },
-          progressall: function (e, data) {
-              var progress = parseInt(data.loaded / data.total * 100, 10);
-              console.log('progress', progress);
-          }
-        }).trigger('click');
-      }
+      onclick: editor.imagegwsHandler
     })
 
     editor.addButton('qr-code', {
       text: 'QR',
       icon: '',
-      onclick: function () {
-        editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
-      }
+      onclick: editor.qrCodeHandler
     })
   }
 })
 
-console.log('inputTag', inputTag, REMOTE.ask.autoComplete);
 
 var app = new Vue({
   el: '#askForm',
@@ -95,15 +100,21 @@ var app = new Vue({
     inputTag
   },
   data: {
+    post:{},
     isShowAskMore: false,
     autoCompleteUrl: REMOTE.ask.autoComplete,
     placeholder: 'aaa',
-    tags: [],
     isLogin: false
+  },
+  computed: {
+    isEdit: function () {
+      return !!(this.post && this.post._id)
+    }
   },
   created() {
     let self = this;
     self.isLogin = window.__PAGE_STATE['isLogin'];
+    self.post = window.__PAGE_STATE['post'];
 
     //监听消息反馈
     window.addEventListener('message',function(event) {
@@ -113,11 +124,6 @@ var app = new Vue({
       }
     },false);
 
-  },
-  watch: {
-    tags: function () {
-      this.$el.querySelector('#tags').value = JSON.stringify(this.tags);
-    }
   },
   methods: {
     askMoreToggle: () => {
@@ -140,7 +146,6 @@ var app = new Vue({
         result.isRight = false;
         result.message = '请完善奖励'
       }
-
       return result;
     },
     openLogin() {

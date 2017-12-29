@@ -22,19 +22,24 @@ const schema = new Schema({
   views: {type: Number, default: 0},// 浏览数
   coins: {type: Number, default: 0},//金币
   bounty: {type: Number, default: 0},//赏金
-  reward: {type: String, default: ''},// 其它自定义报酬
-  city: {type: String, default: ''},
-  anonymous: {type: Boolean, default: false},
+  custom: {type: String, default: ''},// 其它自定义报酬
+  city: {type: String, default: ''}, // 任务发布区域
+  anonymous: {type: Boolean, default: false}, // 是否匿名
+
+
+  // 更多
+  valid_time: {type: Number, default: -1},// 任务有效时间
+  quantity: {type: Number, default: 1},// 多人任务
 
   // 响应条件
-  member_required: {type: Number, default: -1},// 需要的人员数
+  authentication: {type: String},// 实名认证
   member_level: {type: Number},// 会员等级
   ant_credit: {type: String},// 蚂蚁信用
 
   //定向发布
-  member_tags: {type: [String]},// 回答者关注的标签
-  groups: {type: [String]},// 回答者所在的团队
-  members: {type: [String]},// 回答者id
+  member_tags: {type: [String]},// 面向关注了指定便签的用户
+  groups: {type: [String]},// 面向指定圈子
+  members: {type: [String]},// 面向指定用户
 
 });
 

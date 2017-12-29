@@ -1,3 +1,28 @@
+
+<template>
+
+<div class="ui-inputtag" @click="focusNewTag()" v-bind:class="{'read-only': readOnly}">
+  <span class="ui-inputtag-item" v-for="(tag, index) in tags" v-bind:key="index">
+    <em>{{ tag.name }}</em>
+    <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
+  </span>
+  <input class="ui-inputtag-new" v-if="!readOnly" :disabled="tagMax" :placeholder="tips" type="text" v-model="newTag" v-on:input="autoComplete" v-on:keydown.down="selectDown" v-on:keydown.up="selectUp" v-on:keydown.delete.stop="removeLastTag()" v-on:keydown.enter.188.tab.prevent.stop="addTagActive"/>
+  <button class="ui-inputtag-add ion ion-ios-search" @click="autoComplete"></button>
+  <div class="ui-inputtag-search" v-bind:style="{ width: autoWidth + 'px' }" v-if="newTag && active">
+    <a v-for="(tag, index) in autoTags" v-bind:class="{ active: index === 0 }" v-on:mouseenter="searchItemEnter" @click="addTag(tag)" href="javascript:;">
+    {{tag.name}}
+    </a>
+    <a v-bind:class="{ active: autoTags.length === 0 }" v-if="!isMatch" data-new="true" @click.prevent.stop="addTag(newTag, true)" v-on:mouseenter="searchItemEnter" href="javascript:;">
+      创建
+      <strong>{{newTag}}</strong>
+      标签
+    </a>
+  </div>
+  <input type="hidden" :name="nameAndId" :id="nameAndId" :value="tagsVal">
+</div>
+
+</template>
+
 <script>
   /* eslint-disable */
   const validators = {
@@ -35,6 +60,10 @@
         type: String,
         default: ''
       },
+      nameAndId: {
+        type: String,
+        'default':'tags'
+      },
       limit: {
         type: Number,
         default: 5
@@ -55,16 +84,6 @@
       }
     },
 
-    created() {
-      let self = this;
-      // 点击页面其他位置，关闭城市切换浮层
-      $(document).on('click.inputTag', (ev)=>{
-        if ($(ev.target).parents('.ui-inputtag').length === 0) {
-          self.active = false;
-        }
-      });
-    },
-
     computed: {
       tagMax: function () {
         console.log('tagMax', this.limit, this.tags.length)
@@ -76,7 +95,20 @@
         } else {
           return this.placeholder;
         }
+      },
+      tagsVal: function(){
+        return JSON.stringify(this.tags);
       }
+    },
+
+    created() {
+      let self = this;
+      // 点击页面其他位置，关闭标签切换浮层
+      $(document).on('click.inputTag', (ev)=>{
+        if ($(ev.target).parents('.ui-inputtag').length === 0) {
+          self.active = false;
+        }
+      });
     },
 
     watch: {
@@ -223,29 +255,6 @@
     }
   }
 </script>
-
-<template>
-
-<div class="ui-inputtag" @click="focusNewTag()" v-bind:class="{'read-only': readOnly}">
-  <span class="ui-inputtag-item" v-for="(tag, index) in tags" v-bind:key="index">
-    <em>{{ tag.name }}</em>
-    <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
-  </span>
-  <input class="ui-inputtag-new" v-if="!readOnly" :disabled="tagMax" :placeholder="tips" type="text" v-model="newTag" v-on:input="autoComplete" v-on:keydown.down="selectDown" v-on:keydown.up="selectUp" v-on:keydown.delete.stop="removeLastTag()" v-on:keydown.enter.188.tab.prevent.stop="addTagActive"/>
-  <button class="ui-inputtag-add ion ion-ios-search" @click="autoComplete"></button>
-  <div class="ui-inputtag-search" v-bind:style="{ width: autoWidth + 'px' }" v-if="newTag && active">
-    <a v-for="(tag, index) in autoTags" v-bind:class="{ active: index === 0 }" v-on:mouseenter="searchItemEnter" @click="addTag(tag)" href="javascript:;">
-    {{tag.name}}
-    </a>
-    <a v-bind:class="{ active: autoTags.length === 0 }" v-if="!isMatch" data-new="true" @click.prevent.stop="addTag(newTag, true)" v-on:mouseenter="searchItemEnter" href="javascript:;">
-      创建
-      <strong>{{newTag}}</strong>
-      标签
-    </a>
-  </div>
-</div>
-
-</template>
 
 <style>
 .ui-inputtag {
