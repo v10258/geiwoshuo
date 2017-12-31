@@ -9,7 +9,8 @@ export const REMOTE = {
   ask: {
     autoComplete: '/tag/auto_complete',
     fileupload: '/file/upload',
-    add: '/post/add'
+    add: '/post/add',
+    update: '/post/update'
   },
   task: {
     taskFollows: '/post/follows',

@@ -80,12 +80,13 @@
             <div class="form-inline">
               <div class="radio">
                 <label>
-                  <input type="radio" name="city" value="310000" v-model="post.city">杭州
+                  <input type="radio" name="city" :value="city.sid" v-model="post.city">
+                  {{city.name}}
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="city" value="00000" v-model="post.city">所有城市
+                  <input type="radio" name="city" value="000000" v-model="city.sid">所有城市
                 </label>
               </div>
             </div>
@@ -213,7 +214,7 @@
     <script type="text/javascript">
       window.__PAGE_STATE = {};
       window.__PAGE_STATE['isLogin'] = true;
-      window.__PAGE_STATE['post'] = {"_id":"5a44b17271db9682df87b61b","title":"测试八","body":"<p>&lt;script&gt;alert(1)&lt;/script&gt;</p>","creator":"5a3cdb6b63f32c4c1da5bac4","created":"2017-12-28T08:55:10.134Z","__v":0,"members":[],"groups":[],"member_tags":[],"member_required":-1,"anonymous":false,"city":"","reward":"","bounty":0,"coins":0,"views":0,"downvotes":0,"upvotes":0,"subscribers":[],"tags":[{"id":"5a449c7ccac6bf75348834c2","name":"腾讯","_id":"5a44b17271db9682df87b61e"},{"id":"5a12a9f6e732354e47cb72d0","name":"股票","_id":"5a44b17271db9682df87b61d"},{"id":"5a44b13f71db9682df87b61a","name":"吃鸡","_id":"5a44b17271db9682df87b61c"}]}
+      window.__PAGE_STATE['post'] = {"_id":"5a44b17271db9682df87b61b","title":"测试八","body":"<p>&lt;script&gt;alert(1)&lt;/script&gt;</p>","creator":"5a3cdb6b63f32c4c1da5bac4","created":"2017-12-28T08:55:10.134Z","__v":0,"members":[],"groups":[],"member_tags":[],"member_required":-1,"anonymous":false,"city":"310000","reward":"","bounty":0,"coins":0,"views":0,"downvotes":0,"upvotes":0,"subscribers":[],"tags":[{"id":"5a449c7ccac6bf75348834c2","name":"腾讯","_id":"5a44b17271db9682df87b61e"},{"id":"5a12a9f6e732354e47cb72d0","name":"股票","_id":"5a44b17271db9682df87b61d"},{"id":"5a44b13f71db9682df87b61a","name":"吃鸡","_id":"5a44b17271db9682df87b61c"}]}
     </script>
 </body>
 

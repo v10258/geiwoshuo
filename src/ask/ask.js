@@ -25,6 +25,7 @@ import { REMOTE, axios } from '../common/js/ajax.js'
 import Vue from 'vue'
 import inputTag from '../common/component/input-tag.vue'
 import swal from 'sweetalert'
+import site from '../common/js/site.js'
 import editorLive from '../common/js/editor-live.js'
 
 var app = new Vue({
@@ -34,20 +35,21 @@ var app = new Vue({
   },
   data: {
     post:{},
+    city: {},
     isShowAskMore: false,
     autoCompleteUrl: REMOTE.ask.autoComplete,
     placeholder: 'aaa',
     isLogin: false
   },
-  computed: {
-    isEdit: function () {
-      return !!(this.post && this.post._id)
-    }
-  },
+
   created() {
     let self = this;
     self.isLogin = window.__PAGE_STATE['isLogin'];
     self.post = window.__PAGE_STATE['post'];
+
+    self.city = (this.post._id && this.post.city) ? (site.citys[this.post.city] || site.defaultCity) : site.defaultCity; 
+
+    console.log('city', self.city)
 
     //监听消息反馈
     window.addEventListener('message',function(event) {
@@ -56,7 +58,6 @@ var app = new Vue({
         self.isLogin = true;
       }
     },false);
-
   },
   methods: {
     askMoreToggle: () => {
@@ -92,13 +93,27 @@ var app = new Vue({
       let body = editorLive.get('editor').getContent();
 
       formData.body = body;
+      console.log('formData', formData);
 
-      console.log('formData', formData)
+      // todo: 验证失败
       if (!validResult.isRight) {
-        // todo: 验证失败
         swal(validResult.message);
-      } else if (!self.isLogin) {
+        return;
+      }
+      
+      // 未登录
+      if (!self.isLogin) {
         self.openLogin();
+      }
+
+      // 传值和表单存在 post_id 为编辑
+      if (formData.post_id && this.post._id) {
+        axios.put(REMOTE.ask.update, formData).then(function(res){
+          console.log('post', res)
+          location.href = res.data.data.url;
+        }).catch(function(){
+          console.log('catch erro ', arguments)
+        })
       } else {
         axios.post(REMOTE.ask.add, formData).then(function(res){
           console.log('post', res)

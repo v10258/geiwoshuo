@@ -81,12 +81,13 @@
           <div class="form-inline">
             <div class="radio">
               <label>
-                <input type="radio" name="city" value="310000" v-model="post.city">杭州
+                <input type="radio" name="city" :value="city.sid" v-model="post.city">
+                {{city.name}}
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="city" value="00000" v-model="post.city">所有城市
+                <input type="radio" name="city" value="000000" v-model="city.sid">所有城市
               </label>
             </div>
           </div>

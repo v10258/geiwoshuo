@@ -26,7 +26,7 @@ const editor = {
   }
 }
 
-const tinymceLive = tinymce.init({
+tinymce.init({
   selector: 'textarea#editor',
   menubar: false,
   plugins: ['autoresize link'],
@@ -67,4 +67,4 @@ const tinymceLive = tinymce.init({
   }
 })
 
-export default tinymceLive;
+export default tinymce;
