@@ -7,7 +7,7 @@ debug('cwd: %o', process.cwd());
 const port = process.env.PORT || 3001;
 const app = express();
 
-const {Post, User} = require('./mongo');
+const {Post, User, Tag} = require('./mongo');
 const F = require('./routes/Factory');
 
 const user = require('./routes/user');
@@ -56,7 +56,10 @@ nunjucks.configure(__dirname + '/templates', {
 
 app.get('/', F(async (req, res) => {
   const posts = await Post.findByType('HOT');
-  const hotTags = await Post.hotTags();
+  //const hotTags = await Post.hotTags();
+
+  // todo: 暂用简单查询
+  const hotTags = await Tag.find().limit(10);
   res.render('index.html', {posts, hotTags, home: true});
 }));
 
