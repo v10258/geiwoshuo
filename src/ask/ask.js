@@ -76,7 +76,7 @@ var app = new Vue({
       if (!formData.title) {
         result.isRight = false;
         result.message = '请输入标题'
-      } else if (!formData.jinbi && !formData.yuan && !formData.zidingyi) {
+      } else if (!formData.coins && !formData.bounty && !formData.custom) {
         result.isRight = false;
         result.message = '请完善奖励'
       }

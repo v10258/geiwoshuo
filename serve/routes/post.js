@@ -104,14 +104,14 @@ router.put('/update', async (req, res, next) => {
 
   // todo: 任务存在验证，修改权限验证
   try {
-    const r = await Post.update({ _id: post.id }, post);
+    const r = await Post.update({ _id: post.post_id }, post);
     //res.redirect('/post/' + r._id);// 跳转到详情页
     res.json({
       success: true,
       code: 200,
       data: {
-        "qid": post.post_id,
-        "url": `/post/${post.post_id}`
+        "qid": req.body.post_id,
+        "url": `/post/${req.body.post_id}`
       }
     });
   } catch (e) {
