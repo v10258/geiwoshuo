@@ -186,7 +186,12 @@ router.post('/op/:post_id', F(async (req, res, next) => {
     update = {$inc: {[op_field_mapping[op]]: 1}};
   }
   const post = await Post.findByIdAndUpdate(post_id, update, {new: true});
-  res.json(post);
+  res.json({
+    success: true,
+    code: 200,
+    data: post,
+    message: ''
+  });
 }));
 
 /**

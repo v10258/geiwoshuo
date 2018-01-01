@@ -48,11 +48,11 @@ export default function () {
     }
   })
 
-  Mock.mock(new RegExp(REMOTE.task.doVote), {
+  Mock.mock(new RegExp(REMOTE.task.op), {
     'success': true,
     'code': 200,
     'message': '',
-    'data': null
+    'data': {}
   })
 
   Mock.mock(new RegExp(REMOTE.task.comment), {

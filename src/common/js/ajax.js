@@ -17,7 +17,7 @@ export const REMOTE = {
     doFollow: '/post/subscribe',
     queryAnswers: '/post/answers',
     queryAnswerCount: '/post/answerCount',
-    doVote:'/post/vote',
+    op:'/post/op',
     comment: '/post/comment'
   },
   find: {

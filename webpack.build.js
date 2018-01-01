@@ -131,7 +131,7 @@ if (submodule === 'all') {
 } else {
   submoduleSet = submodule.split('-');
   entryFileName = submodule;
-  submodule = submoduleSet.length === 2 ? submoduleSet[0] : n;
+  submodule = submoduleSet.length === 2 ? submoduleSet[0] : submodule;
 
   config.entry[entryFileName] = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
 

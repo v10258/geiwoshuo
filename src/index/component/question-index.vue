@@ -12,11 +12,11 @@
     </div>
       <div class="-action">
         <div class="-thumbs">
-          <button class="btn btn-sm btn-light" @click="doVote('up', index)" title="支持">
+          <button class="btn btn-sm btn-light" @click="doVote('upvote', index)" title="支持">
             <i class="ion ion-md-arrow-dropup"></i>
             {{post.upvotes - post.downvotes >= 0 ? post.upvotes: ''}}
           </button>
-          <button class="btn btn-sm btn-light" @click="doVote('down', index)" title="反对">
+          <button class="btn btn-sm btn-light" @click="doVote('downvote', index)" title="反对">
             <i class="ion ion-md-arrow-dropdown"></i>
             {{post.downvotes - post.upvotes > 0 ? post.downvotes : ''}}
           </button>

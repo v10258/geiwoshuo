@@ -48,9 +48,9 @@ const schema = new Schema({
  */
 schema.statics.findByType = function (type = 'HOT') {
   if (type === 'HOT') {//热门
-    return this.find({}).sort({views: 1});
+    return this.find({}).sort({upvotes: -1}).limit(20);
   } else if (type === 'LATEST') {//最新
-    return this.find({}).sort({created: 1});
+    return this.find({}).sort({created: -1}).limit(20);
   } else if (type === 'BOUNTY') {//赏金
 
   } else if (type === 'PROMO') {//推广
@@ -66,13 +66,13 @@ schema.statics.findByParam = function(querys){
   let pageSize = Number(querys.pageSize);
 
   if (type === 'hot') {//热门
-    return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
+    return this.find({}).sort({upvotes: -1}).skip(start).limit(pageSize);
   } else if (type === 'latest') {//最新
-    return this.find({}).sort({created: 1}).skip(start).limit(pageSize);
+    return this.find({}).sort({created: -1}).skip(start).limit(pageSize);
   } else if (type === 'bounty') {//赏金
-    return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
+    return this.find({}).sort({upvotes: 1}).skip(start).limit(pageSize);
   } else if (type === 'promo') {//推广
-    return this.find({}).sort({views: 1}).skip(start).limit(pageSize);
+    return this.find({}).sort({upvotes: 1}).skip(start).limit(pageSize);
   } else {
     throw Error('Unsupported type: ' + type);
   }

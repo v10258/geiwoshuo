@@ -32,6 +32,11 @@ const mutations = {
   // 合并
   merge(state, opts) {
     this.replaceState(Object.assign(state, opts));
+  },
+
+  updatePost(state, opts) {
+    state.posts[opts.index] = opts.post;
+    console.log('updatePost newPost', opts.post);
   }
 }
 
@@ -59,17 +64,19 @@ const actions = {
 
   vote(context, playload) {
     let post = context.state.posts[playload.index];
-    let newPosts = playload.op === 'up' ? {...post, upvotes: (post.upvotes + 1)} :
+    let newPost = playload.op === 'up' ? {...post, upvotes: (post.upvotes + 1)} :
       {...post, downvotes: (post.downvotes - 1)};
 
     ajax(
-      REMOTE.task.doVote + `/${post._id}`,
+      REMOTE.task.op + `/${post._id}`,
       {
         op: playload.op
-      }
+      },
+      'post'
     ).then((data)=>{
-      context.commit('set', {
-        posts: newPosts
+      context.commit('updatePost', {
+        index: playload.index,
+        post: newPost
       });
     })
   }
