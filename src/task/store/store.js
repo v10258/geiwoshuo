@@ -73,19 +73,20 @@ const mutations = {
 
 // actions are functions that cause side effects and can involve asynchronous operations.
 const actions = {
-  vote (context, playload) {
+  // vote (context, playload) {
 
-    ajax(
-      REMOTE.task.doVote + `/${context.state.qid}`,
-      {
-        op: playload.op
-      }
-    ).then((data)=>{
-      context.commit('set', {
-        vote: playload.op === 'up' ? ++context.state.vote : --context.state.vote
-      });
-    })
-  },
+  //   let newProp = playload.op === 'upvote' ? {upvotes: (post.upvotes + 1)} :
+  //   {downvote: (post.downvotes - 1)};
+
+  //   ajax(
+  //     REMOTE.task.op + `/${context.state.qid}`,
+  //     {
+  //       op: playload.op
+  //     }
+  //   ).then((data)=>{
+  //     context.commit('set', newProp);
+  //   })
+  // },
 
   getAnswers (context, playload) {
     let params = Object.assign({

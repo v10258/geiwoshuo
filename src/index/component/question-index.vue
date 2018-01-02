@@ -12,12 +12,10 @@
     </div>
       <div class="-action">
         <div class="-thumbs">
-          <button class="btn btn-sm btn-light" @click="doVote('upvote', index)" title="支持">
-            <i class="ion ion-md-arrow-dropup"></i>
+          <button class="btn btn-sm btn-light ion-md-arrow-dropup" @click="doVote('upvote', post)" title="支持">
             {{post.upvotes - post.downvotes >= 0 ? post.upvotes: ''}}
           </button>
-          <button class="btn btn-sm btn-light" @click="doVote('downvote', index)" title="反对">
-            <i class="ion ion-md-arrow-dropdown"></i>
+          <button class="btn btn-sm btn-light ion-md-arrow-dropdown" @click="doVote('downvote', post)" title="反对">
             {{post.downvotes - post.upvotes > 0 ? post.downvotes : ''}}
           </button>
         </div>
@@ -42,17 +40,23 @@
 
 <script>
 import { mapState, mapGetters, mapMutations } from "vuex";
+import { REMOTE, ajax } from '../../common/js/ajax.js';
 
 export default {
   computed: {
     ...mapState(["posts"])
   },
   methods: {
-    doVote(op, index){
-      this.$store.dispatch('vote', {
-        op: op,
-        index: index
-      });
+    doVote(op, post){
+      ajax(
+        REMOTE.task.op + `/${post._id}`,
+        {
+          op: op
+        },
+        'post'
+      ).then((data)=>{
+        op === 'upvote' ? post.upvotes++ : post.downvotes--;
+      })
     }
   }
 };
