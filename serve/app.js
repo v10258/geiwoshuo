@@ -76,7 +76,8 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/ask', F(async (req, res) => {
-  res.render('ask.html', {solved: 34256, isLogin: !!(req.session && req.session.user_id)});
+  console.log("", req.session && req.session.user_id)
+  res.render('ask.html', {solved: 34256, post: {}, isLogin: !!(req.session && req.session.user_id)});
 }));
 
 app.get('/edit/:post_id', F(async (req, res) => {
