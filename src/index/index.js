@@ -44,6 +44,7 @@ var app = new Vue({
 
   methods: {
     handleSizeChange(val) {
+      if (val === this.pageNum) return;
       this.$store.dispatch('getQuestions', {
         sort: this.sort,
         pageNum: val
