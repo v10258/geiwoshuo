@@ -55,7 +55,7 @@ export default {
         },
         'post'
       ).then((data)=>{
-        op === 'upvote' ? post.upvotes++ : post.downvotes--;
+        op === 'upvote' ? post.upvotes++ : post.downvotes++;
       })
     }
   }

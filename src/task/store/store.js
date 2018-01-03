@@ -80,7 +80,7 @@ const actions = {
   vote (context, playload) {
 
     let newProp = playload.op === 'upvote' ? {upvotes: (context.state.post.upvotes + 1)} :
-    {downvotes: (context.state.post.downvotes - 1)};
+    {downvotes: (context.state.post.downvotes + 1)};
 
     ajax(
       REMOTE.task.op + `/${context.state.post._id}`,
