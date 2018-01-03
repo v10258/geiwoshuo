@@ -6,36 +6,34 @@ Vue.use(Vuex)
 
 // root state object.
 const state = {
-  // 问题id
-  qid: '',
 
-  // 获赞数
-  vote: '',
-
-  // 分类过滤
-  sort: 'all',
-
-  // 排序
-  rank: 'hot',
-
-  // 初始化页码
-  pageNum: 1,
-
-  // 初始化页面每次请求记录数
-  pageSize: 20,
-
+  // 问题相关
+  post: {
+    _id: '',
+    upvotes: 0,
+    downvotes: 0,
+    views: 0
+  },
   // 任务进度列表
   processList: [],
 
+  
+  // 分类过滤
+  sort: 'all',
+  // 排序
+  rank: 'hot',
+  // 初始化页码
+  pageNum: 1,
+  // 初始化页面每次请求记录数
+  pageSize: 20,
   // 回答
   answers: [],
 
+
   // 是否响应
   joinChecked: false,
-
   // 是否匿名
   anonymousChecked: false,
-
   // 回答内容
   body: ''
 }
@@ -49,8 +47,8 @@ const getters = {
       return accumulator;
     }
   }, 0),
-  upvote: (state) => { return state.vote >= 0 ? state.vote : '' },
-  downvote: (state) => { return state.vote < 0 ? -state.vote : '' }
+  upvotes: (state) => { return state.post.upvotes - state.post.downvotes >= 0 ? state.post.upvotes - state.post.downvotes: '' },
+  downvotes: (state) => { return state.post.downvotes - state.post.upvotes > 0 ? state.post.downvotes - state.post.upvotes : ''}
 }
 
 const mutations = {
@@ -68,25 +66,35 @@ const mutations = {
   // 合并
   merge(state, opts) {
     this.replaceState(Object.assign(state, opts));
+  },
+  // 设置目标对象的属性
+  setProp(state, playload) {
+    var propName = playload.propName;
+    delete playload.propName;
+    state[propName] = { ...state[propName], ...playload }
   }
 }
 
 // actions are functions that cause side effects and can involve asynchronous operations.
 const actions = {
-  // vote (context, playload) {
+  vote (context, playload) {
 
-  //   let newProp = playload.op === 'upvote' ? {upvotes: (post.upvotes + 1)} :
-  //   {downvote: (post.downvotes - 1)};
+    let newProp = playload.op === 'upvote' ? {upvotes: (context.state.post.upvotes + 1)} :
+    {downvote: (context.state.post.downvotes - 1)};
 
-  //   ajax(
-  //     REMOTE.task.op + `/${context.state.qid}`,
-  //     {
-  //       op: playload.op
-  //     }
-  //   ).then((data)=>{
-  //     context.commit('set', newProp);
-  //   })
-  // },
+    ajax(
+      REMOTE.task.op + `/${context.state.post._id}`,
+      {
+        op: playload.op
+      },
+      'post'
+    ).then((data)=>{
+      context.commit('setProp', {
+        propName: 'post',
+        ...newProp
+      });
+    })
+  },
 
   getAnswers (context, playload) {
     let params = Object.assign({

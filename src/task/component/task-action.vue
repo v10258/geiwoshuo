@@ -2,13 +2,13 @@
 
 <div class="task-action">
     <div class="vm-thumbs">
-        <button class="btn btn-sm btn-light" @click="doVote('up')" title="支持">
+        <button class="btn btn-sm btn-light" @click="doVote('upvote')" title="支持">
             <i class="ion ion-md-arrow-dropup"></i>
-            {{upvote}}
+            {{upvotes}}
         </button>
-        <button class="btn btn-sm btn-light" @click="doVote('down')" title="反对">
+        <button class="btn btn-sm btn-light" @click="doVote('downvote')" title="反对">
             <i class="ion ion-md-arrow-dropdown"></i>
-            {{downvote}}
+            {{downvotes}}
         </button>
     </div>
     <a @click="invite" href="javascript:;">
@@ -35,11 +35,11 @@ export default {
 
   computed: {
     ...mapState([
-      'qid'
+      'post'
     ]),
     ...mapGetters([
-      'upvote',
-      'downvote'
+      'upvotes',
+      'downvotes'
     ])
   },
 
