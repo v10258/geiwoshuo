@@ -35,8 +35,10 @@ const mutations = {
   },
 
   updatePost(state, opts) {
-    state.posts[opts.index] = opts.post;
-    console.log('updatePost newPost', opts.post);
+    var copyPosts = state.posts.slice();
+    copyPosts[opts.index] = opts.post;
+
+    Vue.set(state, 'posts', copyPosts);
   }
 }
 
@@ -63,9 +65,13 @@ const actions = {
   },
 
   vote(context, playload) {
+    let copyPosts = context.state.posts.slice();
     let post = context.state.posts[playload.index];
-    let newPost = playload.op === 'up' ? {...post, upvotes: (post.upvotes + 1)} :
-      {...post, downvotes: (post.downvotes - 1)};
+    let newPost = playload.op === 'upvote' ? { ...post, upvotes: (post.upvotes + 1)} :
+      { ...post, downvotes: (post.downvotes + 1)};
+
+    copyPosts[playload.index] = newPost;
+
 
     ajax(
       REMOTE.task.op + `/${post._id}`,
@@ -74,10 +80,9 @@ const actions = {
       },
       'post'
     ).then((data)=>{
-      context.commit('updatePost', {
-        index: playload.index,
-        post: newPost
-      });
+      context.commit('set', {
+        posts: copyPosts
+      })
     })
   }
 }

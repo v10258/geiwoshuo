@@ -12,11 +12,11 @@
     </div>
       <div class="-action">
         <div class="-thumbs">
-          <button class="btn btn-sm btn-light ion-md-arrow-dropup" @click="doVote('upvote', post)" title="支持">
-            {{post.upvotes - post.downvotes >= 0 ? post.upvotes: ''}}
+          <button class="btn btn-sm btn-light ion-md-arrow-dropup" @click="doVote('upvote', index)" title="支持">
+            {{post.upvotes - post.downvotes >= 0 ? post.upvotes - post.downvotes: ''}}
           </button>
-          <button class="btn btn-sm btn-light ion-md-arrow-dropdown" @click="doVote('downvote', post)" title="反对">
-            {{post.downvotes - post.upvotes > 0 ? post.downvotes : ''}}
+          <button class="btn btn-sm btn-light ion-md-arrow-dropdown" @click="doVote('downvote', index)" title="反对">
+            {{post.downvotes - post.upvotes > 0 ? post.downvotes - post.upvotes : ''}}
           </button>
         </div>
         <a :href="'/post/' + post._id" target="_blank" title="回复，响应和打赏">
@@ -44,19 +44,14 @@ import { REMOTE, ajax } from '../../common/js/ajax.js';
 
 export default {
   computed: {
-    ...mapState(["posts"])
+    ...mapState(['posts'])
   },
   methods: {
-    doVote(op, post){
-      ajax(
-        REMOTE.task.op + `/${post._id}`,
-        {
-          op: op
-        },
-        'post'
-      ).then((data)=>{
-        op === 'upvote' ? post.upvotes++ : post.downvotes++;
-      })
+    doVote(op, index){
+      this.$store.dispatch('vote', {
+        op: op,
+        index: index
+      });
     }
   }
 };
