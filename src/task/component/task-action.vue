@@ -4,11 +4,10 @@
     <div class="vm-thumbs">
         <button class="btn btn-sm btn-light" @click="doVote('upvote')" title="支持">
             <i class="ion ion-md-arrow-dropup"></i>
-            {{upvotes}}
+            {{post.upvotes - post.downvotes}}
         </button>
         <button class="btn btn-sm btn-light" @click="doVote('downvote')" title="反对">
             <i class="ion ion-md-arrow-dropdown"></i>
-            {{downvotes}}
         </button>
     </div>
     <a @click="invite" href="javascript:;">
@@ -36,10 +35,6 @@ export default {
   computed: {
     ...mapState([
       'post'
-    ]),
-    ...mapGetters([
-      'upvotes',
-      'downvotes'
     ])
   },
 
@@ -51,11 +46,11 @@ export default {
     },
 
     invite() {
-      this.$store.dispatch('invite')
+      //this.$store.dispatch('invite')
     },
 
     share() {
-      this.$store.dispatch('share')
+      //this.$store.dispatch('share')
     }
   }
 };

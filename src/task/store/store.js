@@ -46,9 +46,7 @@ const getters = {
     } else {
       return accumulator;
     }
-  }, 0),
-  upvotes: (state) => { return state.post.upvotes - state.post.downvotes >= 0 ? state.post.upvotes - state.post.downvotes: '' },
-  downvotes: (state) => { return state.post.downvotes - state.post.upvotes > 0 ? state.post.downvotes - state.post.upvotes : ''}
+  }, 0)
 }
 
 const mutations = {

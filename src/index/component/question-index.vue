@@ -13,10 +13,9 @@
       <div class="-action">
         <div class="-thumbs">
           <button class="btn btn-sm btn-light ion-md-arrow-dropup" @click="doVote('upvote', index)" title="支持">
-            {{post.upvotes - post.downvotes >= 0 ? post.upvotes - post.downvotes: ''}}
+            {{post.upvotes - post.downvotes}}
           </button>
           <button class="btn btn-sm btn-light ion-md-arrow-dropdown" @click="doVote('downvote', index)" title="反对">
-            {{post.downvotes - post.upvotes > 0 ? post.downvotes - post.upvotes : ''}}
           </button>
         </div>
         <a :href="'/post/' + post._id" target="_blank" title="回复，响应和打赏">
