@@ -35,23 +35,35 @@
         <dl class="task-body-item">
           <dt>报酬：</dt>
           <dd>
-            <p> > 20金币</p>
-            <p> > 100元</p>
-            <p> > 帮带行李，教游泳</p>
+            <% if post.coins %>
+            <p> > ${post.coins} 金币</p>
+            <% endif %>
+
+            <% if post.bounty %>
+            <p> > ${post.bounty} 元</p>
+            <% endif %>
+            
+            <% if post.custom %>
+            <p> > ${post.custom}</p>
+            <% endif %>
           </dd>
         </dl>
+
+        <% if post.valid_time !== 'max' and post.valid_time !== -1 %>
         <dl class="task-body-item">
           <dt>有效期：</dt>
           <dd>15天12小时内完成有效</dd>
         </dl>
+        <% endif %>
+
         <div class="task-body-action">
-          <a class="btn btn-sm btn-outline-success" href="#" title="">
-            <i class="ion ion-md-create"></i>写回答
-          </a>
-          <a class="btn btn-sm btn-outline-info" href="#" title="响应问题后，问题发布者将会收到提醒，您对本问题的回答将被标记。">
-            <i class="ion ion-ios-heart"></i>响应问题
-          </a>
-        </div>
+            <a class="btn btn-sm btn-outline-success" @click.prevent="btnWriteAnswer(1)" href="#" title="发表你对问题的建议，看法">
+              <i class="ion ion-md-create"></i>写回答
+            </a>
+            <a class="btn btn-sm btn-outline-info" @click.prevent="btnWriteAnswer(2)" href="#" title="响应问题后，问题发布者将会收到提醒，您对本问题的回答将被标记。">
+              <i class="ion ion-ios-heart"></i>响应问题
+            </a>
+          </div>
         <div class="task-body-author">
           <a class="mod-avatar" href="#">
             <img src="https://avatars1.githubusercontent.com/u/6301319?v=3&amp;s=460" alt="" width="32" height="32">

@@ -81,7 +81,7 @@
           <div class="form-inline">
             <div class="radio">
               <label>
-                <input type="radio" name="city" :value="city.sid" v-model="post.city">
+                <input type="radio" name="city" :value="city.sid" v-model="post.city ? post.city : city.sid">
                 {{city.name}}
               </label>
             </div>

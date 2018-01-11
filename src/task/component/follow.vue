@@ -33,7 +33,7 @@ export default {
 
   computed: {
     ...mapState([
-      'qid'
+      'post'
     ]),
     counts: function () {
       return this.users.length || 0;
@@ -58,7 +58,7 @@ export default {
       console.log()
 
       ajax(
-        REMOTE.task.taskFollows + `/${self.qid}`
+        REMOTE.task.taskFollows + `/${self.post._id}`
       )
       .then(function(data){
         self.users = data;
@@ -69,7 +69,7 @@ export default {
       let self = this;
 
       ajax(
-        REMOTE.task.doFollow + `/${self.qid}`
+        REMOTE.task.doFollow + `/${self.post._id}`
       )
       .then(function(data){
         self.users.push(data);
