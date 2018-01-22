@@ -181,9 +181,13 @@ router.post('/op/:post_id', F(async (req, res, next) => {
   }
   let update;
   if (op === 'subscribe') {
-    update = {$push: {[op_field_mapping[op]]: req.session.user_id}}
+    update = {$push: {subscribers: req.session.user_id}}
+  } else if (op === 'upvote') {
+    update = {$inc: {upvotes: 1, total_votes: 1}};
+  } else if (op === 'downvote') {
+    update = {$inc: {downvotes: 1, total_votes: -1}};
   } else {
-    update = {$inc: {[op_field_mapping[op]]: 1}};
+    update = {$inc: {pageview: 1}};
   }
   const post = await Post.findByIdAndUpdate(post_id, update, {new: true});
   res.json({

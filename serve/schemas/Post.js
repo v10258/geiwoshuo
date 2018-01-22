@@ -19,6 +19,7 @@ const schema = new Schema({
   subscribers: {type: [String]},// 关注人id
   upvotes: {type: Number, default: 0},// 赞同
   downvotes: {type: Number, default: 0},// 反对
+  total_votes: {type: Number, default: 0},
   views: {type: Number, default: 0},// 浏览数
   coins: {type: Number, default: 0},//金币
   bounty: {type: Number, default: 0},//赏金
@@ -66,7 +67,7 @@ schema.statics.findByParam = function(querys){
   let pageSize = Number(querys.pageSize);
 
   if (type === 'hot') {//热门
-    return this.find({}).sort({upvotes: -1}).skip(start).limit(pageSize);
+    return this.find({}).sort({total_votes: -1}).skip(start).limit(pageSize);
   } else if (type === 'latest') {//最新
     return this.find({}).sort({created: -1}).skip(start).limit(pageSize);
   } else if (type === 'bounty') {//赏金
