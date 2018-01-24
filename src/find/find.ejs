@@ -9,33 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <%- include ../layout/bootstrap-css -%>
-    <script type="text/javascript">
-      window.__PAGE_DATA = {
-        interestTags: [{
-          tid: '001',
-          name: '创业'
-        }, {
-          tid: '002',
-          name: '互联网'
-        }, {
-          tid: '003',
-          name: '投资'
-        }, {
-          tid: '004',
-          name: '前端开发'
-        }, {
-          tid: '005',
-          name: '股票'
-        }, {
-          tid: '006',
-          name: '旅行'
-        }, {
-          tid: '007',
-          name: '医学'
-        }],
-        recommendTags: null
-      }
-    </script>
 </head>
 
 <body class="page-task">
@@ -218,6 +191,32 @@
     </aside>
   </main>
   <%- include ../layout/footer -%>
+  <script type="text/javascript">
+    window.__PAGE_STATE = {};
+    window.__PAGE_STATE['interestTags'] = [{
+      tid: '001',
+      name: '创业'
+    }, {
+      tid: '002',
+      name: '互联网'
+    }, {
+      tid: '003',
+      name: '投资'
+    }, {
+      tid: '004',
+      name: '前端开发'
+    }, {
+      tid: '005',
+      name: '股票'
+    }, {
+      tid: '006',
+      name: '旅行'
+    }, {
+      tid: '007',
+      name: '医学'
+    }];
+    window.__PAGE_STATE['recommendTags'] = [];
+  </script>
 </body>
 
 </html>

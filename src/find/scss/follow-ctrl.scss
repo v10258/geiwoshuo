@@ -3,6 +3,7 @@
 }
 
 .follow-ctrl-tags {
+
   .mod-interest {
     margin-top: 10px;
     border-top: 1px solid $border-color-base;
@@ -33,6 +34,10 @@
   border-bottom: 1px solid $border-color-base;
   @extend .flex-item-center;
   @extend .flex-justify-between;
+
+  h2 {
+    font-weight: bold;
+  }
 
   .mod-rank {
     line-height: 32px;

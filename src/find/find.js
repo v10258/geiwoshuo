@@ -37,7 +37,7 @@ var app = new Vue({
 
   created() {
     // 初始化 store
-    store.commit('merge', window.__PAGE_DATA);
+    store.commit('merge', window.__PAGE_STATE);
 
     // 请求加载热门标签
     store.dispatch('getTags');

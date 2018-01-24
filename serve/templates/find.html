@@ -10,33 +10,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css"/>
   <link href="/css/find.css" rel="stylesheet">
-  <script type="text/javascript">
-    window.__PAGE_DATA = {
-      interestTags: [{
-        tid: '',
-        name: '创业'
-      }, {
-        tid: '',
-        name: '互联网'
-      }, {
-        tid: '',
-        name: '投资'
-      }, {
-        tid: '',
-        name: '前端开发'
-      }, {
-        tid: '',
-        name: '股票'
-      }, {
-        tid: '',
-        name: '旅行'
-      }, {
-        tid: '',
-        name: '医学'
-      }],
-      recommendTags: null
-    }
-  </script>
 </head>
 
 <body class="page-task">
@@ -219,6 +192,32 @@
   </aside>
 </main>
 <% include "layout/footer.html" %>
+<script type="text/javascript">
+  window.__PAGE_STATE = {};
+  window.__PAGE_STATE['interestTags'] = [{
+    tid: '001',
+    name: '创业'
+  }, {
+    tid: '002',
+    name: '互联网'
+  }, {
+    tid: '003',
+    name: '投资'
+  }, {
+    tid: '004',
+    name: '前端开发'
+  }, {
+    tid: '005',
+    name: '股票'
+  }, {
+    tid: '006',
+    name: '旅行'
+  }, {
+    tid: '007',
+    name: '医学'
+  }];
+  window.__PAGE_STATE['recommendTags'] = [];
+</script>
 <script type="text/javascript" src="/js/vendor.js"></script>
 <script type="text/javascript" src="/js/find.js"></script>
 </body>

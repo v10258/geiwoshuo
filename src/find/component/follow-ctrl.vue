@@ -14,7 +14,7 @@
   </div>
 
   <div class="follow-ctrl-console">
-    <h2>{{ tags }}</h2>
+    <h2>{{ activeTag.name ? activeTag.name : '全部' }}</h2>
     <div class="mod-rank">
       <span :class="['vm-tab', rank === 'hot' ? 'active' : '']" @click.prevent="switchRank('hot')" data-href="#">热门排序</span>
       <span class="vm-line">|</span>
@@ -41,6 +41,10 @@ export default {
     ...mapGetters([
       'tags'
     ])
+  },
+
+  created: function() {
+    console.log('created', this, this.data)
   },
 
   methods: {
