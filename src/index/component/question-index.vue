@@ -24,7 +24,7 @@
         </a>
         <a>
           <i>•</i>
-          {{post.views || Math.ceil(Math.random() * 9)}} 浏览
+          {{post.views ? post.views : 1}} 浏览
         </a>
         <a class="-more">
           <i class="ion ion-ios-more"></i>

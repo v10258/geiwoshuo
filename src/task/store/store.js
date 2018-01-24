@@ -105,7 +105,7 @@ const actions = {
     context.commit('set', params);
 
     ajax(
-      REMOTE.task.queryAnswers + `/${context.state.qid}`,
+      REMOTE.task.queryAnswers + `/${context.state.post._id}`,
       params
     ).then((data)=>{
       console.log('getAnswers data', data)
