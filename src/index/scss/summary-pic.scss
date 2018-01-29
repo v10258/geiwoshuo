@@ -1,0 +1,88 @@
+.index-summary {
+	@extend .flex-column;
+	position: relative;
+	border-bottom: 1px solid #e2e2e2;
+	padding: 15px 0;
+	padding-left: 60px;
+
+	.-avatar {
+		position: absolute;
+		left: 0;
+		top: 16px;
+		border-radius: 50%;
+		width: 48px;
+		height: 48px;
+	}
+
+
+	.-title {
+		@extend .flex;
+		line-height: 30px;
+		color: #141616;
+		font-size: 16px;
+		letter-spacing: .8px;
+		font-weight: 600;
+
+		.-tags {
+			i:before {
+				font-size: 20px;
+			}
+			.ion-ios-planet {
+				color:#4c9e82
+			}
+		}
+	}
+
+	.-body {
+		@extend .flex;
+
+		.-pic {
+			margin-right: 10px;
+		}
+	}
+
+
+	.-info {
+		@extend .flex-item-center;
+		margin-top: 8px;
+		color: #7f7f7f;
+		font-size: 13px;
+		
+		a {
+			display: block;
+			padding: 0 10px;
+			border-radius: 30px;
+			line-height: 18px;
+			text-decoration: none;
+			color: #b4b4b4;
+			border: 1px solid #daecf5;
+			margin-right: 10px;
+		}
+	}
+
+	.-action {
+		@extend .flex-justify-between;
+		@extend .flex-item-center;
+		position: relative;
+		margin-top: 8px;
+		font-size: 13px;
+
+		.-thumbs {
+			margin-right: 18px;
+
+			button {
+			color: #8b8b8b;
+			}
+		}
+
+		a {
+				margin-right: 18px;
+				color: #7f7f7f;
+
+				i {
+					margin-right: 5px;
+				}
+		}
+
+	}
+}

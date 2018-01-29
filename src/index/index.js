@@ -6,7 +6,7 @@ require('../layout/footer.js')
 import Vue from 'vue'
 import {mapState, mapGetters} from 'vuex';
 import topHeader from './component/top-header.vue'
-import questionIndex from './component/question-index.vue'
+import questionIndex from './component/question-index-pic.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import Element from 'element-ui'
 import store from './store/store'
