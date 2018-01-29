@@ -15,114 +15,32 @@
 <body class="page-ask">
 <% include "layout/header.html" %>
 <main id="content" class="container flex-justify-between">
-  <div class="content-auto">
+  <div class="centre-auto">
     <section class="top-header">
       <a class="top-header-tab" href="#">
         最新动态
       </a>
     </section>
-    <section class="dynamic mt20">
-      <acticle class="dynamic-item">
-        <div class="-topic">
-          <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559"
-             style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-          <a class="vm-nickname" data-uid="5cd06162633437343533669408"
-             href="/pai/center?uid=5cd06162633437343533669408">萦萦宝贝儿</a>
+    <section class="dynamic-new">
+      <article class="dynamic-new-item">
+        <div class="mod-">
+            <a>被动的鱼</a> 关注了问题 • <span class="Feed-meta-item" data-reactid="113">22 分钟前</span>
+        </div>
 
-          <span class="-behavior">
-                赞同了回答
-              </span>
-          <span class="-timeline">
-                34 分钟前
-              </span>
-        </div>
-        <div class="-title">
-          AR扫花迎七夕花礼，我在支付宝AR扫花中了一朵花，快来帮我施肥赢七夕花礼。
-        </div>
-      </acticle>
-      <acticle class="dynamic-item">
-        <div class="-topic">
-              <span class="-uname">
-                柳柳
-              </span>
-          <span class="-behavior">
-                响应了回答
-              </span>
-          <span class="-timeline">
-                34 分钟前
-              </span>
-        </div>
-        <div class="-title">
-          AR扫花迎七夕花礼，我在支付宝AR扫花中了一朵花，快来帮我施肥赢七夕花礼。
-        </div>
-      </acticle>
-      <acticle class="dynamic-item">
-        <div class="-topic">
-              <span class="-uname">
-                柳柳
-              </span>
-          <span class="-behavior">
-                支持了问题
-              </span>
-          <span class="-timeline">
-                34 分钟前
-              </span>
-        </div>
-        <div class="-title">
-          AR扫花迎七夕花礼，我在支付宝AR扫花中了一朵花，快来帮我施肥赢七夕花礼。
-        </div>
-      </acticle>
+          <a>漫步情侣路，畅游海洋国 | 珠海2天短途游</a>
+      </article>
+      <article class="dynamic-new-item">
+        小草不高 顶了 大鲁天下 的游记 家乡行：只看秋景 2018-01-26 11:36:16
+      </article>
+      <article class="dynamic-new-item">
+        Unfair 收藏了 萝萝 的游记 初冬厦门，二丫的花样假期（厦门/土楼4日亲子游） 2018-01-26 11:36:15
+      </article>
+      <article class="dynamic-new-item">
+        well 顶了 青空_凉风 的游记 周末自驾好去处，溧阳2天的洗肺之旅 2018-01-26 11:36:14
+      </article>
     </section>
   </div>
-  <aside class="content-part">
-    <h2>
-      个人中心
-    </h2>
-    <seaction class="stat">
-      <span>获赞：<em>${upvotes}</em></span>
-      <span>关注：<em>${subscribed}</em></span>
-      <span>粉丝：<em>${fans}</em></span>
-    </seaction>
-    <section class="menu mt20">
-
-      <a class="-dynamic" href="#">
-        最新动态 <!-- （关注对象与自己收到回复） -->
-      </a>
-
-      <div class="-group">
-        <a href="#">
-          我的资产 <!-- （金币，RMB，其他） -->
-        </a>
-
-        <a href="#">
-          我的消息 <!-- （私信，邀请与系统通知） -->
-          <span class="badge badge-pill badge-success float-right">33</span>
-        </a>
-
-        <a href="#">
-          我的问题 <!-- （发布的） -->
-          <span class="badge badge-pill badge-success float-right">33</span>
-        </a>
-
-        <a href="#">
-          我的回答 <!-- （评论与响应） -->
-        </a>
-
-        <a href="#">
-          我的关注 <!-- （关注的问题，标签，人） -->
-          <span class="badge badge-pill badge-success float-right">9</span>
-        </a>
-      </div>
-      <div class="-group">
-        <a href="#">
-          加入团队
-        </a>
-        <a href="#">
-          邀请好友
-        </a>
-      </div>
-    </section>
-  </aside>
+  <% include "blocks/centre_part.html" %>
 </main>
 <% include "layout/footer.html" %>
 <script type="text/javascript" src="/js/vendor.js"></script>
