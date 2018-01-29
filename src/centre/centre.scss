@@ -1,6 +1,30 @@
 @import "../common/scss/common.scss";
 @import "../common/scss/utils.scss";
 
+@import "./centre-dynamic.scss";
+
+.centre-auto {
+  position: relative;
+  float: left;
+  width: auto;
+  margin-right:32px;
+	flex: auto;
+}
+
+.centre-part {
+  position: relative;
+  float: right;
+  width: 25%;
+}
+
+.heading {
+	padding-bottom: 20px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #191e1f;
+	border-bottom: 1px solid #ddd;
+}
+
 .stat {
 	@extend .flex-justify-between;
 
@@ -15,21 +39,56 @@
 }
 
 .menu {
-    @extend .flex-column;
+	@extend .flex-column;
 
-    a:hover {
-    	text-decoration: none;
-    }
+	a:hover {
+		text-decoration: none;
+	}
 
-    .-group {
+	.-group {
 		@extend .flex-column;
 		border-top: 1px solid #ccc;
 		margin-top: 10px;
 		padding-top: 10px;
 
+		&:first-child {
+			border: none;
+			margin-top: 0;
+		}
+
 		a {
-			line-height: 28px;
-			padding-left: 5px;
+			position: relative;
+			line-height: 20px;
+			padding: 6px 0 4px 10px;
+			letter-spacing:0.3px;
+
+			&.active {
+				font-weight: bold;
+				color: #1e9780;
+
+
+				&::before {
+					content:'.';
+					text-indent: -99em;
+					position: absolute;
+					left: 0;
+					top: 8px;
+					height: 16px;
+					border-left: 2px solid #1e9780;
+				}
+			}
+
+			.-badge {
+				margin-top: 5px;
+				float: right;
+				color: #fff;
+				background-color: #28a745;
+				padding: 2px 6px;
+				border-radius: 10rem;
+				font-size: 75%;
+				font-weight: 700;
+				line-height: 1;
+			}
 		}
 	}
 
@@ -39,18 +98,16 @@
 }
 
 .top-header {
-    border-bottom: 1px solid #E5E5E5;
-    height: 32px;
+	@extend .flex;
+	padding: 5px 0;
+	border-bottom: 1px solid #E5E5E5;
 
-    .top-header-tab {
-    	line-height: 32px;
-    	color: #4c9e82;
-    }
-
-	.top-header-title {
-		font-size: 18px;
-		padding: 10px 0;
-	}	
+	a {
+		height: 30px;
+		line-height: 30px;
+		font-size: 14px;
+		color: #4c9e82;
+	}
 }
 
 .dynamic {

@@ -10,11 +10,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <%- include ../layout/bootstrap-css -%>
 </head>
-
 <body class="page-centre">
   <%- include ../layout/header -%>
     <main id="content" class="container flex-justify-between">
-      <div class="content-auto">
+      <div class="centre-auto">
         <section class="top-header">
           <a class="top-header-tab" href="#">
             我的问题
@@ -33,53 +32,7 @@
           </acticle>
         </section>
       </div>
-      <aside class="content-part">
-        <seaction class="stat">
-          <span>获赞：<em>99</em></span>
-          <span>关注：<em>99</em></span>
-          <span>粉丝：<em>1800</em></span>
-        </seaction>
-        <section class="menu mt20">
-
-          <a class="-dynamic" href="#">
-            最新动态 <!-- （关注对象与自己收到回复） -->
-          </a>
-
-          <div class="-group">
-            <a href="#">
-              我的资产 <!-- （金币，RMB，其他） -->
-            </a>
-
-            <a href="#">
-              我的消息 <!-- （私信，邀请与系统通知） -->
-              <span class="badge badge-pill badge-success float-right">33</span>
-            </a>
-
-            <a href="/centre/question" target="_blank">
-              我的问题 <!-- （发布的） -->
-              <span class="badge badge-pill badge-success float-right">33</span>
-            </a>
-
-            <a href="#">
-              我的回答 <!-- （评论与响应） -->
-              <span class="badge badge-pill badge-success float-right">9</span>
-            </a>
-
-            <a href="#">
-              我的关注 <!-- （关注的问题，标签，人） -->
-              <span class="badge badge-pill badge-success float-right">9</span>
-            </a>
-          </div>
-          <div class="-group">
-            <a href="#">
-              加入团队
-            </a>
-            <a href="#">
-              邀请好友
-            </a>
-          </div>
-        </section>
-      </aside>
+      <%- include ./parts/centre-part -%>
     </main>
     <%- include ../layout/footer -%>
 </body>

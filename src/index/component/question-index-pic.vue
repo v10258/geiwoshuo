@@ -6,6 +6,9 @@
     <img class="-avatar" :src="post.avatar || 'http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90'">
     <div class="-title">
       <a :href="'/post/' + post._id" target="_blank">{{post.title}}</a>
+      <!-- <i>多人任务</i>
+      <i>全网任务</i>
+      <i>奖励丰厚</i> -->
     </div>
     <div class="-body">
       <!-- <div class="-pic">
