@@ -18,36 +18,35 @@
     <div class="content-column">
       <form class="form" id="askForm">
         <div class="form-group">
-          <label for="title" class="vm-label">标题
-            <span class="text-danger">*</span>
+          <label for="title" class="vm-label">问题标题
           </label>
           <input type="text" class="form-control" name="title" v-model="post.title" placeholder="一句话描述你的问题">
         </div>
-        <div class="form-group">
+        <div class="form-group ask-field-body">
           <div class="form-group-hd flex-justify-between">
-            <label class="vm-label">问题说明
-              <span class="vm-remark font-normal"> 可选填</span>
+            <label class="vm-label">
+              <a :class="['vm-add ion ion-md-add', isShowEditor ? 'active' : '']"  @click="isShowEditor = !isShowEditor" href="#">
+              </a>
+              问题详细内容
+              <span class="vm-remark font-normal">（建议选填）</span>
             </label>
           </div>
-          <div class="editor form-control">
+          <div v-show="isShowEditor" class="editor form-control">
             <textarea class="form-control autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述">
             {{post.body}}
             </textarea>
+            <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
           </div>
-          <input style="display:none;" id="fileupload" type="file" name="files[]" multiple>
         </div>
         <div class="form-group">
           <div class="form-group-hd flex-justify">
-            <label class="vm-label">选择标签</label>
-            <span class="vm-remark">标签越精准，越容易让相关领域专业人士看到你的问题</span>
+            <label class="vm-label">标签分类</label>
           </div>
-          <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :tags="post.tags"></input-tag>
+          <input-tag :on-change="tagsToHide" :searchurl="autoCompleteUrl" :hot-tags="hotTags" :tags="post.tags"></input-tag>
         </div>
 
         <div class="form-group ask-reward">
           <label class="vm-label">提供报酬
-            <span class="text-danger">*</span>
-            <span class="vm-remark font-normal"> 支持多项奖励并存</span>
           </label>
           <div class="form-group-content">
             <div class="form-inline">
@@ -114,7 +113,7 @@
               <label>
                 <input type="radio" name="valid_time" value="3day" v-model="post.valid_time">三天</label>
               <label>
-                <input type="radio" name="valid_time" value="1day" v-model="post.valid_time">当天</label>
+                <input type="radio" name="valid_time" value="today" v-model="post.valid_time">当天</label>
             </div>
           </div>
           <div class="form-group">
@@ -216,6 +215,17 @@
     window.__PAGE_STATE = {};
     window.__PAGE_STATE['isLogin'] = ${isLogin};
     window.__PAGE_STATE['post'] = ${post | dump | safe}
+    window.__PAGE_STATE['hotTags'] = [
+      {"name":"投票","id":"5a12a9f6e732354e47cb72d0"},
+      {"name":"分享","id":"5a12a9f6e732354e47cb72d2"},
+      {"name":"代购","id":"5a49b7b570fdc1167a0f82c7"},
+      {"name":"陪玩","id":"5a4a4c4170fdc1167a0f82d2"},
+      {"name":"家教","id":"5a4a4c4170fdc1167a0f82d4"},
+      {"name":"宠物","id":"5a49b6e870fdc1167a0f82c1"},
+      {"name":"健身","id":"5a49b7b570fdc1167a0f82c6"},
+      {"name":"共享账号","id":"5a49b7b570fdc1167a0f82c9"},
+      {"name":"装修","id":"5a586835867deb4e9abf344a"}
+    ];
   </script>
   <script type="text/javascript" src="/js/vendor.js"></script>
   <script type="text/javascript" src="/js/ask.js"></script>
