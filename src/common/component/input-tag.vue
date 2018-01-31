@@ -113,7 +113,15 @@
       let self = this;
 
       self.currentTags = self.tags.slice();
-      self.defaultTags =  (self.tags && self.tags.length) ? self.tags.slice() : self.hotTags;
+
+      if (self.tags && self.tags.length) {
+        self.defaultTags = self.tags.map(function(tag){
+          tag.checked = true;
+          return tag;
+        })
+      } else {
+        self.self.hotTags;
+      }
 
       // 点击页面其他位置，关闭标签切换浮层
       $(document).on('click.inputTag', (ev)=>{
@@ -200,8 +208,7 @@
           return;
         }
 
-        this.tags.push(tag)
-        this.tagChange()
+        this.currentTags.push(tag)
         this.newTag = ''
         this.autoTags = [];
       },
@@ -221,30 +228,13 @@
         return true
       },
 
-      remove (index) {
-        this.tags.splice(index, 1)
-        this.tagChange()
-      },
-
       removeLastTag () {
         if (this.newTag) { return }
-        this.tags.pop()
-        this.tagChange()
-      },
-
-      tagChange () {
-        if (this.onChange) {
-          // avoid passing the observer
-          this.onChange(JSON.parse(JSON.stringify(this.tags)))
-        }
+        this.currentTags.pop()
       },
 
       autoComplete (ev) {
         this.newTag = ev.currentTarget.value;
-        // console.log('autoComplete1', this, this.placeholder, this.searchurl)
-        //if (!this.searchurl) { return }
-
-        console.log('auto', this, this.searchurl);
 
         $.ajax({
           url: this.searchurl,

@@ -52,8 +52,9 @@ var app = new Vue({
 
     console.log('created', self, self.hotTags)
 
-    self.post.coins = self.post.coins && '';
-    self.post.bounty = self.post.bounty && '';
+    self.isShowEditor = self.post && self.post.body;
+    self.post.coins = self.post.coins || '';
+    self.post.bounty = self.post.bounty || '';
     self.city = (this.post._id && this.post.city) ? (site.citys[this.post.city] || site.defaultCity) : site.defaultCity; 
 
     console.log('city', self.city)
