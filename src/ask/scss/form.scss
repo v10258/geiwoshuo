@@ -1,9 +1,7 @@
-@import "../common/variables.scss";
-
 
 .form {
     .form-group {
-       // margin-bottom: 20px;
+       margin-bottom: 24px;
     }
 
     .vm-label {
@@ -110,5 +108,55 @@
     }
 }
 
+.vm-add {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  color: #1e9780;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid #1e9780;
+  text-align: center;
+  margin-right: 10px;
+  transition: all .2s;
 
+  &::before {
+    line-height: 22px;
+  }
 
+  &:hover {
+    background: #1e9780;
+    color: #fff;
+  }
+
+  &.active {
+    transform: rotate3d(0,0,1,45deg);
+    background: #1e9780;
+    color: #fff;
+  }
+}
+
+.ask-field-body {
+  position: relative;
+  z-index: 2;
+
+  label {
+    margin-bottom: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    border: 1px solid #e5e5e5;
+    background-color: #f6f6f6;
+    border-radius: 13px;
+    margin-right: 13px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s;
+  }
+}

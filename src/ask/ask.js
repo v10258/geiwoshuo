@@ -34,9 +34,11 @@ var app = new Vue({
     inputTag
   },
   data: {
+    hotTags: {},
     post:{},
     city: {},
     isShowAskMore: false,
+    isShowEditor: false,
     autoCompleteUrl: REMOTE.ask.autoComplete,
     placeholder: 'aaa',
     isLogin: false
@@ -45,8 +47,13 @@ var app = new Vue({
   created() {
     let self = this;
     self.isLogin = window.__PAGE_STATE['isLogin'];
+    self.hotTags = window.__PAGE_STATE['hotTags'];
     self.post = window.__PAGE_STATE['post'];
 
+    console.log('created', self, self.hotTags)
+
+    self.post.coins = self.post.coins && '';
+    self.post.bounty = self.post.bounty && '';
     self.city = (this.post._id && this.post.city) ? (site.citys[this.post.city] || site.defaultCity) : site.defaultCity; 
 
     console.log('city', self.city)
@@ -60,6 +67,9 @@ var app = new Vue({
     },false);
   },
   methods: {
+    showEditorToggle: () => {
+      console.log('showEditorToggle', this)
+    },
     askMoreToggle: () => {
     },
     tagsToHide (tags) {
