@@ -19,7 +19,8 @@ var config = {
     vendor: ['jquery', 'vue', 'vuex', 'axios']
   },
   output: {
-    filename: 'js/[name]-[chunkhash:8].js',
+    //filename: 'js/[name]-[chunkhash:8].js',
+    filename: 'js/[name].js',
     path: outputPath
   },
   module: {
@@ -90,7 +91,8 @@ var config = {
     ]),
     // 抽出样式
     new ExtractTextPlugin({
-      filename: 'css/[name]-[chunkhash:8].css'
+      //filename: 'css/[name]-[chunkhash:8].css'
+      filename: 'css/[name].css'
     }),
     // 抽出公共文件vendor依赖，manifest运行时信息
     new webpack.optimize.CommonsChunkPlugin({

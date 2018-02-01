@@ -1,24 +1,27 @@
 var $ = require('jquery')
 
+import { REMOTE } from './ajax.js';
+
 require('./jquery-file-upload/jquery.fileupload.js')
 
 var tinymce = require('./tinymce/tinymce.min.js')
 
-const editor = {
-  imagegwsHandler: function () {
+var editorTodo = {
+  imagegwsHandler: function (editor) {
     $('#fileupload').fileupload({
       url: REMOTE.ask.fileupload,
       done: function (ev, data) {
         console.log('result', data.result);
-        editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
+        let result = JSON.parse(data.result);
+        editor.insertContent(`<img src="${result.data.files[0].url}">`);
       },
-      progressall: function (e, data) {
+      progressall: function (ev, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
           console.log('progress', progress);
       }
     }).trigger('click');
   },
-  qrCodeHandler: function () {
+  qrCodeHandler: function (editor) {
     editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
   },
   initHandler: function (editor) {
@@ -56,13 +59,17 @@ tinymce.init({
 
     editor.addButton('imagegws', {
       icon: 'image',
-      onclick: editor.imagegwsHandler
+      onclick: function(){
+        editorTodo.imagegwsHandler(editor)
+      }
     })
 
     editor.addButton('qr-code', {
       text: 'QR',
       icon: '',
-      onclick: editor.qrCodeHandler
+      onclick: function() {
+        editorTodo.qrCodeHandler(editor)
+      }
     })
   }
 })
