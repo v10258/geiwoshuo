@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Post, Comment, User, Tag} = require('../mongo');
 const F = require('./Factory');
+const login_required = require('./middlewares/login_requred');
 
 
 router.get('/error', F(async (req, res, next) => {
@@ -12,7 +13,8 @@ router.get('/error', F(async (req, res, next) => {
  */
 router.get('/query', async (req, res) => {
   //const posts = await Post.find();
-  const querys = req.query;;
+  const querys = req.query;
+  ;
   const posts = await Post.findByParam(querys);
 
   // 获取当前类目下问题数
@@ -37,23 +39,23 @@ router.post('/add', async (req, res, next) => {
   let newTags = [];
   let tagsResult;
 
-  tags.forEach(function(v) {
+  tags.forEach(function (v) {
     v._id ? hasTags.push(v) : newTags.push(v);
   });
 
   // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
-  if (newTags.length) { 
+  if (newTags.length) {
     tagsResult = await Tag.create(newTags);
-    hasTags = hasTags.concat(tagsResult).map(function(v){
+    hasTags = hasTags.concat(tagsResult).map(function (v) {
       return {
         id: v.id || v._id,
-        name:v.name
+        name: v.name
       }
     })
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, {creator: req.session.user_id, tags:hasTags});
+  const post = Object.assign({}, req.body, {creator: req.session.user_id, tags: hasTags});
 
   post.created = new Date();
 
@@ -82,29 +84,29 @@ router.put('/update', async (req, res, next) => {
   let newTags = [];
   let tagsResult;
 
-  tags.forEach(function(v) {
+  tags.forEach(function (v) {
     v._id ? hasTags.push(v) : newTags.push(v);
   });
 
   // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
-  if (newTags.length) { 
+  if (newTags.length) {
     tagsResult = await Tag.create(newTags);
-    hasTags = hasTags.concat(tagsResult).map(function(v){
+    hasTags = hasTags.concat(tagsResult).map(function (v) {
       return {
         id: v.id || v._id,
-        name:v.name
+        name: v.name
       }
     })
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, { tags:hasTags});
+  const post = Object.assign({}, req.body, {tags: hasTags});
 
   post.last_modified = new Date();
 
   // todo: 任务存在验证，修改权限验证
   try {
-    const r = await Post.update({ _id: post.post_id }, post);
+    const r = await Post.update({_id: post.post_id}, post);
     //res.redirect('/post/' + r._id);// 跳转到详情页
     res.json({
       success: true,
@@ -135,16 +137,32 @@ router.get('/:post_id', F(async (req, res) => {
 }));
 
 /**
+ * 获取评论列表
+ */
+router.get('/:post_id/comments', F(async (req, res) => {
+  const {post_id} = req.params;
+  const comments = await Comment.find({post_id});
+
+  res.json({
+    success: true,
+    code: 200,
+    data: {
+      comments
+    }
+  });
+}));
+
+/**
  * 添加评论
  */
-router.post('/comment/:post_id', async (req, res, next) => {
+router.post('/comment/:post_id', login_required, async (req, res, next) => {
   const {post_id} = req.params;
   const post = await Post.findById(post_id);
   if (!post || !post._doc) {
     return next('No post found.');
   }
   const comment = new Comment();
-  Object.assign(comment, req.body, {post_id, created: new Date(), creator: 'faker'});
+  Object.assign(comment, req.body, {post_id, created: new Date(), creator: req.session.user_id});
 
   try {
     const r = await comment.save();
@@ -244,7 +262,8 @@ router.post('/:post_id/subscribe', F(async (req, res, next) => {
       nickname: '',
       avatar: '',
       url: ''
-    }});
+    }
+  });
 }));
 
 
