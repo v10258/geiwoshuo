@@ -134,7 +134,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'qid'
+      'qid',
+      '_id',
     ]),
     body () {
        return this.$store.state.body
@@ -181,7 +182,8 @@ export default {
           body: body,
           joinChecked: state.joinChecked,
           anonymousChecked: state.anonymousChecked
-        }
+        },
+        'post',
       ).then((data)=>{
         console.log('data', data)
         //location.reload();
