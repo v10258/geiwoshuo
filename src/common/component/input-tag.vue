@@ -120,7 +120,7 @@
           return tag;
         })
       } else {
-        self.self.hotTags;
+        self.defaultTags = self.hotTags;
       }
 
       // 点击页面其他位置，关闭标签切换浮层
