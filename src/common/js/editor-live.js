@@ -12,7 +12,7 @@ var editorTodo = {
       url: REMOTE.ask.fileupload,
       done: function (ev, data) {
         console.log('result', data.result);
-        let result = JSON.parse(data.result);
+        let result = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
         editor.insertContent(`<img src="${result.data.files[0].url}">`);
       },
       progressall: function (ev, data) {
