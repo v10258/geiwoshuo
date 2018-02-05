@@ -13,7 +13,7 @@ var editorTodo = {
       done: function (ev, data) {
         console.log('result', data.result);
         let result = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
-        editor.insertContent(`<img src="/${result.data.files[0].url}">`);
+        editor.insertContent(`<img src="${result.data.files[0].url}">`);
       },
       progressall: function (ev, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -38,9 +38,8 @@ tinymce.init({
   // 编辑区域应用样式
   content_style: 'p {margin:0; line-height: 1.5;} img {max-width:100%}',
 
-  // 去掉商标和路径
-  branding: false,
-  elementpath: false,
+  // 去掉底部状态
+  statusbar: false,
 
   // 图片上传
   // images_upload_url: REMOTE.ask.ImagUupload,
@@ -50,9 +49,9 @@ tinymce.init({
   init_instance_callback: editor.initHandler,
 
   //输入框区域自动变大
-  autoresize_min_height: 60,
+  autoresize_min_height: 90,
   autoresize_max_height: 360,
-  autoresize_bottom_margin: 30,
+  autoresize_bottom_margin: 5,
 
   //
   setup: function (editor) {
