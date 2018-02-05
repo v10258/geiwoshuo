@@ -42,6 +42,13 @@ const schema = new Schema({
   groups: {type: [String]},// 面向指定圈子
   members: {type: [String]},// 面向指定用户
 
+}, {
+  toObject: {
+    virtuals: true
+  }
+  , toJSON: {
+    virtuals: true
+  }
 });
 
 /**
@@ -61,7 +68,7 @@ schema.statics.findByType = function (type = 'HOT') {
   }
 };
 
-schema.statics.findByParam = function(querys){
+schema.statics.findByParam = function (querys) {
   let start = (querys.pageNum - 1) * querys.pageSize;
   let type = querys.sort;
   let pageSize = Number(querys.pageSize);
@@ -79,7 +86,7 @@ schema.statics.findByParam = function(querys){
   }
 }
 
-schema.statics.findByUser = function(userId) {
+schema.statics.findByUser = function (userId) {
   return this.find({creator: userId}).sort({created: 1});
 }
 
@@ -95,6 +102,15 @@ schema.statics.hotTags = function (limit = 10) {
   }, {$sort: {total: -1}}, {$limit: limit}])
 };
 
+
+schema.virtual('content_abstract').get(function () {
+  const {body} = this;
+  const [, image_url] = /<img\ssrc="(.+?)"\s\/>/.exec(body) || [];
+  return {
+    image_url,
+    text: body.replace(/(<([^>]+)>)/ig, "").slice(0, 100)
+  };
+});
 
 const Model = mongoose.model('posts', schema);
 
