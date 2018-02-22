@@ -2,8 +2,13 @@ const router = require('express').Router();
 const multer = require('multer');
 const {format} = require('date-fns');
 const nanoid = require('nanoid');
+const fs = require('fs');
 
 const file_upload_to = __dirname + '/../../public/ugc/';
+
+if (!fs.existsSync(file_upload_to)) {
+  fs.mkdirSync(file_upload_to);
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
