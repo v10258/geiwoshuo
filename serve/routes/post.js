@@ -14,7 +14,6 @@ router.get('/error', F(async (req, res, next) => {
 router.get('/query', async (req, res) => {
   //const posts = await Post.find();
   const querys = req.query;
-  ;
   const posts = await Post.findByParam(querys);
 
   // 获取当前类目下问题数

@@ -36,7 +36,7 @@ tinymce.init({
   toolbar: ['link imagegws qr-code'],
 
   // 编辑区域应用样式
-  content_style: 'p {margin:0; line-height: 1.5;} img {max-width:100%}',
+  content_style: 'p {margin:0; line-height: 1.5;} img {max-width: 600px;max-height: 800px;}',
 
   // 去掉底部状态
   statusbar: false,
