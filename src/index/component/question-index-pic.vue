@@ -14,7 +14,7 @@
       <!-- <div class="-pic">
         <img src="http://b1-q.mafengwo.net/s10/M00/B4/7A/wKgBZ1nnO_mATOH1ADFwguwdC9858.jpeg?imageMogr2%2Fthumbnail%2F%21140x105r%2Fgravity%2FCenter%2Fcrop%2F%21140x105%2Fquality%2F90" width="150" height="100">
       </div> -->
-      <div class="-text" v-html="post.body || post.title">
+      <div class="-text" v-html="post.content_abstract.text || post.title">
       </div>
     </div>
     <div class="-info">
