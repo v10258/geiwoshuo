@@ -125,14 +125,18 @@ export default {
 
       console.log('ev', ev);
 
-      if (window.parent) {
-        formData.dataType = 'json';
-        ajax(self.actionUrl, formData, 'post')
-          .then(function(data){
-            self.postMessage(data);
-            window.close();
-          })
-        ev.preventDefault();
+      if (window.opener) {
+        try {
+          formData.dataType = 'json';
+          ajax(self.actionUrl, formData, 'post')
+            .then(function(data){
+              self.postMessage(data);
+              window.close();
+            })
+          ev.preventDefault();
+        } catch (error) {
+          location.href="/";
+        }
       } else {
         formEle.submit();
       }

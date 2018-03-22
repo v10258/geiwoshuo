@@ -115,6 +115,7 @@ var app = new Vue({
       // 未登录
       if (!self.isLogin) {
         self.openLogin();
+        return;
       }
 
       // 传值和表单存在 post_id 为编辑
