@@ -4,6 +4,7 @@ const {format} = require('date-fns');
 const nanoid = require('nanoid');
 const fs = require('fs');
 
+const pic_server_domain = '//gws.ask.solutions';
 const file_upload_to = __dirname + '/../../public/ugc/';
 
 if (!fs.existsSync(file_upload_to)) {
@@ -28,7 +29,7 @@ router.post('/upload', upload.array('files'), (req, res, next) => {
     code: 200,
     data: {
       files: req.files.map(f => ({
-        url: '/ugc/' + f.filename,
+        url: `${pic_server_domain}/ugc/${f.filename}`,
         name: f.filename,
         type: f.mimetype,
         size: f.size,

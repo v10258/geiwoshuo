@@ -8,7 +8,7 @@ export const REMOTE = {
   },
   ask: {
     autoComplete: '/tag/auto_complete',
-    fileupload: '/file/upload',
+    fileupload: '//gws.ask.solutions/file/upload',
     add: '/post/add',
     update: '/post/update'
   },
