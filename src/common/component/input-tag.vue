@@ -278,7 +278,8 @@
   }
 </script>
 
-<style>
+<style lang="scss">
+
 .ui-inputtag {
   position: relative;
   display: flex;
@@ -327,30 +328,21 @@
 }
 
 .ui-inputtag-new {
-  /* width: 150px;
-  background: transparent;
-  border: 0;
-  color: #777;
-  font-size: 13px;
-  font-weight: 400;
-  outline: none;
-  padding: 4px;
-  padding-left: 0;
-  display: block; */
     width: 130px;
     height: 26px;
     padding: 0 4px;
     border: 1px solid #e5e5e5;
-    background-color: #f6f6f6;
     font-size: 14px;
     line-height: 24px;
     color: #999;
-    /* position: absolute;
-    left: 0;
-    top: 0; */
     z-index: 2;
     -webkit-transition: all .2s;
     transition: all .2s;
+     background-color: #fff;
+
+    &[disabled] {
+      background-color: #f6f6f6;
+    }
 }
 
 .ui-inputtag-add {
