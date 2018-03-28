@@ -10,7 +10,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 // 构建目录，构建入口, 如果没有指定模块则默认全部模块
 var submodule = argv.define || 'all';
 var entryFileName = submodule;
-var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre', 'login', 'setting', 'centre-question'];
+var modules = ['index', 'task', 'ask', 'find', 'contact', 'user', 'centre', 'login', 'setting', 'centre-dynamic','centre-message'];
 var submoduleSet;
 
 

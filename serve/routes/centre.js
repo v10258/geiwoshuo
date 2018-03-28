@@ -7,7 +7,7 @@ const crypt = require('../util/crypt');
 
 
 /**
- * 我的动态 - 个人中心
+ * 我的动态
  */
 router.get('/', F(async (req, res, next) => {
   const user = await User.findById(req.params.id);
@@ -16,7 +16,25 @@ router.get('/', F(async (req, res, next) => {
     error.httpCocde = 404;
     return next(error)
   }
-  res.render('centre.html', {
+  res.render('centre/centre-dynamic.html', {
+    upvotes: user.upvotes || 0,
+    subscribed: user.subscribed.length,
+    fans: user.fans.length
+  });
+}));
+
+
+/**
+ * 我的消息
+ */
+router.get('/message', F(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    const error = new Error('User not found.');
+    error.httpCocde = 404;
+    return next(error)
+  }
+  res.render('centre/centre-message.html', {
     upvotes: user.upvotes || 0,
     subscribed: user.subscribed.length,
     fans: user.fans.length
@@ -30,7 +48,7 @@ router.get('/question', F(async (req, res, next) => {
   let userId = req.session.user_id;
   const posts = await Post.findByUser(userId);
 
-  res.render('centre-question.html', {posts});
+  res.render('centre/centre-question.html', {posts});
 }));
 
 /**
