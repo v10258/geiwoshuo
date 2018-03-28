@@ -56,9 +56,9 @@
     <% if not logged_in %>
     <!-- 未登录显示 Start -->
     <div class="header-login">
-      <a data-type="1" href="/login?type=login"><span>登录</span></a>
+      <a data-type="1" target="_blank" href="/login?type=login"><span>登录</span></a>
       <span class="-split">|</span>
-      <a data-type="2" href="/login?type=regist"><span>注册</span></a>
+      <a data-type="2" target="_blank" href="/login?type=regist"><span>注册</span></a>
     </div>
     <!-- 未登录显示 End -->
     <% else %>
@@ -81,7 +81,7 @@
         </a>
         <div class="dropdown-menu">
           <span class="dropdown-arrow"></span>
-          <a class="dropdown-item" href="/user/${user_id}/centre">
+          <a class="dropdown-item" href="/centre">
             <i class="ion ion-md-apps"></i>
             个人中心
           </a>

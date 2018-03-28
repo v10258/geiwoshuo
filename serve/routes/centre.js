@@ -10,13 +10,14 @@ const crypt = require('../util/crypt');
  * 我的动态
  */
 router.get('/', F(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.session.user_id);
+  
   if (!user) {
     const error = new Error('User not found.');
     error.httpCocde = 404;
     return next(error)
   }
-  res.render('centre/centre-dynamic.html', {
+  res.render('centre-dynamic.html', {
     upvotes: user.upvotes || 0,
     subscribed: user.subscribed.length,
     fans: user.fans.length
@@ -28,13 +29,13 @@ router.get('/', F(async (req, res, next) => {
  * 我的消息
  */
 router.get('/message', F(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.session.user_id);
   if (!user) {
     const error = new Error('User not found.');
     error.httpCocde = 404;
     return next(error)
   }
-  res.render('centre/centre-message.html', {
+  res.render('centre-message.html', {
     upvotes: user.upvotes || 0,
     subscribed: user.subscribed.length,
     fans: user.fans.length
