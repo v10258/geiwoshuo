@@ -53,7 +53,11 @@ app.get('/ask', function(req, res) {
 });
 
 app.get('/centre', function(req, res) {
-  res.render('centre.html');
+  res.render('centre-dynamic.html');
+});
+
+app.get('/centre/message', function(req, res) {
+  res.render('centre-message.html');
 });
 
 app.get('/centre/question', function(req, res) {
