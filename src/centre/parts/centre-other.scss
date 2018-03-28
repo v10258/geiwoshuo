@@ -1,0 +1,73 @@
+
+.centre-other {
+  position: relative;
+  float: right;
+  width: 252px;
+  font-size: 13px;
+}
+
+.information {
+	width: 100%;
+	min-height: 90px;
+	background: #f6f9fa;
+	border-radius: 3px;
+	position: relative;
+}
+
+.new-question {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  a {
+    margin-bottom: 5px;
+  }
+}
+
+.team {
+  margin-top: 20px;
+
+  h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  .team-bd {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  li {
+    @extend .flex;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    .-pic {
+      margin-right: 10px;
+
+      img {
+          border-radius: 5px;
+          width: 48px;
+          height: 48px; 
+      }
+    }
+
+    .-name {
+      color: #0f820c;
+    }
+
+    .-meta {
+      font-size: 12px;
+      color: #999;
+      margin: 5px 0;
+    }
+  }
+}

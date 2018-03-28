@@ -1,8 +1,9 @@
 
 @import "./base/variables.scss";
-// @import "./common/normalize.scss";
 @import "./base/reset.scss";
 @import "../font/scss/ionicons.scss";
+
+@import "./common/load-more.scss";
 
 body {
   color: $text-color-base;

@@ -1,121 +1,48 @@
 @import "../common/scss/common.scss";
 @import "../common/scss/utils.scss";
 
+
+@import "./parts/centre-nav.scss";
+@import "./parts/centre-other.scss";
+
 @import "./centre-dynamic.scss";
+@import "./centre-message.scss";
 
 .centre-auto {
   position: relative;
   float: left;
   width: auto;
-  margin-right:32px;
 	flex: auto;
+	background: #fff;
+	padding:0 30px;
 }
 
-.centre-part {
-  position: relative;
-  float: right;
-  width: 25%;
-}
-
-.heading {
-	padding-bottom: 20px;
-	font-size: 18px;
-	font-weight: bold;
-	color: #191e1f;
-	border-bottom: 1px solid #ddd;
-}
-
-.stat {
-	@extend .flex-justify-between;
-
-	span {
-		width: 33.33%;
-		padding: 0 5px;
-
-		em {
-			color: #999;
-		}
-	}
-}
-
-.menu {
-	@extend .flex-column;
-
-	a:hover {
-		text-decoration: none;
-	}
-
-	.-group {
-		@extend .flex-column;
-		border-top: 1px solid #ccc;
-		margin-top: 10px;
-		padding-top: 10px;
-
-		&:first-child {
-			border: none;
-			margin-top: 0;
-		}
-
-		a {
-			position: relative;
-			line-height: 20px;
-			padding: 6px 0 4px 10px;
-			letter-spacing:0.3px;
-
-			&.active {
-				font-weight: bold;
-				color: #1e9780;
-
-
-				&::before {
-					content:'.';
-					text-indent: -99em;
-					position: absolute;
-					left: 0;
-					top: 8px;
-					height: 16px;
-					border-left: 2px solid #1e9780;
-				}
-			}
-
-			.-badge {
-				margin-top: 5px;
-				float: right;
-				color: #fff;
-				background-color: #28a745;
-				padding: 2px 6px;
-				border-radius: 10rem;
-				font-size: 75%;
-				font-weight: 700;
-				line-height: 1;
-			}
-		}
-	}
-
-	.-dynamic {
-		padding-left: 5px;
-	}
-}
 
 .top-header {
 	@extend .flex;
-	padding: 5px 0;
+	height: 42px;
 	border-bottom: 1px solid #E5E5E5;
+	margin-bottom: 20px;
 
-	a {
-		height: 30px;
-		line-height: 30px;
+	.top-header-tab {
+		position: relative;
+		height: 42px;
+		padding: 0 20px;
+		line-height: 42px;
 		font-size: 14px;
 		color: #4c9e82;
+
+		&.active::before {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width:100%;
+			height: 2px;
+			content: '.';
+			text-indent: -999em;
+			background: #1e9780;
+		}
 	}
-}
-
-.dynamic {
-	@extend .flex-column;
-}
-
-.dynamic-item {
-	margin-bottom: 20px;
 }
 
 

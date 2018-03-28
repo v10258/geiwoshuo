@@ -1,4 +1,4 @@
 
 require('./centre.scss');
-require('../layout/header.js');
-require('../layout/footer.js');
+require('../layout/header-user.js');
+require('../layout/footer-user.js');
