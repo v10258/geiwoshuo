@@ -101,7 +101,7 @@ var app = new Vue({
       let self = this;
       let formData = $('#askForm').serializeObject();
       let validResult = self.validate(formData);
-      let body = editorLive.get('editor').getContent();
+      let body = editorLive.get('editor').getContent({format: 'raw'});
 
       formData.body = body;
       console.log('formData', formData);
