@@ -134,8 +134,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'qid',
-      '_id',
+      'post',
+      'ownAnswer',
     ]),
     body () {
        return this.$store.state.body
@@ -166,28 +166,15 @@ export default {
 
   methods: {
     answerSubmit() {
-      let self = this;
-      let state = this.$store.state;
-      let body = tinymce.get('editor').getContent();
+      let body = tinymce.get('editor').getContent({format: 'raw'});
 
       console.log('answerSubmit', {
-        body: body,
-        joinChecked: state.joinChecked,
-        anonymousChecked: state.anonymousChecked
+        body: body
       })
 
-      ajax(
-        REMOTE.task.comment + `/${self.qid}`,
-        {
-          body: body,
-          joinChecked: state.joinChecked,
-          anonymousChecked: state.anonymousChecked
-        },
-        'post',
-      ).then((data)=>{
-        console.log('data', data)
-        //location.reload();
-      })
+      this.$store.dispatch('answerSubmit', {
+        body: body
+      });
     }
   }
 };

@@ -47,15 +47,12 @@ export default {
   },
 
   created() {
-    console.log('follow', this.$store.state,  this.$store.state.qid)
     this.getTaskFollow();
   },
 
   methods: {
     getTaskFollow () {
       let self = this;
-
-      console.log()
 
       ajax(
         REMOTE.task.taskFollows + `/${self.post._id}`

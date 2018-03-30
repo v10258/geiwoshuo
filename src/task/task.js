@@ -18,6 +18,21 @@ var app = new Vue({
 
   store,
 
+  data(){
+    return {
+      store: store.state,
+    }
+  },
+
+  watch:{
+    'store.ownAnswer': function(newVal, oldVal) {
+      if ((!oldVal && newVal) ||  (oldVal && oldVal.body !== newVal.body)) {
+        location.reload();
+      }
+      console.log('watch', arguments);
+    }
+  },
+
   components: {
     taskAction,
     taskProcess,

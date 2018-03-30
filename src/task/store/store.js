@@ -26,9 +26,12 @@ const state = {
   pageNum: 1,
   // 初始化页面每次请求记录数
   pageSize: 20,
+
+  // 自己的回答
+  ownAnswer: null,
+
   // 回答
   answers: [],
-
 
   // 是否响应
   joinChecked: false,
@@ -111,6 +114,23 @@ const actions = {
       console.log('getAnswers data', data)
       context.commit('set', {
         answers: data
+      });
+    })
+  },
+
+  answerSubmit(context, playload) {
+    ajax(
+      REMOTE.task.comment + `/${context.state.post._id}`,
+      {
+        body: playload.body,
+        joinChecked: context.state.joinChecked,
+        anonymousChecked: context.state.anonymousChecked
+      },
+      'post',
+    ).then((data)=>{
+      console.log('data', data);
+      context.commit('set', {
+        ownAnswer: data
       });
     })
   }

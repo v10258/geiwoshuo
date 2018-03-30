@@ -61,7 +61,7 @@
               <i class="ion ion-md-create"></i>写回答
             </a>
             <a class="btn btn-sm btn-outline-info" @click.prevent="btnWriteAnswer(2)" href="#" title="响应问题后，问题发布者将会收到提醒，您对本问题的回答将被标记。">
-              <i class="ion ion-ios-heart"></i>响应问题
+              <i class="ion ion-ios-heart"></i>响应回答
             </a>
           </div>
         <div class="task-body-author">
@@ -97,8 +97,10 @@
       <task-action>
       </task-action>
 
+      <% if comments and comments.length > 0 %>
       <task-process>
       </task-process>
+      <% endif %>
 
       <task-answer>
         <article class="answer-article">
@@ -339,9 +341,11 @@
         </article>
       </task-answer>
 
+      <% if comments and comments.length > 5 %>
       <div class="answer-more">
         <a id="J_loadMore" href="#">加载更多<i></i></a>
       </div>
+      <% endif %>
 
       <answer-form>
       </answer-form>
@@ -391,8 +395,8 @@
     window.__PAGE_STATE['processList'] = [3, 1, 1];
     window.__PAGE_STATE['post'] = ${post | dump | safe};
     window.__PAGE_STATE['qid'] = ${post.id | dump | safe};
-    window.__PAGE_STATE['ownComments'] = ${comments[0] | dump | safe};
-    window.__PAGE_STATE['comments'] = ${comments | dump | safe}
+    window.__PAGE_STATE['ownAnswer'] = null;
+    window.__PAGE_STATE['answers'] = ${comments | dump | safe}
   </script>
   <script type="text/javascript" src="/js/vendor.js"></script>
   <script type="text/javascript" src="/js/task.js"></script>

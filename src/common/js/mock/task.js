@@ -59,6 +59,14 @@ export default function () {
     'success': true,
     'code': 200,
     'message': '',
-    'data': null
+    'data': {
+      'name': '尤慕',
+      'uid': '24cd6162636131633563662559e',
+      'avatar': 'https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg',
+      'signature': '我愿变成童话拟，里爱的辣个天使',
+      'body': '我是楼主',
+      'upvotes': 100,
+      'downvotes': 20
+    }
   })
 }
