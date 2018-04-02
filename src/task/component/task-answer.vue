@@ -17,23 +17,22 @@
     <article class="answer-article"  v-for="answer in answers" :key="answer.uid">
       <div class="answer-article-hd">
           <p class="mod-user">
-          <a class="vm-avatar" data-uid="24cd6162636131633563662559" href="/pai/center?uid=24cd6162636131633563662559" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-          <a class="vm-nickname" data-uid="5cd06162633437343533669408" href="/pai/center?uid=5cd06162633437343533669408">萦萦宝贝儿</a>
+          <a class="vm-avatar" v-bind:dataUid="answer.creator" v-bind:href="'/profile?uid=' + answer.creator" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+          <a class="vm-nickname" v-bind:dataUid="answer.creator" v-bind:href="'/profile?uid=' + answer.creator">昵称</a>
           </p>
-          <p class="mod-sign" title="我愿变成童话拟，里爱的辣个天使">，我愿变成童话拟，里爱的辣个天使</p>
+          <p class="mod-sign" title="签名">，我愿变成童话拟，里爱的辣个天使</p>
       </div>
-      <div class="answer-article-body">
-          楼主，还记得那年大明湖畔的夏雨荷吗？
+      <div class="answer-article-body" v-html="answer.body" >
       </div>
       <div class="answer-article-addition">
-          <span class="vm-date">2017-07-18</span>
+          <span class="vm-date">{{answer.created}}</span>
       </div>
       <div class="answer-article-ft">
           <div class="mod-action">
           <div class="vm-thumbs">
               <button class="btn btn-sm btn-light">
                   <i class="ion ion-md-thumbs-up"></i>
-                  16
+                  {{post.upvotes - post.downvotes}}
               </button>
               <button class="btn btn-sm btn-light">
                   <i class="ion ion-md-thumbs-down"></i>
