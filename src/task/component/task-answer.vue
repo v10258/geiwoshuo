@@ -32,7 +32,7 @@
           <div class="vm-thumbs">
               <button class="btn btn-sm btn-light">
                   <i class="ion ion-md-thumbs-up"></i>
-                  {{post.upvotes - post.downvotes}}
+                  {{answer.upvotes - answer.downvotes}}
               </button>
               <button class="btn btn-sm btn-light">
                   <i class="ion ion-md-thumbs-down"></i>
