@@ -86,6 +86,8 @@
 
   margin-top: 10px;
   font-size: 13px;
+  padding: 10px 0;
+  border-bottom: 1px solid #d6d7d8;
 
   > a {
     margin-right: 18px;
@@ -103,5 +105,4 @@
 .task-process {
     margin: 10px 0;
     padding: 20px 0;
-    border-top: 1px solid $text-color-light;
 }

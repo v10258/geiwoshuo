@@ -30,6 +30,9 @@ const state = {
   // 自己的回答
   ownAnswer: null,
 
+  // 激活编辑
+  isAnswerActive: false,
+
   // 回答
   answers: [],
 

@@ -2,7 +2,7 @@
 
 <template>
 
-<form class="answer-form" name="answer" id="answer">
+<form class="answer-form" v-show="!ownAnswer || isAnswerActive" name="answer" id="answer">
   <div class="answer-form-title">
     我来回答：
   </div>
@@ -15,7 +15,7 @@
   <div class="answer-form-addons">
     <div class="mod-tips">
       <p v-if="joinChecked">
-        响应代表参与解决问题，你的回答将被标记，同时发布者会收到通知，解决问题后可以确认完成，由问题发布者发放报酬。
+        响应代表参与解决问题，你的回答将被标记，同时发布者会收到通知，经发布者确认完成后获得报酬。
       </p>
       <p v-if="anonymousChecked">
         此回答不会显示你的用户信息，也不会出现在个人动态中。
@@ -136,6 +136,8 @@ export default {
     ...mapState([
       'post',
       'ownAnswer',
+      'body',
+      'isAnswerActive'
     ]),
     body () {
        return this.$store.state.body

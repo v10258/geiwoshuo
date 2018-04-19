@@ -1,7 +1,7 @@
 
 <template>
 
-<section class="answer">
+<section class="answer" v-if="answers && answers.length">
   <div class="answer-header flex-justify-between">
       <nav class="mod-nav">
         <a :class="{ active: sort ==='all' }" @click.prevent="switchSort('all')" href="#">全部回答<span>{{answerCount}}</span></a>
@@ -65,6 +65,9 @@
 
     </slot>
   </div>
+</section>
+<section class="answer-empty" v-else>
+  快来响应问题，获取奖励~
 </section>
 
 </template>

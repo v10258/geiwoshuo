@@ -20,7 +20,7 @@ var app = new Vue({
 
   data(){
     return {
-      store: store.state,
+      store: store.state
     }
   },
 
@@ -51,6 +51,7 @@ var app = new Vue({
   methods: {
     btnWriteAnswer(type) {
       this.$store.commit('set', {
+        isAnswerActive: true,
         joinChecked: type === 1 ? false : true
       })
       scrollTo('#answer', 300);
