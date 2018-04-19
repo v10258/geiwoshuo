@@ -219,10 +219,10 @@ router.post('/op/:post_id', F(async (req, res, next) => {
 /**
  * 获取关注用户列表
  *
- * url: /post/:post_id/follows
+ * url: /post/follows/:post_id
  * res: {ok:true} 关注成功
  */
-router.get('/:post_id/follows', F(async (req, res, next) => {
+router.get('/follows/:post_id', F(async (req, res, next) => {
   const {post_id} = req.params;
   const r = await Post.find({_id: post_id});
 
@@ -230,15 +230,12 @@ router.get('/:post_id/follows', F(async (req, res, next) => {
   res.json({
     success: true,
     code: 200,
-    data: {
-      users: [{
-        uid: 1,
-        nickname: '',
-        avatar: '',
-        url: ''
-      }],
-      count: 9
-    }
+    data: [{
+      uid: 1,
+      nickname: '',
+      avatar: '',
+      url: ''
+    }]
   });
 }));
 
@@ -248,7 +245,7 @@ router.get('/:post_id/follows', F(async (req, res, next) => {
  * url: /post/:post_id/subscribe
  * res: {ok:true} 关注成功
  */
-router.post('/:post_id/subscribe', F(async (req, res, next) => {
+router.get('/subscribe/:post_id', F(async (req, res, next) => {
   const {post_id} = req.params;
   const {user_id} = req.session;
   const r = await Post.updateOne({_id: post_id}, {$push: {subscribers: user_id}});
@@ -258,7 +255,7 @@ router.post('/:post_id/subscribe', F(async (req, res, next) => {
     success: true,
     code: 200,
     data: {
-      uid: user_id,
+      uid: '',
       nickname: '',
       avatar: '',
       url: ''
