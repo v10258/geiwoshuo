@@ -24,6 +24,10 @@ schema.statics.activeUsers = function () {
   return this.find({});
 };
 
+schema.statics.fetchAvatars = function (userIds) {
+  return this.find({_id: {$in: userIds}}, '_id avatar');
+};
+
 const Model = mongoose.model('users', schema);
 
 

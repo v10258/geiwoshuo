@@ -7,7 +7,7 @@ const fs = require('fs');
 const F = require('./Factory');
 const {User} = require('../mongo');
 
-const pic_server_domain = '//gws.ask.solutions';
+const pic_server_domain = '';
 const file_upload_post = path.resolve(__dirname, '../../public/ugc/');
 const file_upload_avatar = path.resolve(__dirname, '../../public/ugc/avatar/');
 
@@ -60,7 +60,7 @@ router.post('/upload', uploadPost.array('files'), (req, res, next) => {
 router.post('/avatar', uploadAvatar.single('avatar'), F(async (req, res, next) => {
   const {user_id} = req.session;
   const avatarImgUrl = `${pic_server_domain}/ugc/avatar/${req.file.filename}`;
-  
+
   await User.update({ _id: user_id}, { $set: { avatar: avatarImgUrl }});
 
   res.json({

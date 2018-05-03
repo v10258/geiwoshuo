@@ -62,7 +62,17 @@ app.get('/', F(async (req, res) => {
 
   // todo: 暂用简单查询
   const hotTags = await Tag.find().limit(10);
-  res.render('index.html', {posts, hotTags, home: true});
+
+  const creators = posts.map(p => p.creator);
+  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[v.id] = v.avatar, p), {});
+  const postsToUse = posts.map(p => {
+    if (users[p.creator]) {
+      return Object.assign(p.toObject(), {creatorAvatar: users[p.creator]});
+    }
+    return p;
+  });
+
+  res.render('index.html', {posts: postsToUse, hotTags, home: true});
 }));
 
 app.get('/find', function (req, res) {
@@ -87,7 +97,6 @@ app.get('/edit/:post_id', F(async (req, res) => {
   const post = await Post.find({_id: post_id});
   res.render('ask.html', {solved: 34256, post: post[0], isLogin: !!(req.session && req.session.user_id)});
 }));
-
 
 
 /**

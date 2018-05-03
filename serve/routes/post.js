@@ -15,13 +15,22 @@ router.get('/query', async (req, res) => {
   //const posts = await Post.find();
   const querys = req.query;
   const posts = await Post.findByParam(querys);
+  const creators = posts.map(p => p.creator);
+  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[v.id] = v.avatar, p), {});
+  const postsToUse = posts.map(p => {
+    if (users[p.creator]) {
+      return Object.assign(p.toObject(), {creatorAvatar: users[p.creator]});
+    }
+    return p;
+  });
+
 
   // 获取当前类目下问题数
   res.json({
     success: true,
     code: 200,
     data: {
-      list: posts,
+      list: postsToUse,
       count: 198
     },
     message: ''
