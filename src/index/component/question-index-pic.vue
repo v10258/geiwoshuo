@@ -3,7 +3,7 @@
 
 <section class="questions" id="questions">
   <article class="index-summary" v-for="(post, index) in posts" :key="post._id" >
-    <img class="-avatar" :src="post.avatar || 'http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90'">
+    <img class="-avatar" :src="post.creatorAvatar || 'http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90'">
     <div class="-title">
       <a :href="'/post/' + post._id" target="_blank">{{post.title}}</a>
       <!-- <i>多人任务</i>
