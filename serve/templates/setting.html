@@ -15,44 +15,62 @@
 <body class="page-ask">
     <% include "layout/header.html" %>
     <main id="content" class="container">
-        <nav class="content-nav">
+      <nav class="content-nav">
 
-          <!-- 昵称，签名 -->
-          <a class="active" href="javascript:;">
-            我的信息
-          </a>
+        <!-- 昵称，签名 -->
+        <a class="active" href="javascript:;">
+          我的信息
+        </a>
 
-          <!-- 头像 -->
-          <a href="javascript:;">
-            我的头像
-          </a>
+        <!-- 绑定邮箱，绑定手机，密码修改 -->
+        <a href="javascript:;">
+          账号安全
+        </a>
 
-          <!-- 绑定邮箱，绑定手机，密码修改 -->
-          <a href="javascript:;">
-            账号安全
-          </a>
+        <!-- sns联合登陆 微信，qq，微博 -->
+        <a href="javascript:;">
+          账号绑定
+        </a>
+      </nav>
 
-          <!-- sns联合登陆 微信，qq，微博 -->
-          <a href="javascript:;">
-            账号绑定
-          </a>
-        </nav>
-
-        <div class="content-setting">
-          <form class="profile-form form" action="/user/setting/info" method="post" id="profileForm">
-              <div class="form-group">
-                  <label for="name" class="-label">昵称：</label>
-                  <input id="name" type="text" class="-control nickname" name="name" required value="${user.name}">
-              </div>
-              <div class="form-group">
-                  <label for="signature" class="-label">一句话介绍：</label>
-                  <input id="signature" type="text" class="-control sign" name="signature" value="${user.signature}">
-              </div>
-              <button type="submit" class="bs-btn bs-btn-primary">保存</button>
-          </form>
-        </div>
-      </main>
+      <div class="content-setting">
+        <form class="profile-form form" action="/user/setting/info" method="post" id="profileForm">
+          <div class="form-group">
+            <label for="nickname" class="-label">头像：</label>
+            <div>
+              <img class="avatar" @click="toggleShow"  width="90" height="90"  :src="user.avatar || 'http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90'">
+              <a class="set-avatar" @click="toggleShow" href="javascript:;">[设置头像]</a>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="name" class="-label">昵称：</label>
+              <input type="text" class="-control nickname" name="name" required v-model="user.name">
+          </div>
+          <div class="form-group">
+              <label for="signature" class="-label">一句话介绍：</label>
+              <input type="text" class="-control sign" name="signature"  v-model="user.signature">
+          </div>
+          <button type="submit" class="bs-btn bs-btn-primary">保存</button>
+        </form>
+        <my-upload field="avatar"
+          @crop-success="cropSuccess"
+          @crop-upload-success="cropUploadSuccess"
+          @crop-upload-fail="cropUploadFail"
+          v-model="show"
+          :width="300"
+          :height="300"
+          url="file/avatar"
+          :params="params"
+          img-format="png">
+        </my-upload>
+      </div>
+    </main>
     <% include "layout/footer.html" %>
+
+    <script>
+      window.__PAGE_STATE = {};
+      window.__PAGE_STATE['user'] = ${user | dump | safe};
+    </script>
     <script type="text/javascript" src="/js/vendor.js"></script>
     <script type="text/javascript" src="/js/setting.js"></script>
 </body>

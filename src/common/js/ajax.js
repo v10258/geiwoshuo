@@ -25,7 +25,8 @@ export const REMOTE = {
   },
   user: {
     login: '/user/login',
-    regist: '/user/signup'
+    regist: '/user/signup',
+    settingInfo: '/user/setting/info'
   }
 }
 

@@ -17,6 +17,7 @@ const tag = require('./routes/tag');
 const file = require('./routes/file');
 const code = require('./routes/code');
 const centre = require('./routes/centre');
+const setting = require('./routes/setting');
 
 const session = require('./routes/middlewares/session');
 const login_required = require('./routes/middlewares/login_requred');
@@ -38,6 +39,7 @@ app.use('/tag', tag);
 app.use('/file', file);
 app.use('/code', code);
 app.use('/centre', centre);
+app.use('/setting', setting);
 
 nunjucks.configure(__dirname + '/templates', {
   autoescape: true,
@@ -86,10 +88,7 @@ app.get('/edit/:post_id', F(async (req, res) => {
   res.render('ask.html', {solved: 34256, post: post[0], isLogin: !!(req.session && req.session.user_id)});
 }));
 
-app.get('/setting', login_required, F(async (req, res) => {
 
-  res.render('setting.html', {user: req.user});
-}));
 
 /**
  * 截获异常，统一处理
