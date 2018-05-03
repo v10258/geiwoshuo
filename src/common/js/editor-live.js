@@ -53,6 +53,9 @@ tinymce.init({
   autoresize_max_height: 360,
   autoresize_bottom_margin: 5,
 
+  // 关闭url自动转化
+  convert_urls: false,
+
   //
   setup: function (editor) {
 

@@ -82,6 +82,8 @@ tinymce.init({
   autoresize_max_height: 360,
   autoresize_bottom_margin: 30,
 
+  convert_urls: false,
+
   //
   setup: function (editor) {
     editor.addButton('imagegws', {
