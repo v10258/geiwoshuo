@@ -13,7 +13,7 @@ var app = new Vue({
 
   data: {
     show: false,
-    user: null,
+    user: {},
     params: {},
     imgDataUrl: ''
   },
@@ -36,11 +36,11 @@ var app = new Vue({
     },
     cropSuccess(imgDataUrl, field) {
       console.log('-------- crop success --------', imgDataUrl)
-      this.imgDataUrl = imgDataUrl
+      this.user.avatar = imgDataUrl;
     },
-    cropUploadSuccess(jsonData, field) {
+    cropUploadSuccess(result, field) {
       console.log('-------- upload success --------')
-      console.log(jsonData)
+      console.log(result)
       console.log('field: ' + field)
     },
     cropUploadFail(status, field) {

@@ -37,8 +37,7 @@
             <div class="form-group">
               <label for="nickname" class="-label">头像：</label>
               <div>
-                <img class="avatar" v-if="imgDataUrl"  @click="toggleShow"  width="90" height="90" :src="imgDataUrl">
-                <img class="avatar" v-else  @click="toggleShow"   width="90" height="90"  src="http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90">
+                <img class="avatar" @click="toggleShow"  width="90" height="90" :src="user.avatar || 'http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90'">
                 <a class="set-avatar" @click="toggleShow" href="javascript:;">[设置头像]</a>
               </div>
             </div>
