@@ -44,5 +44,25 @@ pageEvent.$on(pageEvent.header.citySwitch, (data)=>{
   console.log('trigger ' + pageEvent.header.citySwitch, data);
 })
 
+//监听登录页消息反馈
+window.addEventListener('message',function(event) {
+  console.log('message event', event);
+  if (!event.source || !event.origin || !event.data) return;
+
+  switch (event.source.name) {
+    case 'login': {
+      if (window.__PAGE_PRE && window.__PAGE_PRE.notRefreshAfterLogin) {
+        window.__PAGE_PRE.isUserLogin = true;
+        // todo 加载用户信息和消息
+      } else {
+        location.reload();
+      }
+      break;
+    }
+    default: {}
+  }
+},false);
+
 console.log('header');
+
 

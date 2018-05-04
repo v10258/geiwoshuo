@@ -105,7 +105,7 @@ export default {
     },
 
     postMessage(data) {
-      data.key = 'login';
+      // 添加窗口标识，发送信息给父页面
       window.name = 'login';
       window.opener && window.opener.postMessage(data, '/');
     },

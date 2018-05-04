@@ -40,13 +40,11 @@ var app = new Vue({
     isShowAskMore: false,
     isShowEditor: false,
     autoCompleteUrl: REMOTE.ask.autoComplete,
-    placeholder: 'aaa',
-    isLogin: false
+    placeholder: 'aaa'
   },
 
   created() {
     let self = this;
-    self.isLogin = window.__PAGE_STATE['isLogin'];
     self.hotTags = window.__PAGE_STATE['hotTags'];
     self.post = window.__PAGE_STATE['post'];
 
@@ -58,14 +56,6 @@ var app = new Vue({
     self.city = (this.post._id && this.post.city) ? (site.citys[this.post.city] || site.defaultCity) : site.defaultCity; 
 
     console.log('city', self.city)
-
-    //监听消息反馈
-    window.addEventListener('message',function(event) {
-      console.log('message event', event);
-      if (event.origin && event.data && event.data.key === 'login') {
-        self.isLogin = true;
-      }
-    },false);
   },
   methods: {
     showEditorToggle: () => {
@@ -113,7 +103,7 @@ var app = new Vue({
       }
       
       // 未登录
-      if (!self.isLogin) {
+      if (!window.__PAGE_PRE || !window.__PAGE_PRE.isUserLogin) {
         self.openLogin();
         return;
       }
