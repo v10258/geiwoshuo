@@ -45,6 +45,7 @@ const state = {
 }
 
 const getters = {
+  qid: state => state.post._id,
   answerCount: state => state.answers.length,
   actorNum: state => state.answers.reduce(function(accumulator, currentValue){
     if (currentValue.join) {

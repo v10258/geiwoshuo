@@ -52,9 +52,6 @@
       }
     }
   }
-  .answer-list {
-    
-  }
 }
 
 .answer-article {
@@ -140,4 +137,17 @@
 
 .answer-empty {
   padding: 20px 0;
+}
+
+.answer-mine {
+  position: relative;
+  background-color: #fffbec;
+
+  &::after {
+    content: "我的回答";
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #F48024;
+  }
 }

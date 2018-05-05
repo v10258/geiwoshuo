@@ -1,7 +1,7 @@
 
 <template>
 
-<section class="answer" v-if="answers && answers.length">
+<section class="answer" v-if="answers && answers.length || ownAnswer">
   <div class="answer-header flex-justify-between">
       <nav class="mod-nav">
         <a :class="{ active: sort ==='all' }" @click.prevent="switchSort('all')" href="#">全部回答<span>{{answerCount}}</span></a>
@@ -14,6 +14,42 @@
       </div>
   </div>
   <div class="answer-list">
+    <article class="answer-article answer-mine" v-if="ownAnswer">
+      <div class="answer-article-hd">
+          <p class="mod-user">
+          <a class="vm-avatar" v-bind:dataUid="ownAnswer.creator._id" v-bind:href="'/profile?uid=' + ownAnswer.creator._id" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+          <a class="vm-nickname" v-bind:dataUid="ownAnswer.creator._id" v-bind:href="'/profile?uid=' + ownAnswer.creator._id">{{ownAnswer.creator.name}}</a>
+          </p>
+          <p class="mod-sign" title="签名">，{{ownAnswer.creator.signature}}</p>
+      </div>
+      <div class="answer-article-body" v-html="ownAnswer.body" >
+      </div>
+      <div class="answer-article-addition">
+          <span class="vm-date">{{ownAnswer.created}}</span>
+      </div>
+      <div class="answer-article-ft">
+          <div class="mod-action">
+          <div class="vm-thumbs">
+              <button class="btn btn-sm btn-light">
+                  <i class="ion ion-md-thumbs-up"></i>
+                  {{ownAnswer.upvotes - ownAnswer.downvotes}}
+              </button>
+              <button class="btn btn-sm btn-light">
+                  <i class="ion ion-md-thumbs-down"></i>
+              </button>
+          </div>
+          <a>
+              <i class="ion ion-md-text"></i>
+              编辑
+          </a>
+          </div>
+          <div class="mod-pack">
+          <a href="#">
+              收起
+          </a>
+          </div>
+      </div>
+    </article>
     <article class="answer-article"  v-for="answer in answers" :key="answer.uid">
       <div class="answer-article-hd">
           <p class="mod-user">
@@ -83,6 +119,7 @@ export default {
     ...mapState([
       'sort',
       'rank',
+      'ownAnswer',
       'answers',
     ]),
     ...mapGetters([

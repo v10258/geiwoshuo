@@ -24,14 +24,14 @@ var app = new Vue({
     }
   },
 
-  watch:{
-    'store.ownAnswer': function(newVal, oldVal) {
-      if ((!oldVal && newVal) ||  (oldVal && oldVal.body !== newVal.body)) {
-        location.reload();
-      }
-      console.log('watch', arguments);
-    }
-  },
+  // watch:{
+  //   'store.ownAnswer': function(newVal, oldVal) {
+  //     if ((!oldVal && newVal) ||  (oldVal && oldVal.body !== newVal.body)) {
+  //       location.reload();
+  //     }
+  //     console.log('watch', arguments);
+  //   }
+  // },
 
   components: {
     taskAction,

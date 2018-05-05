@@ -134,15 +134,32 @@ router.put('/update', async (req, res, next) => {
  */
 router.get('/:post_id', F(async (req, res) => {
   const {post_id} = req.params;
-  const post = await Post.findById(post_id);
-  const comments = await Comment.find({post_id});
+  const {user_id} = req.session;
+
+  // 查询任务
+  let post = await Post.findById(post_id);
+
+  // 查询我的回答 || 查询所有回答
+  let ownComments = await Comment.findOne({ post_id, creator: user_id });
+  const comments = await Comment.find({ post_id, creator: { $ne: user_id } });
+
+  // 查询问题发布者信息 || 查询当前用户信息 
+  const user = await User.findById(user_id, ['name', 'signature', '_id']);
+  const creator = await User.findById(post.creator, ['name', 'signature', '_id']);
+
   const total_subscribed = post.subscribers.length;
   const user_ids = post.subscribers.slice(0, 5);// 最多显示5个
 
   post.subscribers = null;
-  const creator = await User.findById(post.creator, ['name', '_id']);
+  if (ownComments) {
+    ownComments = Object.assign(ownComments.toObject(), {creator: user.toObject()})
+  }
+  if (post) {
+    post = Object.assign(post.toObject(), {creator: creator.toObject()})
+  }
+  
   const users = user_ids.length ? await User.find({_id: {$in: user_ids}}, ['_id', 'name', 'phone']) : [];
-  res.render('post.html', {post, creator, total_subscribed, subscribers: users, comments});
+  res.render('post.html', {post, creator, total_subscribed, subscribers: users, ownComments, comments});
 }));
 
 /**

@@ -97,7 +97,7 @@
       <task-action>
       </task-action>
 
-      <% if comments and comments.length > 0 %>
+      <% if ownComments or (comments and comments.length > 0) %>
       <task-process>
       </task-process>
       <% endif %>
@@ -159,9 +159,9 @@
     window.__PAGE_STATE = {};
     window.__PAGE_STATE['processList'] = [3, 1, 1];
     window.__PAGE_STATE['post'] = ${post | dump|safe|replace('</','&lt;/')};
-    window.__PAGE_STATE['qid'] = ${post.id | dump | safe};
-    window.__PAGE_STATE['ownAnswer'] = null;
+    window.__PAGE_STATE['ownAnswer'] = ${ownComments | dump | safe};
     window.__PAGE_STATE['answers'] = ${comments | dump | safe}
+    window.__PAGE_STATE['subscribers'] = ${subscribers | dump | safe}
     //]]>
   </script>
   <script type="text/javascript" src="/js/vendor.js"></script>
