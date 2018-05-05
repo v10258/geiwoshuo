@@ -40,6 +40,10 @@
           </div>
           <a>
               <i class="ion ion-md-text"></i>
+              回复
+          </a>
+          <a>
+              <i class="ion ion-md-star"></i>
               编辑
           </a>
           </div>
