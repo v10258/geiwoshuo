@@ -7,7 +7,7 @@
 require('./header-user.scss');
 
 var $ = require('jquery');
-var pageEvent = require('../common/js/page-event.js');
+var EventBus = require('../common/js/event-bus.js');
 
 var $collect = {
   citySwitch: $('#J_citySwitch'),
@@ -30,7 +30,7 @@ $collect.citySwitch.on('click', (ev)=>{
 $collect.cityList.on('click', 'a', (ev)=>{
   var $elem = $(ev.currentTarget);
   var sid = $elem.data('sid');
-  pageEvent.$emit(pageEvent.header.citySwitch, {sid: sid});
+  EventB.$emit(EventB.header.citySwitch, {sid: sid});
   $elem.parents('.dropdown').removeClass('active');
 });
 
@@ -40,8 +40,8 @@ $(document).on('click', (ev)=>{
     $collect.citySwitch.parent().removeClass('active');
   }
 });
-pageEvent.$on(pageEvent.header.citySwitch, (data)=>{
-  console.log('trigger ' + pageEvent.header.citySwitch, data);
+EventB.$on(EventB.header.citySwitch, (data)=>{
+  console.log('trigger ' + EventB.header.citySwitch, data);
 })
 
 console.log('header');
