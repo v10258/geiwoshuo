@@ -4,10 +4,12 @@
  * @version 0.0.1
  */
 
-require('./header.scss');
 
-var $ = require('jquery');
-var pageEvent = require('../common/js/page-event.js');
+import './header.scss';
+
+import $ from 'jquery';
+
+import EventBus from '../common/js/event-bus.js';
 
 var $collect = {
   citySwitch: $('#J_citySwitch'),
@@ -30,7 +32,7 @@ $collect.citySwitch.on('click', (ev)=>{
 $collect.cityList.on('click', 'a', (ev)=>{
   var $elem = $(ev.currentTarget);
   var sid = $elem.data('sid');
-  pageEvent.$emit(pageEvent.header.citySwitch, {sid: sid});
+  EventBus.$emit(EventBus.header.citySwitch, {sid: sid});
   $elem.parents('.dropdown').removeClass('active');
 });
 
@@ -40,8 +42,8 @@ $(document).on('click', (ev)=>{
     $collect.citySwitch.parent().removeClass('active');
   }
 });
-pageEvent.$on(pageEvent.header.citySwitch, (data)=>{
-  console.log('trigger ' + pageEvent.header.citySwitch, data);
+EventBus.$on(EventBus.header.citySwitch, (data)=>{
+  console.log('trigger ' + EventBus.header.citySwitch, data);
 })
 
 //监听登录页消息反馈
