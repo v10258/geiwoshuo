@@ -42,8 +42,8 @@
               <i class="ion ion-md-text"></i>
               回复
           </a>
-          <a>
-              <i class="ion ion-md-star"></i>
+          <a @click="doMeEditor" href="javascript:;">
+              <i class="ion ion-md-create"></i>
               编辑
           </a>
           </div>
@@ -133,6 +133,13 @@ export default {
   },
 
   methods: {
+    doMeEditor() {
+      this.$emit('into-editor', {
+        type: 'into-editor'
+      });
+      console.log('into-editor emit');
+    },
+
     switchSort(sort) {
       if (this.sort === sort) return
       this.$store.dispatch('getAnswers', {
@@ -149,4 +156,5 @@ export default {
     }
   }
 };
+
 </script>

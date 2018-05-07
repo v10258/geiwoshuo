@@ -123,20 +123,16 @@ const actions = {
   },
 
   answerSubmit(context, playload) {
-    ajax(
+    return ajax(
       REMOTE.task.comment + `/${context.state.post._id}`,
       {
+        commentId: context.state.ownAnswer && context.state.ownAnswer._id,
         body: playload.body,
         joinChecked: context.state.joinChecked,
         anonymousChecked: context.state.anonymousChecked
       },
       'post',
-    ).then((data)=>{
-      console.log('data', data);
-      context.commit('set', {
-        ownAnswer: data
-      });
-    })
+    )
   }
 }
 

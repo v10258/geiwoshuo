@@ -8,7 +8,9 @@
   </div>
 
   <div class="answer-form-editor ui-editor">
-    <textarea class="autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述"></textarea>
+    <textarea class="autosize" id="editor" name="body" rows="3" placeholder="关于问题的详细描述">
+      {{answerbody}}
+    </textarea>
     <input style="display:none;" id="fileupload" type="file" name="files" multiple>
   </div>
 
@@ -52,6 +54,29 @@ import { REMOTE, ajax } from '../../common/js/ajax.js'
 
 import { mapState, mapGetters } from 'vuex'
 
+var editorTodo = {
+  imagegwsHandler: function (editor) {
+    $('#fileupload').fileupload({
+      url: REMOTE.ask.fileupload,
+      done: function (ev, data) {
+        console.log('result', data.result);
+        let result = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+        editor.insertContent(`<img src="${result.data.files[0].url}">`);
+      },
+      progressall: function (ev, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          console.log('progress', progress);
+      }
+    }).trigger('click');
+  },
+  qrCodeHandler: function (editor) {
+    editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
+  },
+  initHandler: function (editor) {
+    console.log('Editor: ' + editor.id + ' is now initialized.')
+  }
+}
+
 tinymce.init({
   selector: 'textarea#editor',
   menubar: false,
@@ -60,7 +85,7 @@ tinymce.init({
   toolbar: ['bold blockquote  bullist numlist | link imagegws qr-code', 'fullscreen'],
 
   // 编辑区域应用样式
-  content_style: ' p {margin:0; line-height: 1.5;}',
+  content_style: 'p {margin:0; line-height: 1.5;} img {max-width: 600px;max-height: 800px;}',
 
   // 去掉商标和路径
   branding: false,
@@ -89,17 +114,7 @@ tinymce.init({
     editor.addButton('imagegws', {
       icon: 'image',
       onclick: function () {
-        $('#fileupload').fileupload({
-          url: REMOTE.ask.fileupload,
-          dataType: 'json',
-          done: function (ev, data) {
-            editor.insertContent(`<img src="${data.result.data.files[0].url}">`);
-          },
-          progressall: function (e, data) {
-              var progress = parseInt(data.loaded / data.total * 100, 10);
-              console.log('progress', progress);
-          }
-        }).trigger('click');
+        editorTodo.imagegwsHandler(editor)
       }
     })
 
@@ -107,7 +122,7 @@ tinymce.init({
       text: 'QR',
       icon: false,
       onclick: function () {
-        editor.insertContent("&nbsp;<b>将url转成二维码，并插入编辑器</b>&nbsp;")
+        editorTodo.qrCodeHandler(editor)
       }
     })
 
@@ -131,18 +146,13 @@ tinymce.init({
 })
 
 export default {
-  created() {
-
-  },
   computed: {
     ...mapState([
-      'post',
       'ownAnswer',
-      'body',
       'isAnswerActive'
     ]),
-    body () {
-       return this.$store.state.body
+    answerbody () {
+       return this.$store.state.ownAnswer ? this.$store.state.ownAnswer.body : '';
     },
     joinChecked: {
       get () {
@@ -171,14 +181,12 @@ export default {
   methods: {
     answerSubmit() {
       let body = tinymce.get('editor').getContent({format: 'raw'});
-
-      console.log('answerSubmit', {
+              
+      return this.$store.dispatch('answerSubmit', {
         body: body
+      }).then(()=>{
+        location.reload();
       })
-
-      this.$store.dispatch('answerSubmit', {
-        body: body
-      });
     }
   }
 };

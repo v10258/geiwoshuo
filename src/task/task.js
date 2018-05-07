@@ -18,21 +18,6 @@ var app = new Vue({
 
   store,
 
-  data(){
-    return {
-      store: store.state
-    }
-  },
-
-  // watch:{
-  //   'store.ownAnswer': function(newVal, oldVal) {
-  //     if ((!oldVal && newVal) ||  (oldVal && oldVal.body !== newVal.body)) {
-  //       location.reload();
-  //     }
-  //     console.log('watch', arguments);
-  //   }
-  // },
-
   components: {
     taskAction,
     taskProcess,
@@ -49,12 +34,27 @@ var app = new Vue({
   },
 
   methods: {
+    onComptEvent: function(payload) {
+      let self = this;
+
+      this.$store.commit('set', {
+        isAnswerActive: !self.$store.state.isAnswerActive
+      })
+      this.intoEditor();
+    },
+    intoEditor() {
+      let self = this;
+
+      setTimeout(function(){
+        self.$store.state.isAnswerActive && scrollTo('#answer', 300);
+      }, 0);
+    },
     btnWriteAnswer(type) {
       this.$store.commit('set', {
         isAnswerActive: true,
         joinChecked: type === 1 ? false : true
-      })
-      scrollTo('#answer', 300);
+      });
+      this.intoEditor();
     }
   }
 })

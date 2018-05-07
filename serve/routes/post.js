@@ -183,12 +183,22 @@ router.get('/:post_id/comments', F(async (req, res) => {
  */
 router.post('/comment/:post_id', login_required, async (req, res, next) => {
   const {post_id} = req.params;
+  const {commentId} = req.body
   const post = await Post.findById(post_id);
+  let comment;
+
   if (!post || !post._doc) {
     return next('No post found.');
   }
-  const comment = new Comment();
-  Object.assign(comment, req.body, {post_id, created: new Date(), creator: req.session.user_id});
+
+  if (commentId) {
+    comment = await Comment.findById(commentId);
+    delete req.body.commentId;
+    Object.assign(comment, req.body);
+  } else {
+    comment = new Comment();
+    Object.assign(comment, req.body, {post_id, created: new Date(), creator: req.session.user_id});
+  }
 
   try {
     const r = await comment.save();
