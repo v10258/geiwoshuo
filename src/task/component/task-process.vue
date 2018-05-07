@@ -4,7 +4,7 @@
   <p class="task-process-step">
     流程：
     写回答 —> 
-    响应问题（<span class="text-success">{{processList[1]}}人</span>） —> 
+    参与响应（<span class="text-success">{{processList[1]}}人</span>） —> 
     获得报酬（<span class="text-success">{{processList[2]}}人</span>）
   </p>
   <p class="task-process-state" v-if="processList && processList[1] === 0">

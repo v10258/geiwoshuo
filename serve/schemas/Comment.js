@@ -12,6 +12,7 @@ const schema = new Schema({
   created: {type: Date},// 创建时间
   upvotes: {type: Number, default: 0},// 赞同
   downvotes: {type: Number, default: 0},// 反对
+  status: {type: String, default: 'actived' } // actived 活跃 attend  参与响应， completed 已完成
 });
 
 

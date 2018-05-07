@@ -17,7 +17,7 @@
     <article class="answer-article answer-mine" v-if="ownAnswer">
       <div class="answer-article-hd">
           <p class="mod-user">
-          <a class="vm-avatar" v-bind:dataUid="ownAnswer.creator._id" v-bind:href="'/profile?uid=' + ownAnswer.creator._id" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
+          <a class="vm-avatar" v-bind:dataUid="ownAnswer.creator._id" v-bind:href="'/profile?uid=' + ownAnswer.creator._id" :style="{backgroundImage: 'url('+ ownAnswer.creator.avatar +')'}"></a>
           <a class="vm-nickname" v-bind:dataUid="ownAnswer.creator._id" v-bind:href="'/profile?uid=' + ownAnswer.creator._id">{{ownAnswer.creator.name}}</a>
           </p>
           <p class="mod-sign" title="签名">，{{ownAnswer.creator.signature}}</p>

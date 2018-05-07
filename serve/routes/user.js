@@ -21,15 +21,27 @@ router.get('/', F(async (req, res) => {
  */
 router.post('/signup', F(async (req, res, next) => {
   const {account, captcha, code = '123', dataType} = req.body;
-  const vc = await VerificationCode.findOne({phone: account, type: 'SIGNUP', code});
+  //const vc = await VerificationCode.findOne({phone: account, type: 'SIGNUP', code});
 
-  if (!vc) {
-    return next('Invalid code.');
-  } else {
-    await vc.remove();
+  // if (!vc) {
+  //   return next('Invalid code.');
+  // } else {
+  //   await vc.remove();
+  // }
+
+  let user = await User.findOne({phone: account});
+  if (user) {
+    res.json({
+      success: false,
+      message: '账号已存在',
+      data: null,
+      code: 200
+    })
+    return;
   }
 
-  const user = Object.assign(new User, {
+
+  user = Object.assign(new User, {
     phone: account,
     created: new Date
   });

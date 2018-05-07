@@ -144,8 +144,8 @@ router.get('/:post_id', F(async (req, res) => {
   const comments = await Comment.find({ post_id, creator: { $ne: user_id } });
 
   // 查询问题发布者信息 || 查询当前用户信息 
-  const user = await User.findById(user_id, ['name', 'signature', '_id']);
-  const creator = await User.findById(post.creator, ['name', 'signature', '_id']);
+  const user = await User.findById(user_id, ['_id', 'name', 'signature', 'avatar']);
+  const creator = await User.findById(post.creator, ['_id', 'name', 'signature','avatar']);
 
   const total_subscribed = post.subscribers.length;
   const user_ids = post.subscribers.slice(0, 5);// 最多显示5个
