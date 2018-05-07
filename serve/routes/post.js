@@ -140,12 +140,20 @@ router.get('/:post_id', F(async (req, res) => {
   let post = await Post.findById(post_id);
 
   // 查询我的回答 || 查询所有回答
-  let ownComments = await Comment.findOne({ post_id, creator: user_id });
-  const comments = await Comment.find({ post_id, creator: { $ne: user_id } });
+  let ownComments = user_id ? await Comment.findOne({post_id, creator: user_id}) : null;
+  let comments = await Comment.find({post_id, creator: {$ne: user_id}});
+  const comment_user_ids = comments.map(c => c.creator);
+  const comment_users = (comment_user_ids.length ? await User.find({_id: {$in: comment_user_ids}}, ['_id', 'name', 'signature', 'avatar']) : [])
+    .reduce((p, u) => (p[u.id] = u, p), Object.create(null));
+  comments = comments.map(c => {
+    const cc = c.toObject();
+    cc.creator = comment_users[c.creator] || c.creator;
+    return cc;
+  });
 
-  // 查询问题发布者信息 || 查询当前用户信息 
+  // 查询问题发布者信息 || 查询当前用户信息
   const user = await User.findById(user_id, ['_id', 'name', 'signature', 'avatar']);
-  const creator = await User.findById(post.creator, ['_id', 'name', 'signature','avatar']);
+  const creator = await User.findById(post.creator, ['_id', 'name', 'signature', 'avatar']);
 
   const total_subscribed = post.subscribers.length;
   const user_ids = post.subscribers.slice(0, 5);// 最多显示5个
@@ -157,7 +165,7 @@ router.get('/:post_id', F(async (req, res) => {
   if (post) {
     post = Object.assign(post.toObject(), {creator: creator.toObject()})
   }
-  
+
   const users = user_ids.length ? await User.find({_id: {$in: user_ids}}, ['_id', 'name', 'phone']) : [];
   res.render('post.html', {post, creator, total_subscribed, subscribers: users, ownComments, comments});
 }));
