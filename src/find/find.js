@@ -6,7 +6,7 @@ require('../layout/footer.js');
 import Vue from 'vue'
 import {mapState, mapGetters} from 'vuex';
 import 'element-ui/lib/theme-chalk/index.css'
-import Element from 'element-ui'
+//import Element from 'element-ui'
 import store from './store/store'
 
 import followCtrl from './component/follow-ctrl.vue'
@@ -14,7 +14,7 @@ import followQuestion from './component/follow-question.vue'
 import hotTag from './component/hot-tag.vue'
 import hotTeam from './component/hot-team.vue'
 
-Vue.use(Element)
+//Vue.use(Element)
 
 var app = new Vue({
   el: '#content',

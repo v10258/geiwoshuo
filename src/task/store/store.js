@@ -36,6 +36,10 @@ const state = {
   // 回答
   answers: [],
 
+  totalSubscribed: 0,
+
+  subscribers: null,
+
   // 是否响应
   joinChecked: false,
   // 是否匿名
@@ -99,6 +103,12 @@ const actions = {
         ...newProp
       });
     })
+  },
+
+  doFollow (context, payload) {
+    return ajax(
+      REMOTE.task.doFollow + `/${context.state.post._id}`
+    )
   },
 
   getAnswers (context, playload) {

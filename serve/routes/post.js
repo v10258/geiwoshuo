@@ -156,7 +156,7 @@ router.get('/:post_id', F(async (req, res) => {
   const creator = await User.findById(post.creator, ['_id', 'name', 'signature', 'avatar']);
 
   const total_subscribed = post.subscribers.length;
-  const user_ids = post.subscribers.slice(0, 5);// 最多显示5个
+  const user_ids = post.subscribers.slice(0, 50);// 最多显示5个
 
   post.subscribers = null;
   if (ownComments) {
@@ -166,8 +166,8 @@ router.get('/:post_id', F(async (req, res) => {
     post = Object.assign(post.toObject(), {creator: creator.toObject()})
   }
 
-  const users = user_ids.length ? await User.find({_id: {$in: user_ids}}, ['_id', 'name', 'phone']) : [];
-  res.render('post.html', {post, creator, total_subscribed, subscribers: users, ownComments, comments});
+  const users = user_ids.length ? await User.find({_id: {$in: user_ids}}, ['_id', 'name', 'avatar']) : [];
+  res.render('post.html', {post, totalSubscribed: total_subscribed, subscribers: users, ownComments, comments});
 }));
 
 /**
@@ -292,19 +292,38 @@ router.get('/follows/:post_id', F(async (req, res, next) => {
 router.get('/subscribe/:post_id', F(async (req, res, next) => {
   const {post_id} = req.params;
   const {user_id} = req.session;
-  const r = await Post.updateOne({_id: post_id}, {$push: {subscribers: user_id}});
 
   // todo: 关注问题成功，返回用户信息
-  res.json({
-    success: true,
-    code: 200,
-    data: {
-      uid: '',
-      nickname: '',
-      avatar: '',
-      url: ''
+  if (req.session && user_id) {
+    const user = await User.findById(user_id, ['_id', 'name', 'avatar']);
+    const post = await Post.findById(post_id);
+
+    if (post.subscribers.includes(user_id)) {
+      res.json({
+        success: false,
+        code: 200,
+        message: '您已关注',
+        data: null
+      });
+    } else {
+      post.subscribers.push(user_id);
+      post.save();
+
+      res.json({
+        success: true,
+        code: 200,
+        message: '',
+        data: user.toObject()
+      });
     }
-  });
+  } else {
+    res.json({
+      success: false,
+      code: 200,
+      message: '请先登录',
+      data: null
+    });
+  }
 }));
 
 
