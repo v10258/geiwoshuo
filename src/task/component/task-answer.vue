@@ -57,10 +57,10 @@
     <article class="answer-article"  v-for="answer in answers" :key="answer.uid">
       <div class="answer-article-hd">
           <p class="mod-user">
-          <a class="vm-avatar" v-bind:dataUid="answer.creator" v-bind:href="'/profile?uid=' + answer.creator" style="background-image: url(https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D450%2C600/sign=21612f75580fd9f9a0425d6d101df81c/f703738da977391279828568f1198618367ae217.jpg);"></a>
-          <a class="vm-nickname" v-bind:dataUid="answer.creator" v-bind:href="'/profile?uid=' + answer.creator">昵称</a>
+          <a class="vm-avatar" v-bind:dataUid="answer.creator" v-bind:href="'/profile?uid=' + answer.creator._id" :style="{backgroundImage: 'url('+ answer.creator.avatar +')'}"></a>
+          <a class="vm-nickname" v-bind:dataUid="answer.creator" v-bind:href="'/profile?uid=' + answer.creator._id">{{answer.creator.name}}</a>
           </p>
-          <p class="mod-sign" title="签名">，我愿变成童话拟，里爱的辣个天使</p>
+          <p class="mod-sign" title="签名">，{{answer.creator.signature}}</p>
       </div>
       <div class="answer-article-body" v-html="answer.body" >
       </div>
