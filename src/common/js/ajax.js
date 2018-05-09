@@ -1,6 +1,5 @@
 export const axios = require('axios')
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
-
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 export const REMOTE = {
   index: {
@@ -17,8 +16,9 @@ export const REMOTE = {
     doFollow: '/post/subscribe',
     queryAnswers: '/post/answers',
     queryAnswerCount: '/post/answerCount',
-    op:'/post/op',
-    comment: '/post/comment'
+    op: '/post/op',
+    comment: '/post/comment',
+    related: '/post/post_id/related'
   },
   find: {
     relatedQuestions: 'find/related'
@@ -28,6 +28,14 @@ export const REMOTE = {
     regist: '/user/signup',
     settingInfo: '/user/setting/info'
   }
+}
+
+export const remoteUrlCombine = function (str, mapObj) {
+  let re = new RegExp(Object.keys(mapObj).join('|'), 'gi')
+
+  return str.replace(re, function (matched) {
+    return mapObj[matched]
+  })
 }
 
 /**
@@ -41,10 +49,10 @@ export const REMOTE = {
  */
 
 export const ajax = function (url, params, method = 'get') {
-  let data;
+  let data
   if (method === 'post') {
-    data = params;
-    params = null;
+    data = params
+    params = null
   }
   return new Promise((resolve, reject) => {
     axios({
@@ -54,16 +62,16 @@ export const ajax = function (url, params, method = 'get') {
       data: data,
       timeout: 6000
     })
-    .then(function(res) {
-      console.log(`url:${url} --- res:`, res)
-      if (res.data.success) {
-        resolve(res.data.data, res.data)
-      } else {
-        reject(res.data.message, res.data);
-      }
-    })
-    .catch(function(error){
-      console.log('网络异常，请稍后再试!');
-    })
+      .then(function (res) {
+        console.log(`url:${url} --- res:`, res)
+        if (res.data.success) {
+          resolve(res.data.data, res.data)
+        } else {
+          reject(res.data.message, res.data)
+        }
+      })
+      .catch(function () {
+        console.log('网络异常，请稍后再试!')
+      })
   })
 }
