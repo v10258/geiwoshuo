@@ -61,6 +61,7 @@
     "date-fns": "^1.29.0",
     "debug": "^3.1.0",
     "element-ui": "^2.0.8",
+    "eslint": "^4.19.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "ionicons": "^3.0.0",
@@ -74,8 +75,8 @@
     "sweetalert": "^2.1.0",
     "tinymce": "^4.7.2",
     "vue": "^2.5.10",
-    "vuex": "^3.0.1",
-    "vue-image-crop-upload": "^2.2.3"
+    "vue-image-crop-upload": "^2.2.3",
+    "vuex": "^3.0.1"
   },
   "jest": {
     "watchman": false

@@ -1,15 +1,19 @@
-# This file is for unifying the coding style for different editors and IDEs.
-# More information at http://EditorConfig.org
-
-# No .editorconfig files above the root directory
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
 charset = utf-8
+end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[{.,}*.{js{,*},y{a,}ml}]
+indent_style = space
+indent_size = 2
 
+[*.{md,txt}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
 
+[Makefile]
+indent_style = tab
