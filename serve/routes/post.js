@@ -1,11 +1,12 @@
+const R = require('ramda');
 const router = require('express').Router();
-const {Post, Comment, User, Tag} = require('../mongo');
+const { Post, Comment, User, Tag } = require('../mongo');
 const F = require('./Factory');
 const login_required = require('./middlewares/login_requred');
 
 
 router.get('/error', F(async (req, res, next) => {
-  next(new Error("啊啊报错了！"));
+  next(new Error('啊啊报错了！'));
 }));
 
 /**
@@ -16,10 +17,10 @@ router.get('/query', async (req, res) => {
   const querys = req.query;
   const posts = await Post.findByParam(querys);
   const creators = posts.map(p => p.creator);
-  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[v.id] = v.avatar, p), {});
+  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[ v.id ] = v.avatar, p), {});
   const postsToUse = posts.map(p => {
-    if (users[p.creator]) {
-      return Object.assign(p.toObject(), {creatorAvatar: users[p.creator]});
+    if (users[ p.creator ]) {
+      return Object.assign(p.toObject(), { creatorAvatar: users[ p.creator ] });
     }
     return p;
   });
@@ -58,12 +59,12 @@ router.post('/add', async (req, res, next) => {
       return {
         id: v.id || v._id,
         name: v.name
-      }
-    })
+      };
+    });
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, {creator: req.session.user_id, tags: hasTags});
+  const post = Object.assign({}, req.body, { creator: req.session.user_id, tags: hasTags });
 
   post.created = new Date();
 
@@ -74,8 +75,8 @@ router.post('/add', async (req, res, next) => {
       success: true,
       code: 200,
       data: {
-        "qid": r._id,
-        "url": `/post/${r._id}`
+        qid: r._id,
+        url: `/post/${r._id}`
       }
     });
   } catch (e) {
@@ -103,25 +104,25 @@ router.put('/update', async (req, res, next) => {
       return {
         id: v.id || v._id,
         name: v.name
-      }
-    })
+      };
+    });
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, {tags: hasTags});
+  const post = Object.assign({}, req.body, { tags: hasTags });
 
   post.last_modified = new Date();
 
   // todo: 任务存在验证，修改权限验证
   try {
-    const r = await Post.update({_id: post.post_id}, post);
+    const r = await Post.update({ _id: post.post_id }, post);
     //res.redirect('/post/' + r._id);// 跳转到详情页
     res.json({
       success: true,
       code: 200,
       data: {
-        "qid": req.body.post_id,
-        "url": `/post/${req.body.post_id}`
+        qid: req.body.post_id,
+        url: `/post/${req.body.post_id}`
       }
     });
   } catch (e) {
@@ -133,49 +134,49 @@ router.put('/update', async (req, res, next) => {
  * 任务详情
  */
 router.get('/:post_id', F(async (req, res) => {
-  const {post_id} = req.params;
-  const {user_id} = req.session;
+  const { post_id } = req.params;
+  const { user_id } = req.session;
 
   // 查询任务
   let post = await Post.findById(post_id);
 
   // 查询我的回答 || 查询所有回答
-  let ownComments = user_id ? await Comment.findOne({post_id, creator: user_id}) : null;
-  let comments = await Comment.find({post_id, creator: {$ne: user_id}});
+  let ownComments = user_id ? await Comment.findOne({ post_id, creator: user_id }) : null;
+  let comments = await Comment.find({ post_id, creator: { $ne: user_id } });
   const comment_user_ids = comments.map(c => c.creator);
-  const comment_users = (comment_user_ids.length ? await User.find({_id: {$in: comment_user_ids}}, ['_id', 'name', 'signature', 'avatar']) : [])
-    .reduce((p, u) => (p[u.id] = u, p), Object.create(null));
+  const comment_users = (comment_user_ids.length ? await User.find({ _id: { $in: comment_user_ids } }, [ '_id', 'name', 'signature', 'avatar' ]) : [])
+    .reduce((p, u) => (p[ u.id ] = u, p), Object.create(null));
   comments = comments.map(c => {
     const cc = c.toObject();
-    cc.creator = comment_users[c.creator] || c.creator;
+    cc.creator = comment_users[ c.creator ] || c.creator;
     return cc;
   });
 
   // 查询问题发布者信息 || 查询当前用户信息
-  const user = await User.findById(user_id, ['_id', 'name', 'signature', 'avatar']);
-  const creator = await User.findById(post.creator, ['_id', 'name', 'signature', 'avatar']);
+  const user = await User.findById(user_id, [ '_id', 'name', 'signature', 'avatar' ]);
+  const creator = await User.findById(post.creator, [ '_id', 'name', 'signature', 'avatar' ]);
 
   const total_subscribed = post.subscribers.length;
   const user_ids = post.subscribers.slice(0, 50);// 最多显示5个
 
   post.subscribers = null;
   if (ownComments) {
-    ownComments = Object.assign(ownComments.toObject(), {creator: user.toObject()})
+    ownComments = Object.assign(ownComments.toObject(), { creator: user.toObject() });
   }
   if (post) {
-    post = Object.assign(post.toObject(), {creator: creator.toObject()})
+    post = Object.assign(post.toObject(), { creator: creator.toObject() });
   }
 
-  const users = user_ids.length ? await User.find({_id: {$in: user_ids}}, ['_id', 'name', 'avatar']) : [];
-  res.render('post.html', {post, totalSubscribed: total_subscribed, subscribers: users, ownComments, comments});
+  const users = user_ids.length ? await User.find({ _id: { $in: user_ids } }, [ '_id', 'name', 'avatar' ]) : [];
+  res.render('post.html', { post, totalSubscribed: total_subscribed, subscribers: users, ownComments, comments });
 }));
 
 /**
  * 获取评论列表
  */
 router.get('/:post_id/comments', F(async (req, res) => {
-  const {post_id} = req.params;
-  const comments = await Comment.find({post_id});
+  const { post_id } = req.params;
+  const comments = await Comment.find({ post_id });
 
   res.json({
     success: true,
@@ -190,8 +191,8 @@ router.get('/:post_id/comments', F(async (req, res) => {
  * 添加评论
  */
 router.post('/comment/:post_id', login_required, async (req, res, next) => {
-  const {post_id} = req.params;
-  const {commentId} = req.body;
+  const { post_id } = req.params;
+  const { commentId } = req.body;
   const post = await Post.findById(post_id);
   let comment;
 
@@ -205,12 +206,12 @@ router.post('/comment/:post_id', login_required, async (req, res, next) => {
     Object.assign(comment, req.body);
   } else {
     comment = new Comment();
-    Object.assign(comment, req.body, {post_id, created: new Date(), creator: req.session.user_id});
+    Object.assign(comment, req.body, { post_id, created: new Date(), creator: req.session.user_id });
   }
 
   try {
     const r = await comment.save();
-    await Post.findByIdAndUpdate(post_id, {$inc: {updates: 1}});
+    await Post.findByIdAndUpdate(post_id, { $inc: { updates: 1 } });
     res.json({
       success: true,
       code: 200,
@@ -223,10 +224,10 @@ router.post('/comment/:post_id', login_required, async (req, res, next) => {
 
 
 const op_field_mapping = {
-  'upvote': 'upvotes',
-  'downvote': 'downvotes',
-  'pageview': 'views',
-  'subscribe': {field: 'subscribers', op: '$push'}
+  upvote: 'upvotes',
+  downvote: 'downvotes',
+  pageview: 'views',
+  subscribe: { field: 'subscribers', op: '$push' }
 };
 const ops = Object.keys(op_field_mapping);
 /**
@@ -237,23 +238,23 @@ const ops = Object.keys(op_field_mapping);
  *
  */
 router.post('/op/:post_id', F(async (req, res, next) => {
-  const {post_id} = req.params;
-  const {op} = req.body;
+  const { post_id } = req.params;
+  const { op } = req.body;
   if (!ops.includes(op)) {
     return next(new Error(`Unsupported op: <${op}>`));
   }
   let update;
   if (op === 'subscribe') {
-    update = {$push: {subscribers: req.session.user_id}, $inc: {updates: 1}}
+    update = { $push: { subscribers: req.session.user_id }, $inc: { updates: 1 } };
   } else if (op === 'upvote') {
-    update = {$inc: {upvotes: 1, total_votes: 1, updates: 1}};
+    update = { $inc: { upvotes: 1, total_votes: 1, updates: 1 } };
   } else if (op === 'downvote') {
-    update = {$inc: {downvotes: 1, total_votes: -1, updates: -1}};
+    update = { $inc: { downvotes: 1, total_votes: -1, updates: -1 } };
   } else {
-    update = {$inc: {pageview: 1}};
+    update = { $inc: { pageview: 1 } };
   }
   // 返回修改后的post
-  const post = await Post.findByIdAndUpdate(post_id, update, {new: true});
+  const post = await Post.findByIdAndUpdate(post_id, update, { 'new': true });
   res.json({
     success: true,
     code: 200,
@@ -269,19 +270,19 @@ router.post('/op/:post_id', F(async (req, res, next) => {
  * res: {ok:true} 关注成功
  */
 router.get('/follows/:post_id', F(async (req, res, next) => {
-  const {post_id} = req.params;
-  const r = await Post.find({_id: post_id});
+  const { post_id } = req.params;
+  const r = await Post.find({ _id: post_id });
 
   // todo: 返回关注此问题的前50名用户
   res.json({
     success: true,
     code: 200,
-    data: [{
+    data: [ {
       uid: 1,
       nickname: '',
       avatar: '',
       url: ''
-    }]
+    } ]
   });
 }));
 
@@ -292,12 +293,12 @@ router.get('/follows/:post_id', F(async (req, res, next) => {
  * res: {ok:true} 关注成功
  */
 router.get('/subscribe/:post_id', F(async (req, res, next) => {
-  const {post_id} = req.params;
-  const {user_id} = req.session;
+  const { post_id } = req.params;
+  const { user_id } = req.session;
 
   // todo: 关注问题成功，返回用户信息
   if (req.session && user_id) {
-    const user = await User.findById(user_id, ['_id', 'name', 'avatar']);
+    const user = await User.findById(user_id, [ '_id', 'name', 'avatar' ]);
     const post = await Post.findById(post_id);
 
     if (post.subscribers.includes(user_id)) {
@@ -326,6 +327,32 @@ router.get('/subscribe/:post_id', F(async (req, res, next) => {
       data: null
     });
   }
+}));
+
+/**
+ * 精选回答
+ */
+router.get('/comments/selected', F(async (req, res) => {
+  const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(10);
+  const post_ids = comments.map(c => c.post_id);
+  const posts = await Post.find({ id: { $in: post_ids } });
+  const mapping = R.indexBy(R.prop('id'), posts);
+  const data = comments.map(c => Object.assign(c.toObject(), { post: mapping[ c.post_id ] }));
+  res.json({
+    success: true,
+    data
+  });
+}));
+
+/**
+ * 相关推荐
+ */
+router.get('/:post_id/related', F(async (req, res) => {
+  const related = await Post.related(req.query.size || 5);
+  res.json({
+    success: true,
+    data: related
+  });
 }));
 
 
