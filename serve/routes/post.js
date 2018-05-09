@@ -349,9 +349,17 @@ router.get('/comments/selected', F(async (req, res) => {
  */
 router.get('/:post_id/related', F(async (req, res) => {
   const related = await Post.related(req.query.size || 5);
+  const postIds = related.map(p => p._id.toString());
+
+  const count = await Comment.aggregate([
+    { $match: { post_id: { $in: postIds } } },
+    { $group: { _id: '$post_id', count: { $sum: 1 } } }
+  ]);
+  const countMap = R.indexBy(R.prop('id'), count);
+  const rel = related.map(p => Object.assign(p, { answerNum: (countMap[ p.id ] || { count: 0 }).count }));
   res.json({
     success: true,
-    data: related
+    data: rel
   });
 }));
 
