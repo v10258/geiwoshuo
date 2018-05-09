@@ -191,7 +191,7 @@ router.get('/:post_id/comments', F(async (req, res) => {
  */
 router.post('/comment/:post_id', login_required, async (req, res, next) => {
   const {post_id} = req.params;
-  const {commentId} = req.body
+  const {commentId} = req.body;
   const post = await Post.findById(post_id);
   let comment;
 
@@ -210,6 +210,7 @@ router.post('/comment/:post_id', login_required, async (req, res, next) => {
 
   try {
     const r = await comment.save();
+    await Post.findByIdAndUpdate(post_id, {$inc: {updates: 1}});
     res.json({
       success: true,
       code: 200,
@@ -243,14 +244,15 @@ router.post('/op/:post_id', F(async (req, res, next) => {
   }
   let update;
   if (op === 'subscribe') {
-    update = {$push: {subscribers: req.session.user_id}}
+    update = {$push: {subscribers: req.session.user_id}, $inc: {updates: 1}}
   } else if (op === 'upvote') {
-    update = {$inc: {upvotes: 1, total_votes: 1}};
+    update = {$inc: {upvotes: 1, total_votes: 1, updates: 1}};
   } else if (op === 'downvote') {
-    update = {$inc: {downvotes: 1, total_votes: -1}};
+    update = {$inc: {downvotes: 1, total_votes: -1, updates: -1}};
   } else {
     update = {$inc: {pageview: 1}};
   }
+  // 返回修改后的post
   const post = await Post.findByIdAndUpdate(post_id, update, {new: true});
   res.json({
     success: true,

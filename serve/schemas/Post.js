@@ -8,10 +8,12 @@ const schema = new Schema({
 
   title: {type: String, required: true},// 主标题
   body: {type: String},// 正文
-  tags: {type: [{
-    id: String,
-    name: String
-  }]},// 标签
+  tags: {
+    type: [{
+      id: String,
+      name: String
+    }]
+  },// 标签
   expired: {type: Date},// 过期时间
   creator: {type: String, required: true},// 创建人id
   created: {type: Date},// 创建时间
@@ -19,8 +21,9 @@ const schema = new Schema({
   subscribers: {type: [String]},// 关注人id
   upvotes: {type: Number, default: 0},// 赞同
   downvotes: {type: Number, default: 0},// 反对
-  total_votes: {type: Number, default: 0},
+  total_votes: {type: Number, default: 0},// 赞同-反对
   views: {type: Number, default: 0},// 浏览数
+  updates: {type: Number, default: 0},// 动态 = 回复数 + 关注数 + 点赞(点赞=upvotes-downvotes?)
   coins: {type: Number, default: 0},//金币
   bounty: {type: Number, default: 0},//赏金
   custom: {type: String, default: ''},// 其它自定义报酬
