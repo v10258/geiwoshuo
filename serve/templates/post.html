@@ -126,9 +126,11 @@
             <a href="#" target="_blank">查看问题日志</a>
             <span>|</span>最近编辑于2017-07-19</p>
           <p>被浏览
-            <strong class="attention-num"> 946 </strong>次</p>
+            <strong class="attention-num">${post.pageviews + 1}</strong> 次</p>
         </div>
       </section>
+      <pageview page="post" ident="${post._id}">
+      </pageview>
     </aside>
   </main>
   <script type="text/javascript">

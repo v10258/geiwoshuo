@@ -13,6 +13,7 @@ import taskAnswer from './component/task-answer.vue'
 import answerForm from './component/answer-form.vue'
 import follow from './component/follow.vue'
 import taskRelated from './component/task-related.vue'
+import pageview from '../common/component/pageview.vue'
 
 var app = new Vue({
   el: '#content',
@@ -25,10 +26,16 @@ var app = new Vue({
     taskAnswer,
     answerForm,
     follow,
-    taskRelated
+    taskRelated,
+    pageview
+  },
+
+  data: {
+    post: {}
   },
 
   created () {
+    this.post = window.__PAGE_STATE['post']
     // 初始化 store
     store.commit('merge', window.__PAGE_STATE)
 

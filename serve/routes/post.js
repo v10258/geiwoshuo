@@ -251,7 +251,7 @@ router.post('/op/:post_id', F(async (req, res, next) => {
   } else if (op === 'downvote') {
     update = { $inc: { downvotes: 1, total_votes: -1, updates: -1 } };
   } else {
-    update = { $inc: { pageview: 1 } };
+    update = { $inc: { pageviews: 1 } };
   }
   // 返回修改后的post
   const post = await Post.findByIdAndUpdate(post_id, update, { 'new': true });

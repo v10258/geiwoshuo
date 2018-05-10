@@ -10,7 +10,7 @@
       <a class="-title" :href="'/post/' + answer._id">
         {{answer.title}}
       </a>
-      <a href="#" class="-preview">
+      <a class="-preview" href=":href="'/post/' + answer._id">
         <p class="-content">{{answer.content_abstract.text}}</p>
         <div class="-image" v-if="answer.content_abstract.thumbnail" :style="{backgroundImage: 'url('+ answer.content_abstract.thumbnail +')', backgroundSize: cover}"></div>
       </a>

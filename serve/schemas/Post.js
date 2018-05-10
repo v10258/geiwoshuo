@@ -22,7 +22,7 @@ const schema = new Schema({
   upvotes: { type: Number, 'default': 0 }, // 赞同
   downvotes: { type: Number, 'default': 0 }, // 反对
   total_votes: { type: Number, 'default': 0 }, // 赞同-反对
-  views: { type: Number, 'default': 0 }, // 浏览数
+  pageviews: { type: Number, 'default': 0 }, // 浏览数
   updates: { type: Number, 'default': 0 }, // 动态 = 回复数 + 关注数 + 点赞(点赞=upvotes-downvotes?)
   coins: { type: Number, 'default': 0 }, //金币
   bounty: { type: Number, 'default': 0 }, //赏金
