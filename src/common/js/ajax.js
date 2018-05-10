@@ -3,7 +3,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 export const REMOTE = {
   index: {
-    queryQuestions: '/post/query'
+    queryQuestions: '/post/query',
+    featuredAnswer: '/post/comments/selected'
   },
   ask: {
     autoComplete: '/tag/auto_complete',
