@@ -14,6 +14,7 @@
       <!-- <div class="-pic">
         <img src="http://b1-q.mafengwo.net/s10/M00/B4/7A/wKgBZ1nnO_mATOH1ADFwguwdC9858.jpeg?imageMogr2%2Fthumbnail%2F%21140x105r%2Fgravity%2FCenter%2Fcrop%2F%21140x105%2Fquality%2F90" width="150" height="100">
       </div> -->
+
       <div class="-text" v-html="post.content_abstract.text || post.title">
       </div>
     </div>
@@ -23,13 +24,13 @@
     </div>
     <div class="-action">
       <div>
-        <a :href="'/post/' + post._id" target="_blank" title="回复，响应和打赏">
+        <a :href="'/post/' + post._id" target="_blank" title="回答，关注和浏览">
           <i class="ion ion-md-text"></i>
-          {{post.trends || 100 }} 动态
+          {{ post.trends }} 动态
         </a>
         <a>
           <i class="ion ion-ios-eye"></i>
-          {{post.views ? post.views : 1}} 浏览
+          {{post.pageviews ? post.pageviews : 1}} 浏览
         </a>
         <a class="-more">
           <i class="ion ion-ios-more"></i>
@@ -50,12 +51,20 @@
 
 
 <script>
+
+import Vue from 'vue'
 import { mapState, mapGetters, mapMutations } from "vuex";
 import { REMOTE, ajax } from '../../common/js/ajax.js';
 
 export default {
   computed: {
-    ...mapState(['posts'])
+    posts () {
+      return this.$store.state.posts.map(post=>{
+        let vote = (post.upvotes - post.downvotes) > 0 ? post.upvotes - post.downvotes : 0
+        Vue.set(post, 'trends', post.pageviews + post.subscribers.length + vote);
+        return post
+      })
+    }
   },
   methods: {
     doVote(op, index){
