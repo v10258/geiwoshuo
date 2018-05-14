@@ -5,7 +5,7 @@
   <div class="mod-tit">相关推荐</div>
   <ul class="related-list">
     <li v-for="post in posts" :key="post._id">
-      <a href="/question/34526162633933393939610400">{{post.title}}</a>
+      <a :href="'/post/' + post._id">{{post.title}}</a>
       <span class="new-small-font">{{post.answerNum}}个回答</span>
     </li>
   </ul>

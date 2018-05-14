@@ -32,7 +32,7 @@ export default {
 
   created () {
     ajax(REMOTE.index.featuredAnswer).then((data) => {
-      this.answers = data;
+      this.answers = data.slice(0, 3);
     })
   }
 };
