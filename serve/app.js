@@ -57,23 +57,23 @@ nunjucks.configure(__dirname + '/templates', {
 
 
 app.get('/', F(async (req, res) => {
-  const posts = await Post.findByType('HOT');
-  //const hotTags = await Post.hotTags();
+  const postCount = await Post.find().count()
+  const posts = await Post.findByType('HOT')
 
   // todo: 暂用简单查询
-  const hotTags = await Tag.find().limit(10);
+  const hotTags = await Tag.find().limit(10)
 
-  const creators = posts.map(p => p.creator);
-  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[v.id] = v.avatar, p), {});
+  const creators = posts.map(p => p.creator)
+  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[v.id] = v.avatar, p), {})
   const postsToUse = posts.map(p => {
     if (users[p.creator]) {
-      return Object.assign(p.toObject(), {creatorAvatar: users[p.creator]});
+      return Object.assign(p.toObject(), {creatorAvatar: users[p.creator]})
     }
-    return p;
-  });
+    return p
+  })
 
-  res.render('index.html', {posts: postsToUse, hotTags, home: true});
-}));
+  res.render('index.html', {posts: postsToUse, postCount, hotTags, home: true})
+}))
 
 app.get('/find', function (req, res) {
   res.render('find.html', {find: true});
