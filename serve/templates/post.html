@@ -66,12 +66,12 @@
           </div>
         <div class="task-body-author">
           <a class="mod-avatar" href="#">
-            <img src="https://avatars1.githubusercontent.com/u/6301319?v=3&amp;s=460" alt="" width="32" height="32">
+            <img :src="post.creator.avatar || 'http://b3-q.mafengwo.net/s10/M00/48/B5/wKgBZ1kAeeiAXfnNAABXZKqrvCE90.jpeg?imageMogr2%2Fthumbnail%2F%2190x90r%2Fgravity%2FCenter%2Fcrop%2F%2190x90%2Fquality%2F90'" alt="" width="32" height="32">
           </a>
           <div class="mod-info">
             <p class="mod-info-user">
               <span class="vm-nickname">
-                ${creator.name}
+                ${post.creator.name}
               </span>
               <span class="vm-member" title="永久黄金会员">
                 <i class="ion ion-md-trophy"></i>
