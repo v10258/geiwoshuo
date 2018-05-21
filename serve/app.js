@@ -2,12 +2,13 @@ const debug = require('debug')('gws:server');
 const express = require('express');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
+const captcha = require('trek-captcha');
 debug('cwd: %o', process.cwd());
 
 const port = process.env.PORT || 3001;
 const app = express();
 
-const {Post, User, Tag} = require('./mongo');
+const { Post, User, Tag, Captcha } = require('./mongo');
 const F = require('./routes/Factory');
 
 const user = require('./routes/user');
@@ -24,7 +25,7 @@ const login_required = require('./routes/middlewares/login_requred');
 // 设置静态文件目录
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session);
 app.use((req, res, next) => {
@@ -57,30 +58,30 @@ nunjucks.configure(__dirname + '/templates', {
 
 
 app.get('/', F(async (req, res) => {
-  const postCount = await Post.find().count()
-  const posts = await Post.findByType('HOT')
+  const postCount = await Post.find().count();
+  const posts = await Post.findByType('HOT');
 
   // todo: 暂用简单查询
-  const hotTags = await Tag.find().limit(10)
+  const hotTags = await Tag.find().limit(10);
 
-  const creators = posts.map(p => p.creator)
-  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[v.id] = v.avatar, p), {})
+  const creators = posts.map(p => p.creator);
+  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[ v.id ] = v.avatar, p), {});
   const postsToUse = posts.map(p => {
-    if (users[p.creator]) {
-      return Object.assign(p.toObject(), {creatorAvatar: users[p.creator]})
+    if (users[ p.creator ]) {
+      return Object.assign(p.toObject(), { creatorAvatar: users[ p.creator ] });
     }
-    return p
-  })
+    return p;
+  });
 
-  res.render('index.html', {posts: postsToUse, postCount, hotTags, home: true})
-}))
+  res.render('index.html', { posts: postsToUse, postCount, hotTags, home: true });
+}));
 
 app.get('/find', function (req, res) {
-  res.render('find.html', {find: true});
+  res.render('find.html', { find: true });
 });
 
 app.get('/contact', function (req, res) {
-  res.render('contact.html', {contact: true});
+  res.render('contact.html', { contact: true });
 });
 
 app.get('/login', function (req, res) {
@@ -88,16 +89,25 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/ask', F(async (req, res) => {
-  console.log("", req.session && req.session.user_id)
-  res.render('ask.html', {solved: 34256, post: {}, isLogin: !!(req.session && req.session.user_id)});
+  console.log('', req.session && req.session.user_id);
+  res.render('ask.html', { solved: 34256, post: {}, isLogin: !!(req.session && req.session.user_id) });
 }));
 
 app.get('/edit/:post_id', F(async (req, res) => {
-  const {post_id} = req.params;
-  const post = await Post.find({_id: post_id});
-  res.render('ask.html', {solved: 34256, post: post[0], isLogin: !!(req.session && req.session.user_id)});
+  const { post_id } = req.params;
+  const post = await Post.find({ _id: post_id });
+  res.render('ask.html', { solved: 34256, post: post[ 0 ], isLogin: !!(req.session && req.session.user_id) });
 }));
 
+app.get('/captcha', F(async (req, res) => {
+  const { token, buffer } = await captcha({ size: 4 });
+  const capt = new Captcha();
+  capt.token = token;
+  capt.created = new Date();
+  await capt.save();
+  res.header('captcha_id', capt.id);
+  res.send('data:image/gif;base64,' + buffer.toString('base64'));
+}));
 
 /**
  * 截获异常，统一处理
