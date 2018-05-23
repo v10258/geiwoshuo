@@ -1,44 +1,46 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
-const argv = require('yargs').argv;
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-let isProduction = process.env.NODE_ENV === 'production';
+const argv = require('yargs').argv
+const vendorModule = ['jquery', 'vue', 'vuex', 'axios', 'mock']
 
-// 构建目录，构建入口, 如果没有子目录 index 改为空字符串即可
-var submodule = argv.define || 'index';
-var entryFileName = submodule;
-
-// 子目录下有多个文件，入口为 centre-question 时
-var submoduleSet = submodule.split('-');
-if (submoduleSet.length === 2) {
-  submodule = submoduleSet[0];
-}
-
-var outputPath = path.resolve(__dirname, 'public/', submodule);
-var entryPath = path.resolve(__dirname, 'src/', submodule, entryFileName + '.js');
-
-var config = {
+const config = {
+  mode: 'development',
   entry: {
-    vendor: ['jquery', 'vue', 'vuex', 'axios', 'mock']
+    'index': './src/index/index.js',
+    'task': './src/task/task.js',
+    'ask': './src/ask/ask.js',
+    'find': './src/find/find.js',
+    'contact': './src/contact/contact.js',
+    'user': './src/user/user.js',
+    'centre': './src/centre/centre.js',
+    'login': './src/login/login.js',
+    'setting': './src/setting/setting.js',
+    'centre-dynamic': './src/centre/centre-dynamic.js',
+    'vendor': vendorModule
   },
   output: {
     filename: 'js/[name].js',
-    path: outputPath
+    path: path.resolve(__dirname, 'public/')
   },
   module: {
     rules: [{
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader']
-    }, {
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+      test: /\.s?[ac]ss$/,
+      use: [
+        //MiniCssExtractPlugin.loader,
+        'style-loader',
+        'css-loader',
+        'resolve-url-loader',
+        'postcss-loader?sourceMap',
+        'sass-loader?sourceMap'
+      ]
     }, {
       test: /\.ejs$/,
-      use: ['ejs-compiled-loader']
+      use: ['ejs-do-loader']
     },
     {
       test: /\.vue$/,
@@ -47,24 +49,26 @@ var config = {
     {
       test: /\.js$/,
       use: 'babel-loader'
-    }, {
+    },
+    {
       test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
       use: [{
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[ext]'//,
-          //useRelativePath: isProduction
+          name: 'img/[name].[ext]',
+          publicPath: '../'
         }
       }]
-    }, {
-      test: /\.(eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+    },
+    {
+      test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
       use: [{
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
           limit: 1000,
-          name: '[name].[ext]'//,
-          //useRelativePath: isProduction
+          name: 'font/[name].[ext]',
+          publicPath: '../'
         }
       }]
     }]
@@ -75,53 +79,85 @@ var config = {
       vue: 'vue/dist/vue.js'
     }
   },
-  // externals: {
-  //   '$': 'window.$',
-  //   'jQuery': 'window.jQuery'
-  // },
+
+  optimization: {
+    splitChunks: {
+      name: 'vendor'
+    }
+    // runtimeChunk: {
+    //   name: 'manifest'
+    // }
+  },
+
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery',
-      //Popper: ['popper.js', 'default']
+      jQuery: 'jquery'
     }),
+
+    // new MiniCssExtractPlugin({
+    //   filename: 'css/[name].css',
+    //   chunkFilename: '[id].css'
+    // }),
+
+    new VueLoaderPlugin(),
+
     new CopyWebpackPlugin([
       { from: 'node_modules/bootstrap/dist/css', to: 'vendor/bootstrap/css/' },
       { from: 'node_modules/tinymce/plugins', to: 'js/plugins' },
       { from: 'node_modules/tinymce/themes', to: 'js/themes' },
       { from: 'node_modules/tinymce/skins', to: 'js/skins' }
-    ]),
-    // 页面集成
-    new HtmlWebpackPlugin({
-      template: path.resolve('src/', submodule, entryFileName + '.ejs')
-    }),
-    // 抽出公共文件vendor依赖，manifest运行时信息
-    new webpack.optimize.CommonsChunkPlugin({
-      //name: ['vendor', 'manifest']
-      name: 'vendor'
-    }),
-    // 模块热更新
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  // 本地开发服务配置，代理配置
-  devServer: {
-    hot: true,
-    inline: true,
-    proxy: {
-      '/api/': {
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
+    ])
+  ]
+}
+
+// 解析子目录和文件名
+const parseFileInfo = function (fileName) {
+  let directory = fileName
+  const moduleNameParse = fileName.split('-')
+
+  if (moduleNameParse && moduleNameParse.length === 2) {
+    directory = moduleNameParse[0]
   }
-};
 
-config.entry[entryFileName] = entryPath;
+  return {
+    directory,
+    fileName
+  }
+}
 
-console.log('entry', path.resolve(__dirname, 'src/', submodule, entryFileName + '.js'));
-console.log('template', path.resolve('src/', submodule, entryFileName + '.ejs'));
+// 获取html-webpack-plugin参数
+const getHtmlConfig = function (name, type = 'multi') {
+  const {directory, fileName} = parseFileInfo(name)
+  const options = {}
 
-module.exports = config;
+  if (type === 'multi') {
+    options.chunks = ['vendor', name]
+    options.filename = fileName + '.html'
+  }
+
+  options.template = path.resolve(__dirname, 'src/', directory, `${fileName}.ejs`)
+  return options
+}
+
+// 未指定模块，构建全部
+if (!argv.define) {
+  const cloneEntry = {...config.entry}
+  delete cloneEntry.vendor
+  const pages = Object.keys(cloneEntry)
+
+  pages.forEach(page => {
+    config.plugins.push(new HtmlWebpackPlugin(getHtmlConfig(page)))
+  })
+} else {
+  const {directory, fileName} = parseFileInfo(argv.define)
+  config.entry = {}
+
+  config.entry.vendor = vendorModule
+  config.entry[fileName] = path.resolve(__dirname, 'src/', directory, fileName + '.js')
+  config.plugins.push(new HtmlWebpackPlugin(getHtmlConfig(fileName, 'single')))
+}
+
+console.log('entry', config.entry)
+
+module.exports = config
