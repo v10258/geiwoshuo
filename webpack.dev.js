@@ -3,10 +3,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
 const argv = require('yargs').argv
-const vendorModule = ['jquery', 'vue', 'vuex', 'axios', 'mock']
+const vendorModule = ['jquery', 'babel-polyfill', 'vue', 'vuex', 'axios', 'mock']
 
 const config = {
   mode: 'development',
@@ -25,13 +23,13 @@ const config = {
   },
   output: {
     filename: 'js/[name].js',
+    chunkFilename: 'js/[id].js',
     path: path.resolve(__dirname, 'public/')
   },
   module: {
     rules: [{
       test: /\.s?[ac]ss$/,
       use: [
-        //MiniCssExtractPlugin.loader,
         'style-loader',
         'css-loader',
         'resolve-url-loader',
@@ -48,7 +46,7 @@ const config = {
     },
     {
       test: /\.js$/,
-      use: 'babel-loader'
+      use: ['babel-loader']
     },
     {
       test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
@@ -82,7 +80,8 @@ const config = {
 
   optimization: {
     splitChunks: {
-      name: 'vendor'
+      name: 'vendor',
+      minChunks: Infinity
     }
     // runtimeChunk: {
     //   name: 'manifest'
@@ -94,11 +93,6 @@ const config = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-
-    // new MiniCssExtractPlugin({
-    //   filename: 'css/[name].css',
-    //   chunkFilename: '[id].css'
-    // }),
 
     new VueLoaderPlugin(),
 
