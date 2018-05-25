@@ -333,11 +333,22 @@ router.get('/subscribe/:post_id', F(async (req, res, next) => {
  * 精选回答
  */
 router.get('/comments/selected', F(async (req, res) => {
-  const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(10);
+  const { size = 5 } = req.query;
+  const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(size);
   const post_ids = comments.map(c => c.post_id);
   const posts = await Post.find({ id: { $in: post_ids } });
   const mapping = R.indexBy(R.prop('id'), posts);
-  const data = comments.map(c => Object.assign(c.toObject(), { post: mapping[ c.post_id ] }));
+  const data = comments.map(c => {
+    return {
+      _id: c.post_id,
+      title: (mapping[ c.post_id ] || {}).title,
+      answerId: c.id,
+      content_abstract: {
+        text: c.body.replace(/(<([^>]+)>)/ig, '').slice(0, 40),
+        thumbnail: (/<img\ssrc="(.+?)"\s\/>/.exec(c.body) || [])[ 1 ] || ''
+      }
+    };
+  });
   res.json({
     success: true,
     data
