@@ -195,20 +195,19 @@ body {
 
 	.-wrap {
 	    position: absolute;
-	    top: 7px;
+	    top: 20px;
 	    right: 1px;
 	    height: 32px;
 	    width: 83px;
 
 	    .-captcha {
 		    display: block;
-		    width: 102px;
-		    height: 40px;
+			width: 100%;
+			height: 100%;
 		    cursor: pointer
 		}
 
 		.-tips {
-		    display: none;
 		    position: absolute;
 		    top: -35px;
 		    right: -9px;

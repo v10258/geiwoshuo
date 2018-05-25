@@ -105,8 +105,16 @@ app.get('/captcha', F(async (req, res) => {
   capt.token = token;
   capt.created = new Date();
   await capt.save();
-  res.header('captcha_id', capt.id);
-  res.send('data:image/gif;base64,' + buffer.toString('base64'));
+
+  res.header('captcha_id', capt.id)
+  res.json({
+    success: true,
+    code: 200,
+    data: {
+      captcha: 'data:image/gif;base64,' + buffer.toString('base64')
+    },
+    message: ''
+  })
 }));
 
 /**

@@ -18,11 +18,12 @@
 
           <div class="-group verification">
             <input class="-control" id="captcha" type="text" name="captcha" autocomplete="off" placeholder="验证码">
-            <div class="-wrap">
-              <img class="-captcha" alt="" src="data:image/gif;base64,R0lGODdheAAeAIQAAP///97e/93d/6mp/6en/6Gh/5WV/4mJ/4eH/4WF/4OD/319/3Z2/05O/0hI/zEx/y8v/wAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAeAAeAEAI/wABCBxIsKDBgwgTKlzIsKHDhxAjSpxIsaJFiBEiAAAQoaNHACAjAAAQAYBJABEAAIgA4ACABwkARABAMwIAABEA6IxQAEAEBBEACB1KtKjRo0iTKl16NILTp1AjAIhAlSqAq1izZo3AlSsAABHChgUAIACACAAARADAtq3bt3Djyp1Lt67du3jz6t3Ld28EAAAiCB4sGEAEAIgjAFgMIIJjAJAhR4gAoHIEAJgjAAAQAYDnCBEAAIgQAYDp06hTq17NurXr16gjAAAQAYDt27YjAAAQIQKA3xEiABgeAYDx48cjAAAQAQCACNAjAAAQAYD169iza9/Ovbv37+DDi/8fT768+fPo06tfz769+/fw20eYT79+BAAR8uvX7wCAf4AABAqMULAgAAARFEYA0NDhQ4gRJU6kWNHiRQARAGyMAMDjR48RAACIAADAgAgRAACIAMBlhAgAIgAAEAHAzQgAAESIACACAAARIgAgWtToUaRJlS5l2hRpBAAAIkylGgEAgAgAtG7VGiECgAgRAEQgGwHA2QgRAESIAABABAAAIhCIAMDuXbx59e7l29fv370RAAwGEMHwYQARACyOAMDxY8iQIwAAEAHA5QgAAESIAABABAChI0QAUNr0adSpVa9m3dr1a9ixZc+mXdv2bdy5de/m3dv3b+DBhQ8nXtz/+HHkyZWvjgDA+fPnEQBEAFDdevUI2QFs5x7Bu3cAACKMHw/APIAI6dUDYN/e/Xv48eXPp1+ffQQA+SMAABDBP8AIACJEAAAgAsIIABZGiADg4cMIACZGAGAxAgAAEQAAaBABAIAIEQCQLGnyJMqUKleybGkyAoCYEQDQrEkzAgAAEQDwBBABAIAIAABEiAAgQgQAACJEAAAgAoCoESIAABABgAAAWrdy7er1K9iwYsd2jRABANq0ACJEAAAgAgAAEebOBQAgQgQAESIAiAAgAoDAEQAAiADgMAMAACIAiADgMeTIkidTrmz5MmbKEQAAiADgM+jPEQAAiGD6NIDUwQAiAAAQ4XUEAAAiRAAQIQKA3BEALAAQwQCA4MKHEy9u/Djy5MqLRwAAIAL06NABRABgPQKA7NqzR+juPQIAABHGA4gAAECECAAgRAAQQUEEAPLn069v/z7+/Pr3048AACAAgQMFRgAQAUDCCAAYNnToMAIAABEiAAAQAUDGCAA4RogAAEAEACNJljR5EmVKlStZtnTZMkIEAAAi1KwJACeACDt5AvD5E2hQoUOJFjV6FGlSpUuZNnX6FGpUqVMBBAQAOw==">
-              <span class="-tips">看不清楚？换一张</span>
+            <div class="-wrap" @mouseover="isMouseover = true" @mouseleave="isMouseover = false">
+              <img class="-captcha" @click="switchCaptcha" alt="" :src="captcha">
+              <span class="-tips" v-show="isMouseover">看不清楚？换一张</span>
             </div>
           </div>
+          <input type="hidden" name="captcha_id" v-model="captchaId">
         </template>
 
         <template v-else>
@@ -31,9 +32,9 @@
           </div>
           <div class="-group verification">
             <input class="-control" id="captcha" type="text" name="captcha" autocomplete="off" placeholder="验证码">
-            <div class="-wrap">
-              <img class="-captcha" alt="" src="data:image/gif;base64,R0lGODdheAAeAIQAAP///97e/93d/6mp/6en/6Gh/5WV/4mJ/4eH/4WF/4OD/319/3Z2/05O/0hI/zEx/y8v/wAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAeAAeAEAI/wABCBxIsKDBgwgTKlzIsKHDhxAjSpxIsaJFiBEiAAAQoaNHACAjAAAQAYBJABEAAIgA4ACABwkARABAMwIAABEA6IxQAEAEBBEACB1KtKjRo0iTKl16NILTp1AjAIhAlSqAq1izZo3AlSsAABHChgUAIACACAAARADAtq3bt3Djyp1Lt67du3jz6t3Ld28EAAAiCB4sGEAEAIgjAFgMIIJjAJAhR4gAoHIEAJgjAAAQAYDnCBEAAIgQAYDp06hTq17NurXr16gjAAAQAYDt27YjAAAQIQKA3xEiABgeAYDx48cjAAAQAQCACNAjAAAQAYD169iza9/Ovbv37+DDi/8fT768+fPo06tfz769+/fw20eYT79+BAAR8uvX7wCAf4AABAqMULAgAAARFEYA0NDhQ4gRJU6kWNHiRQARAGyMAMDjR48RAACIAADAgAgRAACIAMBlhAgAIgAAEAHAzQgAAESIACACAAARIgAgWtToUaRJlS5l2hRpBAAAIkylGgEAgAgAtG7VGiECgAgRAEQgGwHA2QgRAESIAABABAAAIhCIAMDuXbx59e7l29fv370RAAwGEMHwYQARACyOAMDxY8iQIwAAEAHA5QgAAESIAABABAChI0QAUNr0adSpVa9m3dr1a9ixZc+mXdv2bdy5de/m3dv3b+DBhQ8nXtz/+HHkyZWvjgDA+fPnEQBEAFDdevUI2QFs5x7Bu3cAACKMHw/APIAI6dUDYN/e/Xv48eXPp1+ffQQA+SMAABDBP8AIACJEAAAgAsIIABZGiADg4cMIACZGAGAxAgAAEQAAaBABAIAIEQCQLGnyJMqUKleybGkyAoCYEQDQrEkzAgAAEQDwBBABAIAIAABEiAAgQgQAACJEAAAgAoCoESIAABABgAAAWrdy7er1K9iwYsd2jRABANq0ACJEAAAgAgAAEebOBQAgQgQAESIAiAAgAoDAEQAAiADgMAMAACIAiADgMeTIkidTrmz5MmbKEQAAiADgM+jPEQAAiGD6NIDUwQAiAAAQ4XUEAAAiRAAQIQKA3BEALAAQwQCA4MKHEy9u/Djy5MqLRwAAIAL06NABRABgPQKA7NqzR+juPQIAABHGA4gAAECECAAgRAAQQUEEAPLn069v/z7+/Pr3048AACAAgQMFRgAQAUDCCAAYNnToMAIAABEiAAAQAUDGCAA4RogAAEAEACNJljR5EmVKlStZtnTZMkIEAAAi1KwJACeACDt5AvD5E2hQoUOJFjV6FGlSpUuZNnX6FGpUqVMBBAQAOw==">
-              <span class="-tips">看不清楚？换一张</span>
+            <div class="-wrap" @mouseover="isMouseover = true" @mouseleave="isMouseover = false">
+              <img class="-captcha" @click="switchCaptcha" alt="" :src="captcha">
+              <span class="-tips" v-show="isMouseover">看不清楚？换一张</span>
             </div>
           </div>
           <div class="-group phone-code">
@@ -72,7 +73,7 @@ export default {
     ...mapState([
       'type',
       'loginType',
-      'resultData'
+      'captcha'
     ]),
     submitText() {
       return this.$store.state.type === 'login' ? '登录' : '注册'
@@ -91,6 +92,16 @@ export default {
     }
   },
 
+  data () {
+    return {
+      isMouseover: false
+    }
+  },
+
+  created () {
+    this.$store.dispatch('getCaptcha');
+  },
+
   methods: {
     switchType(type){
       this.$store.commit('set', {
@@ -102,6 +113,10 @@ export default {
       this.$store.commit('set', {
         loginType: this.loginType === 1 ? 2 : 1 
       });
+    },
+
+    switchCaptcha() {
+      this.$store.dispatch('getCaptcha')
     },
 
     postMessage(data) {

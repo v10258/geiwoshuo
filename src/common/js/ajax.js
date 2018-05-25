@@ -28,6 +28,9 @@ export const REMOTE = {
     login: '/user/login',
     regist: '/user/signup',
     settingInfo: '/user/setting/info'
+  },
+  serve: {
+    captcha: '/captcha'
   }
 }
 
@@ -49,8 +52,16 @@ export const remoteUrlCombine = function (str, mapObj) {
  * @return {Promise}
  */
 
-export const ajax = function (url, params, method = 'get') {
-  let data
+export const ajax = function (url, params, method = 'get', isSimple = true) {
+  let data = null
+
+  if (typeof url === 'object') {
+    url = url.url
+    params = url.params
+    method = url.method ? url.method : method
+    isSimple = url.isSimple ? url.isSimple : isSimple
+  }
+
   if (method === 'post') {
     data = params
     params = null
@@ -66,13 +77,14 @@ export const ajax = function (url, params, method = 'get') {
       .then(function (res) {
         console.log(`url:${url} --- res:`, res)
         if (res.data.success) {
-          resolve(res.data.data, res.data)
+          isSimple ? resolve(res.data.data) : resolve(res)
         } else {
-          reject(res.data.message, res.data)
+          isSimple ? reject(res.data.message) : reject(res)
         }
       })
-      .catch(function () {
+      .catch(err => {
         console.log('网络异常，请稍后再试!')
+        reject(err)
       })
   })
 }

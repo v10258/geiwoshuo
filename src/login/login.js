@@ -1,11 +1,9 @@
-require('./login.scss');
 
-
-import Vue from 'vue';
+import Vue from 'vue'
 import store from './store/store'
-
 import loginForm from './component/login-form.vue'
 
+import './login.scss'
 
 var app = new Vue({
   el: '#content',
@@ -20,8 +18,8 @@ var app = new Vue({
     loginForm
   },
 
-  created() {
-  	var self = this;
+  created () {
+    const self = this
 
     store.commit('set', {
       type: self.queryString('type') || self.type
@@ -29,9 +27,11 @@ var app = new Vue({
   },
 
   methods: {
-    queryString: (item)=>{
-		  var svalue = location.search.match(new RegExp('[?&]' + item + '=([^&]*)(&?)', 'i'));
-		  return svalue ? svalue[1] : '';
-		}
+    queryString: (item) => {
+      var svalue = location.search.match(new RegExp('[?&]' + item + '=([^&]*)(&?)', 'i'))
+      return svalue ? svalue[1] : ''
+    }
   }
 })
+
+console.log(app)
