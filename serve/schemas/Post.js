@@ -132,6 +132,20 @@ schema.statics.buildTotalVotes = async function (postId) {
   }, { new: true });
 };
 
+/**
+ * 用于问题响应率统计
+ */
+schema.statics.dailyStat = function (date) {
+  const start = new Date(date);
+  const end = new Date(date);
+  start.setHours(0, 0, 0, 0);
+  end.setHours(23, 59, 59, 999);
+  this.aggregate([
+    { $match: { created: { $gte: start, $lte: end } } }
+
+  ]);
+};
+
 schema.virtual('content_abstract').get(function () {
   const { body } = this;
   const [ , image_url ] = /<img\ssrc="(.+?)"\s\/>/.exec(body) || [];

@@ -38,33 +38,33 @@ router.get('/query', async (req, res) => {
  * 添加新任务
  */
 router.post('/add', async (req, res, next) => {
-  let tags = req.body.tags && JSON.parse(req.body.tags)
-  let hasTags = []
-  let newTags = []
-  let tagsResult
+  let tags = req.body.tags && JSON.parse(req.body.tags);
+  let hasTags = [];
+  let newTags = [];
+  let tagsResult;
 
   tags.forEach(function (v) {
-    v._id ? hasTags.push(v) : newTags.push(v)
-  })
+    v._id ? hasTags.push(v) : newTags.push(v);
+  });
 
   // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
   if (newTags.length) {
-    tagsResult = await Tag.create(newTags)
+    tagsResult = await Tag.create(newTags);
     hasTags = hasTags.concat(tagsResult).map(function (v) {
       return {
         id: v.id || v._id,
         name: v.name
-      }
-    })
+      };
+    });
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, { creator: req.session.user_id, tags: hasTags })
+  const post = Object.assign({}, req.body, { creator: req.session.user_id, tags: hasTags });
 
-  post.created = new Date()
+  post.created = new Date();
 
   try {
-    const r = await Post.create(post)
+    const r = await Post.create(post);
     res.json({
       success: true,
       code: 200,
@@ -72,45 +72,45 @@ router.post('/add', async (req, res, next) => {
         qid: r._id,
         url: `/post/${r._id}`
       }
-    })
+    });
   } catch (e) {
-    next(e)
+    next(e);
   }
-})
+});
 
 /**
  * 添加新任务
  */
 router.put('/update', async (req, res, next) => {
-  let tags = req.body.tags && JSON.parse(req.body.tags)
-  let hasTags = []
-  let newTags = []
-  let tagsResult
+  let tags = req.body.tags && JSON.parse(req.body.tags);
+  let hasTags = [];
+  let newTags = [];
+  let tagsResult;
 
   tags.forEach(function (v) {
-    v._id ? hasTags.push(v) : newTags.push(v)
-  })
+    v._id ? hasTags.push(v) : newTags.push(v);
+  });
 
   // tags存储，新建tags，tags涉及到以后排序管理，增删改查，以及关注度等操作需要单独的表管理。
   if (newTags.length) {
-    tagsResult = await Tag.create(newTags)
+    tagsResult = await Tag.create(newTags);
     hasTags = hasTags.concat(tagsResult).map(function (v) {
       return {
         id: v.id || v._id,
         name: v.name
-      }
-    })
+      };
+    });
   }
 
   // todo: 奖励存储，任务与奖励绑定，便于后期任务统筹，统计
-  const post = Object.assign({}, req.body, { tags: hasTags })
+  const post = Object.assign({}, req.body, { tags: hasTags });
 
-  post.last_modified = new Date()
+  post.last_modified = new Date();
 
   // todo: 任务存在验证，修改权限验证
   try {
-    const r = await Post.update({ _id: post.post_id }, post)
-    if (!r) return
+    const r = await Post.update({ _id: post.post_id }, post);
+    if (!r) return;
     res.json({
       success: true,
       code: 200,
@@ -118,59 +118,59 @@ router.put('/update', async (req, res, next) => {
         qid: req.body.post_id,
         url: `/post/${req.body.post_id}`
       }
-    })
+    });
   } catch (e) {
-    next(e)
+    next(e);
   }
-})
+});
 
 /**
  * 任务详情
  */
 router.get('/:post_id', F(async (req, res) => {
-  const { post_id } = req.params
-  const { user_id } = req.session
+  const { post_id } = req.params;
+  const { user_id } = req.session;
 
   // 查询任务
-  let post = await Post.findById(post_id)
+  let post = await Post.findById(post_id);
 
   // 查询我的回答 || 查询所有回答
-  let ownComments = user_id ? await Comment.findOne({ post_id, creator: user_id }) : null
-  let comments = await Comment.find({ post_id, creator: { $ne: user_id } })
-  const commentUserIds = comments.map(c => c.creator)
+  let ownComments = user_id ? await Comment.findOne({ post_id, creator: user_id }) : null;
+  let comments = await Comment.find({ post_id, creator: { $ne: user_id } });
+  const commentUserIds = comments.map(c => c.creator);
   const commentUsers = (commentUserIds.length ? await User.find({ _id: { $in: commentUserIds } }, [ '_id', 'name', 'signature', 'avatar' ]) : [])
-    .reduce((p, u) => (p[ u.id ] = u, p), Object.create(null))
+    .reduce((p, u) => (p[ u.id ] = u, p), Object.create(null));
   comments = comments.map(c => {
-    const cc = c.toObject()
-    cc.creator = commentUsers[ c.creator ] || c.creator
-    return cc
-  })
+    const cc = c.toObject();
+    cc.creator = commentUsers[ c.creator ] || c.creator;
+    return cc;
+  });
 
   // 查询问题发布者信息 || 查询当前用户信息
-  const user = await User.findById(user_id, [ '_id', 'name', 'signature', 'avatar' ])
-  const creator = await User.findById(post.creator, [ '_id', 'name', 'signature', 'avatar' ])
+  const user = await User.findById(user_id, [ '_id', 'name', 'signature', 'avatar' ]);
+  const creator = await User.findById(post.creator, [ '_id', 'name', 'signature', 'avatar' ]);
 
-  const totalSubscribed = post.subscribers.length
-  const userIds = post.subscribers.slice(0, 50)// 最多显示5个
+  const totalSubscribed = post.subscribers.length;
+  const userIds = post.subscribers.slice(0, 50);// 最多显示5个
 
-  post.subscribers = null
+  post.subscribers = null;
   if (ownComments) {
-    ownComments = Object.assign(ownComments.toObject(), { creator: user.toObject() })
+    ownComments = Object.assign(ownComments.toObject(), { creator: user.toObject() });
   }
   if (post) {
-    post = Object.assign(post.toObject(), { creator: creator.toObject() })
+    post = Object.assign(post.toObject(), { creator: creator.toObject() });
   }
 
-  const users = userIds.length ? await User.find({ _id: { $in: userIds } }, [ '_id', 'name', 'avatar' ]) : []
-  res.render('post.html', { post, totalSubscribed: totalSubscribed, subscribers: users, ownComments, comments })
-}))
+  const users = userIds.length ? await User.find({ _id: { $in: userIds } }, [ '_id', 'name', 'avatar' ]) : [];
+  res.render('post.html', { post, totalSubscribed: totalSubscribed, subscribers: users, ownComments, comments });
+}));
 
 /**
  * 获取评论列表
  */
 router.get('/:post_id/comments', F(async (req, res) => {
-  const { post_id } = req.params
-  const comments = await Comment.find({ post_id })
+  const { post_id } = req.params;
+  const comments = await Comment.find({ post_id });
 
   res.json({
     success: true,
@@ -178,51 +178,46 @@ router.get('/:post_id/comments', F(async (req, res) => {
     data: {
       comments
     }
-  })
-}))
+  });
+}));
 
 /**
  * 添加评论
  */
-router.post('/comment/:post_id', loginRequired, async (req, res, next) => {
-  const { post_id } = req.params
-  const { commentId } = req.body
-  const post = await Post.findById(post_id)
-  let comment
-
+router.post('/:post_id/comment', loginRequired, F(async (req, res, next) => {
+  const { post_id } = req.params;
+  const { commentId, body, responseTo = '', joinChecked, anonymousChecked = false } = req.body;
+  const post = await Post.findById(post_id);
   if (!post || !post._doc) {
-    return next('No post found.')
+    return next('No post found.');
   }
+  const comment = commentId ? await Comment.findById(commentId) : new Comment();
 
-  if (commentId) {
-    comment = await Comment.findById(commentId)
-    delete req.body.commentId
-    Object.assign(comment, req.body)
-  } else {
-    comment = new Comment()
-    Object.assign(comment, req.body, { post_id, created: new Date(), creator: req.session.user_id })
-  }
-
-  try {
-    const r = await comment.save()
-    await Post.findByIdAndUpdate(post_id, { $inc: { updates: 1 } })
-    res.json({
-      success: true,
-      code: 200,
-      data: r
-    })
-  } catch (e) {
-    next(e)
-  }
-})
+  Object.assign(comment, {
+    post_id,
+    body,
+    response_to: responseTo,
+    created: new Date(),
+    creator: req.session.user_id,
+    type: joinChecked ? 'participating' : 'commenting',
+    anonymous: anonymousChecked
+  });
+  const r = await comment.save();
+  await Post.findByIdAndUpdate(post_id, { $inc: { updates: 1 } });
+  res.json({
+    success: true,
+    code: 200,
+    data: r
+  });
+}));
 
 const actionFieldMap = {
   upvote: 'upvotes',
   downvote: 'downvotes',
   pageview: 'views',
   subscribe: { field: 'subscribers', op: '$push' }
-}
-const ops = Object.keys(actionFieldMap)
+};
+const ops = Object.keys(actionFieldMap);
 /**
  * op:
  * 1. upvote
@@ -376,8 +371,8 @@ router.post('/op/:post_id', F(async (req, res, next) => {
  * res: {ok:true} 关注成功
  */
 router.get('/follows/:post_id', F(async (req, res, next) => {
-  const { post_id } = req.params
-  const r = await Post.find({ _id: post_id })
+  const { post_id } = req.params;
+  const r = await Post.find({ _id: post_id });
 
   // todo: 返回关注此问题的前50名用户
   res.json({
@@ -389,8 +384,8 @@ router.get('/follows/:post_id', F(async (req, res, next) => {
       avatar: '',
       url: ''
     } ]
-  })
-}))
+  });
+}));
 
 /**
  * 关注问题
@@ -399,13 +394,13 @@ router.get('/follows/:post_id', F(async (req, res, next) => {
  * res: {ok:true} 关注成功
  */
 router.get('/subscribe/:post_id', F(async (req, res, next) => {
-  const { post_id } = req.params
-  const { user_id } = req.session
+  const { post_id } = req.params;
+  const { user_id } = req.session;
 
   // todo: 关注问题成功，返回用户信息
   if (req.session && user_id) {
-    const user = await User.findById(user_id, [ '_id', 'name', 'avatar' ])
-    const post = await Post.findById(post_id)
+    const user = await User.findById(user_id, [ '_id', 'name', 'avatar' ]);
+    const post = await Post.findById(post_id);
 
     if (post.subscribers.includes(user_id)) {
       res.json({
@@ -413,17 +408,17 @@ router.get('/subscribe/:post_id', F(async (req, res, next) => {
         code: 200,
         message: '您已关注',
         data: null
-      })
+      });
     } else {
-      post.subscribers.push(user_id)
-      post.save()
+      post.subscribers.push(user_id);
+      post.save();
 
       res.json({
         success: true,
         code: 200,
         message: '',
         data: user.toObject()
-      })
+      });
     }
   } else {
     res.json({
@@ -431,19 +426,19 @@ router.get('/subscribe/:post_id', F(async (req, res, next) => {
       code: 200,
       message: '请先登录',
       data: null
-    })
+    });
   }
-}))
+}));
 
 /**
  * 精选回答
  */
 router.get('/comments/selected', F(async (req, res) => {
-  const { size = 5 } = req.query
-  const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(size)
-  const postIds = comments.map(c => c.post_id)
-  const posts = await Post.find({ _id: { $in: postIds } })
-  const mapping = R.indexBy(R.prop('id'), posts)
+  const { size = 5 } = req.query;
+  const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(size);
+  const postIds = comments.map(c => c.post_id);
+  const posts = await Post.find({ _id: { $in: postIds } });
+  const mapping = R.indexBy(R.prop('id'), posts);
   const data = comments.map(c => {
     return {
       _id: c.post_id,
@@ -453,31 +448,31 @@ router.get('/comments/selected', F(async (req, res) => {
         text: c.body.replace(/(<([^>]+)>)/ig, '').slice(0, 40),
         thumbnail: (/<img\ssrc="(.+?)"\s\/>/.exec(c.body) || [])[ 1 ] || ''
       }
-    }
-  })
+    };
+  });
   res.json({
     success: true,
     data
-  })
-}))
+  });
+}));
 
 /**
  * 相关推荐
  */
 router.get('/:post_id/related', F(async (req, res) => {
-  const related = await Post.related(req.query.size || 5)
-  const postIds = related.map(p => p._id.toString())
+  const related = await Post.related(req.query.size || 5);
+  const postIds = related.map(p => p._id.toString());
 
   const count = await Comment.aggregate([
     { $match: { post_id: { $in: postIds } } },
     { $group: { _id: '$post_id', count: { $sum: 1 } } }
-  ])
-  const countMap = R.indexBy(R.prop('id'), count)
-  const rel = related.map(p => Object.assign(p, { answerNum: (countMap[ p.id ] || { count: 0 }).count }))
+  ]);
+  const countMap = R.indexBy(R.prop('id'), count);
+  const rel = related.map(p => Object.assign(p, { answerNum: (countMap[ p.id ] || { count: 0 }).count }));
   res.json({
     success: true,
     data: rel
-  })
-}))
+  });
+}));
 
-module.exports = router
+module.exports = router;
