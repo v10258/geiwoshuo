@@ -444,7 +444,7 @@ router.get('/comments/selected', F(async (req, res) => {
   const { size = 5 } = req.query
   const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(size)
   const postIds = comments.map(c => c.post_id)
-  const posts = await Post.find({ id: { $in: postIds } })
+  const posts = await Post.find({ _id: { $in: postIds } })
   const mapping = R.indexBy(R.prop('id'), posts)
   const data = comments.map(c => {
     return {
