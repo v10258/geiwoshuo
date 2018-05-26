@@ -6,7 +6,7 @@
     <h3 class="-title">精选回答</h3>
   </div>
   <ul class="-list">
-    <li class="-item" v-for="answer in answers" :key="answer._id">
+    <li class="-item" v-for="answer in answers" :key="answer.answerId">
       <a class="-title" :href="'/post/' + answer._id">
       {{ answer.title}}
       </a>
