@@ -41,6 +41,7 @@
               <input class="-control" id="code" type="text" name="code" autocomplete="off" placeholder="手机验证码">
               <span class="code-btn">获取验证码</span>
           </div>
+          <input type="hidden" name="captcha_id" v-model="captchaId">
         </template>
 
         <div class="agreement">
@@ -73,7 +74,8 @@ export default {
     ...mapState([
       'type',
       'loginType',
-      'captcha'
+      'captcha',
+      'captchaId'
     ]),
     submitText() {
       return this.$store.state.type === 'login' ? '登录' : '注册'
