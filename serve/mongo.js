@@ -11,7 +11,7 @@ const Captcha = require('./schemas/Captcha');
 const { mongo } = require('./config');
 
 const cfg = process.env.ATLAS || (os.platform() === 'darwin' ? mongo.dev : mongo.prod);
-
+mongoose.set('debug', true);
 mongoose.connect(cfg, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
