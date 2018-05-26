@@ -7,6 +7,7 @@ const Tag = require('./schemas/Tag');
 const Comment = require('./schemas/Comment');
 const VerificationCode = require('./schemas/VerificationCode');
 const Captcha = require('./schemas/Captcha');
+const PageLog = require('./schemas/PageLog');
 
 const { mongo } = require('./config');
 
@@ -25,6 +26,7 @@ module.exports = {
   Comment,
   VerificationCode,
   Captcha,
+  PageLog,
   stats() {
     // 统计各记录的条数
     return [ Post ].map(async m => ({ name: m.modelName, count: await m.count() }));

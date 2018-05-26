@@ -8,7 +8,7 @@ debug('cwd: %o', process.cwd());
 const port = process.env.PORT || 3001;
 const app = express();
 
-const { Post, User, Tag, Captcha } = require('./mongo');
+const { Post, User, Tag, Captcha, PageLog } = require('./mongo');
 const F = require('./routes/Factory');
 
 const user = require('./routes/user');
@@ -21,7 +21,7 @@ const centre = require('./routes/centre');
 const setting = require('./routes/setting');
 
 const session = require('./routes/middlewares/session');
-const login_required = require('./routes/middlewares/login_requred');
+
 // 设置静态文件目录
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
@@ -32,6 +32,22 @@ app.use((req, res, next) => {
   res.locals.user_id = req.session.user_id;
   res.locals.logged_in = !!req.session.user_id;
   next();
+});
+app.use((req, res, next) => {
+  const start = Date.now();
+  next();
+  const duration = Date.now() - start;
+  const log = Object.assign(new PageLog(), {
+    method: req.method,
+    path: req.path,
+    type: req.headers[ 'content-type' ],
+    ua: req.headers[ 'User-Agent' ],
+    ip: req.headers[ 'x-forwarded-for' ] || req.connection.remoteAddress,
+    user_id: req.session.user_id || '-1', // -1 表示未登录用户
+    created: new Date(),
+    duration
+  });
+  log.save().catch(console.log); // 异步试试
 });
 app.use('/user', user);
 app.use('/post', post);
@@ -106,7 +122,7 @@ app.get('/captcha', F(async (req, res) => {
   capt.created = new Date();
   await capt.save();
 
-  res.header('captcha_id', capt.id)
+  res.header('captcha_id', capt.id);
   res.json({
     success: true,
     code: 200,
@@ -114,8 +130,21 @@ app.get('/captcha', F(async (req, res) => {
       captcha: 'data:image/gif;base64,' + buffer.toString('base64')
     },
     message: ''
-  })
+  });
 }));
+app.get('/daily_uv', (req, res, next) => {
+  PageLog.dailyUserViews(new Date())
+    .then(uv => {
+      res.json({
+        success: true,
+        code: 200,
+        data: {
+          uv
+        }
+      });
+    })
+    .catch(next);
+});
 
 /**
  * 截获异常，统一处理
