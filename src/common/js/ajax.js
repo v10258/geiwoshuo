@@ -18,7 +18,7 @@ export const REMOTE = {
     queryAnswers: '/post/answers',
     queryAnswerCount: '/post/answerCount',
     op: '/post/op',
-    comment: '/post/comment',
+    comment: '/post/post_id/comment',
     related: '/post/post_id/related'
   },
   find: {

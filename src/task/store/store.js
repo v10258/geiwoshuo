@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { REMOTE, ajax } from '../../common/js/ajax.js'
+import { REMOTE, remoteUrlCombine, ajax } from '../../common/js/ajax.js'
 
 Vue.use(Vuex)
 
@@ -132,16 +132,20 @@ const actions = {
     })
   },
 
-  answerSubmit(context, playload) {
+  answerSubmit (context, playload) {
+    const reqUrl = remoteUrlCombine(REMOTE.task.comment, {
+      post_id: context.state.post._id
+    })
+
     return ajax(
-      REMOTE.task.comment + `/${context.state.post._id}`,
+      reqUrl,
       {
         commentId: context.state.ownAnswer && context.state.ownAnswer._id,
         body: playload.body,
         joinChecked: context.state.joinChecked,
         anonymousChecked: context.state.anonymousChecked
       },
-      'post',
+      'post'
     )
   }
 }
