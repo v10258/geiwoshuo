@@ -1,28 +1,27 @@
-const R = require('ramda')
-const router = require('express').Router()
-const { Post, Comment, User, Tag } = require('../mongo')
-const F = require('./Factory')
-const loginRequired = require('./middlewares/login_requred')
+const R = require('ramda');
+const router = require('express').Router();
+const { Post, Comment, User, Tag } = require('../mongo');
+const F = require('./Factory');
+const loginRequired = require('./middlewares/login_requred');
 const codes = require('./codes');
 
 router.get('/error', F(async (req, res, next) => {
-  next(new Error('啊啊报错了！'))
-}))
+  next(new Error('啊啊报错了！'));
+}));
 
 /**
  * 任务列表
  */
 router.get('/query', async (req, res) => {
-  const querys = req.query
-  const posts = await Post.findByParam(querys)
-  const creators = posts.map(p => p.creator)
-  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[ v.id ] = v.avatar, p), {})
+  const { count, posts } = await Post.findByParam(req.query);
+  const creators = posts.map(p => p.creator);
+  const users = (await User.fetchAvatars(creators)).reduce((p, v) => (p[ v.id ] = v.avatar, p), {});
   const postsToUse = posts.map(p => {
     if (users[ p.creator ]) {
-      return Object.assign(p.toObject(), { creatorAvatar: users[ p.creator ] })
+      return Object.assign(p.toObject(), { creatorAvatar: users[ p.creator ] });
     }
-    return p
-  })
+    return p;
+  });
 
   // 获取当前类目下问题数
   res.json({
@@ -30,11 +29,10 @@ router.get('/query', async (req, res) => {
     code: 200,
     data: {
       list: postsToUse,
-      count: 198
-    },
-    message: ''
-  })
-})
+      count
+    }
+  });
+});
 
 /**
  * 添加新任务

@@ -44,7 +44,7 @@ app.use('/setting', setting);
 
 nunjucks.configure(__dirname + '/templates', {
   autoescape: true,
-  noCache: true,// todo 发到生产时，移除此项
+  noCache: true, // todo 发到生产时，移除此项
   express: app,
   tags: {
     blockStart: '<%',
@@ -58,7 +58,7 @@ nunjucks.configure(__dirname + '/templates', {
 
 
 app.get('/', F(async (req, res) => {
-  const postCount = await Post.find().count();
+  const postCount = await Post.count();
   const posts = await Post.findByType('HOT');
 
   // todo: 暂用简单查询

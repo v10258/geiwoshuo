@@ -19,9 +19,9 @@ const schema = new Schema({
   created: { type: Date }, // 创建时间
   last_modified: { type: Date }, // 最近一次修改时间
   subscribers: { type: [ String ] }, // 关注人id
-  upvoters: { type: [ String ] }, // 点赞的人
+  upvoters: { type: [ String ], default: [] }, // 点赞的人
   upvotes: { type: Number, 'default': 0 }, // 赞同
-  downvoters: { type: [ String ] }, // 反对的人
+  downvoters: { type: [ String ], default: [] }, // 反对的人
   downvotes: { type: Number, 'default': 0 }, // 反对
   total_votes: { type: Number, 'default': 0 }, // 赞同-反对
   pageviews: { type: Number, 'default': 0 }, // 浏览数
@@ -73,22 +73,24 @@ schema.statics.findByType = function (type = 'HOT') {
   }
 };
 
-schema.statics.findByParam = function (querys) {
-  let start = (querys.pageNum - 1) * querys.pageSize;
-  let type = querys.sort;
-  let pageSize = Number(querys.pageSize);
+schema.statics.findByParam = async function (query) {
+  const { pageNum, pageSize, sort: type } = query;
+  const start = (pageNum - 1) * pageSize;
 
-  if (type === 'hot') { //热门
-    return this.find({}).sort({ total_votes: -1 }).skip(start).limit(pageSize);
-  } else if (type === 'latest') { //最新
-    return this.find({}).sort({ created: -1 }).skip(start).limit(pageSize);
-  } else if (type === 'bounty') { //赏金
-    return this.find({}).sort({ upvotes: 1 }).skip(start).limit(pageSize);
-  } else if (type === 'promo') { //推广
-    return this.find({}).sort({ upvotes: 1 }).skip(start).limit(pageSize);
+  let sort;
+  if (type === 'hot') { // 热门
+    sort = { total_votes: -1 };
+  } else if (type === 'latest') { // 最新
+    sort = { created: -1 };
+  } else if (type === 'bounty') { // 赏金
+    sort = { upvotes: 1 };
+  } else if (type === 'promo') { // 推广
+    sort = { upvotes: 1 };
+  } else {
+    throw Error('Unsupported type: ' + type);
   }
-  throw Error('Unsupported type: ' + type);
-
+  const [ count, posts ] = await Promise.all([ this.count(), this.find().sort(sort).skip(+start).limit(+pageSize) ]);
+  return { count, posts };
 };
 
 schema.statics.findByUser = function (userId) {
