@@ -131,11 +131,13 @@ export default {
       let formData = this.$store.state.type === 'login' &&  this.$store.state.loginType === 2 ? {
         account: formEle.account.value,
         password: formEle.password.value,
-        captcha: formEle.captcha.value
+        captcha: formEle.captcha.value,
+        captcha_id: formEle.captcha_id.value
       } : {
         account: formEle.account.value,
         captcha: formEle.captcha.value,
-        code: formEle.code.value
+        code: formEle.code.value,
+        captcha_id: formEle.captcha_id.value
       };
 
       console.log('ev', ev);
