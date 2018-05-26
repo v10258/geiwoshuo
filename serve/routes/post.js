@@ -3,6 +3,7 @@ const router = require('express').Router()
 const { Post, Comment, User, Tag } = require('../mongo')
 const F = require('./Factory')
 const loginRequired = require('./middlewares/login_requred')
+const codes = require('./codes');
 
 router.get('/error', F(async (req, res, next) => {
   next(new Error('啊啊报错了！'))
@@ -232,30 +233,143 @@ const ops = Object.keys(actionFieldMap)
  *
  */
 router.post('/op/:post_id', F(async (req, res, next) => {
-  const { post_id } = req.params
-  const { op } = req.body
+  const { user_id } = req.session;
+  const { post_id } = req.params;
+  const { op, undo = false } = req.body; // undo 意味着再次点击，有取消的意思
   if (!ops.includes(op)) {
-    return next(new Error(`Unsupported op: <${op}>`))
+    return next(new Error(`Unsupported op: <${op}>`));
   }
-  let update
+
   if (op === 'subscribe') {
-    update = { $push: { subscribers: req.session.user_id }, $inc: { updates: 1 } }
+    const update = { $addToSet: { subscribers: req.session.user_id }, $inc: { updates: 1 } };
+    await Post.update({ _id: post_id }, update);
+    return res.json({
+      success: true,
+      code: 200,
+      message: ''
+    });
   } else if (op === 'upvote') {
-    update = { $inc: { upvotes: 1, total_votes: 1, updates: 1 } }
+    if (!user_id) {
+      res.json({
+        success: false,
+        code: codes.code_401.code,
+        message: 'Login required.'
+      });
+      return;
+    }
+    if (!undo) { // 点赞
+      const result = await Post.update({
+        _id: post_id,
+        upvoters: { $not: { $all: [ user_id ] } }
+      }, {
+        $push: { upvoters: user_id },
+        $pull: { downvoters: user_id },
+        $inc: { upvotes: 1, total_votes: 1, updates: 1 }
+      });
+
+      if (result.nModified === 1) {
+        const { total_votes } = await Post.buildTotalVotes(post_id);
+        return res.json({
+          success: true,
+          code: 200,
+          data: {
+            total_votes
+          },
+          message: ''
+        });
+      }
+      return res.json({
+        success: false,
+        code: codes.code_406.code,
+        message: 'Not Allowed'
+      });
+    } else { // 取消点赞
+      const result = await Post.update({
+        _id: post_id,
+        upvoters: { $all: [ user_id ] }
+      }, { $pull: { upvoters: user_id }, $inc: { upvotes: -1, total_votes: -1, updates: -1 } });
+
+      if (result.nModified === 1) {
+        const post = await Post.buildTotalVotes(post_id);
+        return res.json({
+          success: true,
+          code: 200,
+          post,
+          message: ''
+        });
+      }
+      return res.json({
+        success: false,
+        code: codes.code_406.code,
+        message: 'Not Allowed'
+      });
+    }
   } else if (op === 'downvote') {
-    update = { $inc: { downvotes: 1, total_votes: -1, updates: -1 } }
+
+    if (!user_id) {
+      res.json({
+        success: false,
+        code: codes.code_401.code,
+        message: 'Login required.'
+      });
+      return;
+    }
+    if (!undo) {
+      const result = await Post.update({
+        _id: post_id,
+        downvoters: { $not: { $all: [ user_id ] } }
+      }, {
+        $push: { downvoters: user_id },
+        $pull: { upvoters: user_id },
+        $inc: { downvotes: 1, total_votes: -1, updates: -1 }
+      });
+
+      if (result.nModified === 1) {
+        const { total_votes } = await Post.buildTotalVotes(post_id);
+        return res.json({
+          success: true,
+          code: 200,
+          data: {
+            total_votes
+          }
+        });
+      }
+      return res.json({
+        success: false,
+        code: codes.code_406.code,
+        message: 'Not Allowed'
+      });
+    } else { // 取消
+      const result = await Post.update({
+        _id: post_id,
+        downvoters: { $all: [ user_id ] }
+      }, { $pull: { downvoters: user_id }, $inc: { downvotes: -1, total_votes: -1, updates: -1 } });
+
+      if (result.nModified === 1) {
+        await Post.buildTotalVotes(post_id);
+        return res.json({
+          success: true,
+          code: 200,
+          message: ''
+        });
+      }
+      return res.json({
+        success: false,
+        code: codes.code_406.code,
+        message: 'Not Allowed'
+      });
+    }
+
   } else {
-    update = { $inc: { pageviews: 1 } }
+    const update = { $inc: { pageviews: 1 } };
+    await Post.update({ _id: post_id }, update);
+    res.json({
+      success: true,
+      code: 200,
+      message: ''
+    });
   }
-  // 返回修改后的post
-  const post = await Post.findByIdAndUpdate(post_id, update, { 'new': true })
-  res.json({
-    success: true,
-    code: 200,
-    data: post,
-    message: ''
-  })
-}))
+}));
 
 /**
  * 获取关注用户列表
@@ -330,7 +444,7 @@ router.get('/comments/selected', F(async (req, res) => {
   const { size = 5 } = req.query
   const comments = await Comment.find({}).sort({ upvotes: -1 }).limit(size)
   const postIds = comments.map(c => c.post_id)
-  const posts = await Post.find({ id: { $in: postIds } })
+  const posts = await Post.find({ _id: { $in: postIds } })
   const mapping = R.indexBy(R.prop('id'), posts)
   const data = comments.map(c => {
     return {

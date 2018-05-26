@@ -19,7 +19,9 @@ const schema = new Schema({
   created: { type: Date }, // 创建时间
   last_modified: { type: Date }, // 最近一次修改时间
   subscribers: { type: [ String ] }, // 关注人id
+  upvoters: { type: [ String ] }, // 点赞的人
   upvotes: { type: Number, 'default': 0 }, // 赞同
+  downvoters: { type: [ String ] }, // 反对的人
   downvotes: { type: Number, 'default': 0 }, // 反对
   total_votes: { type: Number, 'default': 0 }, // 赞同-反对
   pageviews: { type: Number, 'default': 0 }, // 浏览数
@@ -107,6 +109,25 @@ schema.statics.hotTags = function (limit = 10) {
 
 schema.statics.related = function (size = 5) {
   return this.aggregate([ { $sample: { size } } ]);
+};
+
+schema.statics.buildTotalVotes = async function (postId) {
+  postId = mongoose.Types.ObjectId(postId); // 在agg中需要强制转换
+  const [ res ] = await this.aggregate([
+    { $match: { _id: postId } },
+    { $project: { total_upvotes: { $size: '$upvoters' }, total_downvotes: { $size: '$downvoters' } } }
+  ]) || [];
+  if (!res) {
+    return;
+  }
+
+  return await this.findByIdAndUpdate(postId, {
+    $set: {
+      upvotes: res.total_upvotes,
+      downvotes: res.total_downvotes,
+      total_votes: res.total_upvotes - res.total_downvotes
+    }
+  }, { new: true });
 };
 
 schema.virtual('content_abstract').get(function () {
