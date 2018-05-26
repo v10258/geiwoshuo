@@ -1,9 +1,10 @@
 const nanoid = require('nanoid');
 const router = require('express').Router();
 const login_required = require('./middlewares/login_requred');
-const {User, VerificationCode} = require('../mongo');
+const { User, VerificationCode, Captcha } = require('../mongo');
 const F = require('./Factory');
 const crypt = require('../util/crypt');
+const codes = require('./codes');
 
 
 /**
@@ -90,13 +91,30 @@ router.post('/setting/info', login_required, F(async (req, res, next) => {
 }));
 
 router.post('/login', F(async (req, res, next) => {
-  const {account = '', password, captcha, code, dataType} = req.body;
+  const { account = '', password, captcha, captcha_id, code, dataType } = req.body;
+
+  if (!captcha_id) {
+    return res.json({
+      success: false,
+      code: codes.code_400.code,
+      message: 'wrong captcha'
+    });
+  }
+
+  const cap = await Captcha.findById(captcha_id);
+  if (!cap || cap.token !== captcha) {
+    return res.json({
+      success: false,
+      code: codes.code_400.code,
+      message: 'wrong captcha'
+    });
+  }
 
   let query;
   if (/^\d+$/.test(account)) {
-    query = {phone: account};
+    query = { phone: account };
   } else if (account.includes('@')) {
-    query = {email: account};
+    query = { email: account };
   } else {
     return next(new Error('Unsupported account: ' + account));
   }
@@ -119,11 +137,12 @@ router.post('/login', F(async (req, res, next) => {
         avatar: user.avatar
       },
       code: 200
-    })
-  // 表单提交
+    });
+    // 表单提交
   } else {
     res.redirect('/');
   }
+  cap.remove();
 }));
 
 
