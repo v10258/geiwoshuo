@@ -64,26 +64,21 @@ const actions = {
     })
   },
 
-  vote(context, playload) {
-    let copyPosts = context.state.posts.slice();
-    let post = context.state.posts[playload.index];
-    let newPost = playload.op === 'upvote' ? { ...post, upvotes: (post.upvotes + 1)} :
-      { ...post, downvotes: (post.downvotes + 1)};
+  vote (context, playload) {
+    const post = context.state.posts[playload.index]
+    const params = {
+      op: playload.op
+    }
 
-    copyPosts[playload.index] = newPost;
+    if (playload.op === 'downvote') {
+      params.undo = true
+    }
 
-
-    ajax(
+    return ajax(
       REMOTE.task.op + `/${post._id}`,
-      {
-        op: playload.op
-      },
+      params,
       'post'
-    ).then((data)=>{
-      context.commit('set', {
-        posts: copyPosts
-      })
-    })
+    )
   }
 }
 

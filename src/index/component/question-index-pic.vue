@@ -55,6 +55,7 @@
 import Vue from 'vue'
 import { mapState, mapGetters, mapMutations } from "vuex";
 import { REMOTE, ajax } from '../../common/js/ajax.js';
+import errorHandler from '../../common/js/error.js';
 
 export default {
   computed: {
@@ -71,6 +72,21 @@ export default {
       this.$store.dispatch('vote', {
         op: op,
         index: index
+      })
+      .then(data => {
+        const copyPosts = this.$store.state.posts.slice()
+        const post = copyPosts[index]
+
+        copyPosts[index] = op === 'upvote' ? { ...post, upvotes: (post.upvotes + 1) } :
+          { ...post, downvotes: (post.downvotes + 1) }
+
+        this.$store.commit('set', {
+          posts: copyPosts
+        });
+      })
+      .catch(err => {
+        console.log('catch err', err)
+        errorHandler(err)
       });
     }
   }

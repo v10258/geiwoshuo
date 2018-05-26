@@ -79,7 +79,7 @@ export const ajax = function (url, params, method = 'get', isSimple = true) {
         if (res.data.success) {
           isSimple ? resolve(res.data.data) : resolve(res)
         } else {
-          isSimple ? reject(res.data.message) : reject(res)
+          reject(res.data)
         }
       })
       .catch(err => {
