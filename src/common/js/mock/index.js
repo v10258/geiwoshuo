@@ -1,7 +1,7 @@
-var Mock = require('mockjs')
+import Mock from 'mockjs'
 import { REMOTE } from '../ajax.js'
 
-export default function() {
+export default function () {
   Mock.mock(new RegExp(REMOTE.index.queryQuestions), {
     'success': true,
     'code': 200,
@@ -24,8 +24,29 @@ export default function() {
       count: 189
     }
   })
+
+  Mock.mock(new RegExp(REMOTE.index.featuredAnswer), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data|3': [{
+      '_id|+1': 1,
+      'title|2-6': '兑换外币',
+      'answerId|+1': 1,
+      'content_abstract': {
+        'text|9-11': '回答正文',
+        'thumbnail': "@image('96x60', '#FF6600')"
+      }
+    }]
+  })
+
+  Mock.mock(new RegExp(REMOTE.index.stat), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data': {
+      'question|300-999': 1,
+      'responseRate|30-99': 1
+    }
+  })
 }
-
-
-
-

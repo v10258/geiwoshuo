@@ -8,6 +8,7 @@ import {mapState, mapGetters} from 'vuex'
 import topHeader from './component/top-header.vue'
 import questionIndex from './component/question-index-pic.vue'
 import featuredAnswer from './component/featured-answer.vue'
+import questionStat from './component/question-stat.vue'
 import { Pagination } from 'element-ui'
 
 import store from './store/store'
@@ -23,7 +24,8 @@ var app = new Vue({
   components: {
     topHeader,
     questionIndex,
-    featuredAnswer
+    featuredAnswer,
+    questionStat
   },
 
   // 把stroe.js中的值，赋值给组件里data中的值

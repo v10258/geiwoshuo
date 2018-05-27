@@ -12,7 +12,7 @@
       </a>
       <a class="-preview" :href="'/post/' + answer._id">
         <p class="-content" v-html="answer.content_abstract.text"></p>
-        <div class="-image" v-if="answer.content_abstract.thumbnail" :style="{backgroundImage: 'url('+ answer.content_abstract.thumbnail +')', backgroundSize: cover}"></div>
+        <div class="-image" v-if="answer.content_abstract.thumbnail" :style="{backgroundImage: 'url('+ answer.content_abstract.thumbnail +')', backgroundSize: 'cover'}"></div>
       </a>
     </li>
   </ul>
