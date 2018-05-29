@@ -1,12 +1,12 @@
-require('./setting.scss')
-require('../layout/header.js')
-require('../layout/footer.js')
+import './setting.scss'
+import '../layout/header.js'
+import '../layout/footer.js'
 
-import 'babel-polyfill'
 import Vue from 'vue'
 import cropUpload from 'vue-image-crop-upload'
-
 import { REMOTE, ajax } from '../common/js/ajax.js'
+
+const __PAGE_STATE = window.__PAGE_STATE
 
 var app = new Vue({
   el: '#content',
@@ -22,28 +22,26 @@ var app = new Vue({
     'my-upload': cropUpload
   },
 
-  created() {
-    var self = this;
-    
+  created () {
     if (__PAGE_STATE && __PAGE_STATE.user) {
-      self.user = __PAGE_STATE.user;
+      this.user = __PAGE_STATE.user
     }
   },
 
   methods: {
-    toggleShow() {
+    toggleShow () {
       this.show = !this.show
     },
-    cropSuccess(imgDataUrl, field) {
+    cropSuccess (imgDataUrl, field) {
       console.log('-------- crop success --------', imgDataUrl)
-      this.user.avatar = imgDataUrl;
+      this.user.avatar = imgDataUrl
     },
-    cropUploadSuccess(result, field) {
+    cropUploadSuccess (result, field) {
       console.log('-------- upload success --------')
       console.log(result)
       console.log('field: ' + field)
     },
-    cropUploadFail(status, field) {
+    cropUploadFail (status, field) {
       console.log('-------- upload fail --------')
       console.log(status)
       console.log('field: ' + field)
@@ -59,6 +57,8 @@ $('#profileForm').on('submit', (e) => {
     new URLSearchParams(new FormData(e.target)),
     'post'
   ).then((data) => {
-    console.log('data', data);
+    console.log('data', data)
   })
 })
+
+console.log(app)
