@@ -166,17 +166,23 @@ router.get('/:post_id', F(async (req, res) => {
 }))
 
 /**
- * 获取评论列表
+ * 获取问题回答列表
  */
-router.get('/:post_id/comments', F(async (req, res) => {
+router.get('/:post_id/answers', F(async (req, res) => {
   const { post_id } = req.params
-  const comments = await Comment.find({ post_id })
+  const { sort, rank } = req.query
+  const pageSize = parseInt(req.query.pageSize, 10) || 20
+  const pageNum = parseInt(req.query.pageNum, 10) || 1
+  const answers = await Comment.find({ post_id }).limit(pageSize)
+  const totalPages = 100
 
   res.json({
     success: true,
     code: 200,
     data: {
-      comments
+      answers,
+      totalPages,
+      pageNum
     }
   })
 }))

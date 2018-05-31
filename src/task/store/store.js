@@ -16,7 +16,6 @@ const state = {
   },
   // 任务进度列表
   processList: [],
-
   
   // 分类过滤
   sort: 'all',
@@ -26,6 +25,8 @@ const state = {
   pageNum: 1,
   // 初始化页面每次请求记录数
   pageSize: 20,
+
+  totalPages: 1,
 
   // 自己的回答
   ownAnswer: null,
@@ -117,18 +118,24 @@ const actions = {
       rank: context.state.rank,
       pageNum: context.state.pageNum,
       pageSize: context.state.pageSize
-    }, playload);
+    }, playload)
 
-    context.commit('set', params);
+    context.commit('set', params)
+
+    const reqUrl = remoteUrlCombine(REMOTE.task.queryAnswers, {
+      post_id: context.state.post._id
+    })
 
     ajax(
-      REMOTE.task.queryAnswers + `/${context.state.post._id}`,
+      reqUrl,
       params
-    ).then((data)=>{
+    ).then((data) => {
       console.log('getAnswers data', data)
       context.commit('set', {
-        answers: data
-      });
+        answers: data.answers,
+        totalPages: data.totalPages,
+        pageNum: data.pageNum
+      })
     })
   },
 

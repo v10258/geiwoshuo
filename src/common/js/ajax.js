@@ -16,7 +16,7 @@ export const REMOTE = {
   task: {
     taskFollows: '/post/follows',
     doFollow: '/post/subscribe',
-    queryAnswers: '/post/answers',
+    queryAnswers: '/post/post_id/answers',
     queryAnswerCount: '/post/answerCount',
     op: '/post/op',
     comment: '/post/post_id/comment',
