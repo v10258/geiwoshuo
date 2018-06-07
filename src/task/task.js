@@ -13,6 +13,7 @@ import taskAnswer from './component/task-answer.vue'
 import answerForm from './component/answer-form.vue'
 import follow from './component/follow.vue'
 import taskRelated from './component/task-related.vue'
+import loadMore from '../common/component/load-more.vue'
 import pageview from '../common/component/pageview.vue'
 
 var app = new Vue({
@@ -27,11 +28,25 @@ var app = new Vue({
     answerForm,
     follow,
     taskRelated,
+    loadMore,
     pageview
   },
 
   data: {
-    post: {}
+    post: {},
+  },
+
+  computed: {
+    loading () {
+      return this.$store.state.loading
+    },
+    isShowLoadMore () {
+      return (this.$store.state.answers && this.$store.state.answers.length > 1) &&
+        (this.$store.state.totalPages > 1)
+    },
+    atLast () {
+      return (this.$store.state.totalPages > 1) && (this.$store.state.pageNum >= this.$store.state.totalPages)
+    }
   },
 
   created () {
@@ -64,8 +79,15 @@ var app = new Vue({
         joinChecked: type === 1
       })
       this.intoEditor()
+    },
+    handlePageDown () {
+      if (this.$store.state.pageNum >= this.$store.state.totalPages) return
+      console.log('trigger handlePageDown pageNum+1')
+      this.$store.commit('set', {
+        pageNum: this.$store.state.pageNum + 1
+      })
     }
   }
 })
 
-console.log(app)
+console.log('page task', app)

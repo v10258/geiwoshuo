@@ -1,5 +1,5 @@
-var Mock = require('mockjs')
-import { REMOTE } from '../ajax.js'
+import Mock from 'mockjs'
+import { REMOTE, remoteUrlCombine } from '../ajax.js'
 
 export default function () {
   Mock.mock(new RegExp(REMOTE.task.taskFollows), {
@@ -28,14 +28,32 @@ export default function () {
     }
   })
 
-  Mock.mock(new RegExp(REMOTE.task.queryAnswers), {
+  const queryAnswersUrl = remoteUrlCombine(REMOTE.task.queryAnswers, {
+    post_id: '[a-z0-9]{24}'
+  })
+  Mock.mock(new RegExp(queryAnswersUrl), {
     'success': true,
     'code': 200,
     'message': '',
-    'data|10': [{
-      'body': '',
-      'date': ''
-    }]
+    'data': {
+      'answers|10': [{
+        '_id': '5aeab132916d33bdb8bd6412',
+        'creator': {
+          '_id': '59f987f8a25b83ca4c228023',
+          'name': '半夏',
+          'signature|1-2': '哈哈哈',
+          'avatar': "@image('60x60', '#FF6600')"
+        },
+        'created': '2018-05-03T06:50:26.840Z',
+        'post_id': '5a2943e0de7366aae79feef9',
+        'body': '<p>dododo~~~</p>',
+        'downvotes|0-20': 0,
+        'upvotes|10-100': 0
+      }],
+      'totalPages|5-10': 1,
+      'answerCount|100-200': 1,
+      'pageNum|+1': 2
+    }
   })
 
   Mock.mock(new RegExp(REMOTE.task.queryAnswerCount), {
@@ -68,5 +86,19 @@ export default function () {
       'upvotes': 100,
       'downvotes': 20
     }
+  })
+
+  const relatedUrl = remoteUrlCombine(REMOTE.task.related, {
+    post_id: '[a-z0-9]{24}'
+  })
+  Mock.mock(new RegExp(relatedUrl), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data|3': [{
+      '_id|+1': 1,
+      'title|3-6': '帮忙砍价',
+      'answerNum|0-9999': 5
+    }]
   })
 }

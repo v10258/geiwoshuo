@@ -10,24 +10,3 @@
 @import "./scss/answer-form.scss";
 @import "./scss/aside.scss";
 
-.answer-more {
-  
-  height: 35px;
-  margin-top: 36px;
-
-  a {
-    display: block;
-    line-height: 35px;
-    text-align: center;
-    text-decoration: none;
-    color: #666;
-    background-color: #efefef;
-    border-radius: 4px;
-
-    &:hover {
-      background-color: #fff5e5;
-      color: #ff9d00;
-    }
-  }
-}
-

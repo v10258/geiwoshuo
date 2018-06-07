@@ -85,9 +85,8 @@
         <task-answer @into-editor="onComptEvent">
         </task-answer>
 
-        <!-- <div class="answer-more">
-          <a id="J_loadMore" href="#">加载更多<i></i></a>
-        </div> -->
+        <load-more v-if="isShowLoadMore" @pagedown="handlePageDown()" :at-last="atLast" :loading="loading">
+        </load-more>
 
         <answer-form>
         </answer-form>
@@ -116,7 +115,8 @@
       window.__PAGE_STATE['processList'] = [3, 1, 1];
       window.__PAGE_STATE['post'] = {"_id":"5aeab8bd916d33bdb8bd6415","title":"装修找经验丰富的独立设计师","body":"<p>89方，装修队伍基本确定，个人偏好简美，或简港风格~&lt;/p>","member_level":null,"ant_credit":"","creator":{"_id":"59f987f8a25b83ca4c228023","name":"半夏","signature":"哈哈哈"},"created":"2018-05-03T07:22:37.335Z","__v":0,"last_modified":"2018-05-03T07:24:12.102Z","members":[""],"groups":[""],"member_tags":[""],"quantity":null,"valid_time":-1,"anonymous":false,"city":"310000","custom":"","bounty":8000,"coins":null,"views":0,"total_votes":8,"downvotes":0,"upvotes":8,"subscribers":null,"tags":[{"id":"5aeab8bd916d33bdb8bd6413","name":"装修","_id":"5aeab8bd916d33bdb8bd6417"},{"id":"5aeab8bd916d33bdb8bd6414","name":"设计师","_id":"5aeab8bd916d33bdb8bd6416"}],"content_abstract":{"text":"89方，装修队伍基本确定，个人偏好简美，或简港风格~"},"id":"5aeab8bd916d33bdb8bd6415"};
       window.__PAGE_STATE['ownAnswer'] = {"_id":"5aeaba54916d33bdb8bd6418","creator":{"_id":"59f987f8a25b83ca4c228023","name":"半夏","signature":"哈哈哈"},"created":"2018-05-03T07:29:24.412Z","post_id":"5aeab8bd916d33bdb8bd6415","body":"<p>&lt;script&gt;alert('xxs 攻击你')&lt;/script&gt;</p>","__v":0,"downvotes":0,"upvotes":0};
-      window.__PAGE_STATE['answers'] = []
+      window.__PAGE_STATE['answers'] = [{"_id":"5a7309759b37a808d8907a0f","creator":{"_id":"59f93b524be91d7dffad606e","avatar":"/ugc/avatar/2018-05-07_59f93b524be91d7dffad606e_avatar.png","name":"ym","signature":"我就是我，是颜色不一样的烟火"},"created":"2018-02-01T12:35:01.179Z","post_id":"5a2943e0de7366aae79feef9","body":"<p>123</p>","__v":0,"type":"commenting","status":"actived","downvotes":0,"upvotes":0,"response_to":""},{"_id":"5a730ad71127d70a1dfe9dcf","creator":{"_id":"59f93b524be91d7dffad606e","avatar":"/ugc/avatar/2018-05-07_59f93b524be91d7dffad606e_avatar.png","name":"ym","signature":"我就是我，是颜色不一样的烟火"},"created":"2018-02-01T12:40:55.718Z","post_id":"5a2943e0de7366aae79feef9","body":"<p>123</p>","__v":0,"type":"commenting","status":"actived","downvotes":0,"upvotes":0,"response_to":""},{"_id":"5aeab132916d33bdb8bd6412","creator":{"_id":"59f987f8a25b83ca4c228023","name":"半夏","signature":"哈哈哈","avatar":"//gws.ask.solutions/ugc/avatar/2018-05-03_59f987f8a25b83ca4c228023_avatar.png"},"created":"2018-05-03T06:50:26.840Z","post_id":"5a2943e0de7366aae79feef9","body":"<p>dododo~~~</p>","__v":0,"type":"commenting","status":"actived","downvotes":0,"upvotes":0,"response_to":""},{"_id":"5af2b036373b92226adc55b9","creator":{"_id":"5a3cdb6b63f32c4c1da5bac4","name":"花落","signature":"且行且努力~","avatar":"/ugc/avatar/2018-05-07_5a3cdb6b63f32c4c1da5bac4_avatar.png"},"created":"2018-05-09T08:24:22.312Z","post_id":"5a2943e0de7366aae79feef9","body":"<p>评论怎么重复了~</p>","__v":0,"type":"commenting","status":"actived","downvotes":0,"upvotes":0,"response_to":""},{"_id":"5af2ec7384481a61b8a5dec3","creator":{"_id":"5af0074a1dcd64506048b8bb","avatar":"/ugc/avatar/2018-05-07_5af0074a1dcd64506048b8bb_avatar.png","name":"阿木木","signature":"我还以为你从来都不会选我呢……"},"created":"2018-05-29T06:22:35.926Z","post_id":"5a2943e0de7366aae79feef9","body":"<p>北大 清华 复旦~</p>","__v":0,"type":"commenting","status":"actived","downvotes":0,"upvotes":0,"response_to":""}]
+      window.__PAGE_STATE['totalPages'] = 5;
       window.__PAGE_STATE['subscribers'] = []
     </script>
 </body>

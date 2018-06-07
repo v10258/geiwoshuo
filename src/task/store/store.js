@@ -16,7 +16,7 @@ const state = {
   },
   // 任务进度列表
   processList: [],
-  
+
   // 分类过滤
   sort: 'all',
   // 排序
@@ -27,6 +27,8 @@ const state = {
   pageSize: 20,
 
   totalPages: 1,
+
+  loading: false,
 
   // 自己的回答
   ownAnswer: null,
@@ -52,11 +54,11 @@ const state = {
 const getters = {
   qid: state => state.post._id,
   answerCount: state => state.answers.length,
-  actorNum: state => state.answers.reduce(function(accumulator, currentValue){
+  actorNum: state => state.answers.reduce(function (accumulator, currentValue) {
     if (currentValue.join) {
-      return ++accumulator;
+      return ++accumulator
     } else {
-      return accumulator;
+      return accumulator
     }
   }, 0)
 }
@@ -121,6 +123,9 @@ const actions = {
     }, playload)
 
     context.commit('set', params)
+    context.commit('set', {
+      loading: true
+    })
 
     const reqUrl = remoteUrlCombine(REMOTE.task.queryAnswers, {
       post_id: context.state.post._id
@@ -130,12 +135,21 @@ const actions = {
       reqUrl,
       params
     ).then((data) => {
-      console.log('getAnswers data', data)
-      context.commit('set', {
-        answers: data.answers,
-        totalPages: data.totalPages,
-        pageNum: data.pageNum
-      })
+      if (data.pageNum > 1) {
+        context.commit('set', {
+          loading: false,
+          answers: context.state.answers.concat(data.answers),
+          totalPages: data.totalPages,
+          pageNum: data.pageNum
+        })
+      } else {
+        context.commit('set', {
+          loading: false,
+          answers: data.answers,
+          totalPages: data.totalPages,
+          pageNum: data.pageNum
+        })
+      }
     })
   },
 

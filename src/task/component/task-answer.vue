@@ -113,48 +113,49 @@
 </template>
 
 <script>
-
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
 export default {
-
   // 把stroe.js中的值，赋值给组件
   computed: {
-    ...mapState([
-      'sort',
-      'rank',
-      'ownAnswer',
-      'answers',
-    ]),
-    ...mapGetters([
-      'answerCount',
-      'actorNum'
-    ])
+    ...mapState(["sort", "rank", "ownAnswer", "answers", 'pageNum']),
+    ...mapGetters(["answerCount", "actorNum"])
+  },
+
+  watch: {
+    // 如果 `question` 发生改变，这个函数就会运行
+    pageNum: function(newVal, oldVal) {
+      console.log('pageNum', newVal)
+      if (newVal <= oldVal) return
+
+      this.$store.dispatch('getAnswers', {
+        pageNum: newVal
+      })
+    }
   },
 
   methods: {
     doMeEditor() {
-      this.$emit('into-editor', {
-        type: 'into-editor'
+      this.$emit("into-editor", {
+        type: "into-editor"
       });
-      console.log('into-editor emit');
+      console.log("into-editor emit");
     },
 
     switchSort(sort) {
-      if (this.sort === sort) return
-      this.$store.dispatch('getAnswers', {
+      if (this.sort === sort) return;
+      this.$store.dispatch("getAnswers", {
         sort: sort,
         pageNum: 1
       });
     },
     switchRank(rank) {
-      if (this.rank === rank) return
-      this.$store.dispatch('getAnswers', {
+      if (this.rank === rank) return;
+      this.$store.dispatch("getAnswers", {
         rank: rank,
         pageNum: 1
       });
     }
   }
 };
-
 </script>
