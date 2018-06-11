@@ -90,22 +90,23 @@ const mutations = {
 // actions are functions that cause side effects and can involve asynchronous operations.
 const actions = {
   vote (context, playload) {
-
-    let newProp = playload.op === 'upvote' ? {upvotes: (context.state.post.upvotes + 1)} :
-    {downvotes: (context.state.post.downvotes + 1)};
-
-    ajax(
-      REMOTE.task.op + `/${context.state.post._id}`,
-      {
-        op: playload.op
-      },
-      'post'
-    ).then((data)=>{
-      context.commit('setProp', {
-        propName: 'post',
-        ...newProp
-      });
+    const answer = playload.index ? context.state.answers[playload.index] : context.state.ownAnswer
+    const reqUrl = remoteUrlCombine(REMOTE.task.answerVote, {
+      answer_id: answer._id
     })
+    const params = {
+      op: playload.op
+    }
+
+    if (playload.op === 'downvote') {
+      params.undo = true
+    }
+
+    return ajax(
+      reqUrl,
+      params,
+      'post'
+    )
   },
 
   doFollow (context, payload) {
@@ -135,19 +136,19 @@ const actions = {
       reqUrl,
       params
     ).then((data) => {
-      if (data.pageNum > 1) {
+      if (params.pageNum > 1) {
         context.commit('set', {
           loading: false,
           answers: context.state.answers.concat(data.answers),
-          totalPages: data.totalPages,
-          pageNum: data.pageNum
+          totalPages: data.totalPages
+          // pageNum: data.pageNum
         })
       } else {
         context.commit('set', {
           loading: false,
           answers: data.answers,
-          totalPages: data.totalPages,
-          pageNum: data.pageNum
+          totalPages: data.totalPages
+          // pageNum: data.pageNum
         })
       }
     })

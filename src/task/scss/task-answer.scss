@@ -10,43 +10,47 @@
       @extend .flex;
       color: $text-color-dark;
       height: 32px;
-    
+
       a {
         height: 30px;
         padding: 0 12px;
         padding-bottom: 1px;
         line-height: 32px;
         color: #495057;
-    
+
         span {
           padding-left: 5px;
           color: $text-color-light;
         }
-      }
-    
-      .active {
-        border-style: solid;
-        border-width: 1px;
-        border-color: $border-color-base $border-color-base #fff;
-        border-radius: $border-radius-sm $border-radius-sm 0 0;
-        background-color: #fff;
-        box-sizing:content-box;
+
+        &.active {
+          border-style: solid;
+          border-width: 1px;
+          border-color: $border-color-base $border-color-base #fff;
+          border-radius: $border-radius-sm $border-radius-sm 0 0;
+          background-color: #fff;
+          box-sizing:content-box;
+        }
+
+        &.disabled {
+          color: #d6d7d8;
+        }
       }
     }
-    
+
     .mod-rank {
       line-height: 32px;
       padding: 0 10px;
-    
+
       .vm-tab {
           cursor: pointer;
-    
+
         &.active {
           color: #4c9e82;
           cursor: default;
         }
       }
-    
+
       .vm-line {
           margin: 0 8px;
       }

@@ -101,4 +101,14 @@ export default function () {
       'answerNum|0-9999': 5
     }]
   })
+
+  const answerVoteUrl = remoteUrlCombine(REMOTE.task.answerVote, {
+    post_id: '[a-z0-9]{24}'
+  })
+  Mock.mock(new RegExp(answerVoteUrl), {
+    'success': true,
+    'code': 200,
+    'message': '',
+    'data': {}
+  })
 }

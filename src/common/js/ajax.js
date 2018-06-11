@@ -14,13 +14,13 @@ export const REMOTE = {
     update: '/post/update'
   },
   task: {
-    taskFollows: '/post/follows',
-    doFollow: '/post/subscribe',
     queryAnswers: '/post/post_id/answers',
     queryAnswerCount: '/post/answerCount',
-    op: '/post/op',
     comment: '/post/post_id/comment',
-    related: '/post/post_id/related'
+    taskFollows: '/post/follows',
+    doFollow: '/post/subscribe',
+    related: '/post/post_id/related',
+    answerVote: '/answer/answer_id/vote'
   },
   find: {
     relatedQuestions: 'find/related'
@@ -76,7 +76,7 @@ export const ajax = function (url, params, method = 'get', isSimple = true) {
       timeout: 6000
     })
       .then(function (res) {
-        console.log(`url:${url} --- res:`, res)
+        console.log(`url:${url} queryOrBody: ${JSON.stringify(params || data)} --- res:`, res)
         if (res.data.success) {
           isSimple ? resolve(res.data.data) : resolve(res)
         } else {
